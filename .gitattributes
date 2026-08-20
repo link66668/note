@@ -1,0 +1,53 @@
+# Normalize text files in the repository and store them with LF endings.
+* text=auto eol=lf
+
+# Obsidian notes and common text-based project files.
+*.md        text eol=lf diff=markdown
+*.txt       text eol=lf
+*.json      text eol=lf
+*.jsonc     text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.toml      text eol=lf
+*.xml       text eol=lf
+*.csv       text eol=lf
+*.tsv       text eol=lf
+*.css       text eol=lf
+*.js        text eol=lf
+*.ts        text eol=lf
+*.html      text eol=lf
+*.svg       text eol=lf
+*.sh        text eol=lf
+*.ps1       text eol=lf
+.gitignore  text eol=lf
+.gitattributes text eol=lf
+
+# Native Windows command scripts require CRLF endings.
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+
+# Prevent line-ending conversion and textual diffs for binary attachments.
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.ico       binary
+*.pdf       binary
+*.doc       binary
+*.docx      binary
+*.xls       binary
+*.xlsx      binary
+*.ppt       binary
+*.pptx      binary
+*.zip       binary
+*.7z        binary
+*.rar       binary
+*.mp3       binary
+*.mp4       binary
+*.wav       binary
+*.mov       binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
