@@ -17,3 +17,4 @@
 
 # 5. Obsidian 配置由各设备独立维护，不参与同步
 .obsidian/
+.claudian/
