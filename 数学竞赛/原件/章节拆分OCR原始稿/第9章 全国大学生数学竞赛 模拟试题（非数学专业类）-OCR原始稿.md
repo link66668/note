@@ -1,0 +1,389 @@
+# 第9章 全国大学生数学竞赛 模拟试题（非数学专业类）
+
+### 全国大学生数学竞赛模拟试题（一）（初赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+（1）设  $ f(x) $ 是可微的周期为 4 的奇函数，且满足  $ f'(x) = 3(x + 1)^2 $， $ 0 \leq x \leq 2 $，则  $ f(23) = $ ___.
+
+(2) 设 k 是正整数,  $ \lim_{x \to 0} \frac{\tan x - \sin x}{\sqrt[3]{1 + x^3 + x^{2k} - 1}} = 0 $,  $ \lim_{x \to 0^+} \frac{\ln(1 + x^2) \ln x}{x^{\sqrt[3]{x}} - 1} = 0 $, 则 k = ___.
+
+(3) 设  $ f(x)=\int_{-1}^{x}\sqrt[3]{1+t}\ln|1+t|\,\mathrm{d}t $，则  $ f'(-1)= $ ___
+
+（4）设  $ L_{1}: x^{2} + y^{2} = 1, L_{2}: x^{2} + y^{2} = 2, L_{3}: 2x^{2} + y^{2} = 2, L_{4}: x^{2} + 2y^{2} = 2 $ 均为逆时针方向的平面曲线，记  $ I_{k} = \oint_{L_{k}} \left( y + \frac{y^{3}}{6} \right) \mathrm{d}x + \left( 2x - \frac{x^{3}}{3} \right) \mathrm{d}y $ (k = 1, 2, 3, 4),  $ \max\{I_{1}, I_{2}, I_{3}, I_{4}\} = \underline{\qquad} $.
+
+(5) 将函数  $ f(x)=\pi x-\frac{x^2}{2} $ 在  $ [0,\pi] $ 上展开成余弦级数，设  $ \{a_n\} $ 是其 Fourier 系数，则数项级数  $ \sum_{n=0}^{\infty}a_n $ 的和等于 ___。
+
+二、（本题 14 分）求极限  $ \lim_{x \to 0} \frac{\sin \ln(1+x) - \ln(1+\sin x)}{(\sqrt{1+x^2} - 1)\tan x} $.
+
+三、（本题14分）证明：当  $ 0 < x < \pi $ 时， $ \frac{x(x + \sin x)}{1 - \cos x} > 4 $.
+
+四、（本题 14 分）求圆锥面  $ x^{2}+y^{2}=2z^{2} $ 与平面  $ x+y+3z=5 $ 的交线上距离 xOy 面最远的点和最近的点.
+
+五、（本题 14 分）设  $ f(x) $ 是以  $ 2\pi $ 为周期的连续的偶函数，满足  $ f(\pi-x)=-f(x) $，且
+
+ $$ a_{n}=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos n x\mathrm{d}x,\quad n=0,1,2,\cdots. $$ 
+
+(1) 证明级数  $ \sum_{n=1}^{\infty}a_{2n-1} $ 收敛;
+
+(2) 给出一个满足题设条件的函数  $ f(x) $，并求相应的级数  $ \sum_{n=1}^{\infty}a_{2n-1} $ 之和.
+
+六、（本题 14 分）设函数  $ f(x) $ 具有二阶连续导数，且满足微分方程  $ y'' + 2y' + 5y = xe^{-x} $，又已知  $ f(0) = f'(0) = 0 $，求
+
+(1) 极限  $ \lim_{x \to 0} \frac{f(x)}{x^3} $;
+
+(2) 积分  $ \int_{0}^{+\infty} e^{-x} f(x) dx $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//9c6f20d7-5d8f-4e85-9eaf-8f20878327a6/markdown_1/imgs/img_in_image_box_472_301_588_415.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A19Z%2F-1%2F%2Ff9752771544e760d37ec3d755e333de07bce0d1535f16c0f2879fc41f851ac6e" alt="Image" width="10%" /></div>
+
+
+模拟试题（一）（初赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（二）（初赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 设  $ f(u) $ 是可微函数, z = xy + f( $ \sin x - \sin y $), 则  $ \frac{1}{\cos x} \cdot \frac{\partial z}{\partial x} + \frac{1}{\cos y} \cdot \frac{\partial z}{\partial y} = \underline{\qquad} $.
+
+(2) 设有直线  $ l_{1}:\frac{x-1}{1}=\frac{y-4}{-2}=\frac{z+5}{1} $ 与直线  $ l_{2}:\left\{\begin{array}{l}x-y=3,\\2y+z=7,\end{array}\right. $ 则  $ l_{1} $ 与  $ l_{2} $ 的夹角为 ___.
+
+(3) 设幂级数  $ \sum_{n=1}^{\infty}a_{n}x^{n} $ 与  $ \sum_{n=1}^{\infty}b_{n}x^{n} $ 的收敛半径分别为  $ \frac{1}{3} $ 和  $ \frac{\sqrt{2}}{3} $，则幂级数  $ \sum_{n=1}^{\infty}\left(\frac{a_{n}}{b_{n}}\right)^{3}x^{n} $ 的收敛半径为 ___.
+
+（4）设  $ S_{n} $ 为曲线  $ y = x^{n} $ 与曲线  $ y = x^{n+1} $ 所围成区域的面积  $ (n = 1, 2, \cdots) $，则级数  $ \sum_{n=1}^{\infty} S_{2n-1} $ 的和等于 ___.
+
+(5) 设曲线积分  $ \int_{L} x f(y) \, \mathrm{d}x + x^2 y \, \mathrm{d}y $ 与路径无关，其中  $ f(y) $ 具有连续的导数，且  $ f(0) = 1 $，则积分  $ \int_{(0,0)}^{(1,1)} x f(y) \, \mathrm{d}x + x^2 y \, \mathrm{d}y =  $ ___.
+
+二、（本题 14 分） 设函数  $ y = y(x) $ 由参数方程  $ \left\{\begin{array}{l}x = \arctan t, \\ 2y - ty^{2} + e^{3t} = 5\end{array}\right. $ 确定，其中 t 为参数，求导数  $ \left.\frac{dy}{dx}\right|_{t=0} $， $ \left.\frac{d^{2}y}{dx^{2}}\right|_{t=0} $。
+
+三、（本题14分）求极限 $ \lim_{n\to\infty}\left(\frac{n}{1^2+\sqrt{1}+n^2}+\frac{n}{2^2+\sqrt{2}+n^2}+\cdots+\frac{n}{n^2+\sqrt{n}+n^2}\right) $
+
+四、（本题 14 分）设  $ D=\{(x,y)|x^{2}+y^{2}\leq2\} $，函数  $ f(x,y) $ 在区域 D 上具有连续偏导数，且  $ \left|\frac{\partial f}{\partial x}\right|\leq1,\left|\frac{\partial f}{\partial y}\right|\leq1 $ 。证明：对任意  $ (x_{1},y_{1}),(x_{2},y_{2})\in D $ ，恒有
+
+ $$ |f(x_{1},y_{1})-f(x_{2},y_{2})|\leqslant4. $$ 
+
+五、（本题 14 分） 计算曲面积分：  $ I = \iint\limits_{\Sigma} x z \, dz \, dz - y z \, dx \, dx + (e^x \sin y - z^2 + 1) \, dx \, dy $，其中  $ \Sigma $ 是由  $ z = e^y, \left(0 \leq y \leq \frac{1}{2}\right) $ 绕  $ z $ 轴旋转一周生成的曲面，取下侧.
+
+六、（本题14分）求微分方程 $ (x^{2}\ln x)y''-xy'+y=0 $的通解.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//9c6f20d7-5d8f-4e85-9eaf-8f20878327a6/markdown_2/imgs/img_in_image_box_733_1130_849_1245.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A19Z%2F-1%2F%2F83def64e897371364fe69da7aa61434aab67ad29b27f4becf38d1036e98b8797" alt="Image" width="10%" /></div>
+
+
+模拟试题（二）（初赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（三）（初赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 设函数  $ f(x) = ax^{3} - x^{4} $ 与  $ g(x) = x + b\ln(1 + x) + cx \sin x $ 是  $ x \to 0 $ 时的等价无穷小，则向量  $ \{a, b, c\} $ 的长度为 ___.
+
+(2) 设函数  $ f(x,y) $ 具有连续偏导数，满足  $ f(x,x) = (x+1)^{2} + (x-2)\ln x $，且  $ \frac{\partial f}{\partial x} = 2(x+1) $，则曲线  $ f(x,y) = 0 $ 所围图形绕直线 x = -1 旋转所成旋转体的体积等于 ___.
+
+(3) 设函数  $ f(x) $ 具有连续的二阶导数，曲线  $ y = f(x) $ 过点  $ (0,0) $ 且与曲线  $ y = e^{-x} $ 在点  $ (1,e^{-1}) $ 处相切，则  $ \int_{0}^{1} x f''(x) \, \mathrm{d}x = $ ___.
+
+（4）设椭球面  $ S_{1} $ 是椭圆  $ \frac{x^{2}}{4}+\frac{y^{2}}{3}=1 $ 绕 x 轴旋转而成的，圆锥面  $ S_{2} $ 是过点 (4,0) 且与椭圆  $ \frac{x^{2}}{4}+\frac{y^{2}}{3}=1 $ 相切的直线绕 x 轴旋转而成的，则位于曲面  $ S_{1} $ 与  $ S_{2} $ 之间的立体体积为 ___.
+
+(5) 令 [a] 表示正数 a 的整数部分, 则  $ \sum_{n=0}^{\infty}\left(-\frac{1}{5}\right)^{[\sqrt{n}]}= $ ___.
+
+二、（本题 14 分） 证明  $ L_{1}:\frac{x-2}{1}=\frac{y-2}{1}=\frac{z+1}{-4} $ 和  $ L_{2}:\left\{\begin{aligned}2x+z&=1,\\ y&=1\end{aligned}\right. $ 是两条异面直线，并求  $ L_{1},L_{2} $ 之间的距离及公垂线 L 的方程.
+
+三、（本题14分）设函数  $ f(x) $ 在  $ (0,+\infty) $ 上具有连续导数，且满足  $ 3^{f(x)}\cdot f(x)=x $.
+
+(1) 证明： $ f(x) $ 在  $ (0, +\infty) $ 上单调递增.
+
+(2) 求极限:  $ \lim_{x \to +\infty} \frac{\ln x}{f(x)} $.
+
+四、（本题14分）设 $ S_{n}=\sum_{k=1}^{n}\frac{1}{\sqrt{k}},n=1,2,\cdots $。求正整数n的值，使得 $ [S_{n}]=100 $，其中 $ [S_{n}] $表示不大于 $ S_{n} $的最大整数。
+
+五、（本题14分）设级数 $ \sum_{n=0}^{\infty}a_{n} $收敛， $ b_{n}=\sum_{k=0}^{\infty}\frac{a_{k}}{n^{k}},n=1,2,\cdots $.证明：级数 $ \sum_{n=1}^{\infty}b_{n} $
+
+收敛的充分必要条件为  $ a_{0}=a_{1}=0 $.
+
+六、（本题 14 分） 设函数  $ f(x) $ 在闭区间  $ [0, 2] $ 上存在三阶导数，且  $ f(0) = f(1) = f(2) = 0 $，证明：对任意  $ a \in (0, 2) $，存在  $ \xi \in (0, 2) $，使得
+
+ $$ f(a)=\frac{1}{6}a(a-1)(a-2)f^{\prime\prime\prime}(\xi). $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//9c6f20d7-5d8f-4e85-9eaf-8f20878327a6/markdown_3/imgs/img_in_image_box_732_1163_849_1278.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A20Z%2F-1%2F%2Fefcc1ece4cf8999c1bf7d65bb6d4ab825d63ca6fc96ea642261b0b9000a90d7a" alt="Image" width="11%" /></div>
+
+
+模拟试题（三）（初赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（四）（初赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 极限  $ \lim_{n \to \infty} \sum_{k=1}^{n} \sin \frac{k}{n} \cdot \sin \frac{k}{n^2} = $ ___.
+
+(2) 极限  $ \lim_{x \to 0} \frac{2 \sin x + x^2 \cos \frac{1}{x}}{(1 + \cos x) \ln(1 + x)} =  $ ___.
+
+(3) 曲面  $ z = x^{2}(1 - \sin y) + y^{2}(1 - \sin x) $ 在点  $ (0, 1, 1) $ 处的切平面方程为 ___.
+
+(4) 函数  $ f(x,y)=ye^{-\frac{x^{2}+y^{2}}{2}} $ 的极大值为 ___.
+
+(5) 已知曲线  $ L : \left\{ \begin{array}{l} x = f(t), \\ y = \sin t \end{array} \right. $  $ (0 < t < \frac{\pi}{2}) $，其中函数  $ f(t) $ 具有连续导数，且  $ f\left(\frac{\pi}{2}\right) = 0, f'(t) > 0\left(0 < t < \frac{\pi}{2}\right) $，若曲线的切线与 x 轴的交点到切点的距离恒为 1，则函数  $ f(t) $ 的表达式为 ___.
+
+二、（本题14分）设  $ \alpha > 0 $ ，求  $ \int_{0}^{+\infty} \frac{2 \arctan \alpha x}{x (1 + x^{2})} dx $.
+
+三、（本题 14 分）求极限  $ \lim_{x \to \infty} \frac{\pi \int_{0}^{x} t |\sin t| dt}{2x^2} $.
+
+四、（本题14分）设数列 $ \{a_{n}\} $， $ \{b_{n}\} $满足 $ 0<a_{n}<\frac{\pi}{2},0<b_{n}<\frac{\pi}{2},\cos a_{n}-a_{n}=\cos b_{n} $，且级数 $ \sum_{n=1}^{\infty}b_{n} $收敛，证明级数 $ \sum_{n=1}^{\infty}\frac{2a_{n}}{a_{n}+b_{n}} $收敛.
+
+五、（本题 14 分）已知函数  $ f(x) $ 在区间  $ [0,1] $ 上连续，在  $ (0,1) $ 内可导，且  $ f(0)=0,f(1)=1 $，试证明存在两个不同的  $ \xi,\eta\in(0,1) $，使得  $ f'(\xi)f'(\eta)=1 $ 成立.
+
+六、（本题14分）设函数  $ f(x,y) $ 在区域  $ D=\left\{(x,y)\mid x^{2}+y^{2}\leqslant4\right\} $ 上具有二阶连续偏导数，且满足  $ \frac{\partial^{2}f}{\partial x^{2}}+\frac{\partial^{2}f}{\partial y^{2}}=x^{2}+y^{2}+1 $ ，试计算积分
+
+ $$ I=\iint\limits_{D}\left(\frac{x}{\sqrt{x^{2}+y^{2}}}\frac{\partial f}{\partial x}+\frac{y}{\sqrt{x^{2}+y^{2}}}\frac{\partial f}{\partial y}\right)\mathrm{d}x\mathrm{d}y. $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//3c625bf6-b483-4a3c-bea4-0c86a2ed5185/markdown_0/imgs/img_in_image_box_472_1161_589_1277.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A18Z%2F-1%2F%2F10699c3395bc732a883e6c82b9fe305f7f24bff18a0b0d84f609526d517c507f" alt="Image" width="11%" /></div>
+
+
+模拟试题 (四)(初赛)
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（五）（初赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 极限  $ \lim_{n \to \infty} (\sqrt[n]{b} - 1) \sum_{i=0}^{n-1} b^{\frac{4i+1}{2n}} \sin \left(b^{\frac{2i+1}{2n}}\right) =  $ ___.
+
+(2) 积分  $ \int \frac{1}{x^{2023} + x} \mathrm{d}x =  $ ___.
+
+(3) 经过直线  $ \left\{\begin{array}{l}x-2y-3z+1=0,\\2x+y+z-1=0\end{array}\right. $ 且与平面  $ x+y-z+1=0 $ 垂直的平面方程为 ___.
+
+(4) 已知函数  $ z = u e^{ax+by} $，其中  $ u = u(x,y) $ 具有二阶偏导数，且  $ \frac{\partial^2 u}{\partial x \partial y} = 0 $，若  $ z = z(x,y) $ 满足  $ \frac{\partial^2 z}{\partial x \partial u} + \frac{\partial z}{\partial x} + 2 \frac{\partial z}{\partial u} + 2z = 0 $，则常数  $ a = $ ___， $ b = $ ___。
+
+(5) 设  $ f_{n}(x) = \cos x \cos 2x \cos 3x \cdots \cos nx $，则使得  $ \left|f_{n}''(0)\right| > 2025 $ 成立的最小正整数 n = ___.
+
+二、（本题14分）求解微分方程： $ \frac{dy}{dx}\cdot\frac{d^2y}{dx^2}=x+\frac{d^2y}{dx^2} $
+
+三、（本题14分）设函数  $ z = z(x, y) $ 满足方程  $ F\left(x + \frac{z}{y}, y + \frac{z}{x}\right) = 0 $，求  $ x \frac{\partial z}{\partial x} + y \frac{\partial z}{\partial y} $
+
+四、（本题14分）设数列 $ \{x_{n}\}_{n=1}^{\infty} $满足 $ x_{1}=\sqrt{5},x_{n+1}=x_{n}^{2}-2,n\geqslant1 $，试判断级数 $ \sum_{n=1}^{\infty}\frac{x_{1}x_{2}\cdots x_{n}}{(n+1)x_{n+1}} $是否收敛.
+
+五、（本题14分）计算 $ \int_{0}^{1}\frac{\ln\left(x+\sqrt{1-x^{2}}\right)}{x}\mathrm{d}x $
+
+六、（本题 14 分）计算三重积分  $ I = \iiint_{V} |5x + y + z| \cdot |x + 4y - z| \, \mathrm{d}x \, \mathrm{d}y \, \mathrm{d}z $，其中  $ V: x^2 + y^2 + \frac{z^2}{9} \leqslant 1 $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//3c625bf6-b483-4a3c-bea4-0c86a2ed5185/markdown_1/imgs/img_in_image_box_472_1123_588_1240.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A18Z%2F-1%2F%2F23550822cdcd708dd3d585c6f8c8f5b33aff2af1e2d12dcfe065aa2a41685664" alt="Image" width="10%" /></div>
+
+
+模拟试题（五）（初赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（六）（决赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 设函数  $ f(x) = \arctan x - \frac{x}{1 + ax^2} $，且  $ f'''(0) = \frac{1}{2} $，则  $ a = $ ___.
+
+(2) 设函数  $ f(x) $ 在包含 x = 0 的某个邻域内可导，且  $ f'(0) = \frac{1}{6}f(0) \neq 0 $，则  $ \lim_{n \to \infty} \left( \frac{f\left( \frac{3}{n} \right)}{f(0)} \right)^n =  $ ___.
+
+(3) 设  $ g(x) $ 是函数  $ f(x) = \frac{1}{2} \ln \frac{3 + x}{3 - x} $ 的反函数，则曲线  $ y = g(x) $ 的渐近线方程为 ___.
+
+(4) 设函数  $ f(x) $ 在  $ [-1,1] $ 上连续，且满足  $ f(x) = 2 + \ln(x + \sqrt{1 + x^2})e^{-x^2} + (1 + \sin^4 \pi x) \int_{-1}^{1} f(x) \, dx $，则  $ \int_{-1}^{1} f(x) \, dx = $ ___.
+
+(5) 微分方程  $ y \mathrm{d}x - (x + y^2 e^y) \mathrm{d}y = 0 $ 满足初始条件  $ y\bigg|_{x=0} = 1 $ 的特解为 ___.
+
+二、（本题 10 分） 设数列  $ \{x_{n}\} $ 满足  $ 0 < x_{1} < \frac{\pi}{2} $，且  $ x_{n+1} = \sqrt{\frac{\pi}{2}x_{n}} \sin x_{n} $， $ n \geqslant 1 $，证明  $ \{x_{n}\} $ 收敛，并求极限： $ L = \lim_{n \to \infty} \frac{\sec x_{n} - \tan x_{n}}{\frac{\pi}{2} - x_{n}} $。
+
+三、（本题 12 分） 设函数  $ f(x)=\sqrt[3]{x+\sqrt{1+x^2}}+\sqrt[3]{x-\sqrt{1+x^2}} $.
+
+(1) 判断  $ f(x) $ 在区间  $ [0,2] $ 上的单调性;
+
+(2) 求定积分  $ \int_{0}^{2} f(x) dx $.
+
+四、（本题 12 分）求微分方程  $ xy'' + (2x + 2)y' + 2y = e^{x} $ 的通解.
+
+五、（本题 12 分） 证明级数  $ \sum_{n=1}^{\infty}\frac{1}{n^{2}}\sum_{k=1}^{n}\csc^{2}\frac{k\pi}{2n+1} $ 发散.
+
+六、（本题 12 分） 设 a > 0, b ≥ 1，证明： $ \frac{a^{b}}{\sqrt{3}} \geq \frac{1}{a + \sqrt{3} - 1} + \frac{1 + \sqrt{3}b}{3} \ln a $.
+
+七、（本题12分）设A,B均为n阶矩阵.
+
+(1) 设  $ \boldsymbol{A} = (a_{ij}) $，记  $ \mathrm{tr}(\boldsymbol{A}) = \sum_{k=1}^{n} a_{kk} $，即 A 的对角元之和，
+
+证明： $ \mathrm{tr}(\boldsymbol{A}\boldsymbol{B})=\mathrm{tr}(\boldsymbol{B}\boldsymbol{A}) $.
+
+(2) 证明：若  $ A^{2} + B^{2} = 2AB $，则行列式  $ \left|AB - BA\right| = 0 $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//3c625bf6-b483-4a3c-bea4-0c86a2ed5185/markdown_2/imgs/img_in_image_box_761_1105_877_1221.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A19Z%2F-1%2F%2F4b15a67ac9ef52da8503d9c79a44ba4a76c05175d2063bcf607d75ccce9cabf1" alt="Image" width="10%" /></div>
+
+
+模拟试题（六）（决赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（七）（决赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 极限  $ \lim_{x \to +\infty} \left( \sqrt{x} + \sqrt[3]{x + \sqrt[4]{x}} - \sqrt{x} \right) =  $ ___.
+
+(2) 设  $ a \neq 0 $，函数  $ f(x) = \left\{ \begin{array}{ll} \frac{1 - \cos \sqrt{3x}}{ax}, & x > 0, \\ b + 2 \tan x, & x \leq 0 \end{array} \right. $ 在点 x = 0 处连续，则  $ ab =  $ ___.
+
+(3) 已知  $ f(x) $ 满足  $ \int f(x^2)x \arctan |x|\mathrm{d}x = \ln(1 + x^2) + C $，其中  $ C $ 为任意常数，则  $ \int_0^1 \frac{\mathrm{d}x}{f(x)} =  $ ___.
+
+（4）设函数  $ f(x,y)=\int_{-\pi}^{\pi}(t-x\cos t-y\sin t)^{2}\mathrm{d}t $ 在点  $ (x_{0},y_{0}) $ 处取得最小值，则  $ \int_{-\pi}^{\pi}x(x_{0}\cos x+y_{0}\sin x)\mathrm{d}x= $ ___.
+
+(5) 设函数  $ f(x) = \left\{ \begin{array}{ll} x^{2}, & x \in [0,1], \\ 0, & x \notin [0,1], \end{array} \right. $ 则二重积分  $ \int_{0}^{1} \int_{0}^{1} f(x) f(x + y) \, \mathrm{d}x \, \mathrm{d}y =  $ ___.
+
+二、(本题 10 分) 设 a, b 为常数，函数  $ f(x, y) = ax^{2} + by^{2} + 1 $ 在点 (4,3) 处的方向导数中，沿方向  $ l = -4i - 3j $ 的方向导数最大，最大值为 10.
+
+(1) 求 a, b 的值;
+
+(2) 求曲面 z = f(x, y) 被平面 z = 0 所截下的有限部分的面积.
+
+三、（本题12分）求微分方程 $ (2x^{2}+x^{3}y+y)\mathrm{d}x+(x+4xy^{4}+8y^{3})\mathrm{d}y=0 $的通解.
+
+四、（本题 12 分） 设  $ a_{n}=\sum_{k=1}^{n}\frac{1}{k^{\alpha}} $ ，其中  $ \alpha>1 $ 。证明：
+
+(1) 极限  $ \lim_{n\to\infty}a_n $ 存在;
+
+(2) 若令  $ \lim_{n\to\infty}a_n=\beta $，则  $ \frac{1}{2^{\alpha-1}}\leq(\alpha-1)(\beta-1)\leq1 $.
+
+五、（本题 12 分） 设  $ \Sigma $ 是空间区域
+
+ $$ \Omega=\left\{(x,y,z)\middle|\sqrt{y^{2}+z^{2}}\leqslant\sqrt{3}x,1\leqslant x^{2}+y^{2}+z^{2}\leqslant2\right\} $$ 
+
+的外侧表面，函数  $ f(x) $ 在  $ (-\infty, +\infty) $ 上具有连续导数。计算曲面积分：
+
+ $$ I=\iint\limits_{\varSigma}[x^{3}+f(yz)]\mathrm{d}y\mathrm{d}z+[y^{3}+f(yz)]\mathrm{d}z\mathrm{d}x+[z^{3}+f(yz)]\mathrm{d}x\mathrm{d}y. $$ 
+
+六、（本题 12 分） 设函数  $ f(x) $ 在  $ [0,1] $ 上二阶可导，满足  $ \lim_{x\to0^{+}}\frac{f(x)-1}{x}=1 $ 及  $ f(1)=1+e $。证明：存在  $ \xi\in(0,1) $，使得  $ f''(\xi)-2f'(\xi)+f(\xi)=1 $。
+
+七、（本题12分）设 A, B, C 都是  $ n \times n $ 矩阵，满足  $ A^{2} = B^{2} = C^{2} $，且  $ B^{3} = ABC + 2E $，其中 E 为 n 阶单位矩阵。求证： $ B^{3} = E $。
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//6dd7868b-a940-4b8b-b075-bc167d815b2e/markdown_0/imgs/img_in_image_box_472_338_588_452.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A18Z%2F-1%2F%2Fc906f509a2ab8ec38db9a8e98ddee8ddcaa040b81f2d9222a02532764bd19394" alt="Image" width="10%" /></div>
+
+
+模拟试题（七）（决赛）
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（八）（决赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 极限  $ \lim_{n \to \infty} \left( n - \frac{1}{\ln(1+n) - \ln n} \right) =  $ ___.
+
+(2) 设  $ x_1, x_2, \cdots, x_n $ 是方程  $ \frac{1}{2}(3^x + 7^x) = 5^x $ 的所有实根，则  $ \frac{1}{n} \sum_{k=1}^{n} x_k = $ ___.
+
+（3）设函数  $ f(u,v) $ 具有连续偏导数，且  $ \frac{\partial f}{\partial u} + \frac{\partial f}{\partial v} \neq 0 $。又设  $ z = z(x,y) $ 是由方程  $ f(z + ax, z + ay) = 1 $ 确定的二元隐函数，且满足  $ \frac{\partial z}{\partial x} + \frac{\partial z}{\partial y} = 1 $，则 a = ___.
+
+(4) 设  $ \Omega: x^2 + y^2 + z^2 \leq 2z $，则  $ \iiint_{\Omega} \left( \sqrt{x^2 + y^2 + z^2} + 7x^3 - 4y^5z^2 \right) \mathrm{d}x \mathrm{d}y \mathrm{d}z = $ ___.
+
+(5) 设函数  $ f(x)=\left\{\begin{array}{ll}1, & 0 \leqslant x < \frac{1}{3}, \\ x^2, & \frac{1}{3} \leqslant x \leqslant 1\end{array}\right. $ 的 Fourier 级数为  $ \sum_{n=1}^{\infty} b_n \sin n\pi x $，又设  $ S(x) $ 为级数  $ \sum_{n=1}^{\infty} b_n \sin n\pi x $ 的和函数，则  $ S\left(-\frac{5}{3}\right)= $ ___.
+
+二、（本题 10 分） 求曲线  $ C:\left\{\begin{array}{l}x^{2}+y^{2}=z^{2}, \\ x+y-z=2\end{array}\right. $ 上距离坐标原点最近的点.
+
+三、（本题 12 分）设函数  $ f(x,y) $ 具有二阶连续偏导数，当  $ x \neq 0 $ 时，满足  $ f(2x,x^{3}) = x^{3} $， $ f_{x}^{\prime}(2x,x^{3}) = 2x^{2} $， $ f_{xx}^{\prime\prime}(2x,x^{3}) = x^{4}f_{yy}^{\prime\prime}(2x,x^{3}) + 1 $，且
+
+ $$ a f_{y}^{\prime}(2x,x^{3})+3x^{2}f_{x y}^{\prime\prime}(2x,x^{3})+5x^{4}f_{y y}^{\prime\prime}(2x,x^{3})=b x+\frac{1}{6}, $$ 
+
+求常数 a, b 的值.
+
+四、（本题12分）设  $ f(x,y) $ 在区域  $ D: x^{2}+y^{2}\leq1 $ 上具有连续二阶偏导数，且满足
+
+ $$ \frac{\partial^{2}f}{\partial x^{2}}+\frac{\partial^{2}f}{\partial y^{2}}=\left|y+\sqrt{3}x\right|. $$ 
+
+计算二重积分  $ I=\iint_{D}\left(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right)\mathrm{d}x\mathrm{d}y. $
+
+五、（本题 12 分）设  $ y_{1} $ 和  $ y_{2} $ 是方程  $ y'' + p(x)y' + 2e^{2x}y = 0 $ 的线性无关解，且  $ y_{2} = y_{1}^{2} $. 已知  $ p(0) > 0 $，求函数  $ p(x) $ 与此方程的通解.
+
+六、（本题12分）设函数  $ f(x) $ 是区间  $ (0, +\infty) $ 上的非负连续函数，且存在 T, M >
+
+0，使得对任意  $ a \geqslant 0 $ ，恒有  $ \frac{1}{T}\int_{a}^{a+T} f(x) \, \mathrm{d}x \leqslant M $ 。证明：对任意 b, c > 0 ，恒有
+
+ $$ \int_{0}^{c}\mathrm{e}^{b(x-c)}f(x)\mathrm{d}x\leqslant\frac{M T}{1-\mathrm{e}^{-bT}}. $$ 
+
+七、（本题 12 分）设 n 为正整数且  $ n \geqslant 2 $，x 为整数，矩阵
+
+ $$ \boldsymbol{A}=\left(\begin{array}{ccccc}1&2&3&\cdots&n\\x&1&2&\cdots&n-1\\x&x&1&\cdots&n-2\\\vdots&\vdots&\vdots&&\vdots\\x&x&x&\cdots&1\end{array}\right). $$ 
+
+证明：A 是可逆矩阵；又问：何时  $ A^{-1} $ 也是整数矩阵（即每个元素都是整数的矩阵）？
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//6dd7868b-a940-4b8b-b075-bc167d815b2e/markdown_2/imgs/img_in_image_box_472_625_588_740.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A19Z%2F-1%2F%2F9bcc7f2fd737ed5945b619829b97d8d34c2e93a4ee38728deddf79c1c400b929" alt="Image" width="10%" /></div>
+
+
+模拟试题（八）（决赛）
+
+参考解答
+
+## 全国大学生数学竞赛模拟试题（九）（决赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 设  $ \delta > 0 $，函数  $ f(x) $ 在邻域  $ O(0, \delta) $ 内有定义，且  $ \lim_{x \to 0} \frac{(1 - f(x)) \sin x}{\sqrt{1 + x^2} - 1} = 1 $，则  $ \lim_{x \to 0} \frac{f(2x) \arcsin x + \ln(1 - x)}{\sqrt{1 + 2x^2} - 1} =  $ ___.
+
+(2) 设  $ f(x) $ 是  $ [-1,1] $ 的连续函数，且满足  $ f(x)f(-x)=1 $，则  $ \int_{-1}^{1}\frac{x\arctan x}{1+f(x)}\mathrm{d}x= $ ___.
+
+(3) 已知两条直线的方程分别为  $ \ell_{1} $:  $ \frac{x-1}{\lambda} = \frac{y+1}{2} = \frac{z-1}{\lambda} $,  $ \ell_{2} $:  $ \frac{x+1}{0} = \frac{y+1}{\lambda} = \frac{z}{1} $, 若这两条直线相交，则  $ \lambda =  $ ___.
+
+(4) 幂级数  $ \sum_{n=1}^{\infty}\frac{x^{n}}{n\cdot3^{n}+n^{2}\cdot2^{n}} $ 的收敛域为 ___.
+
+(5) 设  $ \Sigma: x^{2} + y^{2} + z^{2} = a^{2} (a > 0) $，则曲面积分  $ \iint_{\Sigma} \left( x + \frac{y}{2} + \frac{z}{\sqrt{5}} \right)^{2} dS = $ ___.
+
+二、（本题 10 分）设  $ 0 < x_{0} < \pi $，当  $ n \geqslant 1 $ 时， $ x_{n} = \frac{1}{n} \sum_{k=0}^{n-1} \sin x_{k} $，试证级数  $ \sum_{n=1}^{\infty}(-1)^{n} x_{n} $ 收敛，并求极限： $ \lim_{n \to \infty} x_{n} \sqrt{\ln n} $.
+
+三、（本题 12 分）设一球面的方程为  $ x^{2} + y^{2} + (z+1)^{2} = 4 $，从原点向球面上任一点 Q 处的切平面作垂线，垂足为点 P，当点 Q 在球面上变动时，点 P 的轨迹形成一封闭曲面 S，求此封闭曲面 S 所围成的立体  $ \Omega $ 的体积.
+
+四、（本题12分）已知微分方程  $ y' + y = p(x) $，其中函数  $ p(x) $ 在  $ (-\infty, +\infty) $ 上连续.
+
+(1) 设  $ p(x)=x $，求方程的通解；
+
+(2) 证明：若  $ p(x) $ 是周期为 T 的周期函数，则方程存在唯一的以 T 为周期的解.
+
+五、（本题 12 分）设函数  $ f(x) $ 在  $ [a,b] $ 上具有连续导数，记  $ A = \frac{1}{b-a}\int_{a}^{b}f(x)\mathrm{d}x $，证明：存在  $ \xi \in (a,b) $，使得  $ \left|f'(\xi)\right| \geqslant \frac{2}{(b-a)^2} \int_{a}^{b} |f(x)-A|\mathrm{d}x $.
+
+六、（本题 12 分）设  $ a_{0}=\frac{\pi}{2} $， $ a_{n}=\sin a_{n-1}(n\geqslant1) $。判断级数  $ \sum_{n=1}^{\infty}a_{n}^{2} $ 的收敛性.
+
+七、（本题 12 分）请用矩阵方法证明：对任意实数 x, y, z，若  $ x^{2} + y^{2} + z^{2} = 1 $，则
+
+ $$ 3(2x+y-\sqrt{3}z)^{2}+(x-5y-\sqrt{3}z)^{2}\leqslant29. $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//6dd7868b-a940-4b8b-b075-bc167d815b2e/markdown_3/imgs/img_in_image_box_790_1165_905_1280.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-08-30T19%3A03%3A19Z%2F-1%2F%2F1904bc2dfe1617c2e6e901fedbb8708dac35acc82d29462cdb521ac4a840f74f" alt="Image" width="10%" /></div>
+
+
+模拟试题 (九)(决赛)
+
+参考解答
+
+### 全国大学生数学竞赛模拟试题（十）（决赛）
+
+#### 一、填空题（本题共30分，共6小题，每题5分）
+
+(1) 设  $ a \geqslant 1 $，则极限  $ \lim_{n \to \infty} \sum_{i=0}^{n-1} \frac{\ln a}{n} a^{\frac{i}{n}} \sin \left(a^{\frac{2i+1}{2n}}\right) = $ ___.
+
+(2) 设  $ z = z(x, y) $ 具有二阶连续偏导数，且满足方程  $ \frac{\partial^2 z}{\partial x^2} + 2\frac{\partial^2 z}{\partial x \partial y} + \frac{\partial^2 z}{\partial y^2} = 0 $，已知变换  $ \left\{\begin{array}{l}u = 2x + ay, \\ v = x - by,\end{array}\right. $ 则参数  $ a = $ ___， $ b = $ ___。
+
+(3) 曲线  $ \left\{\begin{array}{l}x+y+z=0,\\x^{2}+y^{2}+z^{2}=3\end{array}\right. $ 在点  $ M(1,-2,1) $ 处的法平面方程为 ___.
+
+(4) 设  $ \Gamma $ 为曲面  $ x^{2} + y^{2} + z^{2} = 5 $ 和  $ z = x^{2} + y^{2} + 1 $ 的交线，其方向为面对 z 轴正向看去取顺时针方向，则  $ \oint_{\Gamma} x^{2} y z \, \mathrm{d}x + (x^{2} + y^{2}) \, \mathrm{d}y + (x + y + 1) \, \mathrm{d}z =  $ ___.
+
+(5) 级数  $ \sum_{n=1}^{\infty}\sum_{i=1}^{n}\frac{(n+1)-i}{i}x^{n} $ 的收敛域为 ___，其和函数为 ___.
+
+二、（本题10分）设 $ z(x) $为微分方程 $ x^{2}z''+xz'-4z=0 $满足条件 $ z|_{x=1}=2,z'|_{x=1}=4 $的解，求 $ z(x) $，并计算 $ \iint\limits_{D}\left|y-\frac{1}{2}z(x)\right|\cdot\max\{x,y\}dxdy $，其中 $ D=\{(x,y)\mid0\leq x\leq1,0\leq y\leq1\} $.
+
+三、（本题 12 分）讨论积分  $ \int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{2}\sqrt{\ln x}} $ 的收敛性.
+
+四、（本题 12 分）设直线段 L 过  $ A(0, -1, 0) $,  $ B(0, 0, -1) $ 两点，将 L 绕 z 轴旋转一周所得曲面记为  $ S_1 $，曲面  $ S_2 $ 为  $ z = \sqrt{1 - x^2 - y^2} $,  $ S_1 $ 与  $ S_2 $ 所围立体 V 的整个表面为 S，取内侧，计算  $ I = \iint_S \frac{x \, \mathrm{d}y \, \mathrm{d}z + y \, \mathrm{d}z \, \mathrm{d}x + z \, \mathrm{d}x \, \mathrm{d}y}{(x^2 + y^2 + z^2)^{3/2}} $.
+
+五、（本题 12 分）设函数  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二阶可导，证明：对任意  $ c \in (a,b] $，存在  $ \xi \in (a,b) $，使得  $ \frac{f(b) - f(a)}{b - a} - \frac{f(c) - f(a)}{c - a} = \frac{1}{3}f''(\xi)(b - c) $.
+
+六、（本题 12 分）已知  $ a_{n} + \sqrt{3}b_{n} = (3 + \sqrt{3})^{n} $，其中  $ a_{n}, b_{n} $ 为整数，求极限  $ \lim_{n \to \infty} \frac{a_{n}}{b_{n}} $.
+
+七、（本题 12 分）设函数  $ G(x,y)=ax^{2}+2bxy+cy^{2}+2dx+ $
+
+2ey + f, 其中 a, b, c, d, e, f 为常数, 满足 ac - b^{2} > 0. 求证: G(x, y) 有唯一的极值
+
+ $$ \begin{array}{c|ccc}{{{1}}}&{{{a}}}&{{{b}}}&{{{d}}} \\{{{\hline ac-b^{2}}}}&{{{b}}}&{{{c}}}&{{{e}}} \\{{{d}}}&{{{e}}}&{{{f}}} \\\end{array}. $$ 
+
+
+
