@@ -1,0 +1,3071 @@
+### 第2章 一元函数微分学
+
+知识结构
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//87a77e89-3bea-407b-895d-1530a9193892/markdown_0/imgs/img_in_image_box_299_397_1235_959.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A29Z%2F-1%2F%2F8e4a6d84400087d6743da271f6903da85bdbe1a8232e896f0e4facb4c634de27" alt="Image" width="64%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">2.1 导数与微分</div> </div>
+
+
+函数的导数与微分分别反映了由自变量的微小变化所引起的函数变化的相对快慢程度（变化率）与绝对变化大小（线性近似）两方面的问题。这两个概念有一定的区别也有很强的联系。在计算上知道其中一个就能立即写出另一个。所以我们往往以研究导数为主。函数的常见形式有：显函数（包括分段函数、反函数）、隐函数、参数式函数以及积分变限函数（积分变限函数的导数将在第3章中讨论），虽然函数形式不同求导方法有所不同，但最基本的法则仍是导数的四则运算法则与复合运算法则，其他求导法则都可由此而得到。函数在某些特殊点（如分段点）的导数一般要用定义来计算。
+
+# 1. 导数的概念
+
+例 1 设函数  $ f(x) $ 在  $ (-\infty,+\infty) $ 内有定义，对任意的 x 均有  $ f(x+1)=2f(x) $，且当  $ 0 \leq x \leq 1 $ 时， $ f(x)=x(1-x^2) $。判断  $ f(x) $ 在 x=0 处是否可导。
+
+分析 只需求出  $ f(x) $ 在 x=0 左边的表达式，再考察左、右导数是否相等.
+
+解 当 $ -1 \leq x < 0 $时，有 $ 0 \leq x + 1 < 1 $，所以
+
+ $$ f(x)=\frac{1}{2}f(x+1)=\frac{1}{2}(x+1)[1-(x+1)^{2}]=\frac{1}{2}(x+1)(-2x-x^{2}). $$ 
+
+求得
+
+ $$ f_{-}^{\prime}(0)=\lim_{x\to0^{-}}\frac{f(x)-f(0)}{x-0}=\lim_{x\to0^{-}}\frac{-\frac{1}{2}x(1+x)(2+x)}{x}=-1, $$ 
+
+ $$ f_{+}^{\prime}(0)=\lim_{x\to0^{+}}\frac{f(x)-f(0)}{x-0}=\lim_{x\to0^{+}}\frac{x(1-x^{2})}{x}=1. $$ 
+
+由于  $ f_{+}^{\prime}(0) \neq f_{-}^{\prime}(0) $，所以  $ f(x) $ 在 x=0 处不可导.
+
+例2 设  $ f(x) $ 是连续可导函数，且  $ f(x)=x+x\int_{0}^{1}f(t)dt+x^{2}\lim_{x\to0}\frac{f(x)}{x} $，求  $ f(x) $.
+
+分析 函数的定积分与极限值都是常数，该题的本质就是要确定这两个常数.
+
+解 易知  $ f(0)=0 $ ，则  $ \lim_{x\to0}\frac{f(x)}{x}=\lim_{x\to0}\frac{f(x)-f(0)}{x}=f'(0) $.
+
+设  $ A=\int_{0}^{1}f(t)dt $，则
+
+ $$ f(x)=x+xA+x^{2}f^{\prime}(0), $$ 
+
+对 $ ^{①} $式两边积分得
+
+ $$ A=\int_{0}^{1}[t+tA+t^{2}f^{\prime}(0)]\mathrm{d}t=\frac{1}{2}+\frac{1}{2}A+\frac{1}{3}f^{\prime}(0),\  即 \ A=1+\frac{2}{3}f^{\prime}(0). $$ 
+
+在 $ ^{①} $式中两边求导，令x=0，得
+
+ $$ f^{\prime}(0)=1+A. $$ 
+
+由②，③式得  $ f'(0)=6 $，A=5，故  $ f(x)=6x+6x^{2} $
+
+评注 注意结论：若  $ f(x) $ 在  $ x=x_{0} $ 处连续，且  $ \lim_{x\to x_{0}}\frac{f(x)}{x-x_{0}}=a $ ，则必有  $ f(x_{0})=0 $ ， $ f^{\prime}(x_{0})=a $
+
+例3 设函数  $ f(x) $ 在 x=a 处可导，试讨论  $ \left|f(x)\right| $ 在 x=a 处不可导的充要条件.
+
+分析 由于  $ f(x) $ 与  $ \left|f(x)\right| $ 的最大差异就是一个符号，所以只需考察当  $ f(a)=0 $ 时的左、右导数.
+
+解 若  $ f(a) \neq 0 $，不妨设  $ f(a) > 0 $，由于  $ f(x) $ 在 x = a 处可导，从而必连续。由连续函数的局部保号性知，存在 x = a 的某邻域，在该邻域内有  $ f(x) > 0 $，从而  $ \left|f(x)\right| = f(x) $ 在 x = a 处可导。
+
+若  $ f(a)=0 $，记  $ g(x)=\left|f(x)\right| $，则
+
+ $$ g_{-}^{\prime}(a)=\lim_{x\to a^{-}}\frac{\left|f(x)\right|}{x-a}=\lim_{x\to a^{-}}\frac{\left|f(x)-f(a)\right|}{x-a}=-\lim_{x\to a^{-}}\left|\frac{f(x)-f(a)}{x-a}\right|=-\left|f^{\prime}(a)\right|, $$ 
+
+同理
+
+ $$ g_{+}^{\prime}(a)=\mid f^{\prime}(a)\mid. $$ 
+
+可得
+
+ $ g(x) $ 在 x=a 处不可导  $ \Leftrightarrow g_{-}^{\prime}(a) \neq g_{+}^{\prime}(a) \Leftrightarrow f^{\prime}(a) \neq 0 $.
+
+综上所述， $ \left|f(x)\right| $ 在 x=a 处不可导的充要条件是  $ f(a)=0 $ 且  $ f'(a)\neq0 $.
+
+评注（1）由此可知  $ |x| $， $ |\sin x| $， $ |\ln(1+x)| $ 等在 x=0 点不可导；但  $ |x^n|(n>1) $， $ |x\sin x| $， $ |x\ln(1+x)| $ 等在 x=0 点可导，并且  $ |x^n| $ 在 x=0 点具有 n-1 阶导数.
+
+（2）与该题类似的一个命题：设 $ g(x) $在x=a处连续，则 $ f(x)=\left|x-a\right|g(x) $在x=a处可导的充分必要条件是 $ g(a)=0 $（读者可自证）。
+
+例4 已知 $ f(x) $是周期为5的连续函数，它在x=0的某邻域内满足关系式
+
+ $$ f(1+\sin x)-3f(1-\sin x)=8x+\alpha(x), $$ 
+
+其中  $ \alpha(x) $ 是当  $ x \to 0 $ 时比 x 的高阶无穷小，且  $ f(x) $ 在 x=1 处可导，求曲线  $ y = f(x) $ 在点  $ (6, f(6)) $ 处的切线方程.
+
+分析 周期函数的导数也是周期函数且周期不变，所以只需求出  $ f(1) $ 及切线斜率  $ f'(1) $.
+
+解 由  $ \lim_{x\to0}[f(1+\sin x)-3f(1-\sin x)]=\lim_{x\to0}[8x+\alpha(x)] $ ，得
+
+ $$ f(1)-3f(1)=0,\ f(1)=0. $$ 
+
+又
+
+ $$ \lim_{x\to0}\frac{f(1+\sin x)-3f(1-\sin x)}{\sin x}=\lim_{x\to0}\left[\frac{8x}{\sin x}+\frac{\alpha(x)}{x}\cdot\frac{x}{\sin x}\right]=8 $$ 
+
+设 $ \sin x=t $，有
+
+ $$ \lim_{x\to0}\frac{f(1+\sin s)-3f(1-\sin x)}{\sin x}=\lim_{x\to0}\frac{f(1+t)-f(1)}{t}+3\lim_{x\to0}\frac{f(1-t)-f(1)}{-t}=4f^{\prime}(1)． $$ 
+
+由 $ ^{①} $，②式得 $ f'(1)=2 $。
+
+又  $ f(x+5)=f(x) $，所以  $ f(6)=f(1)=0 $， $ f'(6)=f'(1)=2 $。所求切线方程为  $ y=2(x-6) $。
+
+评注 注意结论：若  $ f'(x_0) $ 存在，则  $ \lim_{h\to0}\frac{f(x_0+h)-f(x_0+ah)}{h} $ （ $ a $ 为常数）必存在；反之，若  $ \lim_{h\to0}\frac{f(x_0+h)-f(x_0+ah)}{h} $（ $ a\neq0 $）存在，则  $ f(x) $ 在  $ x_0 $ 点不一定可导（见 1.2 节例 17 评注）。
+
+例5 设  $ f(x) $ 在  $ (-\delta, \delta) $ 上有定义，对任何  $ x, y \in (-\delta, \delta) $，恒有  $ f(x+y) = \frac{f(x) + f(y)}{1 - f(x) f(y)} $。又  $ f(x) $ 在点 x = 0 处可导，且  $ f'(0) = 1 $，证明  $ f(x) $ 在  $ (-\delta, \delta) $ 内处处可导，并求函数的表达式。
+
+分析 能找到函数在任一点的导数与  $ f'(0) $ 的关系，问题就解决了. 找出这种关系只能通过所给条件及导数的定义来完成. 找到了导数的关系式，也就建立了微分方程，解方程就可得到函数表达式.
+
+解 在关系式  $ f(x+y)=\frac{f(x)+f(y)}{1-f(x)f(y)} $ 中，令 x=y=0，可以得到  $ f(0)=0 $.
+
+又
+
+ $$ \frac{f(x+y)-f(x)}{y}=\frac{f(y)}{y}\cdot\frac{1+f^{2}(x)}{1-f(x)f(y)},\quad\forall x,y\in(-\delta,\delta). $$ 
+
+令  $ y \to 0 $，并注意到  $ \lim_{y \to 0} \frac{f(y)}{y} = f'(0) = 1 $，可得到
+
+ $$ f^{\prime}(x)=1+f^{2}(x). $$ 
+
+所以  $ f(x) $ 在  $ (-δ,δ) $ 内处处可导. 解上面微分方程并注意到  $ f(0)=0 $ ，可得  $ f(x)=\tan x $.
+
+例6 设  $ f(x) $ 与  $ g(x) $ 在 x=0 的某邻域内有定义， $ g(x) $ 在 x=0 处连续，且  $ g(x) \neq 0 $。若  $ f(x)g(x) $ 与  $ f(x)/g(x) $ 在 x=0 处可导，问  $ f(x) $ 在 x=0 处是否可导？
+
+分析 只需确定  $ \lim_{x\to0}\frac{f(x)-f(0)}{x} $ 是否存在.
+
+解 记  $ F(x)=f(x)g(x) $， $ G(x)=f(x)/g(x) $，由题设  $ F'(0) $ 和  $ G'(0) $ 均存在，即有
+
+ $$ F^{\prime}(0)=\lim_{x\to0}\frac{f(x)g(x)-f(0)g(0)}{x}, $$ 
+
+ $$ \begin{aligned}{G^{\prime}(0)}&{{}=\operatorname*{l i m}_{x\to0}\frac{f(x)/g(x)-f(0)/g(0)}{x}}\\ {}&{{}=\operatorname*{l i m}_{x\to0}\frac{f(x)g(0)-g(x)f(0)}{x\big[g(0)\big]^{2}}.}\\ \end{aligned} $$ 
+
+①+②式 $ \times\left[g(0)\right]^{2} $得
+
+ $$ F^{\prime}(0)+G^{\prime}(0)\left[g(0)\right]^{2}=\lim_{x\to0}\left\{\left[g(x)+g(0)\right]\cdot\frac{f(x)-f(0)}{x}\right\}=2g(0)\lim_{x\to0}\frac{f(x)-f(0)}{x}, $$ 
+
+因为 $ g(0)\neq0 $，所以 $ \lim_{x\to0}\frac{f(x)-f(0)}{x}=\frac{F'(0)}{2g(0)}+\frac{1}{2}G'(0)g(0) $， $ f(x) $在x=0处可导.
+
+评注 读者可考虑将题设中的条件 “ $ f(x)g(x) $ 与  $ f(x)/g(x) $ 在 x=0 处可导” 改为 “ $ f(x)g(x) $ 与  $ f(x)+g(x) $ 在 x=0 处可导” 或 “ $ f(x)/g(x) $ 与  $ f(x)+g(x) $ 在 x=0 处可导”，结论是否还成立？
+
+例7 设  $ f(x) $ 在点  $ x_{0} $ 处可导， $ a_{n}<x_{0}<b_{n} $ 且  $ \lim_{n\to\infty}a_{n}=\lim_{n\to\infty}b_{n}=x_{0} $．证明：
+
+ $$ \lim_{n\to\infty}\frac{f(b_{n})-f(a_{n})}{b_{n}-a_{n}}=f^{\prime}(x_{0}) $$ 
+
+分析 由极限的定义，只需证明  $ \forall \varepsilon > 0 $， $ \exists K > 0 $，当  $ n \geq K $ 时，有  $ \left| \frac{f(b_n) - f(a_n)}{b_n - a_n} - f'(x_0) \right| < \varepsilon $；
+
+也可利用  $ f'(x) $ 的定义得到  $ f(x) $ 在  $ x_0 $ 附近的局部表达式，再计算极限  $ \lim_{n \to \infty} \frac{f(b_n) - f(a_n)}{b_n - a_n} $。
+
+解 方法1 因为  $ f(x) $ 在点  $ x_{0} $ 处可导， $ \forall\varepsilon>0,\exists\delta>0 $ ，当  $ 0<|x-x_{0}|<\delta $ 时，有
+
+ $$ \left|\frac{f(x)-f(x_{0})}{x-x_{0}}-f^{\prime}(x_{0})\right|<\varepsilon. $$ 
+
+又  $ \lim_{n\to\infty}a_n=\lim_{n\to\infty}b_n=x_0 $，对上面选定的  $ \delta $， $ \exists K>0 $，使对于所有  $ n\geq K $，有  $ \left|a_n-x_0\right|<\delta $ 和  $ \left|b_n-x_0\right|<\delta $，从而
+
+ $$ \left|\frac{f(a_{n})-f(x_{0})}{a_{n}-x_{0}}-f^{\prime}(x_{0})\right|<\varepsilon,\quad\left|\frac{f(b_{n})-f(x_{0})}{b_{n}-x_{0}}-f^{\prime}(x_{0})\right|<\varepsilon. $$ 
+
+但
+
+ $$ \begin{aligned}&\left|f(b_{n})-f(a_{n})-(b_{n}-a_{n})f^{\prime}(x_{0})\right|\\&=\left|\left[f(b_{n})-f(x_{0})-(b_{n}-x_{0})f^{\prime}(x_{0})\right]-\left[f(a_{n})-f(x_{0})-(a_{n}-x_{0})f^{\prime}(x_{0})\right]\right|\\&\leq\left|f(b_{n})-f(x_{0})-(b_{n}-x_{0})f^{\prime}(x_{0})\right|+\left|f(a_{n})-f(x_{0})-(a_{n}-x_{0})f^{\prime}(x_{0})\right|\\&\leq\varepsilon\left|b_{n}-x_{0}\right|+\varepsilon\left|a_{n}-x_{0}\right|=\varepsilon(b_{n}-a_{n}).\end{aligned} $$ 
+
+式中的倒数第二步是从①式推出的，而最后一步从 $ a_{n}<x_{0}<b_{n} $推知.
+
+所以
+
+ $$ \left|\frac{f(b_{n})-f(a_{n})}{b_{n}-a_{n}}-f^{\prime}(x_{0})\right|<\varepsilon, $$ 
+
+由极限的定义知
+
+ $$ \lim_{n\to\infty}\frac{f(b_{n})-f(a_{n})}{b_{n}-a_{n}}=f^{\prime}(x_{0}). $$ 
+
+方法2 记  $ \lambda = f'(x_0) $，即  $ \lim_{n \to \infty} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} = \lambda $，则有
+
+ $$ f(x_{0}+\Delta x)=f(x_{0})+\lambda\Delta x+o(\Delta x)\;, $$ 
+
+于是有
+
+ $$ f(a_{n})=f(x_{0})+\lambda(a_{n}-x_{0})+o(a_{n}-x_{0}), $$ 
+
+ $$ f(b_{n})=f(x_{0})+\lambda(b_{n}-x_{0})+o(b_{n}-x_{0})\;. $$ 
+
+考虑
+
+ $$ \frac{o(b_{n}-x_{0})+o(a_{n}-x_{0})}{b_{n}-a_{n}}=\frac{o(b_{n}-x_{0})}{b_{n}-x_{0}}\cdot\frac{b_{n}-x_{0}}{b_{n}-a_{n}}+\frac{o(a_{n}-x_{0})}{a_{n}-x_{0}}\cdot\frac{a_{n}-x_{0}}{b_{n}-a_{n}}, $$ 
+
+因 $ \left|\frac{a_{n}-x_{0}}{b_{n}-a_{n}}\right|<1,\quad\left|\frac{b_{n}-x_{0}}{b_{n}-a_{n}}\right|<1 $ ,则
+
+ $$ \lim_{n\to\infty}\frac{o(b_{n}-x_{0})+o(a_{n}-x_{0})}{b_{n}-a_{n}}=0, $$ 
+
+即
+
+ $$ o(b_{n}-x_{0})+o(a_{n}-x_{0})=o(b_{n}-a_{n})\:. $$ 
+
+这时有
+
+ $$ f(b_{n})-f(a_{n})=\lambda(b_{n}-a_{n})+o(b_{n}-x_{0})+o(a_{n}-x_{0})=\lambda(b_{n}-a_{n})+o(b_{n}-a_{n}), $$ 
+
+因此
+
+ $$ \lim_{n\to\infty}\frac{f(b_n)-f(a_n)}{b_n-a_n}=\lambda=f^{\prime}(x_0) $$ 
+
+方法 3 因为  $ \frac{f(b_n)-f(a_n)}{b_n-a_n}=\frac{b_n-x_0}{b_n-a_n}\cdot\frac{f(b_n)-f(x_0)}{b_n-x_0}-\frac{a_n-x_0}{b_n-a_n}\cdot\frac{f(a_n)-f(x_0)}{a_n-x_0} $，记  $ \frac{b_n-x_0}{b_n-a_n}=\lambda_n $，则  $ \frac{a_n-x_0}{b_n-a_n}=\lambda_n-1 $，且  $ 0<\lambda_n<1 $， $ 0<1-\lambda_n<1 $，有
+
+ $$ \frac{f(b_{n})-f(a_{n})}{b_{n}-a_{n}}=\lambda_{n}\frac{f(b_{n})-f(x_{0})}{b_{n}-x_{0}}+(1-\lambda_{n})\frac{f(a_{n})-f(x_{0})}{a_{n}-x_{0}}. $$ 
+
+又
+
+ $$ f^{\prime}(x_{0})=\lambda_{n}f^{\prime}(x_{0})+(1-\lambda_{n})f^{\prime}(x_{0}), $$ 
+
+则
+
+ $$ \begin{aligned}&\left|\frac{f(b_{n})-f(a_{n})}{b_{n}-a_{n}}-f^{\prime}(x_{0})\right|\leq\\&\lambda_{n}\left|\frac{f(b_{n})-f(x_{0})}{b_{n}-x_{0}}-f^{\prime}(x_{0})\right|+(1-\lambda_{n})\left|\frac{f(a_{n})-f(x_{0})}{a_{n}-x_{0}}-f^{\prime}(x_{0})\right|\rightarrow0\ (n\rightarrow\infty).\end{aligned} $$ 
+
+所以
+
+ $$ \lim_{n\to\infty}\frac{f(b_n)-f(a_n)}{b_n-a_n}=f'(x_0). $$ 
+
+评注 若该题没有 “ $ f(x) $ 在点  $ x_{0} $ 处可导” 的条件，则其结论不一定成立.
+
+例8 设 $ a_{1},a_{2},\cdots,a_{n} $为常数，且
+
+ $$ \left|\sum_{k=1}^{n}a_{k}\sin kx\right|\leqslant|\sin x|,\quad\left|\sum_{j=1}^{n}a_{n-j+1}\sin jx\right|\leqslant|\sin x|. $$ 
+
+证明 $ \left|\sum_{k=1}^{n}a_{k}\right|\leq\frac{2}{n+1} $
+
+分析 设  $ f(x)=\sum_{k=1}^{n}a_{k}\sin kx $， $ g(x)=\sum_{j=1}^{n}a_{n-j+1}\sin jx $，易知  $ f'(0)+g'(0)=(n+1)\sum_{k=1}^{n}a_{k} $，从而只需证明  $ \left|f'(0)\right|\leq1 $， $ \left|g'(0)\right|\leq1 $。
+
+解 设  $ f(x)=\sum_{k=1}^{n}a_{k}\sin kx $,  $ g(x)=\sum_{j=1}^{n}a_{n-j+1}\sin jx $，则
+
+ $$ \begin{aligned}{f^{\prime}(x)}&{{}=a_{1}\operatorname{c o s}x+2a_{2}\operatorname{c o s}2x+\cdots+n a_{n}\operatorname{c o s}n x,}\\ {g^{\prime}(x)}&{{}=a_{n}\operatorname{c o s}x+2a_{n-1}\operatorname{c o s}2x+\cdots+n a_{1}\operatorname{c o s}n x,}\\ {f^{\prime}(0)}&{{}+g^{\prime}(0)=(n+1)(a_{1}+a_{2}+\cdots+a_{n})\;.}\\ \end{aligned} $$ 
+
+故
+
+ $$ \left|\sum_{k=1}^{n}a_{k}\right|=\frac{\left|f^{\prime}(0)+g^{\prime}(0)\right|}{n+1}\leqslant\frac{\left|f^{\prime}(0)\right|+\left|g^{\prime}(0)\right|}{n+1}. $$ 
+
+又
+
+ $$ \left|f^{\prime}(0)\right|=\left|\lim_{x\to0}\frac{f(x)-f(0)}{x}\right|=\left|\lim_{x\to0}\frac{f(x)}{x}\right|=\lim_{x\to0}\left|\frac{f(x)}{x}\right|\leqslant\lim_{x\to0}\left|\frac{\sin x}{x}\right|=1. $$ 
+
+同理 $ \left|g'(0)\right|\leq1 $。所以
+
+ $$ \left|\sum_{k=1}^{n}a_{k}\right|\leq\frac{2}{n+1}. $$ 
+
+评注 注意,①式中的第3个等号用到了绝对值函数的连续性,第4个小于或等于号用到了极限的保序性.
+
+例9 设函数 f 具有一阶连续导数， $ f''(0) $ 存在，且  $ f'(0) = 0 $， $ f(0) = 0 $， $ g(x) = \begin{cases} \frac{f(x)}{x}, & x \neq 0 \\ a, & x = 0 \end{cases} $
+
+（1）确定a，使 $ g(x) $处处连续；
+
+（2）对以上确定的a，证明 $ g(x) $具有一阶连续导数.
+
+分析 由  $ g(x) $ 在 x=0 处连续，很容易算出 a 的值；要讨论  $ g'(x) $ 的连续性，首先要算出  $ g'(x) $ 的表达式，再讨论是否有  $ \lim_{x\to0}g'(x)=g'(0) $.
+
+解 （1）若  $ g(x) $ 处处连续，则  $ g(x) $ 在 x=0 处连续。因  $ f(0)=0 $，则
+
+ $$ a=\lim_{x\to0}\frac{f(x)}{x}=\lim_{x\to0}\frac{f(x)-f(0)}{x}=f^{\prime}(0)=0. $$ 
+
+(2)
+
+ $$ \begin{aligned}{g^{\prime}(0)}&{{}=\operatorname*{l i m}_{x\to0}\frac{g(x)-g(0)}{x}=\operatorname*{l i m}_{x\to0}\frac{\frac{f(x)}{x}-0}{x}=\operatorname*{l i m}_{x\to0}\frac{f(x)}{x^{2}}}\\ {}&{{}=\operatorname*{l i m}_{x\to0}\frac{f^{\prime}(x)}{2x}=\frac{1}{2}\operatorname*{l i m}_{x\to0}\frac{f^{\prime}(x)-f^{\prime}(0)}{x}=\frac{1}{2}f^{\prime \prime}(0),}\\ \end{aligned} $$ 
+
+所以
+
+ $$ g^{\prime}(x)=\left\{\begin{aligned}{}&{{}\frac{x f^{\prime}(x)-f(x)}{x^{2}},}&{x\neq0,}\\ {}&{{}\frac{f^{\prime \prime}(0)}{2},}&{x=0.}\\ \end{aligned}\right. $$ 
+
+显然，当 $ x\neq0 $时， $ g'(x) $连续.
+
+当x=0时，因为
+
+ $$ \begin{aligned}\lim_{x\to0}g^{\prime}(x)&=\lim_{x\to0}\frac{xf^{\prime}(x)-f(x)}{x^{2}}=\lim_{x\to0}\left(\frac{f^{\prime}(x)}{x}-\frac{f(x)}{x^{2}}\right)\\&=\lim_{x\to0}\frac{f^{\prime}(x)-f^{\prime}(0)}{x-0}-\lim_{x\to0}\frac{f(x)}{x^{2}}\\&=f^{\prime \prime}(0)-\frac{1}{2}f^{\prime \prime}(0)=\frac{1}{2}f^{\prime \prime}(0)=g^{\prime}(0),\end{aligned} $$ 
+
+所以 $ g'(x) $在x=0处连续，故 $ g(x) $具有一阶连续导数.
+
+例10 设
+
+ $$ f(x)=\left\{\begin{aligned}&\lim_{n\rightarrow\infty}\left(\frac{n}{(n+1)^{2}}+\frac{n}{(n+2)^{2}}+\cdots+\frac{n}{(n+n)^{2}}\right)(ax+1),&x\leq0,\\ &\lim_{n\rightarrow\infty}\left(1+\frac{x^{2}+n(x+b)}{n^{2}}\right)^{-n},&x>0.\end{aligned}\right. $$ 
+
+确定常数 a, b 的值，使  $ f(x) $ 在 x=0 处可导，并求导数  $ f'(0) $.
+
+分析 先做极限运算，得到  $ f(x) $ 的显表达式，再利用函数在分段点的连续性与可导性确定常数，最后计算导数，分段点要考虑左、右导数.
+
+解 当 $ x \leq 0 $时，利用定积分的定义，有
+
+ $$ \lim_{n\to\infty}\left(\frac{n}{\left(n+1\right)^{2}}+\frac{n}{\left(n+2\right)^{2}}+\cdots+\frac{n}{\left(n+n\right)^{2}}\right)=\lim_{n\to\infty}\sum_{i=1}^{n}\frac{1}{\left(1+\frac{i}{n}\right)^{2}}\frac{1}{n}=\int_{0}^{1}\frac{1}{\left(1+x\right)^{2}}\mathrm{d}x=\frac{1}{2}. $$ 
+
+当x>0时，由于 $ \lim_{n\to\infty}\frac{x^{2}+n(x+b)}{n^{2}}=0 $，则
+
+ $$ \lim_{n\to\infty}\left(1+\frac{x^{2}+n(x+b)}{n^{2}}\right)^{-n}=\exp\left(\lim_{n\to\infty}\frac{-n\left[x^{2}+n(x+b)\right]}{n^{2}}\right)=\mathrm{e}^{-(x+b)}. $$ 
+
+于是
+
+ $$ f(x)=\left\{\begin{aligned}&\frac{1}{2}(ax+1),&x\leq0,\\ &e^{-(x+b)},&x>0.\end{aligned}\right. $$ 
+
+若 $ f(x) $在x=0处可导，则必连续，有 $ e^{-b}=\frac{1}{2} $， $ b=\ln2 $。又
+
+ $$ f_{-}^{\prime}(0)=\frac{1}{2}a, $$ 
+
+ $$ f_{+}^{\prime}(0)=\lim_{x\to0^{+}}\frac{f(x)-f(0)}{x}=\lim_{x\to0^{+}}\frac{\frac{1}{2}\mathrm{e}^{-x}-\frac{1}{2}}{x}=\frac{1}{2}\lim_{x\to0^{+}}\frac{\mathrm{e}^{-x}-1}{x}=-\frac{1}{2}. $$ 
+
+由  $ f_{-}^{\prime}(0)=f_{+}^{\prime}(0) $，得 a=-1，且  $ f^{\prime}(0)=-\frac{1}{2} $.
+
+评注 分段函数在分段点的导数要分别考察其左、右导数。只有左、右导数均存在而且相等，导数才存在。题中函数在 x=0 处的左、右导数也可以用函数在 x=0 处左、右导数的极限来计算，即
+
+ $$ f_{-}^{\prime}(0)=\operatorname*{l i m}_{x\to0^{-}}\frac{1}{2}(a x+1)^{\prime}=\frac{1}{2}a,\quad f_{+}^{\prime}(0)=\operatorname*{l i m}_{x\to0^{+}}\frac{1}{2}(\mathsf{e}^{-x})^{\prime}=-\frac{1}{2}. $$ 
+
+一般，设  $ f(x)=\left\{\begin{aligned}&n(x),&x=x_{0}\\ &g(x),&x>x_{0}\end{aligned}\right. $ 在  $ x_{0} $ 处连续，在  $ x\neq x_{0} $ 处可导，若  $ \lim_{x\to x_{0}^{-}}h'(x) $ 存在，则  $ f_{-}^{\prime}(x_{0})=\lim_{x\to x_{0}^{-}}h'(x) $；若  $ \lim_{x\to x_{0}^{+}}g'(x) $ 存在，则  $ f_{+}^{\prime}(x_{0})=\lim_{x\to x_{0}^{+}}g'(x) $.
+
+例 11 设  $ f'(0)=1 $,  $ f''(0)=0 $，证明在 x=0 处，有  $ \frac{d^2}{dx^2}f(x^2)=\frac{d^2}{dx^2}f^2(x) $.
+
+分析 因为  $ \frac{d^2}{dx^2}f(x^2)=\frac{d}{dx}\left[2xf'(x^2)\right] $， $ \frac{d^2}{dx^2}f^2(x)=\frac{d}{dx}\left[2f(x)f'(x)\right] $，所以只需验证  $ 2xf'(x^2) $ 与  $ 2f(x)f'(x) $ 在 x=0 处有相同的导数.
+
+解 因为  $ f''(0)=0 $ ，所以  $ f'(x) $ 在 x=0 处可导，因此  $ f'(x) $ 在 x=0 处连续. 令  $ F(x)=f(x^{2}) $ ，则
+
+ $$ F^{\prime}(x)=2x f^{\prime}(x^{2}),\quad F^{\prime}(0)=0. $$ 
+
+由二阶导数的定义得
+
+ $$ \begin{aligned}\left.\frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}}\boldsymbol{f}(x^{2})\right|_{x=0}&=\left.\frac{\mathrm{d}}{\mathrm{d}x}F^{\prime}(x)\right|_{x=0}=\lim_{x\rightarrow0}\frac{F^{\prime}(x)-F^{\prime}(0)}{x}\\&=\lim_{x\rightarrow0}\frac{2x f^{\prime}(x^{2})}{x}=2f^{\prime}(0)=2.\end{aligned} $$ 
+
+又令 $ G(x)=f^{2}(x) $，则
+
+ $$ G^{\prime}(x)=2f(x)f^{\prime}(x),\quad G^{\prime}(0)=2f(0)f^{\prime}(0)=2f(0). $$ 
+
+由二阶导数的定义得
+
+ $$ \begin{aligned}\left.\frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}}f^{2}(x)\right|_{x=0}&=\frac{\mathrm{d}}{\mathrm{d}x}G^{\prime}(x)\bigg|_{x=0}=\lim_{x\to0}\frac{G^{\prime}(x)-G^{\prime}(0)}{x}\\&=\lim_{x\to0}\frac{2f(x)f^{\prime}(x)-2f(0)}{x}\\&=2\lim_{x\to0}\frac{f(x)f^{\prime}(x)-f(x)+f(x)-f(0)}{x}\\&=2\lim_{x\to0}\frac{f(x)\left[f^{\prime}(x)-f^{\prime}(0)\right]}{x}+2\lim_{x\to0}\frac{f(x)-f(0)}{x}\\&=2f(0)f^{\prime \prime}(0)+2f^{\prime}(0)=2.\end{aligned} $$ 
+
+综上，原式得证.
+
+2. 导数的计算
+
+下面主要介绍复合函数、参数式函数、隐函数的求导，以及高阶导数的计算.
+
+例 12 设  $ f(x)=\sqrt{\frac{x^{x}\sqrt{2x-1}}{e^{1/x}}}+\arctan\frac{1-x^{2}}{\sqrt{x e^{x}}} $，求  $ f'(1) $.
+
+分析 函数的两项中，一项属于多因式函数与幂指函数，适合取对数求导；另一项是 x-1 的同阶无穷小  $ (x \to 1) $，适合用导数的定义来计算.
+
+解 令  $ u = \sqrt{\frac{x^{x} \sqrt{2x-1}}{e^{1/x}}} $， $ v = \arctan \frac{1-x^{2}}{\sqrt{x e^{x}}} $，则
+
+ $$ \ln u=\frac{1}{2}\bigg[x\ln x+\frac{1}{2}\ln(2x-1)-\frac{1}{x}\bigg],\quad\frac{u^{\prime}}{u}=\frac{1}{2}\bigg(1+\ln x+\frac{1}{2x-1}+\frac{1}{x^{2}}\bigg), $$ 
+
+ $$ u^{\prime}|_{x=1}=\frac{1}{2}\left(1+\ln x+\frac{1}{2x-1}+\frac{1}{x^{2}}\right)u|_{x=1}=\frac{3}{2\sqrt{e}}. $$ 
+
+而
+
+ $$ \nu^{\prime}|_{x=1}=\lim_{x\to1}\frac{\arctan\frac{1-x^{2}}{\sqrt{x}\mathrm{e}^{x}}-0}{x-1}=-\lim_{x\to1}\frac{1+x}{\sqrt{x}\mathrm{e}^{x}}=-\frac{2}{\sqrt{\mathrm{e}}}, $$ 
+
+所以
+
+ $$ f^{\prime}(1)=\left.(u^{\prime}+v^{\prime})\right|_{x=1}=\frac{3}{2\sqrt{\mathrm{e}}}-\frac{2}{\sqrt{\mathrm{e}}}=-\frac{1}{\sqrt{\mathrm{e}}}. $$ 
+
+评注 多因式函数与幂指函数适合取对数求导；若当  $ x \to x_{0} $ 时， $ f(x) $ 是  $ x - x_{0} $ 的同阶无穷小，则  $ f'(x_{0}) $ 宜用导数的定义来计算.
+
+例 13 设  $ f(x) = \max \left\{ \sin^{4} x + \cos^{4} x, \frac{7}{8} \right\} (-\infty < x < +\infty) $，求  $ f'(x) $.
+
+分析 将  $ f(x) $ 表示成分段函数形式再求导.
+
+解 因为
+
+ $$ \begin{aligned}\sin^{4}x+\cos^{4}x&=(\sin^{2}x+\cos^{2}x)^{2}-2\sin^{2}x\cos^{2}x\\&=1-\frac{1}{2}\cdot\frac{1-\cos4x}{2}=\frac{3}{4}+\frac{1}{4}\cos4x,\end{aligned} $$ 
+
+所以 $ f(x) $是以 $ \frac{\pi}{2} $为周期的函数. 先考虑在一个周期内的情况:
+
+由 $ \frac{3}{4}+\frac{1}{4}\cos4x=\frac{7}{8} $得 $ \cos4x=\frac{1}{2} $， $ x_{1}=\frac{\pi}{12} $， $ x_{2}=\frac{5\pi}{12} $，则有
+
+ $$ f(x)=\left\{\begin{aligned}&\frac{3}{4}+\frac{1}{4}\cos4x,&-\frac{\pi}{12}<x\leqslant\frac{\pi}{12},\\&\frac{7}{8},&\frac{\pi}{12}<x\leqslant\frac{5\pi}{12}.\end{aligned}\right. $$ 
+
+当 $ -\frac{\pi}{12}<x<\frac{\pi}{12} $时，有
+
+ $$ f^{\prime}(x)=\left(\frac{3}{4}+\frac{1}{4}\cos4x\right)^{\prime}=-\sin4x. $$ 
+
+当 $ \frac{\pi}{12}<x<\frac{5\pi}{12} $时，有
+
+ $$ f^{\prime}(x)=0. $$ 
+
+在 $ x=\frac{\pi}{12} $处，
+
+ $$ f_{-}^{\prime}\left(\frac{\pi}{12}\right)=\lim_{x\to\frac{\pi}{12}}(-\sin4x)=-\frac{\sqrt{3}}{2},\quad f_{+}^{\prime}\left(\frac{\pi}{12}\right)=0. $$ 
+
+所以  $ f(x) $ 在  $ x=\frac{\pi}{12} $ 处不可导；类似， $ f(x) $ 在  $ x=\frac{5\pi}{12} $ 处也不可导.
+
+由  $ f(x) $ 的周期性可得
+
+ $$ f^{\prime}(x)=\left\{\begin{aligned}&-\sin4x,\left(\frac{n}{2}-\frac{1}{12}\right)\pi<x<\left(\frac{n}{2}+\frac{1}{12}\right)\pi\\ &0,\quad\left(\frac{n}{2}+\frac{1}{12}\right)\pi<x<\left(\frac{n}{2}+\frac{5}{12}\right)\pi\end{aligned}\right.,\quad n=0,\pm1,\cdots. $$ 
+
+评注（1）通常情况下，函数  $ \max\{f(x), g(x)\} $ 的分段点是方程  $ f(x) = g(x) $ 的根；若分段函数在分段点连续，则其左、右导数用导数的左、右极限来计算有时会更为简便.
+
+（2）周期函数的导数也是周期函数，且周期不变。但周期函数的原函数却未必是周期函数。
+
+例14 设  $ f\left(\frac{x}{2}\right)=\sin x $，求  $ f'(f(x)) $， $ [f(f(x))]' $， $ [f(f(x))]'' $.
+
+分析 可先求出  $ f(x) $ 以及各复合函数的表达式，再求导数；也可只求出  $ f(x) $ 的表达式，再用链式法则求各复合函数的导数.
+
+解 令  $ t=\frac{x}{2} $，则  $ f(t)=\sin 2t $， $ f'(t)=2\cos 2t $， $ f''(t)=-4\sin 2t $，于是
+
+ $$ \begin{aligned}f^{\prime}(f(x))&=2\cos(2f(x))=2\cos(2\sin2x);\\\left[f(f(x))\right]^{\prime}&=f^{\prime}(f(x))\cdot f^{\prime}(x)=2\cos(2\sin2x)\cdot2\cos2x\\&=4\cos(2\sin2x)\cdot\cos2x;\end{aligned} $$ 
+
+ $$ \begin{aligned}{[f(f(x))]^{\prime \prime}}&{{}=[f^{\prime}(f(x))\cdot f^{\prime}(x)]^{\prime}=f^{\prime \prime}(f(x))\cdot[f^{\prime}(x)]^{2}+f^{\prime}(f(x))f^{\prime \prime}(x)}\\ {}&{{}=-4\operatorname{s i n}(2\operatorname{s i n}2x)\cdot(2\operatorname{c o s}2x)^{2}+2\operatorname{c o s}(2\operatorname{s i n}2x)\cdot(-4\operatorname{s i n}2x)}\\ {}&{{}=-16\operatorname{s i n}(2\operatorname{s i n}2x)\cdot\operatorname{c o s}2x-8\operatorname{c o s}(2\operatorname{s i n}2x)\cdot\operatorname{s i n}2x.}\\ \end{aligned} $$ 
+
+评注 复合函数求导的关键是要清楚函数的复合结构，用链式法则从外层向内层逐层求导.
+
+例  $ 15^{*} $ 设  $ f(x)=\frac{x}{\sqrt{1+x^{2}}} $， $ f_{n}(x)=\underbrace{f(f(\cdots f)_{n\uparrow}(x))}_{n} $，求  $ \frac{\mathrm{d}f_{n}(x)}{\mathrm{d}x} $.
+
+分析 由于  $ f_{n}(x)=f(f_{n-1}(x)) $，因此按复合函数求导可得到  $ f_{n}^{\prime}(x) $ 与  $ f_{n-1}^{\prime}(x) $ 关系式，递推化简即可.
+
+解 因为  $ f_{n}(x)=f(f_{n-1}(x))=\frac{f_{n-1}(x)}{\sqrt{1+f_{n-1}^{2}(x)}} $，则  $ \frac{f_{n}(x)}{f_{n-1}(x)}=\frac{1}{\sqrt{1+f_{n-1}^{2}(x)}} $。且有
+
+ $$ \begin{aligned}{f_{n}^{\prime}(x)=}&{{}\frac{f_{n-1}^{\prime}(x)\sqrt{1+f_{n-1}^{2}(x)}-f_{n-1}(x)\cdot\frac{f_{n-1}(x)f_{n-1}^{\prime}(x)}{\sqrt{1+f_{n-1}^{2}(x)}}}{1+f_{n-1}^{2}(x)}}\\ {=}&{{}\frac{1}{\left[1+f_{n-1}^{2}(x)\right]^{3/2}}f_{n-1}^{\prime}(x)=\left[\frac{f_{n}(x)}{f_{n-1}(x)}\right]^{3}f_{n-1}^{\prime}(x)}\\ {=}&{{}\left[\frac{f_{n}(x)}{f_{n-1}(x)}\right]^{3}\left[\frac{f_{n-1}(x)}{f_{n-2}(x)}\right]^{3}f_{n-2}^{\prime}(x)=\cdots}\\ {=}&{{}\left[\frac{f_{n}(x)}{f_{n-1}(x)}\right]^{3}\left[\frac{f_{n-1}(x)}{f_{n-2}(x)}\right]^{3}\cdots\left[\frac{f_{2}(x)}{f_{1}(x)}\right]^{3}f_{1}^{\prime}(x)=\left[\frac{f_{n}(x)}{f_{1}(x)}\right]^{3}f_{1}^{\prime}(x).}\\ \end{aligned} $$ 
+
+由于
+
+ $$ f_{1}(x)=f(x)=\frac{x}{\sqrt{1+x^{2}}}\quad,\quad f^{\prime}(x)=\frac{1}{\left(1+x^{2}\right)^{3/2}}, $$ 
+
+所以
+
+ $$ \frac{\mathrm{d}f_{n}(x)}{\mathrm{d}x}=\left[\frac{f_{n}(x)}{f(x)}\right]^{3}\frac{1}{(1+x^{2})^{3/2}}=\left[\frac{f_{n}(x)}{x}\right]^{3}. $$ 
+
+例16 设  $ y = f(x) $ 由  $ \left\{\begin{aligned} x &= t^{2} + 2t \\ t^{2} - y + a\sin y &= 1 \end{aligned}\right. $ 确定. 若  $ y(0) = b $，求  $ \left.\frac{d^{2}y}{dx^{2}}\right|_{t=0} $.
+
+分析 这是参数方程中含隐函数的情况. 计算  $ \dot{y} $ 时需对第二个等式按隐函数方程求导，再用公式  $ \frac{dy}{dx}=\frac{\dot{y}}{\dot{x}} $；计算  $ \left.\frac{d^2y}{dx^2}\right|_{t=0} $ 时，可先求出二阶导数的一般表达式，再代入 t=0，也可由二阶导数的定义求
+
+极限  $ \lim_{t\to0}\frac{\frac{dy}{dx}-\frac{dy}{dx}|_{t=0}}{x(t)-x(0)} $
+
+解 方程组两边对 t 求导，得
+
+ $$ \left\{\begin{aligned}{}&{{}\dot{x}=2t+2}\\ {}&{{}2t-\dot{y}+a\operatorname{c o s}y\cdot\dot{y}=0}\\ \end{aligned}\right.\Rightarrow\left\{\begin{aligned}{}&{{}\dot{x}=2(t+1)}\\ {}&{{}\dot{y}=\frac{2t}{1-a\operatorname{c o s}y}}\\ \end{aligned}\right., $$ 
+
+于是
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\dot{y}}{\dot{x}}=\frac{t}{(t+1)(1-a\cos y)},\left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{t=0}=0, $$ 
+
+ $$ \frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=\frac{\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)_{t}^{\prime}}{\dot{x}}=\frac{\frac{(1-a\cos y)-a t(t+1)\sin y\cdot\dot{y}}{(t+1)^{2}(1-a\cos y)^{2}}}{2(t+1)}. $$ 
+
+注意到  $ y\big|_{t=0}=b $,  $ \dot{y}\big|_{t=0}=0 $, 得
+
+ $$ \left.\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}\right|_{t=0}=\frac{1}{2(1-a\cos b)}. $$ 
+
+或
+
+ $$ \begin{aligned}\left.\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}\right|_{t=0}&=\lim_{t\rightarrow0}\frac{\frac{\mathrm{d}y}{\mathrm{d}x}-\frac{\mathrm{d}y}{\mathrm{d}x}\bigg|_{t=0}}{x(t)-x(0)}=\lim_{t\rightarrow0}\frac{\frac{t}{(t+1)(1-a\cos y)}-0}{t^{2}+2t-0}\\&=\lim_{t\rightarrow0}\frac{1}{(t+1)(t+2)(1-a\cos y)}=\frac{1}{2(1-a\cos b)}.\end{aligned} $$ 
+
+评注 求参数式函数的二阶导时，若 $ \left.\frac{dy}{dx}\right|_{t=t_{0}}=0 $，则 $ \left.\frac{d^{2}y}{dx^{2}}\right|_{t=t_{0}} $宜用导数的定义来计算.
+
+例17 设  $ u = f(2x + y^2) $，其中  $ x, y $ 满足方程  $ y + e^y = x $，且  $ f $ 二阶可导，求  $ \left. \frac{d^2u}{dx^2} \right|_{x=1} $.
+
+分析 这是复合函数求导问题，由链式法则计算. 中间变量 y 对 x 的导数由隐函数方程两边求导确定.
+
+解 由  $ y + e^{y} = x $ 知，当 x = 1 时， y = 0 。且有
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}x}+\mathrm{e}^{y}\frac{\mathrm{d}y}{\mathrm{d}x}=1\Rightarrow\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{1+\mathrm{e}^{y}},\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=-\frac{\mathrm{e}^{y}}{\left(1+\mathrm{e}^{y}\right)^{3}}, $$ 
+
+得到
+
+ $$ \left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{x=1}=\frac{1}{2},\left.\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}\right|_{x=1}=-\frac{1}{8}. $$ 
+
+又
+
+ $$ \frac{\mathrm{d}u}{\mathrm{d}x}=2f'(2x+y^2)\left(1+y\frac{\mathrm{d}y}{\mathrm{d}x}\right), $$ 
+
+ $$ \frac{\mathrm{d}^{2}u}{\mathrm{d}x^{2}}=4f^{\prime \prime}(2x+y^{2})\left(1+y\frac{\mathrm{d}y}{\mathrm{d}x}\right)^{2}+2f^{\prime}(2x+y^{2})\left(\left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^{2}+y\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}\right). $$ 
+
+将 $ ^{①} $式代入得
+
+ $$ \left.\frac{\mathrm{d}^{2}u}{\mathrm{d}x^{2}}\right|_{x=1}=4f^{\prime\prime}(2)+\frac{1}{2}f^{\prime}(2). $$ 
+
+例18 设  $ y = x \ln(1 - x^2) + \sin x \ln \frac{1 - x}{1 + x} $，求  $ y^{(2023)}|_{x=0} $.
+
+分析 第一项的高阶导数容易计算，但第二项的高阶导数却难以计算。观察发现第二项是偶函数，其奇数阶导数是奇函数，在0点的值是0。
+
+解 记  $ u = x \ln(1 - x^{2}) $,  $ \nu = \sin x \ln \frac{1 - x}{1 + x} $.
+
+因为v是偶函数，则 $ v^{(2023)} $是奇函数，所以 $ v^{(2023)}\big|_{x=0}=0 $.
+
+又  $ u = x \ln(1 - x^{2}) = x \left[\ln(1 - x) + \ln(1 + x)\right] $，则
+
+ $$ u^{\prime}=\ln(1-x)+\ln(1+x)+x\left(\frac{1}{x-1}+\frac{1}{x+1}\right)=\ln(1-x)+\ln(1+x)+\left(2+\frac{1}{x-1}-\frac{1}{x+1}\right), $$ 
+
+ $$ u^{(2023)}=\left(\frac{1}{x-1}+\frac{1}{x+1}\right)^{(2021)}+\left(2+\frac{1}{x-1}-\frac{1}{x+1}\right)^{(2022)} $$ 
+
+ $$ =(-1)^{2021}2021!\left(\frac{1}{(x-1)^{2022}}+\frac{1}{(x+1)^{2022}}\right)+(-1)^{2022}2022!\left(\frac{1}{(x-1)^{2023}}-\frac{1}{(x+1)^{2023}}\right), $$ 
+
+ $$ u^{(2023)}\Big|_{x=0}=-2\times2021!-2\times2022!=-2\times2023\times2021!. $$ 
+
+所以
+
+ $$ y^{(2023)}\Big|_{x=0}=u^{(2023)}\Big|_{x=0}+v^{(2023)}\Big|_{x=0}=-2\times2023\times2021!. $$ 
+
+评注（1）奇函数的导数是偶函数，偶函数的导数是奇函数。当在 x=0 处的高阶导数不易计算时，要注意函数的奇偶性。
+
+(2) 常用 n 阶导数公式:  $ \left(\frac{1}{x-a}\right)^{(n)}=\frac{(-1)^{n}n!}{(x-a)^{n+1}} $.
+
+例19 设  $ f(x) $ 在 x=0 处存在二阶导数，且  $ \lim_{x\to0}\frac{xf(x)-\ln(1+x)}{x^3}=\frac{1}{3} $，求  $ f(0) $， $ f'(0) $， $ f''(0) $.
+
+分析 将  $ f(x) $ 用皮亚诺余项的麦克劳林公式展开，由所给条件即可求出  $ f(0) $， $ f'(0) $， $ f''(0) $。也可由所给极限式得到  $ f(x) $ 的局部表达式，并将该表达式用多项式的形式写出，再由泰勒展开式的唯一性可得到所求各阶导数。
+
+解 方法1 利用麦克劳林公式.
+
+ $$ f(x)=f(0)+f^{\prime}(0)x+\frac{1}{2}f^{\prime\prime}(0)x^{2}+o(x^{2}), $$ 
+
+ $$ \ln(1+x)=x-\frac{1}{2}x^{2}+\frac{1}{3}x^{3}+o(x^{3}), $$ 
+
+代入所给的极限式，并整理，得
+
+ $$ \operatorname*{l i m}_{x\to0}\frac{(f(0)-1)x+\left(f^{\prime}(0)+\frac{1}{2}\right)x^{2}+\left(\frac{1}{2}f^{\prime \prime}(0)-\frac{1}{3}\right)x^{3}+o(x^{3})}{x^{3}}=\frac{1}{3}, $$ 
+
+由上述极限式立即可得
+
+ $$ f(0)=1,f^{\prime}(0)=-\frac{1}{2},f^{\prime \prime}(0)=\frac{4}{3}. $$ 
+
+方法2 因为  $ \lim_{x\to0}\frac{xf(x)-\ln(1+x)}{x^{3}}=\frac{1}{3} $，则
+
+ $$ \frac{x f(x)-\ln(1+x)}{x^{3}}=\frac{1}{3}+o(1)\Longrightarrow f(x)=\frac{1}{x}\ln(1+x)+\frac{1}{3}x^{2}+o(x^{2}), $$ 
+
+由泰勒公式
+
+ $$ \ln(1+x)=x-\frac{1}{2}x^{2}+\frac{1}{3}x^{3}+o(x^{3}), $$ 
+
+代入 $ ^{①} $式得
+
+ $$ f(x)=1-\frac{1}{2}x+\frac{2}{3}x^{2}+o(x^{2}), $$ 
+
+所以
+
+ $$ f(0)=1,\ f^{\prime}(0)=-\frac{1}{2},\ f^{\prime \prime}(0)=\frac{4}{3}. $$ 
+
+例20 设  $ y = e^{ax} \sin bx $ （a, b 为非零常数），求  $ y^{(n)} $
+
+分析 逐阶求导，寻找规律，再写出 n 阶导数的表达式；也可用欧拉公式将三角函数化为指数函数，再计算导数.
+
+解 方法1
+
+ $$ \begin{aligned}y^{\prime}&=a\mathrm{e}^{ax}\sin bx+b\mathrm{e}^{ax}\cos bx=\mathrm{e}^{ax}(a\sin bx+b\cos bx)\\&=\mathrm{e}^{ax}\cdot\sqrt{a^{2}+b^{2}}\sin(bx+\varphi),\quad\varphi=\arctan\frac{b}{a}\\y^{\prime \prime}&=\sqrt{a^{2}+b^{2}}\cdot[a\mathrm{e}^{ax}\sin(bx+\varphi)+b\mathrm{e}^{ax}\cos(bx+\varphi)]\\&=\sqrt{a^{2}+b^{2}}\cdot\mathrm{e}^{ax}\cdot\sqrt{a^{2}+b^{2}}\sin(bx+2\varphi)\\&\cdots\end{aligned} $$ 
+
+由归纳法易得
+
+ $$ y^{(n)}=(a^{2}+b^{2})^{\frac{n}{2}}\cdot\mathrm{e}^{ax}\sin(bx+n\varphi),\ \varphi=\arctan\frac{b}{a}. $$ 
+
+方法2 利用欧拉公式.
+
+令  $ u = e^{ax} \cos bx $,  $ v = e^{ax} \sin bx $，则
+
+ $$ \begin{aligned}{u^{(n)}+i\nu^{(n)}}&{{}=(u+i\nu)^{(n)}=\Big[\mathsf{e}^{a x}(\operatorname{c o s}b x+i\operatorname{s i n}b x)\Big]^{(n)}}\\ {}&{{}=\big[\mathsf{e}^{(a+b i)x}\big]^{(n)}=(a+b i)^{n}\mathsf{e}^{(a+b i)x}}\\ {}&{{}=(a^{2}+b^{2})^{\frac{n}{2}}(\operatorname{c o s}n\varphi+i\operatorname{s i n}n\varphi)\cdot\mathsf{e}^{a x}(\operatorname{c o s}b x+i\operatorname{s i n}b x)}\\ {}&{{}=(a^{2}+b^{2})^{\frac{n}{2}}\mathsf{e}^{a x}[\operatorname{c o s}(b x+n\varphi)+i\operatorname{s i n}(b x+n\varphi)].}\\ \end{aligned} $$ 
+
+由此可得
+
+ $$ \begin{aligned}{}&{{}(\mathbf{e}^{a x}\operatorname{c o s}b x)^{(n)}=(a^{2}+b^{2})^{\frac{n}{2}}\mathbf{e}^{a x}\operatorname{c o s}(b x+n\varphi)\;,}\\ {}&{{}(\mathbf{e}^{a x}\operatorname{s i n}b x)^{(n)}=(a^{2}+b^{2})^{\frac{n}{2}}\mathbf{e}^{a x}\operatorname{s i n}(b x+n\varphi)\;.}\\ \end{aligned} $$ 
+
+评注（1）若采用逐阶求导的方法计算 n 阶导数，则有时需对前几阶导数做必要的恒等变形，将它们化为同类型的函数，以利于寻找规律，写出一般表达式。必要时可用数学归纳法证明其结论的正确性。
+
+(2) 欧拉公式： $ e^{xi} = \cos x + i \sin x $ ( $ i = \sqrt{-1} $).
+
+利用欧拉公式可将三角函数化为指数函数，在许多计算中指数函数更为简便.
+
+例21 设  $ P(x)=\frac{\mathrm{d}^{n}}{\mathrm{d}x^{n}}(1-x^{m})^{n} $，其中 m,n 为正整数，求  $ P(1) $ 的值.
+
+分析 若逐阶求导，则很难找到 n 阶导数的一般规律. 若将函数  $ (1-x^{m})^{n} $ 中的因子  $ (1-x) $ 分离出来，用莱布尼兹公式求 n 阶导数，则问题就容易得到解决.
+
+解 因为  $ (1-x^{m})^{n}=(1-x)^{n}\cdot(1+x+x^{2}+\cdots+x^{m-1})^{n} $，令  $ u(x)=(1-x)^{n} $， $ \nu(x)=(1+x+\cdots+x^{m-1})^{n} $，应用莱布尼兹公式
+
+ $$ (u v)^{(n)}\Big|_{x=1}=\sum_{k=0}^{n}C_{n}^{k}u^{(k)}v^{(n-k)}\Big|_{x=1}. $$ 
+
+因为 $ u(1)=u'(1)=\cdots=u^{(n-1)}(1)=0 $， $ u^{(n)}(1)=(-1)^{n}n! $，所以
+
+ $$ \begin{aligned}{P(1)}&{{}=u(1)\nu^{(n)}(1)+n u^{\prime}(1)\nu^{(n-1)}(1)+\cdots+u^{(n)}(1)\nu(1)}\\ {}&{{}=0+0+\cdots+0+(-1)^{n}n!m^{n}=(-1)^{n}n!m^{n}\;.}\\ \end{aligned} $$ 
+
+评注 求两个函数乘积的 n 阶导数时，若其中一个函数的各阶导数中仅有少数几项不为零，而其余各项均为零（如次数不高的多项式），则选用莱布尼兹公式计算较为简便.
+
+例22 设  $ y=\frac{1}{\sqrt{1-x^{2}}}\arcsin x $，求  $ y^{(n)}(0) $.
+
+分析 逐次求导很难找到规律，函数式变形为  $ y\sqrt{1-x^2} = \arcsin x $，两边求导化简后就可看出适合用高阶导数的莱布尼兹公式.
+
+解 原等式变形为
+
+ $$ y\sqrt{1-x^{2}}=\arcsin x. $$ 
+
+两边对x求导，得
+
+ $$ y^{\prime}\sqrt{1-x^{2}}+\frac{-x}{\sqrt{1-x^{2}}}y=\frac{1}{\sqrt{1-x^{2}}}\Rightarrow(1-x^{2})y^{\prime}-xy-1=0. $$ 
+
+取x=0，得 $ y'(0)=1 $。显然 $ y''(0)=y(0)=0 $， $ y(x) $与 $ y''(x) $均为奇函数。用莱布尼兹公式在①式两边对x求n-1阶导数 $ (n\geq2) $，得
+
+ $$ (1-x^{2})y^{(n)}+C_{n-1}^{1}(-2x)y^{(n-1)}+C_{n-1}^{2}(-2)y^{(n-2)}-x y^{(n-1)}-C_{n-1}^{1}y^{(n-2)}=0\:. $$ 
+
+取x=0，得
+
+ $$ y^{(n)}(0)-(n-1)(n-2)y^{(n-2)}(0)-(n-1)y^{(n-2)}(0)=0, $$ 
+
+即.
+
+ $$ y^{(n)}(0)=(n-1)^{2}y^{(n-2)}(0). $$ 
+
+由  $ y'(0)=1,\quad y''(0)=0 $ ，利用②式递推可得
+
+ $$ y^{(n)}(0)=\left\{\begin{aligned}&\left[(n-1)!!\right]^{2},n 为奇数 ,\\&0,\quad n 为偶数 .\end{aligned}\right. $$ 
+
+评注 为便于运用莱布尼兹公式求高阶导数，有时需要将函数式或一阶导数式做恒等变形，使之成为多项式与已知函数（或其导数）乘积的整式方程.
+
+例 $23^*$ 设 $f(x)=\frac{x+2}{x^2-2x+2}$，证明 $f^{(n)}(0)=n!\left(\frac{\sqrt{2}}{2}\right)^n\sqrt{5}\sin\left(\frac{n\pi}{4}+\varphi_0\right)(n=0,1,2,\cdots)$。其中 $\cos\varphi_0=\frac{2}{\sqrt{5}}$，$\sin\varphi_0=\frac{1}{\sqrt{5}}$，$0<\varphi_0<\frac{\pi}{2}$。
+
+分析 需找到高阶导数与低阶导数的关系（递推式），用归纳法证明；也可将分式拆分为部分分式直接求n阶导数，或利用函数的麦克劳林级数求x=0处的n阶导数.
+
+ $$ f(0)=1,\ f^{\prime}(0)=\frac{(x^{2}-2x+2)-(x+2)(2x-2)}{(x^{2}-2x+2)^{2}}\bigg|_{x=0}=\frac{3}{2}. $$ 
+
+再求高阶导数. 将函数关系式化为
+
+ $$ f(x)(x^{2}-2x+2)=x+2. $$ 
+
+用莱布尼兹公式，等式两边对 x 求 n 阶导数（ $ n \geq 2 $），得
+
+ $$ f^{(n)}(x)(x^{2}-2x+2)+C_{n}^{1}f^{(n-1)}(x)(2x-2)+C_{n}^{2}f^{(n-2)}(x)\cdot2=0~. $$ 
+
+取x=0，有
+
+ $$ 2f^{(n)}(0)-2n f^{(n-1)}(0)+n(n-1)f^{(n-2)}(0)=0\:. $$ 
+
+令  $ a_{n}=\frac{f^{(n)}(0)}{n!} $，上式化为  $ 2a_{n}-2a_{n-1}+a_{n-2}=0 $ (n=2,3, $ \cdots $). 即
+
+ $$ a_{n+2}=a_{n+1}-\frac{1}{2}a_{n}\ (n=0,1,2,\cdots). $$ 
+
+前面已经算得  $ a_{0}=f(0)=1 $,  $ a_{1}=\frac{f'(0)}{1}=\frac{3}{2} $.
+
+方法1 用数学归纳法证明  $ a_{n}=\left(\frac{\sqrt{2}}{2}\right)^{n}\sqrt{5}\sin\left(\frac{n\pi}{4}+\varphi_{0}\right) $ (n=0,1,2, $ \cdots $).
+
+ $ a_{0}=\sqrt{5}\sin\varphi_{0}=1 $ (由前面计算, 得此式正确).
+
+ $$ \begin{aligned}a_{1}=&\left(\frac{\sqrt{2}}{2}\right)\sqrt{5}\sin\left(\frac{\pi}{4}+\varphi_{0}\right)=\frac{\sqrt{10}}{2}\left(\sin\frac{\pi}{4}\cos\varphi_{0}+\cos\frac{\pi}{4}\sin\varphi_{0}\right)\\=&\frac{\sqrt{20}}{4}\left(\frac{2}{\sqrt{5}}+\frac{1}{\sqrt{5}}\right)=\frac{3}{2}( 正确 ).\end{aligned} $$ 
+
+假设  $ a_{n}=\left(\frac{\sqrt{2}}{2}\right)^{n}\sqrt{5}\sin\left(\frac{n\pi}{4}+\varphi_{0}\right) $， $ a_{n+1}=\left(\frac{\sqrt{2}}{2}\right)^{n+1}\sqrt{5}\sin\left[\frac{(n+1)\pi}{4}+\varphi_{0}\right] $ 都正确，则由递推公式①得
+
+ $$ \begin{aligned}a_{n+2}=&\left(\frac{\sqrt{2}}{2}\right)^{n+1}\sqrt{5}\sin\left(\frac{(n+1)\pi}{4}+\varphi_{0}\right)-\frac{1}{2}\left(\frac{\sqrt{2}}{2}\right)^{n}\sqrt{5}\sin\left(\frac{n\pi}{4}+\varphi_{0}\right)\\ =&\left(\frac{\sqrt{2}}{2}\right)^{n+2}\sqrt{5}\left[\sqrt{2}\sin\left(\frac{(n+1)\pi}{4}+\varphi_{0}\right)-\sin\left(\frac{n\pi}{4}+\varphi_{0}\right)\right]\\ =&\left(\frac{\sqrt{2}}{2}\right)^{n+2}\sqrt{5}\left[\sin\left(\frac{(n+2)\pi}{4}+\varphi_{0}\right)+\sqrt{2}\sin\left(\frac{(n+1)\pi}{4}+\varphi_{0}\right)-\sin\left(\frac{(n+2)\pi}{4}+\varphi_{0}\right)-\sin\left(\frac{n\pi}{4}+\varphi_{0}\right)\right].\end{aligned} $$ 
+
+方括号内第3、4两项之和恰好可与第2项抵消，这就证明了
+
+ $$ a_{n+2}=\left(\frac{\sqrt{2}}{2}\right)^{n+2}\sqrt{5}\sin\left(\frac{(n+2)\pi}{4}+\varphi_{0}\right)\quad(n=0,1,2,\cdots). $$ 
+
+从而  $ f^{(n)}(0)=n!a_{n} $ 即为所证.
+
+方法2 递推公式①为 $ a_{n} $的二阶常系数线性齐次差分方程，下面求解这个差分方程.
+
+对应的特征方程为
+
+ $$ \lambda^{2}-\lambda+\frac{1}{2}=0, $$ 
+
+特征根  $ \lambda_{1,2}=\frac{1}{2}(1\pm i)=\frac{\sqrt{2}}{2}\left(\cos\frac{\pi}{4}\pm i\sin\frac{\pi}{4}\right) $，得通解
+
+ $$ a_{n}=k_{1}\lambda_{1}^{n}+k_{2}\lambda_{2}^{n}=\left(\frac{\sqrt{2}}{2}\right)^{n}\left(c_{1}\cos\frac{n\pi}{4}+c_{2}\sin\frac{n\pi}{4}\right)\quad(n=0,1,2,\cdots)\;, $$ 
+
+其中  $ c_1 = k_1 + k_2 $， $ c_2 = (k_1 - k_2)i $。由初值  $ 1 = a_0 = c_1 $， $ \frac{3}{2} = a_1 = \frac{\sqrt{2}}{2}\left(c_1 \cos \frac{\pi}{4} + c_2 \sin \frac{\pi}{4}\right) $，得  $ c_1 = 1 $， $ c_2 = 2 $。从而得到  $ a_n $ 如前所求。
+
+方法3 方程 $ x^{2}-2x+2=0 $的根为 $ x_{1}=1-i,\quad x_{2}=1+i $，则
+
+ $$ f(x)=\frac{x+2}{(x-x_{1})(x-x_{2})}=\frac{x+2}{(x-x_{1})(x-x_{2})}=\frac{x+2}{x_{1}-x_{2}}\left[\frac{1}{x-x_{1}}-\frac{1}{x-x_{2}}\right]=-\frac{1}{2i}\left[\frac{3-i}{x-x_{1}}-\frac{3+i}{x-x_{2}}\right]. $$ 
+
+利用 n 阶导数公式  $ \left(\frac{1}{x-a}\right)^{(n)}=\frac{(-1)^{n}n!}{(x-a)^{n+1}} $，有
+
+ $$ \begin{aligned}{f^{(n)}(0)=}&{{}-\frac{1}{2i}(-1)^{n}n!\Bigg[\frac{3-i}{(x-x_{_{1}})^{n+1}}-\frac{3+i}{(x-x_{_{2}})^{n+1}}\Bigg]_{x=0}=\frac{1}{2i}n!\Bigg[\frac{3-i}{x_{_{1}}^{n+1}}-\frac{3+i}{x_{_{2}}^{n+1}}\Bigg]}\\ {=}&{{}\frac{1}{2i}n!\Bigg[\frac{3-i}{(1-i)^{n+1}}-\frac{3+i}{(1+i)^{n+1}}\Bigg]=\frac{1}{2i}n!\Bigg[\frac{3-i}{2^{n}(1-i)}(1+i)^{n}-\frac{3+i}{2^{n}(1+i)}(1-i)^{n}\Bigg]}\\ {=}&{{}\frac{1}{2i}\cdot\frac{n!}{2^{n}}\Big[(2+i)(1+i)^{n}-(2-i)(1-i)^{n}\Big]=\frac{n!}{2^{n}}\operatorname{I m}\Big[(2+i)(1+i)^{n}\Big],}\\ \end{aligned} $$ 
+
+ $$  Im(z)=\frac{1}{2i}(z-\overline{z}) 为 z 的虚部 . $$ 
+
+由欧拉公式
+
+ $$ \begin{aligned}{(2+i)(1+i)^{n}}&{{}=\sqrt{5}\operatorname{e}^{\varphi_{0}i}\cdot(\sqrt{2}\operatorname{e}^{\frac{\pi}{4}i})^{n}=\sqrt{5}\operatorname{e}^{\varphi_{0}i}\cdot(\sqrt{2}\operatorname{e}^{\frac{\pi}{4}i})^{n}=(\sqrt{2})^{n}\sqrt{5}\operatorname{e}^{(\frac{n\pi}{4}+\varphi_{0})i}}\\ {}&{{}=(\sqrt{2})^{n}\sqrt{5}\Bigg[\operatorname{c o s}\Bigg(\frac{n\pi}{4}+\varphi_{0}\Bigg)+i\operatorname{s i n}\Bigg(\frac{n\pi}{4}+\varphi_{0}\Bigg)\Bigg].}\\ \end{aligned} $$ 
+
+所以
+
+ $$ f^{(n)}(0)=n!\left(\frac{\sqrt{2}}{2}\right)^{n}\sqrt{5}\sin\left(\frac{n\pi}{4}+\varphi_{0}\right)\quad(n=0,1,2,\cdots). $$ 
+
+方法4 将函数  $ f(x) $ 展开为麦克劳林级数.
+
+ $$ \begin{aligned}{f(x)=}&{{}-\frac{1}{2i}\Biggl[\frac{3-i}{x-x_{1}}-\frac{3+i}{x-x_{2}}\Biggr]=}\\ {=}&{{}\frac{1}{2i}\Biggl[\frac{3-i}{x_{1}}\sum_{n=0}^{\infty}\Biggl(\frac{x}{x_{1}}\Biggr)^{n}-\frac{3+i}{x_{2}}\sum_{n=0}^{\infty}\Biggl(\frac{x}{x_{2}}\Biggr)^{n}\Biggr]}\\ {=}&{{}\frac{1}{2i}\sum_{n=0}^{\infty}\Biggl[\frac{3-i}{x_{1}^{n+1}}-\frac{3+i}{x_{2}^{n+1}}\Biggr]x^{n},~|x|<\sqrt{2}~.}\\ \end{aligned} $$ 
+
+所以
+
+ $$ \frac{f^{(n)}(0)}{n!}=\frac{1}{2i}\left[\frac{3-i}{x_{1}^{n+1}}-\frac{3+i}{x_{2}^{n+1}}\right]=\left(\frac{\sqrt{2}}{2}\right)^{n}\sqrt{5}\operatorname{s i n}\left(\frac{n\pi}{4}+\varphi_{0}\right)\quad(n=0,1,2,\cdots). $$ 
+
+最后一个等式的得出与“方法3”相同.
+
+评注 （1）求有理函数高阶导数的常用方法：如果有理函数是假分式，则用多项式除法将分式化为多项式与真分式的和，再将真分式拆分为分母为一次形式的部分分式（可能是复系数），利用公式  $ \left(\frac{1}{x-a}\right)^{(n)}=\frac{(-1)^{n}n!}{(x-a)^{n+1}} $ 求高阶导数.
+
+（2）当一个函数在指定点的泰勒展开式比较容易计算时，用泰勒展开求高阶导数更为简便.
+
+（3）关于差分方程的学习请见蔡燧林编写的《常微分方程（第3版）》（2015年，浙江大学出版社）.例24 $ ^{*} $ 令  $ p(x) $ 是一个次数小于2014的非零多项式，它与 $ x^{3}-x $ 无非常数的公共因子.令
+
+ $$ \frac{\mathrm{d}^{2014}}{\mathrm{d}x^{2014}}\left(\frac{p(x)}{x^{3}-x}\right)=\frac{f(x)}{g(x)}, $$ 
+
+其中  $ f(x) $ 和  $ g(x) $ 是多项式. 求  $ f(x) $ 的最小可能次数.
+
+分析 该题的本质是计算分式函数的高阶导数. 利用前面介绍的方法，只需将分式化为多项式与真分式的和，再将真分式拆分为部分分式（分母为一次）后求高阶导数.
+
+解 由带余除法可得
+
+ $$ \frac{p(x)}{x^{3}-x}=q(x)+\frac{r(x)}{x^{3}-x}, $$ 
+
+其中  $ q(x) $ 和  $ r(x) $ 是多项式， $ r(x) $ 的次数小于 3， $ q(x) $ 的次数小于 2014-3=2011. 因此
+
+ $$ \frac{\mathrm{d}^{2014}}{\mathrm{d}x^{2014}}\left(\frac{p(x)}{x^{3}-x}\right)=\frac{\mathrm{d}^{2014}}{\mathrm{d}x^{2014}}\left(\frac{r(x)}{x^{3}-x}\right), $$ 
+
+将分式 $ \frac{r(x)}{x^{3}-x} $拆分，设
+
+ $$ \frac{r(x)}{x^{3}-x}=\frac{A}{x-1}+\frac{B}{x}+\frac{C}{x+1}, $$ 
+
+因为  $ p(x) $ 与  $ x^{3}-x $ 无非常数的公共因子，所以  $ r(x) $ 与  $ x^{3}-x $ 也无非常数的公共因子，因而  $ ABC \neq 0 $ 。这样
+
+ $$ \begin{aligned}\frac{\mathrm{d}^{2014}}{\mathrm{d}x^{2014}}\Bigg(\frac{r(x)}{x^{3}-x}\Bigg)&=2014!\Bigg(\frac{A}{(x-1)^{2015}}+\frac{B}{x^{2015}}+\frac{C}{(x+1)^{2015}}\Bigg)\\&=2014!\frac{Ax^{2015}(x+1)^{2015}+B(x-1)^{2015}(x+1)^{2015}+C(x-1)^{2015}x^{2015}}{(x^{3}-x)^{2015}}.\end{aligned} $$ 
+
+由于  $ ABC \neq 0 $，因此上式右端的分子与分母显然无公共因子。把分子展开后得到表达式
+
+ $$ (A+B+C)x^{4030}+2015(A-C)x^{4029}+2015(1007A-B+1007C)x^{4028}+\cdots $$ 
+
+若 A=C=1, B=-2，则它的次数可以低至 4028. 更低的次数蕴涵着
+
+ $$ \boldsymbol{A}+\boldsymbol{B}+\boldsymbol{C}=\boldsymbol{0},\ \boldsymbol{A}-\boldsymbol{C}=\boldsymbol{0},\ 1007\boldsymbol{A}-\boldsymbol{B}+1007\boldsymbol{C}=\boldsymbol{0}. $$ 
+
+由于该方程组只有零解，即 A = B = C = 0，这与  $ ABC \neq 0 $ 矛盾，所以  $ f(x) $ 的最小可能次数是 4028.
+
+<div style="text-align: center;"><div style="text-align: center;">习题2.1</div> </div>
+
+
+1. 设  $ f(x) $ 可导， $ F(x) = f(x)(2 + |\sin x|) $，若  $ F(x) $ 在 x = 0 处也可导，且  $ F'(0) = 1 $，求  $ f'(0) $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//7c74e700-f831-49e1-8c63-2ca04e6eb273/markdown_0/imgs/img_in_image_box_1248_1013_1382_1145.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A27Z%2F-1%2F%2Fac5a64695acf6c5ad7a4c2802bbe01a23e1353eafd3d2e717f32a6e6cab21eff" alt="Image" width="9%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">习题2.1答案</div> </div>
+
+
+2. 设  $ f(x) $ 在 x=1 处可导，且  $ f(xy)=yf(x)+xf(y) $， $ \forall x,y\in(0,+\infty) $，证明  $ f(x) $ 在  $ (0,+\infty) $ 内可导，且  $ f'(x)=\frac{f(x)}{x}+f'(1) $.
+
+3. 设  $ f(x) $ 是可导函数， $ f\left(\frac{\pi}{2}\right)=1 $，且满足  $ \lim_{n\to\infty}\left(\frac{f(x+1/n)}{f(x)}\right)^n = \mathrm{e}^{\cot x} $，求  $ f(x) $.
+
+4. 设对任意实数 0 < t < 1，有  $ f[tx_1 + (1 - t)x_2] \geq tf(x_1) + (1 - t)f(x_2) $，证明若  $ f(x) $ 在  $ x_1, x_2 $ 点都可导且  $ x_1 < x_2 $，则  $ f'(x_1) \geq \frac{f(x_2) - f(x_1)}{x_1 - x_2} \geq f'(x_2) $.
+
+5. 设  $ f: I \to \mathbb{R} $ 是任一函数， $ x_0 \in I $，证明  $ f(x) $ 在  $ x_0 $ 处可导的充要条件是：存在一个函数  $ \varphi: I \to \mathbb{R} $，使  $ f(x) - f(x_0) = \varphi(x)(x - x_0) $， $ \forall x \in I $； $ \varphi $ 在  $ x_0 $ 处连续，且  $ f'(x_0) = \varphi(x_0) $。
+
+6. 设  $ f(x) $ 与  $ g(x) $ 在 x=0 的某邻域内有定义， $ g(x) $ 在 x=0 处连续，且  $ g(x) \neq 0 $。若  $ f(x) + g(x) $ 与  $ f(x)/g(x) $ 在 x=0 处可导，问当  $ f(0) + g(0) \neq 0 $ 时， $ f(x) $ 在 x=0 处是否可导？
+
+7. 设  $ f(x) = a_1 \sin x + a_2 \sin 2x + \cdots + a_n \sin nx $ ( $ a_i \in \mathbb{R}, i = 1, 2, \cdots, n $)，且  $ |f(x)| \leq |\sin x| $，证明  $ \left|a_1 + 2a_2 + \cdots + na_n\right| \leq 1 $。
+
+8. 设  $ f(x)=\lim_{n\to\infty}\frac{x^2\mathrm{e}^{n(x-1)}+ax+b}{1+\mathrm{e}^{n(x-1)}} $，讨论  $ f(x) $ 的连续性与可导性；确定 a、b 的值使  $ f(x) $ 可导，并求  $ f'(x) $.
+
+9. 确定  $ a $、 $ b $ 的值，使函数  $ f(x)=\begin{cases}\frac{1}{x}(1-\cos ax),&x<0\\0,&x=0\end{cases} $ 在  $ (-\infty,+\infty) $ 内处处可导，并求它的导函数。 $ \frac{1}{x}\ln(b+x^2) $， $ x>0 $。
+
+10. 设  $ \varphi(x)=\left\{\begin{aligned}&x^{2}\arctan\frac{1}{x},&x\neq0\\ &0,&x=0\end{aligned}\right. $， $ f(x) $ 处处可导，求  $ f[\varphi(x)] $ 的导数.
+
+11. 设  $ f(x)=\begin{cases}\frac{g(x)-\mathrm{e}^{x}}{x},&x\neq0\\0,&x=0\end{cases} $，其中  $ g(x) $ 有二阶连续导数，且  $ g(0)=1 $， $ g'(0)=1 $，求  $ f'(x) $，讨论  $ f'(x) $ 在  $ (-\infty,+\infty) $ 上的连续性.
+
+12. 设函数  $ \varphi:(-\infty,x_0]\to\mathbb{R} $ 是二阶可导函数，选择  $ a,b,c $，使  $ f(x) $ 在  $ \mathbb{R} $ 上二阶可导.
+
+ $$ f(x)=\left\{\begin{aligned}{}&{{}\varphi(x),}&{x\leqslant x_{0},}\\ {}&{{}a(x-x_{0})^{2}+b(x-x_{0})+c,}&{x>x_{0}.}\\ \end{aligned}\right. $$ 
+
+13. 设  $ f(x)=\begin{cases}ax^2+b\sin x+c, & x\leq0 \\ \ln(1+x), & x>0\end{cases} $，试问当 a,b,c 为何值时， $ f(x) $ 在 x=0 处的一阶导数连续，但二阶导数不存在？
+
+14. 设  $ f(x) = \sqrt{\frac{(1+x)\sqrt{x}}{e^{x-1}}} + \sin\frac{x\ln x}{\sqrt{1+x^2}} $，求  $ f'(1) $.
+
+15. 设  $ y = y(x) $ 是由方程组  $ \begin{cases} x = 3t^2 + 2t + 3 \\ e^y \sin t - y + 1 = 0 \end{cases} $ 确定的隐函数，求  $ \left. \frac{d^2 y}{dx^2} \right|_{t=0} $.
+
+16. 设  $ y = y(x) $ 由方程  $ x e^{f(y)} = a e^{y} $ 确定  $ (a > 0) $，其中 f 具有二阶导数，且  $ f' \neq 1 $，求  $ \frac{d^2 y}{d x^2} $
+
+17. 设  $ x = f(y) $ 二阶可导，且有反函数  $ y = f^{-1}(x) $，若  $ f'(f^{-1}(x)) \neq 0 $，求  $ \frac{d^2 f^{-1}(x)}{dx^2} $.
+
+18. 设  $ f(x) $ 在 x=0 处四阶可导，且  $ \lim_{x\to0}\frac{x^2f(x)-\ln(1+x^2)}{(x-\tan x)^2}=9 $，求  $ f''(0) $， $ f'''(0) $， $ f^{(4)}(0) $.
+
+19. 设  $ f(x)=x(x+1)(x+2)\cdots(x+2021)+\frac{\ln(x+\sqrt{1+x^2})}{1+x^2} $，求  $ f^{(2022)}(0) $.
+
+20. 设  $ f(x) $ 任意阶可导，且  $ f'(x) = e^{-f(x)} $， $ f(0) = 1 $，求  $ f^{(n)}(0) $.
+
+21. 已知  $ \left[f\left(\frac{1}{x}\right)\right]^{\prime}=\frac{\ln|x^{2}-1|}{x^{2}} $，求  $ f^{(n)}(x)(n>2) $.
+
+22. 设  $ f(x)=(x^{2}-3x+2)^{n}\cos\frac{\pi x^{2}}{16} $，求  $ f^{(n)}(2) $.
+
+23. 设  $ f(x) = \arctan \frac{1 - x}{1 + x} $，求  $ f^{(n)}(0) $.
+
+24. 设  $ f(x)=x^{2}\ln(x+\sqrt{1+x^{2}}) $，求  $ f^{(n)}(0) $
+
+25. 设  $ f(x) $ 在区间 I 上三阶可导， $ f'(x) \neq 0 $。若对 I 内任意两点 x 与  $ x+h $，都有
+
+ $$ f(x+h)=f(x)+f^{\prime}\left(x+\frac{1}{2}h\right)h. $$ 
+
+证明  $ f(x) $ 是 I 上的二次多项式.
+
+## 2.2 微分中值定理
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//7c74e700-f831-49e1-8c63-2ca04e6eb273/markdown_2/imgs/img_in_image_box_508_415_1004_815.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A29Z%2F-1%2F%2F428a090c726b251ed2711d5ad3324d5991268ed3374f778481ec178536252f56" alt="Image" width="34%" /></div>
+
+
+微分中值定理包括罗尔（Rolle）定理、拉格朗日（Lagrange）中值定理、柯西（Cauchy）中值定理和泰勒（Taylor）中值定理。它们的共性是：当函数满足一定条件时，在给定的开区间内至少存在一点（中值），使得函数在该点的导数（或高阶导数）具有某种性质（满足某个等式）。
+
+微分中值定理揭示了函数与其导函数之间的关系，是利用导数来研究函数的重要工具。因此我们常说微分中值定理为导数的应用搭建了桥梁。
+
+中值定理的常见应用：研究函数的性态、证明等式与不等式、判定零点的存在、计算极限、判定极值、函数的逼近或近似计算等.
+
+1）罗尔定理
+
+条件： $ f(x) \in C[a,b] \cap D(a,b) $， $ f(a) = f(b) $。
+
+结论： $ \exists\xi\in(a,b) $，使得 $ f'(\xi)=0 $。
+
+推论：可微函数的两零点之间必有导函数的一个零点.
+
+2）拉格朗日中值定理
+
+条件： $ f(x) \in C[a,b] \cap D(a,b) $.
+
+结论： $ \exists\xi\in(a,b) $，使得 $ f(b)-f(a)=f'(\xi)(b-a) $.
+
+推论：设  $ f(x) \in D(I) $，则  $ f'(x) \equiv 0 \Leftrightarrow f(x) = c $（常数）.
+
+3）柯西中值定理
+
+条件： $ f(x),g(x)\in C[a,b]\cap D(a,b) $， $ g(x)\neq0 $。
+
+结论： $ \exists\xi\in(a,b) $，使得  $ \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)} $.
+
+4）泰勒中值定理
+
+（1）（Peano 余项）设 f 在  $ x_{0} $ 处 n 阶可导，则
+
+ $$ f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}+o\left((x-x_{0})^{n}\right). $$ 
+
+（2）（Lagrange 余项）设 $f$ 在区间 $I$ 上 $n+1$ 阶可导，$x_0 \in I$，则 $\forall x \in I$ 在 $x$ 与 $x_0$ 之间至少存在一点 $\xi$ 使得
+
+ $$ f(x)=f(x_{0})+f^{\prime}(x_{0})(x-x_{0})+\frac{f^{\prime \prime}(x_{0})}{2!}(x-x_{0})^{2}+\cdots+\frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n}+R_{n}(x) $$ 
+
+其中  $ R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1} $ （ $ \xi $ 介于  $ x_{0} $ 与 x 之间）.
+
+带 Peano 余项的泰勒公式适用于研究函数的局部性态，如极限、极值等情况；带 Lagrange 余项的泰勒公式适用于函数的整体性态，如等式、不等式，函数逼近与近似计算等.
+
+例 1 考察函数  $ f(x)=\left\{\begin{aligned}&\sqrt{1-4x-x^{2}},&-4\leq x<0\\&x^{3}-x^{2}-2x+1,&0\leq x\leq1\end{aligned}\right. $ 在闭区间  $ [-4,1] $ 上是否满足拉格朗日中值定理的条件. 若满足，求出该定理结论中  $ \xi $ 的值.
+
+分析 只需验证函数在分段点 x=0 处是否连续、可导；求  $ \xi $ 需要解方程， $ \xi $ 所在的分段区间不同，方程的形状也不同，需要讨论.
+
+解 由于
+
+ $$ \lim_{x\to0^{-}}f(x)=\lim_{x\to0^{-}}\sqrt{1-4x-x^{2}}=1=f(0) $$ 
+
+ $$ \lim_{x\to0^{+}}f(x)=\lim_{x\to0^{+}}(x^{3}-x^{2}-2x+1)=1=f(0), $$ 
+
+故  $ f(x) $ 在 x=0 处连续，从而  $ f(x) \in C[-4,1] $. 又
+
+ $$ \begin{aligned}f_{-}^{\prime}(0)=\lim_{x\to0^{-}}\frac{f(x)-f(0)}{x}&=\lim_{x\to0^{-}}\frac{\sqrt{1-4x-x^{2}}-1}{x}=\lim_{x\to0^{-}}\frac{-\frac{1}{2}(4x+x^{2})}{x}=-2,\\f_{+}^{\prime}(0)&=\lim_{x\to0^{+}}\frac{f(x)-f(0)}{x}=\lim_{x\to0^{+}}\frac{x^{3}-x^{2}-2x}{x}=-2,\end{aligned} $$ 
+
+故  $ f(x) $ 在 x=0 处可导，从而  $ f(x) \in D(-4,1) $。由此  $ f(x) $ 在  $ [-4,1] $ 上满足拉格朗日中值定理的条件，且有
+
+ $$ f^{\prime}(x)=\left\{\begin{aligned}&\frac{-2-x}{\sqrt{1-4x-x^{2}}},&-4<x<0,\\ &3x^{2}-2x-2,&0\leq x<1.\end{aligned}\right. $$ 
+
+根据拉格朗日中值定理， $ \exists\xi\in(-4,1) $，满足
+
+ $$ f^{\prime}(\xi)=\frac{f(1)-f(-4)}{1-(-4)}=-\frac{2}{5}. $$ 
+
+若 $ \xi\in(-4,0) $，则方程①为
+
+ $$ \frac{-2-\xi}{\sqrt{1-4\xi-\xi^{2}}}=-\frac{2}{5},\quad\xi_{1,2}=\frac{-58\pm2\sqrt{145}}{29}. $$ 
+
+经检验 $ \xi_{1,2}\in(-4,0) $.
+
+若 $ \xi\in[0,1) $，则方程①为
+
+ $$ 3\xi^{2}-2\xi-2=-\frac{2}{5}\ ,\  解得 \ \xi_{3,4}=\frac{5\pm\sqrt{145}}{15}\ . $$ 
+
+经检验  $ \xi_{3,4} \notin [0,1) $
+
+因此，满足拉格朗日中值定理条件的  $ \xi $ 有两个，即  $ \xi_{1,2}=\frac{-58\pm2\sqrt{145}}{29} $.
+
+例2 设函数  $ f(x) \in C[a,b] \cap D(a,b) $，其中  $ a > 0 $，且  $ f(a) = 0 $。证明  $ \exists \xi \in (a,b) $，使得
+
+ $$ f(\xi)=\frac{b-\xi}{a}f^{\prime}(\xi). $$ 
+
+分析 做恒等变形，利用凑微分（积分）法构造辅助函数（原函数）。其具体过程如下：
+
+将等式  $ f(\xi)=\frac{b-\xi}{a}f'(\xi) $ 中的  $ \xi $ 换为 x，并变形得  $ \frac{f'(x)}{f(x)}-\frac{a}{b-x}=0 $，积分得  $ \ln f(x)-\ln(b-x)^{-a}=\ln C $，化简为  $ (b-x)^{a}f(x)=C $，得辅助函数  $ F(x)=(b-x)^{a}f(x) $.
+
+证明 设  $ F(x) = (b - x)^a f(x) $， $ x \in (a, b) $。由题意知  $ F(x) \in C[a, b] \cap D(a, b) $，又  $ F(b) = 0 = F(a) $，由罗尔定理知  $ \exists \xi \in (a, b) $，使得  $ F'(\xi) = 0 $，即
+
+ $$ (b-\xi)^{a}f^{\prime}(\xi)-a(b-\xi)^{a-1}f(\xi)=0,f(\xi)=\frac{b-\xi}{a}f^{\prime}(\xi). $$ 
+
+评注 用罗尔定理证明等式的常用方法如下.
+
+将欲证等式写成等号一端只有零，再构造辅助函数. 其步骤如下：
+
+(1) 将  $ f(\xi)=0 $ 改写为  $ f(x)=0 $;
+
+(2) 依据  $ f(x) $ 构造辅助函数  $ F(x) $. 常用方法是：
+
+① 直接观察，利用导数的运算法则凑微分，例如：
+
+ $$ f(x)=P^{\prime}(x)Q(x)+P(x)Q^{\prime}(x),\  则 \ F(x)=P(x)Q(x)； $$ 
+
+ $ f(x)=P'(x)+P(x)Q'(x) $，则 $ F(x)=P(x)e^{Q(x)} $;
+
+ $$ f(x)=P^{\prime}(x)Q(x)-P(x)Q^{\prime}(x),\  则 \ F(x)=\frac{P(x)}{Q(x)}； $$ 
+
+② 利用定积分  $ F(x)=\int_{0}^{x}f(x)dx $ 得到辅助函数  $ F(x) $;
+
+③ 解微分方程得到辅助函数  $ F(x) $.
+
+（3）验证辅助函  $ F(x) $ 在给定的区间上满足罗尔定理的条件，便可推出待证结论.
+
+例3 设 $ f(x) $在 $ [0,1] $上二阶可导， $ f(0)=f(1) $， $ f'(1)=1 $，证明 $ \exists\xi\in(0,1) $使 $ f''(\xi)=2 $。
+
+分析 由  $ f''(x)-2=0 \Rightarrow f'(x)-2x=C_{1} $ 。由  $ f'(1)=1 \Rightarrow C_{1}=-1 $ ，所以  $ f'(x)-2x+1=0 $ ， $ f(x)-x^{2}+x=C_{2} $ ，得辅助函数  $ F(x)=f(x)-x^{2}+x $ 。
+
+证明 方法1 令  $ F(x) = f(x) - x^2 + x $， $ x \in [0,1] $，则  $ F(x) \in C[0,1]D(0,1) $， $ F(0) = F(1) $。由罗尔定理知  $ \exists \eta \in (0,1) $，使  $ F'(\eta) = 0 $。
+
+又  $ F'(x) = f'(x) - 2x + 1 $，有  $ F'(1) = f'(1) - 1 = 0 = F'(\eta) $，对  $ F'(x) $ 用罗尔定理， $ \exists \xi \in (\eta, 1) \subset (0, 1) $，使  $ F''(\xi) = 0 $。因为  $ F''(x) = f''(x) - 2 $，所以  $ f''(\xi) = 2 $。
+
+方法2 令  $ F(x)=f(x)-x^{2}, x\in[0,1] $. 由拉格朗日中值定理知  $ \exists\eta\in(0,1) $，使
+
+ $$ F(1)-F(0)=F^{\prime}(\eta)(1-0)\Rightarrow F^{\prime}(\eta)=-1. $$ 
+
+又 $ F'(x) = f'(x) - 2x $， $ F'(x) \in C[0,1] \cap D(0,1) $， $ F'(1) = f'(1) - 2 = -1 = F'(\eta) $。由罗尔定理知 $ \exists \xi \in (\eta,1) \subset (0,1) $，使 $ F''(\xi) = 0 $，由于 $ F''(x) = f''(x) - 2 $，所以 $ f''(\xi) = 2 $。
+
+方法 3 令  $ F(x)=xf'(x)-x^2-f(x) $，则  $ F(x)\in C[0,1]D(0,1) $， $ F(0)=F(1) $。由罗尔定理知  $ \exists\xi\in(0,1) $，使  $ F'(\xi)=0 $，即  $ \xi f''(\xi)-2\xi=0 $。所以  $ f''(\xi)=2 $。
+
+辅助函数的来源：由  $ f''(x)=2\Rightarrow xf''(x)-2x=0 $，两边积分得  $ xf'(x)-f(x)-x^{2}=C $
+
+方法4 在x=1处将 $ f(x) $展开为一阶泰勒公式
+
+ $$ f(x)=f(1)+f^{\prime}(1)(x-1)+\frac{1}{2}f^{\prime \prime}(\xi_{1})(x-1)^{2},\quad\xi_{1}\in(x,1). $$ 
+
+取x=0，有
+
+ $$ f(0)=f(1)-f^{\prime}(1)+\frac{1}{2}f^{\prime \prime}(\xi),\quad\xi\in(0,1). $$ 
+
+将  $ f(0)=f(1) $， $ f'(1)=1 $ 代入得  $ f''(\xi)=2 $
+
+评注（1）辅助函数不唯一，选取的形式不同，证明的难易程度也不同.
+
+（2）若要证等式中含 $ f''(\xi) $，则通常需用两次中值定理，即需要对 $ f'(x) $再用一次中值定理；若要证明 $ \exists\xi\in I $，使得 $ f''(\xi)=0 $，只需证明 $ f(x) $在 $ I $上有三个不同点，其函数值相等；证明 $ f^{(n)}(\xi)=0 $可以此类推。
+
+（3）对含有高阶导数项的中值等式，用泰勒公式求解会更简便。
+
+例 4 设  $ f(x) \in C[0,1] \cap D(0,1) $，且  $ f(1) = k \int_{0}^{\overline{k}} x e^{1-x} f(x) \, \mathrm{d}x (k > 1) $，证明  $ \exists \xi \in (0,1) $，使  $ f'(\xi) = \left(1 - \frac{1}{\xi}\right) f(\xi) $.
+
+分析  $ f'(\xi)=\left(1-\frac{1}{\xi}\right)f(\xi) $  $ \Leftrightarrow $  $ xf'(x)+f(x)=xf(x)\Leftrightarrow\frac{(xf(x))'}{\cdot xf(x)}=1\Leftrightarrow\ln(xf(x))=x+c_1\Leftrightarrow x\mathrm{e}^{-x} $
+
+ $ f(x)=c $ . 取辅助函数  $ F(x)=x\mathrm{e}^{-x}f(x) $
+
+证明 令  $ F(x)=xe^{-x}f(x) $，则
+
+ $$ F(1)=\mathrm{e}^{-1}f(1)=\mathrm{e}^{-1}k\int_{0}^{\frac{1}{k}}x\mathrm{e}^{1-x}f(x)\mathrm{d}x=k\int_{0}^{\frac{1}{k}}x\mathrm{e}^{-x}f(x)\mathrm{d}x\;. $$ 
+
+由积分中值定理，知  $ \exists \eta \in \left[0, \frac{1}{k}\right] \subset [0,1) $，使  $ F(1) = \eta e^{-\eta} f(\eta) = F(\eta) $.
+
+再由罗尔定理，知 $ \exists\xi\in(\eta,1)\subset(0,1) $，使 $ F'(\xi)=0 $，即
+
+ $$ \mathsf{e}^{-\xi}[\xi f^{\prime}(\xi)+f(\xi)-\xi f(\xi)]=0\Longrightarrow f^{\prime}(\xi)=\left(1-\frac{1}{\xi}\right)f(\xi)\;. $$ 
+
+评注 条件  $ f(1)=k\int_{0}^{\frac{1}{k}}xe^{1-x}f(x)dx $ 的本质是给出  $ F(x) $ 在区间  $ [0,1] $ 上某两点的函数值相等. 这类题型的辅助函数通常都是积分中的被积函数.
+
+例  $ 5^* $ 已知函数  $ f(x) $ 在  $ [0,1] $ 上三阶可导，且  $ f(0) = -1 $， $ f(1) = 0 $， $ f'(0) = 0 $，试证至少存在一点  $ \xi \in (0,1) $，使
+
+ $$ f(x)=-1+x^{2}+\frac{x^{2}(x-1)}{3!}f^{m}(\xi),\quad x\in(0,1). $$ 
+
+分析 即证  $ f^m(\xi) - \frac{3!}{x^2(x-1)}[f(x) - x^2 + 1] = 0 $，将  $ \xi $ 换为  $ t $，两边对  $ t $ 积分，有  $ f''(t) - \frac{3!t}{x^2(x-1)} $.  $ [f(x) - x^2 + 1] = C $，两边再对  $ t $ 积分两次，并利用  $ f(0) = -1 $， $ f'(0) = 0 $，有  $ f(t) - \frac{t^3}{x^2(x-1)}[f(x) - x^2 + 1] = \frac{C}{2}t^2 - 1 $。再取  $ t = 1 $，得  $ \frac{C}{2} = 1 - \frac{1}{x^2(x-1)}[f(x) - x^2 + 1] $，则有  $ f(t) - t^2 + 1 - \frac{t^2(t-1)}{x^2(x-1)}[f(x) - x^2 + 1] = 0 $。得辅助函数  $ \varphi(t) = f(t) - t^2 + 1 - \frac{t^2(t-1)}{x^2(x-1)}[f(x) - x^2 + 1] $。
+
+证明 做辅助函数
+
+ $$ \varphi(t)=f(t)-t^{2}+1-\frac{t^{2}(t-1)}{x^{2}(x-1)}[f(x)-x^{2}+1],~x\in(0,1). $$ 
+
+则有  $ \varphi(0)=\varphi(1)=\varphi(x)=0 $，由罗尔定理，知存在  $ \xi_{1}\in(0,x) $， $ \xi_{2}\in(x,1) $，使
+
+ $$ \varphi^{\prime}(\xi_{1})=\varphi^{\prime}(\xi_{2})=0 $$ 
+
+又  $ \varphi'(0) = 0 $，对  $ \varphi'(t) $ 用罗尔定理，存在点  $ \eta_1 \in (0, \xi_1) $， $ \eta_2 \in (\xi_1, \xi_2) $，使
+
+ $$ \varphi^{\prime \prime}(\eta_{1})=\varphi^{\prime \prime}(\eta_{2})=0. $$ 
+
+所以 $ \exists\xi\in(\eta_{1},\eta_{2})\subset(0,1) $，使
+
+ $$ \phi^{m}(\xi)=0. $$ 
+
+由于
+
+ $$ \varphi^{m}(t)=f^{m}(t)-\frac{3!}{x^{2}(x-1)}[f(x)+1-x^{2}]\;, $$ 
+
+所以原等式成立.
+
+该题的另一种解法是在 x=0 处将  $ f(x) $ 展开为二阶泰勒公式. 对  $ x\in[0,1] $，有
+
+ $$ f(x)=-1+\frac{f''(0)}{2}x^{2}+\frac{x^{3}}{3!}f'''(\xi),\quad\xi\in(0,x). $$ 
+
+取x=1，得
+
+ $$ 0=-1+\frac{f^{n}(0)}{2}+\frac{1}{3!}f^{m}(\xi)\Rightarrow f^{n}(0)=2\left(1-\frac{1}{3!}f^{m}(\xi)\right). $$ 
+
+将②式代入①式，整理可得
+
+ $$ f(x)=-1+x^{2}+\frac{x^{2}(x-1)}{3!}f^{m}(\xi). $$ 
+
+需要指出的是，后面这种解法是不正确的. 原因在于②式中的  $ \xi $ 并非①式中的  $ \xi $（①式中的  $ \xi $ 与 x 的取值有关，②式中的  $ \xi \in (0,1) $ 与 x 的取值无关）.
+
+例6 设 $ f(x)\in C[a,b]\cap D(a,b) $，且 $ \lim_{x\to a^+}\frac{f(2x-a)}{x-a} $存在，证明 $ \exists\xi,\eta\in(a,b) $，使
+
+ $$ f^{\prime}(\eta)(b^{2}-a^{2})=\frac{2\xi}{\xi-a}\int_{a}^{b}f(x)\mathrm{d}x. $$ 
+
+分析 易知  $ f(a)=0 $，而  $ f'(\eta)(b^{2}-a^{2})=\frac{2\xi}{\xi-a}\int_{a}^{b}f(x)dx\Leftrightarrow\frac{b^{2}-a^{2}}{\int_{a}^{b}f(x)dx}=\frac{2\xi}{f'(\eta)(\xi-a)} $，只需对  $ x^{2} $ 后  $ f(x) $ 的原函数在  $ [a,b] $ 上用柯西中值定理，再对  $ f(x) $ 用拉格朗日中值定理
+
+与  $ f(x) $ 的原函数在  $ [a,b] $ 上用柯西中值定理，再对  $ f(x) $ 用拉格朗日中值定理.
+
+证明  $ \lim_{x\to a^+}\frac{f(2x-a)}{x-a} $ 存在，故  $ \lim_{x\to a^+}f(2x-a)=0 $，由  $ f(x) $ 在 x=a 处连续，得  $ f(a)=0 $.
+
+对  $ F(x)=x^{2} $， $ G(x)=\int_{a}^{x}f(t)dt $ 在  $ [a,b] $ 上用柯西中值定理得
+
+ $$ \frac{b^{2}-a^{2}}{\displaystyle\int_{a}^{b}f(x)\mathrm{d}x}=\frac{2\xi}{f(\xi)}\ (a<\xi<b). $$ 
+
+对  $ f(x) $ 在  $ [a,\xi] $ 上用拉格朗日中值定理得
+
+ $$ f(\xi)=f^{\prime}(\eta)(\xi-a)\left(a<\eta<\xi\right). $$ 
+
+将②式代入①式即得证.
+
+评注 该题的等式中涉及两个中值，处理这种问题常用的方法是用两次微分中值定理。可能是不同的函数各用一次，或者是同一函数在不同的区间各用一次。
+
+例7 设  $ f(x) \in C[0,1] \cap D(0,1) $， $ f(0) = 0 $， $ f(1) = 1 $。证明：
+
+（1）在(0,1)内存在不同的 $ \xi,\eta $，使 $ f^{\prime}(\xi)f^{\prime}(\eta)=1 $;
+
+（2）对任意给定的正数 a, b，在(0,1)内存在不同的  $ \xi, \eta $，使  $ \frac{a}{f'(\xi)} + \frac{b}{f'(\eta)} = a + b $.
+
+分析（1）只需将$[0,1]$分成两个区间，使$f(x)$在两个区间中各用一次拉格朗日中值定理. 设分点为$x_0\in(0,1)$，由$f'(\xi)=\frac{f(x_0)-f(0)}{x_0-0}=\frac{f(x_0)}{x_0}$，$f'(\eta)=\frac{f(1)-f(x_0)}{1-x_0}=\frac{1-f(x_0)}{1-x_0}$，则$f'(\xi)f'(\eta)=1\Leftrightarrow$
+
+ $ \frac{f(x_{0})}{x_{0}}\cdot\frac{1-f(x_{0})}{1-x_{0}}=1\Leftrightarrow x_{0} $ 是方程  $ f(x)[1-f(x)]=x(1-x) $ 的根，所以取  $ x_{0} $ 是方程  $ f(x)=1-x $ 的根即可.
+
+(2)  $ \frac{a}{f'(\xi)} + \frac{b}{f'(\eta)} = a + b \Leftrightarrow \frac{\overline{a + b}}{f'(\xi)} + \frac{\overline{a + b}}{f'(\eta)} = 1 \Leftrightarrow \frac{f(x_1) = \frac{a}{a + b}}{f'(\xi)} + \frac{1 - f(x_1)}{f'(\eta)} = 1 $，即  $ \frac{f(x_1) - f(0)}{f'(\xi)} + \frac{f(1) - f(x_1)}{f'(\eta)} = 1 \Leftrightarrow x_1 + (1 - x_1) = 1 $，这是显然的.
+
+证明 （1）令  $ F(x)=f(x)-1+x $，则  $ F(x) $ 在  $ [0,1] $ 上连续，且  $ F(0)=-1<0 $， $ F(1)=1>0 $，由介值定理，知存在  $ x_0 \in (0,1) $，使得  $ F(x_0)=0 $，即  $ f(x_0)=1-x_0 $。
+
+在$[0,x_0]$和$[x_0,1]$上对$f(x)$分别应用拉格朗日中值定理，知存在两个不同的点$\xi\in(0,x_0)$，$\eta\in(x_0,1)$，使得$f'(\xi)=\frac{f(x_0)-f(0)}{x_0-0}$，$f'(\eta)=\frac{f(1)-f(x_0)}{1-x_0}$。于是
+
+ $$ f^{\prime}(\xi)f^{\prime}(\eta)=\frac{f(x_{0})}{x_{0}}\cdot\frac{1-f(x_{0})}{1-x_{0}}=\frac{1-x_{0}}{x_{0}}\cdot\frac{x_{0}}{1-x_{0}}=1. $$ 
+
+（2）因为 $ 0 < \frac{a}{a+b} < 1 $，而 $ f(0) = 0 $， $ f(1) = 1 $，由 $ f(x) $连续，知 $ \exists x_1 \in (0,1) $，使得 $ f(x_1) = \frac{a}{a+b} $。 $ f(x) $在 $ [0,x_1] $， $ [x_1,1] $上分别用拉格朗日中值定理，有
+
+ $$ f(x_{1})-f(0)=(x_{1}-0)f^{\prime}(\xi),\quad\xi\in(0,x_{1}), $$ 
+
+ $$ f(1)-f(x_{1})=(1-x_{1})f^{\prime}(\eta),\quad\eta\in(x_{1},1). $$ 
+
+注意到， $ f(0)=0 $， $ f(1)=1 $，由①，②式有
+
+ $$ x_{1}=\frac{f(x_{1})}{f^{\prime}(\xi)}=\frac{\frac{a}{a+b}}{f^{\prime}(\xi)}, $$ 
+
+ $$ 1-x_{1}=\frac{1-f(x_{1})}{f^{\prime}(\eta)}=\frac{\overline{a+b}}{f^{\prime}(\eta)}. $$ 
+
+③+④式可得
+
+ $$ \frac{a}{f^{\prime}(\xi)}+\frac{b}{f^{\prime}(\eta)}=a+b. $$ 
+
+评注 该题（2）的结论可进行如下推广(见习题2.2第22题):
+
+在所给题设条件下，对任意给定的一组正数  $ a_1, a_2, \cdots, a_k $，必存在  $ (0,1) $ 内的  $ k $ 个不同的数： $ \xi_1, \xi_2, \cdots, \xi_k $，使得
+
+ $$ \frac{a_{1}}{f^{\prime}(\xi_{1})}+\frac{a_{2}}{f^{\prime}(\xi_{2})}+\cdots+\frac{a_{k}}{f^{\prime}(\xi_{k})}=a_{1}+a_{2}+\cdots+a_{k}. $$ 
+
+例8 设函数  $ f(x) $ 在  $ [0,2] $ 上连续，在  $ (0,2) $ 内二阶可导， $ f(0)=0 $， $ f(1)=f(2)=2 $。证明在  $ (0,2) $ 内存在不同的三点  $ \xi_{1},\xi_{2},\xi_{3} $，使得  $ f''(\xi_{3})=\frac{\xi_{1}+\xi_{2}}{\xi_{1}-\xi_{2}} $。
+
+分析 将结论变形为  $ \xi_{1} + \xi_{2} = f''(\xi_{3})(\xi_{1} - \xi_{2}) = f'(\xi_{1}) - f'(\xi_{2}) $，只需有  $ f'(\xi_{1}) = \xi_{1} + k $， $ f'(\xi_{2}) = -\xi_{2} + k $，辅助函数就容易找到了.
+
+证明 令  $ F(x)=f(x)-\frac{1}{2}x^2-\frac{3}{2}x $ ( $ 0 \leq x \leq 1 $)，则  $ F(0)=F(1)=0 $，由罗尔定理，知  $ \exists \xi_1 \in (0,1) $，使得  $ F'(\xi_1)=0 $。即
+
+ $$ f^{\prime}(\xi_{1})=\xi_{1}+\frac{3}{2}. $$ 
+
+令  $ G(x) = f(x) + \frac{1}{2}x^2 - \frac{5}{2}x - 1 $ ( $ 1 \leq x \leq 2 $)，则  $ G(1) = G(2) = 0 $，由罗尔定理，知  $ \exists \xi_2 \in (1,2) $，使得  $ G'(\xi_2) = 0 $。即
+
+ $$ f^{\prime}(\xi_{2})=-\xi_{2}+\frac{3}{2}. $$ 
+
+由拉格朗日中值定理，知 $ \exists\xi_3\in(\xi_1,\xi_2)\subseteq(0,2) $，使得
+
+ $$ f^{\prime}(\xi_{2})-f^{\prime}(\xi_{1})=f^{\prime\prime}(\xi_{3})(\xi_{2}-\xi_{1}), $$ 
+
+所以
+
+ $$ f^{\prime \prime}(\xi_{3})=\frac{f^{\prime}(\xi_{1})-f^{\prime}(\xi_{2})}{\xi_{1}-\xi_{2}}=\frac{\xi_{1}+\xi_{2}}{\xi_{1}-\xi_{2}}\left(0<\xi_{1}<\xi_{3}<\xi_{2}<2\right). $$ 
+
+例9 设  $ f(x) $ 在区间  $ [0,1] $ 上连续，且  $ \int_{0}^{x}f(x)dx \neq 0 $。证明在区间  $ (0,1) $ 上存在两个不同的点  $ x_{1} $， $ x_{2} $，使得
+
+ $$ \frac{\pi}{4}\int_{0}^{1}f(x)\mathrm{d}x=\left(\frac{1}{\sqrt{1-x_{2}^{2}}}\int_{0}^{x_{2}}f(t)\mathrm{d}t+f(x_{2})\arcsin x_{2}\right)(1-x_{1}). $$ 
+
+分析 易见，需做辅助函数  $ F(x)=\arcsin x\int_{0}^{x}f(t)dt $，如果存在  $ x_{1}\in(0,1) $，使得  $ F(x_{1})=\frac{\pi}{4}\int_{0}^{1}f(t)dt $，问题就解决了。由连续函数的介值定理，这是容易做到的。
+
+证明 令  $ F(x) = \arcsin x \int_0^x f(t) \, \mathrm{d}t $， $ x \in [0,1] $，则  $ F(0) = 0 $， $ F(1) = \frac{\pi}{2} \int_0^1 f(t) \, \mathrm{d}t $，由于  $ F(x) $ 在  $ [0,1] $ 上连续，所以必存在  $ x_1 \in (0,1) $，使得  $ F(x_1) = \frac{1}{2}(F(0) + F(1)) = \frac{\pi}{4} \int_0^1 f(t) \, \mathrm{d}t $。
+
+在 $ [x_1,1] $上对 $ F(x) $用拉格朗日中值定理， $ \exists x_2\in(x_1,1) $，使得
+
+ $$ F(1)-F(x_{1})=F^{\prime}(x_{2})(1-x_{1}), $$ 
+
+即
+
+ $$ \frac{\pi}{4}\int_{0}^{1}f(t)\mathrm{d}t=F^{\prime}(x_{2})(1-x_{1})\;. $$ 
+
+由于  $ F'(x)=\frac{1}{\sqrt{1-x^{2}}}\int_{0}^{x}f(t)dt+f(x)\arcsin x $，代入上式即得
+
+ $$ \frac{\pi}{4}\int_{0}^{1}f(x)\mathrm{d}x=\left(\frac{1}{\sqrt{1-x_{2}^{2}}}\int_{0}^{x_{2}}f(t)\mathrm{d}t+f(x_{2})\arcsin x_{2}\right)(1-x_{1}). $$ 
+
+评注 证明中值等式时，连续函数的介值定理也是常用的工具.
+
+例10 设 $ f(x) $， $ g(x) $在 $ [a,b] $上有二阶连续导数，且 $ g''(x) \neq 0 $，证明 $ \exists \eta \in (a,b) $，使
+
+ $$ \frac{\int_{a}^{b}f(x)\mathrm{d}x-\frac{b-a}{2}(f(a)+f(b))}{\int_{a}^{b}g(x)\mathrm{d}x-\frac{b-a}{2}(g(a)+g(b))}=\frac{f^{\prime \prime}(\eta)}{g^{\prime \prime}(\eta)}. $$ 
+
+分析 等式左边的常数关于 a, b 对称，可用 “常数 k 值法” 构造辅助函数，再用罗尔定理.
+
+证明 令  $ \frac{\int_{a}^{b}f(x)dx-\frac{b-a}{2}(f(a)+f(b))}{\int_{a}^{b}g(x)dx-\frac{b-a}{2}(g(a)+g(b))}=k $ ，即
+
+ $$ \int_{a}^{b}f(x)\mathrm{d}x-\frac{b-a}{2}(f(a)+f(b))-k\left[\int_{a}^{b}g(x)\mathrm{d}x-\frac{b-a}{2}(g(a)+g(b))\right]=0. $$ 
+
+做辅助函数
+
+ $$ F(x)=\int_{a}^{x}f(t)\mathrm{d}t-\frac{x-a}{2}(f(a)+f(x))-k\left[\int_{a}^{x}g(t)\mathrm{d}t-\frac{x-a}{2}(g(a)+g(x))\right]. $$ 
+
+显然  $ F(x) $ 在  $ [a,b] $ 上有二阶连续导数，且  $ F(a)=F(b)=0 $。对  $ F(x) $ 在  $ [a,b] $ 上运用罗尔定理，知存在  $ \xi \in (a,b) $，使  $ F'(\xi)=0 $。
+
+由于
+
+ $$ F^{\prime}(x)=\frac{1}{2}[\dot{f}(x)-f(a)-(x-a)f^{\prime}(x)]-\frac{k}{2}[g(x)-g(a)-(x-a)g^{\prime}(x)], $$ 
+
+易见  $ F'(a) = 0 $。对  $ F'(x) $ 在  $ [a, \xi] $ 上应用罗尔定理，知存在  $ \eta \in (a, \xi) \subset (a, b) $，使  $ F''(\eta) = 0 $，即
+
+ $$ (\eta-a)[f^{\prime \prime}(\eta)-kg^{\prime \prime}(\eta)]=0\Rightarrow k=\frac{f^{\prime \prime}(\eta)}{g^{\prime \prime}(\eta)}. $$ 
+
+故所证等式成立.
+
+评注 当所证等式中含有轮换对称的参数  $ a, b, c, \cdots $ ( $ a, b, c, \cdots $ 轮换等式不变) 时，其辅助函数可按以下方法构造：
+
+（1）分离常数：将含有参数的常数项全部移至等号的一端，并令整个常数为 k.
+
+（2）恒等变形：对（1）中的等式做变形，使等式的一端为0，非零端最好没有分式.
+
+（3）换参数为变量得辅助函数：将非零端的一个参数换为变量（如将a改写成x），即得辅助函数（该辅助函数在 $ a,b,c,\cdots $等点的值一定相等）.
+
+以上构造辅助函数的方法又称为“常数k值法”。
+
+例 11 设  $ a < b < c $， $ f(x) $ 在  $ [a, c] $ 上具有二阶导数，证明存在  $ \xi \in (a, c) $，使
+
+ $$ \frac{f(a)}{(a-b)(c-a)}+\frac{f(b)}{(b-c)(a-b)}+\frac{f(c)}{(c-a)(b-c)}=-\frac{1}{2}f''(\xi). $$ 
+
+分析 等式左边的3项关于a,b,c轮换对称，可用“常数k值法”构造辅助函数.
+
+熟悉拉格朗日插值法的读者也容易想到做辅助函数
+
+ $$ F(x)=\frac{(x-b)(x-c)}{(a-b)(a-c)}f(a)+\frac{(x-c)(x-a)}{(b-c)(b-a)}f(b)+\frac{(x-a)(x-b)}{(c-a)(c-b)}f(c)-f(x) $$ 
+
+从而只需证明 $ \exists\xi\in(a,c) $使 $ F''(\xi)=0 $。由于 $ F(a)=F(b)=F(c)=0 $，结论显然。
+
+证明 方法1 记 $ \frac{f(a)}{(a-b)(c-a)}+\frac{f(b)}{(b-c)(a-b)}+\frac{f(c)}{(c-a)(b-c)}=k $，变形为
+
+ $$ k(a-b)(b-c)(c-a)-\left[f(a)(b-c)+f(b)(c-a)+f(c)(a-b)\right]=0~. $$ 
+
+做辅助函数  $ F(x)=k(x-b)(b-c)(c-x)-\left[f(x)(b-c)+f(b)(c-x)+f(c)(x-b)\right] $.
+
+易验证  $ F(a) = F(b) = F(c) = 0 $，由罗尔定理，知必存在  $ \xi \in (a, c) $，使得  $ F''(\xi) = 0 $。由于
+
+ $$ F^{\prime \prime}(x)=-2k(b-c)-f^{\prime \prime}(x)(b-c)=(c-b)\left(f^{\prime \prime}(x)+2k\right), $$ 
+
+所以有  $ f''(\xi)+2k=0 $，即
+
+ $$ \frac{f(a)}{(a-b)(c-a)}+\frac{f(b)}{(b-c)(a-b)}+\frac{f(c)}{(c-a)(b-c)}=-\frac{1}{2}f''(\xi). $$ 
+
+方法2 令  $ G(x)=\begin{vmatrix}1&1&1&1\\x&a&b&c\\x^{2}&a^{2}&b^{2}&c^{2}\\f(x)&f(a)&f(b)&f(c)\end{vmatrix}(a \leqslant x \leqslant b) $，则  $ G(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二
+
+阶可导．由行列式的性质易知  $ G(a) = G(b) = G(c) = 0 $．由罗尔定理，知必存在  $ \xi \in (a, c) $，使得  $ G''(\xi) = 0 $．由于
+
+ $$ G^{\prime \prime}(x)=\left|\begin{matrix}{0}&{1}&{1}&{1}\\ {0}&{a}&{b}&{c}\\ {2}&{a^{2}}&{b^{2}}&{c^{2}}\\ {f^{\prime \prime}(x)}&{f(a)}&{f(b)}&{f(c)}\\ \end{matrix}\right|=2\left|\begin{matrix}{1}&{1}&{1}\\ {a}&{b}&{c}\\ {f(a)}&{f(b)}&{f(c)}\\ \end{matrix}\right|-f^{\prime \prime}(x)\left|\begin{matrix}{1}&{1}&{1}\\ {a}&{b}&{c}\\ {a^{2}}&{b^{2}}&{c^{2}}\\ \end{matrix}\right|, $$ 
+
+将行列式展开即得所证等式.
+
+方法3 做辅助函数
+
+ $$ F(x)=\frac{(x-b)(x-c)}{(a-b)(a-c)}f(a)+\frac{(x-c)(x-a)}{(b-c)(b-a)}f(b)+\frac{(x-a)(x-b)}{(c-a)(c-b)}f(c)-f(x) $$ 
+
+显然  $ F(x) $ 在  $ [a,c] $ 上二阶可导，且  $ F(a)=F(b)=F(c)=0 $。由罗尔定理知， $ \exists\xi\in(a,c) $ 使  $ F''(\xi)=0 $。变形即得所证等式。
+
+评注 (1)  $ p_{2}(x)=\frac{(x-a)(x-c)}{(a-b)(a-c)}f(a)+\frac{(x-c)(x-a)}{(b-c)(b-a)}f(b)+\frac{(x-a)(x-b)}{(c-a)(c-b)}f(c) $ 叫  $ f(x) $ 的拉格朗日二次插值多项式. 显然  $ p_{2}(x) $ 与  $ f(x) $ 在 x=a,b,c 的值相等. 若  $ f(x) $ 在  $ (a,c) $ 内三阶可导, 不难证明:
+
+ $$ f(x)=p_{2}(x)+\frac{f^{\prime \prime}(\xi)}{3!}(x-a)(x-b)(x-c),\xi\in(a,c). $$ 
+
+(2) 方法2 中构造的行列式源于范德蒙行列式的启发.
+
+（3）行列式函数的求导法则：设 $ n $阶方阵 $ A(x)=\left(\alpha_{1}(x),\alpha_{2}(x),\cdots,\alpha_{n}(x)\right) $，其中 $ \alpha_{i}(x)(i=1,2,\cdots,n) $是可导的 $ n $维列向量函数，则
+
+ $$ \left|A(x)\right|^{\prime}=\det\left(\alpha_{1}^{\prime}(x),\alpha_{2}(x),\cdots,\alpha_{n}(x)\right)+\det\left(\alpha_{1}(x),\alpha_{2}^{\prime}(x),\cdots,\alpha_{n}(x)\right)+\cdots+\det\left(\alpha_{1}(x),\alpha_{2}(x),\cdots,\alpha_{n}^{\prime}(x)\right). $$ 
+
+例 12 设  $ f(x) $ 在  $ [0,+\infty) $ 上连续可导， $ f(0)=1 $，且对一切  $ x \geq 0 $ 有  $ |f(x)| \leq e^{-x} $。证明  $ \exists \xi \in (0,+\infty) $，使得  $ f'(\xi) = -e^{-\xi} $。
+
+分析（1）该题很容易想到辅助函数  $ F(x)=f(x)-\mathrm{e}^{-x} $，但我们却很难找到满足罗尔定理条件的区间。从另一个角度考虑：要确定  $ F(x) $ 在  $ (0,+\infty) $ 内有驻点，只需证明  $ F(x) $ 在  $ (0,+\infty) $ 内能取得极值。
+
+（2）满足罗尔定理的闭区间难以找到，也可考虑是否满足“无穷区间的罗尔定理”条件.
+
+解 方法 1 令  $ F(x) = f(x) - \mathrm{e}^{-x} $，则  $ F(x) $ 在  $ (0, +\infty) $ 上连续可导，且  $ F(0) = f(0) - 1 = 0 $。由于  $ \left|f(x)\right| \leqslant \mathrm{e}^{-x} $，所以
+
+ $$ \operatorname*{l i m}_{x\to+\infty}\mid f(x)\mid\leqslant\operatorname*{l i m}_{x\to+\infty}\mathrm{e}^{-x}=0\Rightarrow\operatorname*{l i m}_{x\to+\infty}f(x)=0. $$ 
+
+于是
+
+ $$ \operatorname*{l i m}_{x\to+\infty}F(x)=\operatorname*{l i m}_{x\to+\infty}f(x)-\operatorname*{l i m}_{x\to+\infty}\mathrm{e}^{-x}=0. $$ 
+
+若  $ f(x) = \mathrm{e}^{-x} $，则  $ \forall x \in [0, +\infty) $， $ F(x) = 0 $，于是  $ \forall \xi \in (0, +\infty) $，有  $ f'(\xi) = -\mathrm{e}^{-\xi} $.
+
+若  $ f(x) \neq \mathbf{e}^{-x} $，由于  $ |f(x)| \leq \mathbf{e}^{-x} $，所以  $ \exists c \in (0, +\infty) $，使得  $ f(c) < \mathbf{e}^{-c} $，则  $ F(c) < 0 $。于是  $ F(x) $ 在  $ (0, +\infty) $ 内取得最小值，它也是极小值。设  $ F(\xi) $ 是其极小值，从而  $ F'(\xi) = 0 $。即  $ \exists \xi \in (0, +\infty) $，使得  $ F'(\xi) = 0 $，即  $ f'(\xi) = -\mathbf{e}^{-\xi} $。
+
+方法2 令 $ F(x)=f(x)-\mathrm{e}^{-x} $，则 $ F(x) $在 $ (0,+\infty) $上连续可导，由 $ f(0)=1 $及①式知
+
+ $$ F(0)=0=\lim_{x\to+\infty}f(x). $$ 
+
+由无穷区间上的罗尔定理知，知  $ \exists \xi \in (0, +\infty) $，使得  $ F'(\xi) = 0 $，即  $ f'(\xi) = -e^{-\xi} $.
+
+评注（1）“无穷区间上的罗尔定理”见习题2.2第14题. 若题解不直接用该定理，则可以用证明该定理的方法.
+
+（2）证明含有中值的等式，其常用的方法：利用微（积）分中值定理、泰勒公式，极值的必要条件或连续函数的介值定理。若使用这些方法都有困难，则可考虑用反证法。
+
+例 13 设  $ f(x) $ 在  $ (-\infty,+\infty) $ 上有界，且二阶可导，证明： $ \exists \xi \in \mathbb{R} $，使得  $ f''(\xi) = 0 $。
+
+分析 只需证明存在  $ a, b \in (-\infty, +\infty) $，使得  $ f'(a) = f'(b) $。否则；会出现矛盾。
+
+证明 （1）若  $ \exists a, b \in (-\infty, +\infty) $ 且  $ a < b $，使得  $ f'(a) = f'(b) $，对  $ f'(x) $ 在  $ [a, b] $ 上应用罗尔定理，知  $ \exists \xi \in (a, b) $，使得  $ f''(\xi) = 0 $。
+
+(2) 若  $ \forall a, b \in (-\infty, +\infty) $ ( $ a \neq b $)，都有  $ f'(a) \neq f'(b) $，则  $ f'(x) $ 在  $ (- \infty, + \infty) $ 上严格递增或严格递减。不妨设  $ f'(x) $ 在  $ (- \infty, +\infty) $ 上严格递增。
+
+任意取定  $ c \in (-\infty, +\infty) $，若  $ f'(c) \geq 0 $，则  $ f'(1+c) > 0 $，当  $ x > 1+c $ 时，在  $ [1+c, x] $ 上应用拉格朗日中值定理，有
+
+ $$ f(x)=f(1+c)+f^{\prime}(\xi)(x-1-c)>f(1+c)+f^{\prime}(1+c)(x-1-c)\ (1+c<\xi<x)\ . $$ 
+
+ $ x \to +\infty $，得  $ \lim f(x) = +\infty $。此与  $ f(x) $ 在  $ (-\infty, +\infty) $ 上有界矛盾。
+
+若  $ f'(c)<0 $，当 x<c 时，在  $ [x,c] $ 上应用拉格朗日中值定理，有
+
+ $$ f(x)=f(c)+f^{\prime}(\eta)(x-c)>f(c)+f^{\prime}(c)(x-c)\ (x<\eta<c)\ . $$ 
+
+令  $ x \to -\infty $，得  $ \lim_{x \to -\infty} f(x) = +\infty $。此与  $ f(x) $ 在  $ (-\infty, +\infty) $ 上有界矛盾。
+
+以上讨论表明情况（2）不可能发生，只有情况（1）发生.
+
+评注 该题的几何特征是很明显的，那就是 $ \mathbb{R} $上的有界光滑曲线一定有拐点.
+
+例14 证明方程 $ 2^{x}-x^{2}=1 $有且仅有3个实根.
+
+分析 容易判定方程至少有3个根，再证明不能多于3个根.
+
+证明 令  $ F(x)=2^{x}-x^{2}-1 $，显然  $ F(x) $ 在  $ (-\infty,+\infty) $ 上连续，且  $ F(0)=F(1)=0 $.
+
+又 $ F(2)=-1<0,\ F(5)=6>0 $ ，所以 $ F(x) $ 在 $ (2,5) $ 内还有一个根，这样 $ F(x) $ 至少有3个根.
+
+如果  $ F(x) $ 的根多于 3 个，不妨假设其中 4 个根按大小依次为  $ a < b < c < d $．由罗尔定理，知  $ F''(x) $ 在  $ (a, d) $ 内至少有 1 个根，而  $ F'''(x) = 2^x (\ln 2)^3 $ 显然无根，这是矛盾的．因此  $ F(x) $ 的根不可能多于 3 个．
+
+综上所述，方程 $ 2^{x}-x^{2}=1 $有且仅有3个实根.
+
+评注（1）证明函数零点（方程根）存在性的常用方法：连续函数的介值定理、罗尔定理。一般首先考虑用介值定理，若函数中含有字母常数且不易判断其符号，或函数在所讨论的区间中有偶数个零点，从而使得函数在两端点处不异号，则用罗尔定理。
+
+（2）证明根唯一的常用方法是单调性；证明有多个根的情况常用罗尔定理（反证法）.
+
+例  $ 15^{\circ} $ 设实系数一元 n 次方程
+
+ $$ P(x)=a_{0}x^{n}+a_{1}x^{n-1}+\cdots+a_{n-1}x+a_{n}=0\ (a_{0}\neq0,n\geqslant2) $$ 
+
+的根全为实数，证明方程  $ P'(x)=0 $ 的根也全为实数.
+
+分析 罗尔定理给出了方程根与导函数方程根的关系，关键要对重根情况做出讨论.
+
+证明 设方程  $ P(x)=0 $ 的 n 个实根为  $ c_{1}, c_{2}, \cdots, c_{r}, d_{1}, d_{2}, \cdots, d_{l} $. 其中  $ c_{1}, c_{2}, \cdots, c_{r} $ 为单根;  $ d_{1}, d_{2}, \cdots, d_{l} $ 为重根，其重数依次为  $ k_{1}, k_{2}, \cdots, k_{l} (k_{i} \geqslant 2, i = 1, 2, \cdots, l) $. 则
+
+ $$ r+k_{1}+k_{2}+\cdots+k_{l}=n\;. $$ 
+
+对于重根  $ d_{j}(j=1,2,\cdots,l) $，多项式  $ P(x) $ 可写为
+
+ $$ P(x)=(x-d_{j})^{k_{j}}Q(x),\quad Q(d_{j})\neq0. $$ 
+
+则
+
+ $$ P^{\prime}(x)=k_{j}(x-d_{j})^{k_{j}-1}Q(x)+(x-d_{j})^{k_{j}}Q^{\prime}(x)=(x-d_{j})^{k_{j}-1}[k_{j}Q(x)+(x-d_{j})Q^{\prime}(x)]\;. $$ 
+
+由于  $ k_{j}Q(x)+(x-d_{j})Q'(x)\Big|_{x=d_{i}}=k_{j}Q(d_{j})\neq0 $ ，所以  $ x=d_{j} $ 是方程  $ P'(x)=0 $ 的  $ (k_{j}-1) $ 重实根. 由此
+
+可得方程  $ P'(x)=0 $ 有实根  $ d_1, d_2, \cdots, d_l $，它们的重数依次为  $ k_1-1, k_2-1, \cdots, k_l-1 $，这些实根的总个数为  $ (k_1-1)+(k_2-1)+\cdots+(k_i-1)=n-r-l $。
+
+另一方面，由罗尔定理，知在  $ P(x)=0 $ 的每两个相邻实根之间必有  $ P'(x)=0 $ 的一个实根. 由此可得  $ P'(x)=0 $ 至少还有  $ r+l-1 $ 个实根.
+
+由上述两种情况获得的方程  $ P'(x)=0 $ 的实根，至少有  $ (n-r-l)+(r+l-1)=n-1 $ 个。而  $ P'(x)=0 $ 为实系数一元 n-1 次方程，它至多有 n-1 个实根。因此方程  $ P'(x)=0 $ 恰有 n-1 个实根，即  $ P'(x)=0 $ 的根全为实数。
+
+评注 题解中给出了多项式函数的重根与其导函数根的关系. 即若  $ x_{0} $ 是多项式函数  $ P(x) $ 的 k 重根，则它必是  $ P'(x) $ 的 k-1 重根.
+
+例16 设 $ f(x) $在区间 $ (a,b) $内可导， $ b-a>\pi $。证明存在 $ \xi\in(a,b) $，使得 $ f'(\xi)<1+f^{2}(\xi) $。
+
+分析 即证存在  $ \xi \in (a,b) $，使  $ \frac{f'(\xi)}{1+f^2(\xi)} < 1 $。由于  $ [\arctan f(x)]' = \frac{f'(x)}{1+f^2(x)} $，即证存在  $ \xi \in (a,b) $，使  $ [\arctan f(x)]'|_{x=\xi} < 1 $。对函数  $ \arctan f(x) $ 在某区间  $ (x_1, x_2) \subset (a,b) $ 上用拉格朗日中值定理。
+
+证明 因为  $ b-a > \pi $，可取  $ x_1, x_2 \in (a, b) $，使  $ x_2 - x_1 > \pi $。因为  $ f(x) $ 在区间  $ (a, b) $ 内可导，由拉格朗日中值定理，知存在  $ \xi \in (x_1, x_2) \subset (a, b) $，使
+
+ $$ \frac{\arctan f(x_{2})-\arctan f(x_{1})}{x_{2}-x_{1}}=\left[\arctan f(x)\right]^{\prime}\big|_{x=\xi}, $$ 
+
+即
+
+ $$ \arctan f(x_{2})-\arctan f(x_{1})=\frac{f^{\prime}(\xi)}{1+f^{2}(\xi)}(x_{2}-x_{1})\,. $$ 
+
+由于
+
+ $$ \left|\arctan f(x_{2})-\arctan f(x_{1})\right|\leqslant\left|\arctan f(x_{2})\right|+\left|\arctan f(x_{1})\right|\leqslant\frac{\pi}{2}+\frac{\pi}{2}=\pi, $$ 
+
+所以
+
+ $$ \frac{f^{\prime}(\xi)}{1+f^{2}(\xi)}\pi\leq\frac{f^{\prime}(\xi)}{1+f^{2}(\xi)}(x_{2}-x_{1})\leq\pi, $$ 
+
+即
+
+ $$ \frac{f^{\prime}(\xi)}{1+f^{2}(\xi)}<1\Rightarrow f^{\prime}(\xi)<1+f^{2}(\xi). $$ 
+
+例 17 设函数  $ f(x) $ 在区间  $ [0,1] $ 上连续，在  $ (0,1) $ 内可导，且  $ f(0)=0 $， $ f(1)=2 $。证明存在两两互异的点  $ \xi_1, \xi_2, \xi_3 \in (0,1) $，使得  $ f'(\xi_1)f'(\xi_2)\sqrt{1-\xi_3} \geq 2 $。
+
+分析 类似于例 7（1），只需将$[0,1]$分成两个区间，使 $f(x)$ 在两个区间各用一次拉格朗日中值定理．设分点为 $\xi_3 \in (0,1)$，由 $f'(\xi_1) = \frac{f(\xi_3) - f(0)}{\xi_3 - 0} = \frac{f(\xi_3)}{\xi_3}$，$f'(\xi_2) = \frac{f(1) - f(\xi_3)}{1 - \xi_3} = \frac{2 - f(\xi_3)}{1 - \xi_3}$，则 $f'(\xi_1) f'(\xi_2) = \frac{f(\xi_3)}{\xi_3} \cdot \frac{2 - f(\xi_3)}{1 - \xi_3}$，若 $2 - f(\xi_3) = \xi_3$，则 $f'(\xi_1) f'(\xi_2) = \frac{2 - \xi_3}{1 - \xi_3} = 1 + \frac{1}{1 - \xi_3}$，问题就解决了．
+
+证明 令 $F(x) = f(x) - 2 + x$，则 $F(x)$ 在区间 $[0,1]$ 上连续，且 $F(0) = -2$，$F(1) = 1$。由连续函数的介值定理，$\exists \xi_3 \in (0,1)$ 使得 $F(\xi_3) = 0$，即 $f(\xi_3) = 2 - \xi_3$。
+
+在区间 $ [0, \xi_3] $， $ [\xi_3, 1] $上分别利用拉格朗日中值定理， $ \exists \xi_1 \in (0, \xi_3) $， $ \exists \xi_2 \in (\xi_3, 1) $，使得
+
+ $$ f(\xi_{3})-f(0)=f^{\prime}(\xi_{1})(\xi_{3}-0),\quad f(1)-f(\xi_{3})=f^{\prime}(\xi_{2})(1-\xi_{3}) $$ 
+
+即  $ f'(\xi_{1})=\frac{2-\xi_{3}}{\xi_{3}} $， $ f'(\xi_{2})=\frac{\xi_{3}}{1-\xi_{3}} $。所以
+
+ $$ f^{\prime}(\xi_{1})f^{\prime}(\xi_{2})=\frac{2-\xi_{3}}{\xi_{3}}\cdot\frac{\xi_{3}}{1-\xi_{3}}=\frac{2-\xi_{3}}{1-\xi_{3}}=1+\frac{1}{1-\xi_{3}}\geqslant\frac{2}{\sqrt{1-\xi_{3}}} $$ 
+
+因此，存在两两互异的点  $ \xi_1, \xi_2, \xi_3 \in (0,1) $，使得  $ f'(\xi_1)f'(\xi_2)\sqrt{1-\xi_3} \geq 2 $。
+
+例18 设  $ e < a < b < e^{2} $，证明  $ \ln^{2}b - \ln^{2}a > \frac{4}{e^{2}}(b - a) $.
+
+分析 不等式左边是函数  $ \ln^{2}x $ 在区间  $ [a,b] $ 的增量，右边是自变量在对应区间上的增量的常数倍，所以可考虑用拉格朗日中值定理来证明.
+
+证明 令  $ f(x)=\ln^{2}x(e \leq x \leq e^{2}) $，在  $ [a,b] $ 上由拉格朗日中值定理，有
+
+ $$ \ln^{2}b-\ln^{2}a=\frac{2\ln\xi}{\xi}(b-a)(a<\xi<b). $$ 
+
+易求得函数 $ \frac{\ln x}{x} $在区间 $ [e,e^2] $上单调递减，其最小值为 $ f(e^2)=\frac{2}{e^2} $，所以
+
+ $$ \frac{2\ln\xi}{\xi}>\frac{4}{\mathrm{e}^{2}}\Longrightarrow\ln^{2}b-\ln^{2}a>\frac{2}{\mathrm{e}^{2}}(b-a). $$ 
+
+评注 利用微分中值公式证明不等式的方法：
+
+（1）根据不等式的特点，选择适当的函数与适当的区间；
+
+（2）对微分中值公式中含“中值”的部分做适当的放大或缩小，得到所证明的结果.
+
+例19 设  $ a > e $ 且  $ 0 < x < y < \frac{\pi}{2} $，证明  $ a^{y} - a^{x} > (\cos x - \cos y)a^{x} \ln a $.
+
+分析：所证不等式变形为 $ \frac{a^y - a^x}{\cos x - \cos y} > a^x \ln a $，所以选函数  $ f(t) = a^t $， $ g(t) = \cos t $ 在区间  $ [x, y] $ 上用柯西中值定理.
+
+证明 令  $ f(t)=a^{t} $， $ g(t)=\cos t $，显然  $ f(t) $ 与  $ g(t) $ 在区间  $ [x,y] \subset \left(0,\frac{\pi}{2}\right) $ 上满足柯西中值定理的条件，有
+
+ $$ \frac{a^{y}-a^{x}}{\cos y-\cos x}=\frac{a^{\xi}\ln a}{-\sin\xi}\left(0<x<\xi<y<\frac{\pi}{2}\right), $$ 
+
+即
+
+ $$ a^{y}-a^{x}=(\cos x-\cos y)\frac{a^{\xi}\ln a}{\sin\xi}. $$ 
+
+因为 $ \frac{1}{\sin\xi}>1,\quad a^{\xi}>a^{x} $，所以
+
+ $$ a^{y}-a^{x}>(\cos x-\cos y)a^{x}\ln a. $$ 
+
+例 20 设函数  $ f(x) $ 在闭区间  $ [-1,1] $ 上具有连续三阶导数，且  $ f(-1)=0 $， $ f(1)=1 $， $ f'(0)=0 $。证明在开区间  $ (-1,1) $ 内至少存在一点  $ x_0 $，使得  $ f''(x_0)=3 $。
+
+分析 这里涉及三阶导数，用泰勒公式较好.
+
+证明 对  $ x \in [-1,1] $，由麦克劳林公式，得
+
+ $$ f(x)=f(0)+\frac{1}{2}f^{\prime \prime}(0)x^{2}+\frac{1}{6}f^{\prime \prime \prime}(\eta)x^{3}\quad(\eta 介于 0 与 x 之间 ). $$ 
+
+分别取x=-1与1，得
+
+ $$ \begin{align*}0&=f(0)+\frac{1}{2}f^{\prime \prime}(0)-\frac{1}{6}f^{\prime \prime \prime}(\eta_{1})\quad(-1<\eta_{1}<0),\\1&=f(0)+\frac{1}{2}f^{\prime \prime}(0)+\frac{1}{6}f^{\prime \prime \prime}(\eta_{2})\quad(0<\eta_{2}<1).\end{align*} $$ 
+
+将上面两式相减，可得
+
+ $$ f^{m}(\eta_{1})+f^{m}(\eta_{2})=6\;. $$ 
+
+由于  $ f''(x) $ 在  $ [-1,1] $ 上连续，所以  $ f'''(x) $ 在  $ [\eta_1,\eta_2] $ 上必有最大值与最小值，记  $ M = \max_{x\in[\eta_1,\eta_2]} f'''(x) $， $ m = \min_{x\in[\eta_1,\eta_2]} f'''(x) $，则
+
+ $$ m\leqslant\frac{1}{2}(f^{m}(\eta_{1})+f^{m}(\eta_{2}))\leqslant M~. $$ 
+
+由连续函数的介值定理，知至少存在一点  $ x_0 \in [\eta_1, \eta_2] \subset (-1, 1) $，使得
+
+ $$ f^{m}(x_{0})=\frac{1}{2}(f^{m}(\eta_{1})+f^{m}(\eta_{2}))=3~. $$ 
+
+评注 泰勒公式给出了函数值与其各阶导数值之间的关系，当一个命题与函数二阶以及二阶以上的导数有关时，应考虑用泰勒公式.
+
+例21 若函数  $ f(x) $ 在  $ [0,1] $ 上二阶可微，且  $ f(0)=f(1) $， $ \left|f''(x)\right|\leq1 $，证明在  $ [0,1] $ 上  $ \left|f'(x)\right|\leq\frac{1}{2} $.
+
+分析 只需将函数  $ f(x) $ 在区间  $ [0,1] $ 上任意点展开为一阶泰勒公式，然后再根据已知条件对展开点处的一阶导数做估计.
+
+证明 在(0,1)内任取一点 $ x_{0} $，由一阶泰勒公式，得
+
+ $$ f(x)=f(x_{0})+f^{\prime}(x_{0})(x-x_{0})+\frac{1}{2!}f^{\prime \prime}(\xi)(x-x_{0})^{2}\quad(\xi 介于 x_{0} 与 x 之 $$ 
+
+分别用x=0,x=1代入上式有
+
+ $$ f(0)=f(x_{0})-f^{\prime}(x_{0})x_{0}+\frac{1}{2!}f^{\prime\prime}(\xi)x_{0}^{2}\quad(0<\xi_{1}<x_{0})~, $$ 
+
+ $$ f(1)=f(x_{0})+f^{\prime}(x_{0})(1-x_{0})+\frac{1}{2!}f^{\prime \prime}(\xi_{2})(1-x_{0})^{2}\quad(x_{0}<\xi_{2}<1). $$ 
+
+因为  $ f(0)=f(1) $，将上面两式相减有
+
+ $$ f^{\prime}(x_{0})=\frac{1}{2}f^{\prime \prime}(\xi_{1})x_{0}^{2}-\frac{1}{2}f^{\prime \prime}(\xi_{2})(1-x_{0})^{2}\;. $$ 
+
+因为 $ \left|f''(x)\right|\leq1 $，所以
+
+ $$ \begin{align*}\left|f^{\prime}(x_{0})\right|\leq&\frac{1}{2}\Big|f^{\prime \prime}(\xi_{1})x_{0}^{2}\Big|+\frac{1}{2}\Big|f^{\prime \prime}(\xi_{2})(1-x_{0})^{2}\Big|\\\leq&\frac{1}{2}x_{0}^{2}+\frac{1}{2}(1-x_{0})^{2}=\left(x_{0}-\frac{1}{2}\right)^{2}+\frac{1}{4}.\end{align*} $$ 
+
+又由  $ x_0 \in (0,1) $，知  $ \left|x_0 - \frac{1}{2}\right| < \frac{1}{2} $，于是有  $ \left|f'(x_0)\right| \leq \frac{1}{2} $。由  $ x_0 $ 的任意性，故  $ \forall x \in (0,1) $，有  $ \left|f'(x)\right| \leq \frac{1}{2} $ 成立。
+
+例 22 设  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二阶可导，且  $ \left|f''(x)\right| \geq m > 0 $ （ $ m $ 为常数），又  $ f(a) = f(b) = 0 $，证明  $ \max_{a < b} \left|\dot{f}(x)\right| \geq \frac{m}{a}(b - a)^2 $.
+
+分析  $ \left|f(x)\right| $ 在  $ [a,b] $ 上连续，且  $ f(a)=f(b)=0 $，故  $ \left|f(x)\right| $ 的最大值一定在  $ (a,b) $ 内取到，该最大值点也是  $ f(x) $ 的驻点。 $ f(x) $ 在驻点处的一阶泰勒公式会更简单。
+
+证明 由  $ \left|f(x)\right| $ 在  $ [a,b] $ 上连续，故必存在  $ x_0 \in [a,b] $，使  $ \max_{a \leq x \leq b} |f(x)| = |f(x_0)| $.
+
+因  $ f(x) $ 不是常函数，故  $ x_{0} \neq a, x_{0} \neq b $，从而  $ f(x) $ 在  $ x_{0} $ 点取得极值，因此  $ f'(x_{0}) = 0 $
+
+由泰勒公式，对任意 $ x\in(a,b) $，有
+
+ $$ \dot{f}(x)=f(x_{0})+\frac{1}{2}f^{\prime \prime}(\xi)(x-x_{0})^{2}\quad(\xi 在 x 与 x_{0} 之间 ). $$ 
+
+则
+
+ $$ \left|f(x_{0})-f(x)\right|\geqslant\frac{m}{2}(x-x_{0})^{2}. $$ 
+
+再由连续性及  $ f(a)=f(b)=0 $ ，得
+
+ $$ \left|f(x_{0})\right|\geqslant\frac{m}{2}(x_{0}-a)^{2},\quad\left|f(x_{0})\right|\geqslant\frac{m}{2}(b-x_{0})^{2}, $$ 
+
+从而
+
+ $$ \left|f(x_{0})\right|\geqslant\max\left\{\frac{m}{2}(x_{0}-a)^{2},\frac{m}{2}(b-x_{0})^{2}\right\}\geqslant\frac{m}{8}(b-a)^{2}. $$ 
+
+例 23 证明不等式： $ \left|\frac{\sin x - \sin y}{x - y} - \cos y\right| \leqslant \frac{1}{2}|x - y| $， $ x, y \in (-\infty, +\infty) $.
+
+分析 不等式的形式很容易使人想到微分中值定理，由拉格朗日微分中值定理，得
+
+ $$ \left|\frac{\sin x-\sin y}{x-y}-\cos y\right|=\left|\cos\xi-\cos y\right|=2\left|\sin\left(\frac{\xi-y}{2}\right)\sin\left(\frac{\xi+y}{2}\right)\right|\leq\left|\xi-y\right|, $$ 
+
+上面不等式没有精确到所要求证明的程度. 因此要想有更精确的估计, 需用泰勒公式.
+
+证明 将  $ \sin x $ 在点 y 处展开成一阶泰勒公式，得
+
+ $$ \sin x=\sin y+\cos y\cdot(x-y)-\frac{1}{2}\sin\xi\cdot(x-y)^{2}\quad(\xi 介于 x 与 y 之间 ) $$ 
+
+则
+
+ $$ \begin{aligned}\left|\frac{\sin x-\sin y}{x-y}-\cos y\right|=&\left|\frac{\left[\sin y+\cos y\cdot(x-y)-\frac{1}{2}\sin\xi\cdot(x-y)^{2}\right]-\sin y}{x-y}-\cos y\right|\\=&\left|-\frac{1}{2}\sin\xi\cdot(x-y)\right|\leq\frac{1}{2}|x-y|.\end{aligned} $$ 
+
+评注 拉格朗日中值公式是0阶泰勒公式，泰勒公式的阶数越高，其多项式逼近函数的程度就越好，要根据情况选择适当的阶数使问题得以解决.
+
+例24 设  $ f(x) $ 在  $ (-\infty,+\infty) $ 内二阶可导，并且  $ \left|f(x)\right|<k_0 $， $ \left|f''(x)\right|<k_1 $（ $ k_0,k_1 $ 为常数）。证明：
+
+（1） $ \forall h>0 $，有 $ \left|f'(x)\right|<\frac{k_0}{h}+\frac{h}{2}k_1 $；
+
+(2)  $ f'(x) $ 是有界函数，且  $ \left|f'(x)\right| < \sqrt{2k_0k_1} $.
+
+分析 要用函数值的限以及二阶导数值的限来估计一阶导数值，只需对函数在任一点做一阶泰勒展开，变形后再做估计.
+
+解（1）
+
+ $$ f(x+h)=f(x)+f^{\prime}(x)h+\frac{f^{\prime \prime}(x+\theta_1h)}{2!}h^2\quad(0<\theta_1<1), $$ 
+
+ $$ f(x-h)=f(x)-f^{\prime}(x)h+\frac{f^{\prime \prime}(x+\theta_2h)}{2!}h^2\ (0<\theta_2<1)\ . $$ 
+
+则
+
+ $$ f(x+h)-f(x-h)=2f^{\prime}(x)h+\frac{1}{2}\big[f^{\prime \prime}(x_{1}+\theta_{1}h)-f^{\prime \prime}(x+\theta_{2}h)\big]h^{2}, $$ 
+
+ $$ f^{\prime}(x)=\frac{f(x+h)-f(x-h)}{2h}+\frac{1}{4}\left[f^{\prime \prime}(x+\theta_{2}h)-f^{\prime \prime}(x+\theta_{1}h)\right]h, $$ 
+
+ $$ \left|f^{\prime}(x)\right|\leqslant\frac{\left|f(x+h)\right|+\left|f(x-h)\right|}{2h}+\frac{1}{4}\Big[\left|f^{\prime \prime}(x+\theta_{2}h)\right|+\left|f^{\prime \prime}(x+\theta_{1}h)\right|\Big]h. $$ 
+
+由于 $ \left|f(x)\right|<k_{0},\left|f''(x)\right|<k_{1} $，所以 $ \left|f'(x)\right|<\frac{k_{0}}{h}+\frac{h}{2}k_{1} $.
+
+(2) 令  $ \varphi(h) = \frac{k_0}{h} + \frac{h}{2} k_1 $,  $ h \in (0, +\infty) $. 因为  $ \varphi'(h) = -\frac{k_0}{h^2} + \frac{k_1}{2} $, 令  $ \varphi'(h) = 0 $, 得  $ h_0 = \sqrt{\frac{2k_0}{k_1}} $ 又  $ \varphi''(h) = \frac{2k_0}{h^3} $,  $ \varphi''(h_0) > 0 $, 故  $ h_0 $ 为  $ \varphi(h) $ 的最小值点. 且
+
+ $$ \min\varphi(h)=\varphi(h_{0})=\sqrt{2k_{0}k_{1}}. $$ 
+
+由（1）知  $ \left|f'(x)\right|<\frac{k_{0}}{h}+\frac{h}{2}k_{1} $.
+
+评注（2）中的不等式也可由（1）中的不等式变形为 $ \frac{k_1}{2}h^2 - |f'(x)|h + k_0 > 0 $，再用二次方程无实数根的判别式 $ \Delta = |f'(x)|^2 - 2k_0k_1 < 0 $来得到。
+
+例 25 试确定 A, B, C 的值，使  $ \mathrm{e}^{x}(1+Bx+Cx^{2})=1+Ax+o(x^{3}) $，其中  $ o(x^{3}) $ 是当  $ x \to 0 $ 时比  $ x^{3} $ 高阶的无穷小.
+
+分析 等式两边除  $ e^{x} $ 以外都是多项式的形式，所以只需将  $ e^{x} $ 做泰勒展开，再比较等式两边多项式的系数就能解出待定系数的值. 由于等式右边无穷小的最高阶项为  $ o(x^{3}) $，所以只需将  $ e^{x} $ 展开到相同的阶数.
+
+解 由泰勒公式  $ e^{x}=1+x+\frac{x^{2}}{2}+\frac{x^{3}}{6}+o(x^{3}) $ 代入已知等式，得
+
+ $$ \left[1+x+\frac{x^{2}}{2}+\frac{x^{3}}{6}+o(x^{3})\right][1+B x+C x^{2}]=1+A x+o(x^{3}), $$ 
+
+整理得
+
+ $$ 1+(B+1)x+\left(C+B+\frac{1}{2}\right)x^{2}+\left(\frac{B}{2}+C+\frac{1}{6}\right)x^{3}+o(x^{3})=1+Ax+o(x^{3})\;. $$ 
+
+比较两边同次幂系数，得
+
+ $$ B+1=A,\ C+B+\frac{1}{2}=0,\ \frac{B}{2}+C+\frac{1}{6}=0. $$ 
+
+解得： $ A=\frac{1}{3} $， $ B=-\frac{2}{3} $， $ C=\frac{1}{6} $.
+
+评注（1）由于已知等式是一个局部表达式，所以 $ e^{x} $的泰勒公式用了Peano余项.
+
+（2）该题也可将题设中的等式变形为 $ \lim_{x\to0}\frac{e^x(1+Bx+Cx^x)-(1+Ax)}{x^3}=0 $，再按1.2中例42的方法（洛必达法则）求待定常数.
+
+例 26 设  $ f(x) $ 在 x=0 的某领域内二阶可导，且  $ \lim_{x\to0}\left(\frac{\sin3x}{x^3}+\frac{f(x)}{x^2}\right)=0 $，求  $ \lim_{x\to0}\frac{f(x)+3}{x^2} $，以及  $ f(0) $， $ f'(0) $， $ f''(0) $.
+
+分析 将已知极限式变形可得到所求的极限；再由极限式可得到  $ f(x) $ 在 x=0 附近的多项式形式的局部表达式，即函数的麦克劳林展开式. 由展开式的唯一性可得到  $ f(x) $ 在 x=0 处的函数值及各阶导数值.
+
+解
+
+ $$ 0=\lim_{x\to0}\left(\frac{\sin3x}{x^{3}}+\frac{f(x)}{x^{2}}\right)=\lim_{x\to0}\frac{\frac{\sin3x}{x}+f(x)}{x^{2}}=\lim_{x\to0}\frac{\frac{\sin3x}{x}-3+f(x)+3}{x^{2}} $$ 
+
+则
+
+ $$ \begin{aligned}\lim_{x\rightarrow0}\frac{f(x)+3}{x^{2}}&=\lim_{x\rightarrow0}\frac{3-\frac{\sin3x}{x}}{x^{2}}=\lim_{x\rightarrow0}\frac{3x-\sin3x}{x^{3}}\\&=\lim_{x\rightarrow0}\frac{3-3\cos3x}{3x^{2}}=\lim_{x\rightarrow0}\frac{3\sin3x}{2x}=\frac{9}{2}.\end{aligned} $$ 
+
+从而
+
+ $$ \frac{f(x)+3}{x^{2}}=\frac{9}{2}+\alpha(x), 其中 \lim_{x\to0}\alpha(x)=0. $$ 
+
+即
+
+ $$ f(x)=-3+\frac{9}{2}x^{2}+o(x^{2}). $$ 
+
+由函数的麦克劳林公式，知  $ f(0) = -3 $， $ f'(0) = 0 $， $ f''(0) = 9 $。
+
+例27 设  $ f(x) $ 在  $ (-\infty,+\infty) $ 内二阶可导，当  $ x \to 0 $ 时， $ f(x) $ 与  $ g(x) = (1+x)e^x - \sqrt{1+2x} $ 等价，且  $ f''(x) \leq 2 $．证明  $ f(x) \leq x(x+1)． $
+
+分析 由于  $ f''(x) \leq 2 $，利用  $ f(x) $ 的一阶麦克劳林公式就可得到  $ f(x) $ 的二次多项式估计，关键是要确定出  $ f(0) $ 与  $ f'(0) $ 的值，这可由  $ x \to 0 $ 时  $ f(x) $ 与  $ g(x) $ 等价得到.
+
+证明 利用带皮亚诺余项的麦克劳林公式，有
+
+ $$ g(x)=(1+x)\mathrm{e}^{x}-\sqrt{1+2x}=(1+x)\left[1+x+o(x)\right]-\left[1+x+o(x)\right]=x+o(x). $$ 
+
+由于  $ x \to 0 $ 时  $ f(x) $ 与  $ g(x) $ 等价，则有
+
+ $$ \lim_{x\to0}\frac{f(x)}{g(x)}=\lim_{x\to0}\frac{f(x)}{x+o(x)}=1\Longrightarrow\frac{f(x)}{x+o(x)}=1+o(1)\Longrightarrow f(x)=x+o(x)． $$ 
+
+由此可知  $ f(0)=0, f'(0)=1 $ 。再由一阶麦克劳林公式：
+
+ $$ f(x)=f(0)+f^{\prime}(0)x+\frac{1}{2}f^{\prime \prime}(\xi)x^{2}=x+\frac{1}{2}f^{\prime \prime}(\xi)x^{2}\quad(\xi\  介于 \ 0\  与 \ x\  之间 ), $$ 
+
+因为 $ f''(x)\leq2 $，所以
+
+ $$ f(x)=x+\frac{1}{2}f^{\prime\prime}(\xi)x^{2}\leqslant x+x^{2}=x(x+1). $$ 
+
+评注 由于  $ f(x) $ 与  $ g(x) $ 是  $ x \to 0 $ 的等价无穷小，且它们在 x=0 处均可导，故必有  $ f(0) = g(0) = 0 $， $ f'(0) = g'(0) $。因此也可通过该组等式来计算  $ f(0) $ 与  $ f'(0) $ 的值。
+
+例28 证明当  $ 0 < |t| < \frac{\pi}{2} $ 时，存在唯一的  $ \theta(t) \in (0,1) $，使得  $ \sin t = t - \frac{1}{6}t^3 \cos(t\theta(t)) $，并求  $ \lim_{t \to 0} \theta(t) $。
+
+分析 由于余弦函数在区间  $ \left(0, \frac{\pi}{2}\right) $ 内是单调的，所以  $ \theta(t) $ 的唯一性是显然的；
+
+为求 $ \lim_{t\to0}\theta(t) $，可对 $ \cos(t\theta(t)) $再用泰勒公式，或对题设中的 $ \sin t $的泰勒公式多写出一项，就容易解出 $ \theta(t) $，并求得极限.
+
+解 由泰勒公式，知对任意实数  $ t $，必存在  $ \theta(t) \in (0,1) $，使得
+
+ $$ \sin t=t-\frac{1}{6}t^{3}\cos\left(t\theta(t)\right). $$ 
+
+若还存在  $ \eta(t) \in (0,1) $，使得
+
+ $$ \sin t=t-\frac{1}{6}t^{3}\cos\left(t\eta(t)\right), $$ 
+
+则
+
+ $$ t-\frac{1}{6}t^{3}\operatorname{c o s}\bigl(t\theta(t)\bigr)=t-\frac{1}{6}t^{3}\operatorname{c o s}\bigl(t\eta(t)\bigr)\Longrightarrow\operatorname{c o s}\bigl(t\theta(t)\bigr)=\operatorname{c o s}\bigl(t\eta(t)\bigr). $$ 
+
+由于  $ 0 < |t\theta(t)| $,  $ |t\eta(t)| < \frac{\pi}{2} $，所以  $ \theta(t) = \eta(t) $.
+
+下面求极限.
+
+方法1 利用  $ \cos x $ 的二阶泰勒公式，有
+
+ $$ \cos\bigl(t\theta(t)\bigr)=1-\frac{1}{2}\bigl(t\theta(t)\bigr)^{2}+o\bigl(t^{2}\bigr). $$ 
+
+代入所给等式，有
+
+ $$ 1-\frac{1}{2}\big(t\theta(t)\big)^{2}+o(t^{2})=\frac{6(t-\sin t)}{t^{3}}\:. $$ 
+
+解得
+
+ $$ \theta^{2}(t)=2\cdot\frac{t^{3}-6(t-\sin t)}{t^{5}}+o(1)~, $$ 
+
+ $$ \operatorname*{l i m}_{t\to0}\theta^{2}(t)=2\operatorname*{l i m}_{t\to0}\frac{t^{3}-6(t-\operatorname{s i n}t)}{t^{5}}=2\operatorname*{l i m}_{t\to0}\frac{t^{3}-6\left(\frac{1}{6}t^{3}-\frac{1}{120}t^{5}+o(t^{5})\right)}{t^{5}}=\frac{1}{10}\;. $$ 
+
+故 $ \lim_{t\to0}\theta(t)=\frac{1}{\sqrt{10}}. $
+
+方法2 利用 $ \sin x $的泰勒公式，有
+
+ $$ \sin t=t-\frac{1}{3!}t^{3}+\frac{1}{5!}t^{5}+o\bigl(t^{5}\bigr)\;. $$ 
+
+由已知 $ \sin t = t - \frac{1}{6}t^{3}\cos(t\theta(t)) $，两式相减得到
+
+ $$ \frac{1}{3!}t^{3}\bigl(1-\operatorname{c o s}\bigl(t\theta(t)\bigr)\bigr)=\frac{1}{5!}t^{5}+o\bigl(t^{5}\bigr)\;. $$ 
+
+当  $ t \to 0 $ 时， $ 1 - \cos(t\theta(t)) \sim \frac{1}{2}(t\theta(t))^2 $ 代入上式，并化简得
+
+ $$ \theta^{2}(t)=\frac{1}{10}+o(1)\,. $$ 
+
+上式取 $ t\to0 $即得结论.
+
+评注 这是求泰勒公式中拉格朗日型余项的“中值极限”问题，常用的方法：将已有的泰勒公式多展开一项，再利用导数的定义或其他方法求得中值的极限（见习题2.2第37题，综合题2 $ ^{*} $第27题）。
+
+##### 习题2.2
+
+1. 设  $ \xi $ 为  $ f(x) = \arcsin x $ 在区间  $ [0, b] $ 上使用拉格朗日中值定理中的“中值”，求  $ \lim_{b \to 0} \frac{\xi}{b} $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//6b7548d1-81af-4892-8f19-a219f311f904/markdown_2/imgs/img_in_image_box_1263_1726_1399_1857.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A30Z%2F-1%2F%2F8d2dcfd6dd770684fe567a8df4f6645f2fff75c80db8d8d99615442c6fc5e7ac" alt="Image" width="9%" /></div>
+
+
+2. 证明当  $ |x| \leq \frac{1}{2} $ 时，有  $ 3\arccos x - \arccos(3x - 4x^3) = \pi $.
+
+习题2.2答案
+
+3. 设函数  $ f(x) $ 在  $ [0,1] $ 上连续，在  $ (0,1) $ 内可微，且  $ f(0) = f(1) = 0 $， $ f\left(\frac{1}{2}\right) = 1 $。证明  $ \exists \eta \in (0,1) $，使得  $ f'(\eta) = f(\eta) - \eta + 1 $。
+
+4. 设  $ f(x) $ 在  $ [0,1] $ 上连续，在  $ (0,1) $ 内可导，且  $ f(0)=0 $， $ \int_{0}^{1}f(x)dx=0 $，证明  $ \exists\xi\in(0,1) $，使得  $ \int_{0}^{\xi}f(x)dx=\xi f(\xi) $.
+
+5. 设函数  $ f(x) $ 在  $ [0,1] $ 上二阶可导， $ f(0) = f(1) = 0 $，证明  $ \exists \xi \in (0,1) $，使得  $ 2f'(\xi) = (1 - \xi)f''(\xi) $.
+
+6. 已知  $ a < b $ 且  $ ab > 0 $,  $ f(x) $ 在  $ [a, b] $ 上连续，在  $ (a, b) $ 内可导，证明存在  $ \xi \in (a, b) $，满足
+
+ $$ \frac{1}{a-b}\Bigg|\begin{matrix}{a}&{b}\\ {f(a)}&{f(b)}\\ \end{matrix}\Bigg|=f(\xi)-\xi\cdot f^{\prime}(\xi). $$ 
+
+7. 设  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内可导，且有  $ f(a)=a $， $ \int_{a}^{b}f(x)dx=\frac{1}{2}(b^{2}-a^{2}) $，证明在  $ (a,b) $ 内至少有一点  $ \xi $，使得  $ f'(\xi)=f(\xi)-\xi+1 $。
+
+8. 设  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内可导，且存在  $ c \in (a,b) $，使得  $ f'(c) = 0 $，证明  $ \exists \xi \in (a,b) $，使得  $ f'(\xi) = \frac{f(\xi) - f(a)}{b - a} $.
+
+9. 设  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二阶可导，且  $ f(a)=f(b)=0 $， $ \int_{a}^{b}f(x)dx=0 $.
+
+（1）证明存在互不相同的点  $ x_1, x_2 \in (a, b) $，使得  $ f'(x_i) = f(x_i) (i = 1, 2) $；
+
+（2）证明存在  $ \xi \in (a,b) $， $ \xi \neq x_1, x_2 $，使得  $ f''(\xi) = f(\xi) $.
+
+10. 函数  $ f(x) $ 与  $ g(x) $ 在  $ [a,b] $ 上存在二阶导数，且  $ g''(x) \neq 0 $， $ f(a) = f(b) = g(a) = g(b) = 0 $，证明在  $ (a,b) $ 内至少存在一点  $ \xi $，满足  $ \frac{f(\xi)}{g(\xi)} = \frac{f''(\xi)}{g''(\xi)} $。
+
+11. 设  $ f(x) $ 在  $ [0,1] $ 上二阶可导，证明对任意的  $ t \in (0,1) $， $ \exists \xi \in (0,1) $，使得
+
+ $$ \frac{1}{2}f^{\prime\prime}(\xi)=\frac{f(0)}{t}-\frac{f(t)}{t(1-t)}+\frac{f(1)}{1-t}. $$ 
+
+12. 设  $ f $ 在  $ [a,b] $ 上二阶可微， $ f(a)=f(b)=0 $， $ f'_+(a)f'_-(b)>0 $，证明方程  $ f''(x)=0 $ 在  $ (a,b) $ 内至少有一个根.
+
+13. 设函数  $ f(x) $ 在  $ [0,2] $ 上可导，且满足  $ f(1)=4f(2)=2\int_{0}^{\frac{1}{2}}x^2f(x)dx $，证明  $ \exists\xi\in(0,2) $，使得  $ f''(\xi)=-\frac{2}{\xi^2}(f(\xi)+\xi f'(\xi)) $。
+
+# 14. 证明无穷区间上的罗尔定理.
+
+（1）设  $ f(x) $ 在  $ [a,+\infty) $ 上连续，在  $ (a,+\infty) $ 内可导，且  $ f(a)=\lim_{x\to+\infty}f(x) $，证明存在  $ \xi\in(a,+\infty) $，使得  $ f'(\xi)=0 $。
+
+（2）设 $ f(x) $在 $ (-\infty,a] $上连续，在 $ (-\infty,a) $内可导，且 $ f(a)=\lim_{x\to-\infty}f(x) $，证明存在 $ \xi\in(-\infty,a) $，使得 $ f'(\xi)=0 $。
+
+（3）设 $ f(x) $在 $ (-\infty,+\infty) $内可导且 $ \lim_{x\to-\infty}f(x)=\lim_{x\to+\infty}f(x) $，证明存在 $ \xi\in(-\infty,+\infty) $，使得 $ f'(\xi)=0 $。
+
+15. 设  $ f(x) $ 在  $ [0,+\infty) $ 上可导，且  $ 0 \leq f(x) \leq \frac{x}{1+x^2} $，证明存在  $ \xi \in (0,+\infty) $，使得  $ f'(\xi) = \frac{1-\xi^2}{(1+\xi^2)^2} $.
+
+16. 设  $ f(x) $ 在  $ [0,1] $ 上连续，在  $ (0,1) $ 内可导，且  $ f(0)=0 $， $ f(1)=1 $。证明存在  $ \xi, \eta \in (0,1) $，且  $ \xi \neq \eta $，使得  $ [1+f'(\xi)][1+f'(\eta)]=4 $。
+
+17. 设函数  $ f(x) $ 在闭区间  $ [0,1] $ 上连续，在  $ (0,1) $ 内可导，且  $ f(0)=0 $， $ f(1)=\frac{1}{3} $。证明存在  $ \xi \in (0,1) $， $ \eta \in (0,1) $， $ \xi \neq \eta $，使得  $ f'(\xi) + f'(\eta) = \xi^2 + \eta^2 $。
+
+18. 设  $ f(x) \in C[a,b] \cap D(a,b) $，且  $ f'(x) \neq 0 $，证明  $ \exists \xi, \eta \in (a,b) $，使得
+
+ $$ \frac{f^{\prime}(\xi)}{f^{\prime}(\eta)}=\frac{\mathrm{e}^{b}-\mathrm{e}^{a}}{b-a}\cdot\mathrm{e}^{-\eta}\;. $$ 
+
+19. 设函数  $ f(x) $,  $ g(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内可导，且  $ g(a)=g(b)=1 $， $ g(x)+g'(x)\neq0 $， $ f'(x)\neq0 $。证明  $ \exists\xi, \eta\in(a,b) $，使得  $ \frac{f'(\xi)}{f'(\eta)}=\frac{\mathrm{e}^{\xi}(g(\xi)+g'(\xi))}{\mathrm{e}^{\eta}} $。
+
+20. 设  $ f(x) $ 在闭区间  $ [a,b] $ 上连续，在开区间  $ (a,b) $ 内可导， $ 0 \leq a \leq b \leq \frac{\pi}{2} $．证明在区间  $ (a,b) $ 内至少存在两点  $ \xi_1, \xi_2 $ ，使得
+
+ $$ f^{\prime}(\xi_{2})\tan\frac{a+b}{2}=f^{\prime}(\xi_{1})\frac{\sin\xi_{2}}{\cos\xi_{1}}. $$ 
+
+21. 设  $ f(x) $ 在区间  $ (x_1, x_n) $ 内存在  $ n $ 阶导数，在区间  $ [x_1, x_n] $ 上连续，且存在  $ n $ 个不同的数  $ x_i(x_1 < x_2 < \cdots < x_n) $，使  $ f(x_1) = f(x_2) = \cdots = f(x_n) = 0 $。证明对任意的  $ c \in (x_1, x_n) $，必存在相应的  $ \xi \in (x_1, x_n) $，使得
+
+ $$ f(c)=\frac{1}{n!}(c-x_{1})(c-x_{2})\cdots(c-x_{n})f^{(n)}(\xi). $$ 
+
+22. 设  $ f(x) $ 在区间  $ [0,1] $ 上可微， $ f(0)=0 $， $ f(1)=1 $， $ \lambda_1 $， $ \lambda_2 $， $ \cdots $， $ \lambda_n $，是  $ n $ 个正数，且  $ \lambda_1 + \lambda_2 + \cdots + \lambda_n = 1 $。证明存在  $ n $ 个不同的数  $ x_1, x_2, \cdots, x_n \in (0,1) $，使得
+
+ $$ \frac{\lambda_{1}}{f^{\prime}(x_{1})}+\frac{\lambda_{2}}{f^{\prime}(x_{2})}+\cdots+\frac{\lambda_{n}}{f^{\prime}(x_{n})}=1. $$ 
+
+23. 证明多项式  $ P_{n}(x)=\frac{1}{2^{n}n!}\cdot\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n} $ 的全部根都是实数，且均分布在  $ (-1,1) $ 上.
+
+24. 设  $ f(0)=0 $,  $ f''(x)<0 $. 证明  $ \forall x_1, x_2 \in (0, +\infty) $, 有  $ f(x_1 + x_2) < f(x_1) + f(x_2) $.
+
+25. 设  $ f(x) $ 是  $ [a,b] $ 上的非线性连续函数，且  $ f(x) $ 在  $ (a,b) $ 内可导，证明在  $ (a,b) $ 内至少存在一点  $ \xi $，使得  $ \left|f'(\xi)\right| > \left|\frac{f(b) - f(a)}{b - a}\right| $.
+
+26*. 设函数  $ f(x) $ 在  $ (-1,1) $ 上二阶可导， $ f(0)=1 $，且当  $ x\geq0 $ 时， $ f(x)\geq0 $， $ f'(x)\leq0 $， $ f''(x)\leq f(x) $，证明  $ f'(0)\geq-\sqrt{2} $.
+
+27. 设  $ y = y(x) $ 在 x = 0 附近由方程  $ x(y + 1) + \frac{1}{2}y^{2} = \ln(1 + x) + 2x^{2} $ 所确定，若  $ y = ax + bx^{2} + o(x^{2}) $，则求 a 与 b 的值.
+
+28. 设 f 在区间  $ [a, b] $ 上二阶可导，且满足  $ f^{2}(x) + [f''(x)]^{2} = r^{2} (r > 0) $. 证明：
+
+ $$ |f^{\prime}(x)|\leq\left(\frac{2}{b-a}+\frac{b-a}{2}\right)r. $$ 
+
+29. 设  $ f(x) $ 在  $ [0,1] $ 上二阶可导，且满足条件  $ \left|f(x)\right| \leqslant a $， $ \left|f''(x)\right| \leqslant b $，其中 a,b 都是正实数，c 是 (0,1)
+
+内任意一点，证明 $ \left|f'(c)\right|\leq2a+\frac{b}{2} $.
+
+30. 设函数  $ f(x) $ 在  $ [-a,a] $ 上有二阶连续导数，证明：
+
+（1）若  $ f(0)=0 $，则存在  $ \xi\in(-a,a) $，使得  $ f''(\xi)=\frac{1}{a^2}[f(-a)+f(a)] $；
+
+（2）若  $ f(x) $ 在  $ (-a,a) $ 内取得极值，则存在  $ \eta\in(-a,a) $，使得  $ \left|f''(\eta)\right|\geqslant\frac{1}{2a^2}\left|f(a)-f(-a)\right| $.
+
+31. 设  $ f(x) $ 在  $ [0,1] $ 上二阶可导，且  $ \left|f''(x)\right| \leq 1 $．证明：
+
+（1）在 $ [0,1] $上，有 $ \left|f(x)-f(0)(1-x)-f(1)x\right|\leq\frac{x(1-x)}{2} $;
+
+(2）$\left|\int_{0}^{1}f(x)dx-\frac{f(0)+f(1)}{2}\right|\leqslant\frac{1}{12}$.
+
+32. 设函数  $ f(x) $ 的二阶导数  $ f''(x) $ 在  $ [2,4] $ 上连续，且  $ f(3)=0 $ 。证明在区间  $ (2,4) $ 上至少存在一点  $ \xi $ ，使得  $ f''(\xi)=3\int_{a}^{4}f(t)dt $ 。
+
+33. 设函数  $ f(x) $ 在  $ [-1,1] $ 上三阶可导，且  $ f(-1)=0 $， $ f(1)=1 $， $ f'(0)=0 $。证明  $ \exists \xi_1, \xi_2 \in (-1,1) $，使得  $ f^m(\xi_1) \geq 3 $， $ f^m(\xi_2) = 3 $。
+
+34. 设  $ f \in C^{4}(-\infty,+\infty) $， $ f(x+h)=f(x)+f'(x)h+\frac{1}{2}f''(x+\theta h)h^{2} $，其中  $ \theta $ 是与 x,h 无关的常数，证明 f 是不超过三次的多项式.
+
+35. 设  $ f(x) $ 在  $ (0, +\infty) $ 上可导.
+
+（1）若  $ \lim_{x\to+\infty}f'(x)=k>0 $ ，证明  $ \lim_{x\to+\infty}f(x)=+\infty $ ；
+
+（2）若  $ \lim_{x \to +\infty} [f'(x) + f(x)] = l (l \in \mathbb{R}) $，求  $ \lim_{x \to +\infty} f'(x) $ 和  $ \lim_{x \to +\infty} f(x) $.
+
+36. 设  $ f(x) $ 在  $ (-\infty, +\infty) $ 内有任意阶导数，且满足：（1）存在  $ M > 0 $，使得对任意  $ x, n $ 都有  $ |f^{(n)}(x)| \leq M $；（2） $ f\left(\frac{1}{n}\right) = 0 $ ( $ n = 1, 2, \cdots $)。证明  $ f(x) $ 在  $ (-\infty, +\infty) $ 上恒等于 0。
+
+37. 设函数  $ f(x) $ 在  $ (-1,1) $ 上具有任意阶导数，且  $ f^{(n+1)}(0) \neq 0 $，设
+
+ $$ f(x)=f(0)+f^{\prime}(0)x+\cdots+\frac{f^{(n-1)}(0)}{(n-1)!}x^{n-1}+\frac{f^{(n)}(\theta x)}{n!}x^{n}\quad(0<\theta<1). $$ 
+
+试求 $ \lim_{x\to0}\theta $
+
+## 2.3 导数的应用
+
+导数是指函数的变化率，是研究函数的重要工具。前面已经讨论过利用导数来求函数的极限，利用微分中值定理来证明一些等式与不等式，以及判断方程的根等。本节将利用导数来进一步研究函数的性态，并重点讨论函数的单调性与极值、凸凹性与拐点，以及相关应用。
+
+例 1 证明导数的达布（Darboux）定理：设  $ f(x) $ 在  $ [a,b] $ 上可导且  $ f'(a) \neq f'(b) $，则对介于  $ f'(a) $， $ f'(b) $ 之间的任何值  $ r $，都存在  $ \xi \in (a,b) $，使得  $ r = f'(\xi) $。
+
+分析 做辅助函数  $ F(x) = f(x) - rx $，只需证明存在  $ \xi \in (a, b) $，使得  $ F'(\xi) = 0 $。若用罗尔定理，难以找到使  $ F(x) $ 满足定理条件的区间，由费马定理，只需证明  $ F(x) $ 能在  $ (a, b) $ 内取得极值即可。
+
+证明 方法1 不妨设  $ f'(a) < f'(b) $，r 介于  $ f'(a) $， $ f'(b) $ 之间.
+
+做辅助函数  $ F(x)=f(x)-rx $，则  $ F(x) $ 在  $ [a,b] $ 上可导，且
+
+ $$ F^{\prime}(a)=f^{\prime}(a)-r<0,\ F^{\prime}(b)=f^{\prime}(b)-r>0. $$ 
+
+由  $ F'(a) = \lim_{x \to a^+} \frac{F(x) - F(a)}{x - a} < 0 $，知  $ \exists \delta > 0 $，当  $ x \in (a, a + \delta) $，有  $ \frac{F(x) - F(a)}{x - a} < 0 $，所以  $ \exists x_1 > a $，使  $ F(x_1) < F(a) $。这表明  $ F(a) $ 不是  $ F(x) $ 在  $ [a, b] $ 上的最小值。
+
+同理可得到  $ F(b) $ 也不是  $ F(x) $ 在  $ [a,b] $ 上的最小值.
+
+因此，连续函数  $ F(x) $ 的最小值在开区间  $ (a,b) $ 内取到，设  $ \xi \in (a,b) $ 是  $ F(x) $ 的最小值点，当然是极小值点，由费马定理可知  $ F'(\xi) = 0 $，即  $ f'(\xi) = r $。
+
+方法2 设  $ f'(a) < r < f'(b) $，做函数
+
+ $$ F(x)=\left\{\begin{aligned}{}&{{}\frac{f(x)-f(a)}{x-a},}&{}&{{}x\neq a}\\ {}&{{}f^{\prime}(a),}&{}&{{}x=a}\\ \end{aligned}\right.,\quad G(x)=\left\{\begin{aligned}{}&{{}\frac{f(x)-f(b)}{x-b},}&{}&{{}x\neq b}\\ {}&{{}f^{\prime}(b),}&{}&{{}x=b}\\ \end{aligned}\right.. $$ 
+
+易知  $ F(x) $， $ G(x) \in C[a,b] $，且 r 要么在  $ F(a) $ 与  $ F(b) $ 之间，要么在  $ G(a) $ 与  $ G(b) $ 之间。
+
+如果  $ r $ 在  $ F(a) $ 与  $ F(b) $ 之间，由连续函数的介值定理，知  $ \exists x_0 \in (a,b) $，使  $ F(x_0) = r $，即
+
+ $$ \frac{f(x_{0})-f(a)}{x_{0}-a}=r\;, $$ 
+
+对  $ f(x) $ 用拉格朗日中值定理，知在 a 与  $ x_{0} $ 之间存在  $ \xi $，使  $ f'(\xi)=r $.
+
+如果 r 在  $ G(a) $ 与  $ G(b) $ 之间，类似可证.
+
+评注（1）导数的达布定理也称为导数的介值定理，它是一个很重要的性质。如由它可推出，若在区间  $ I $ 上  $ f'(x) \neq 0 $，则  $ f'(x) $ 在区间  $ I $ 上恒大于零或恒小于零。进而推出函数  $ f(x) $ 在区间  $ I $ 上是单调的。
+
+（2）注意达布定理并不要求  $ f'(x) $ 在区间  $ [a,b] $ 上连续，这是达布定理与介值定理的差异之处，也是函数与导函数的不同之处.
+
+例2 证明  $ \arctan x - \frac{1}{2}\arccos\frac{2x}{1+x^{2}} \equiv \frac{\pi}{4} (x \geq 1) $.
+
+分析 只需证明左边函数是一个常函数，验证其导数为零即可，再说明该常数就是 $ \frac{\pi}{4} $
+
+证明 令  $ f(x)=\arctan x-\frac{1}{2}\arccos\frac{2x}{1+x^{2}} $ ，则当 x>1 时，
+
+ $$ \begin{aligned}f^{\prime}(x)=&\frac{1}{1+x^{2}}-\frac{1}{2}\left(-\frac{1}{\sqrt{1-\left(\frac{2x}{1+x^{2}}\right)^{2}}}\right)\frac{2(1+x^{2})-4x^{2}}{(1+x^{2})^{2}}\\ =&\frac{1}{1+x^{2}}+\frac{1}{\sqrt{(1-x^{2})^{2}}}\cdot\frac{1-x^{2}}{1+x^{2}}=0\;.\end{aligned} $$ 
+
+而  $ f(1)=\arctan1-\frac{1}{2}\arccos1=\frac{\pi}{4} $，所以当  $ x\geq1 $ 时， $ \arctan x-\frac{1}{2}\arccos\frac{2x}{1+x^2}\equiv\frac{\pi}{4} $.
+
+评注 证明函数表达式恒为某个常数 a 的常用方法：
+
+（1）说明其导数恒为零，再说明该函数在某个指定点的函数值为 a；
+
+(2) 说明在指定范围内其最大值和最小值都为 a;
+
+(3) 用反证法.
+
+例 3 设函数  $ f(x) $ 在  $ (-\infty, +\infty) $ 上可微，且  $ f(0) = 0 $， $ \left|f'(x)\right| \leq p \left|f(x)\right| $， $ 0 < p < 1 $。证明  $ f(x) \equiv 0 $， $ x \in (-\infty, +\infty) $。
+
+分析 题设条件给出了函数与其导数的关系，可用拉格朗日中值定理. 在具体的证明中可尝试上题总结的各种方法.
+
+证明 方法1 先考虑  $ x \in [0,1] $， $ f(x) $ 为连续函数且可导，所以  $ \left|f(x)\right| $ 也为连续函数，可取到最大值  $ M $，设  $ x_0 \in [0,1] $，有  $ \left|f(x_0)\right| = M \geq 0 $，由拉格朗日中值定理，得
+
+ $$ M=\left|f(x_{0})\right|=\left|f(x_{0})-f(0)\right|=\left|f^{\prime}(\xi)x_{0}\right|,\quad\xi\in(0,x_{0}). $$ 
+
+于是有
+
+ $$ M=\left|f^{\prime}(\xi)x_{0}\right|\leq\left|f^{\prime}(\xi)\right|\leq p\left|f(\xi)\right|\leq p M~. $$ 
+
+即得 $ (1-p)M \leqslant 0 $。而 $ p < 1 $，所以 $ M \leqslant 0 $。因此 $ M = 0 $。由此可知 $ f(x) \equiv 0 $， $ x \in [0,1] $。
+
+类似可得到  $ f(x) $ 在区间  $ [i, i+1] (i = \pm 1, \pm 2, \cdots) $ 上恒等于 0。所以  $ f(x) $ 在区间  $ (-\infty, +\infty) $ 上恒等于 0。
+
+方法2 在0与x为端点的区间上用拉格朗日中值定理，得
+
+ $$ \left|f(x)\right|=\left|f(0)+f^{\prime}(\xi_{1})x\right|=\left|f^{\prime}(\xi_{1})x\right|\leq p\left|f(\xi_{1})x\right|\quad(\xi_{1} 介于 0 与 x 之间 ). $$ 
+
+限制  $ x \in \left[0, \frac{1}{2p}\right] $，有  $ \left|f(x)\right| \leq \frac{1}{2} \left|f(\xi_1)\right| $.
+
+重复使用该方法，可得
+
+ $$ \big|f(x)\big|\leqslant\frac{1}{2}\big|f(\xi_{1})\big|\leqslant\frac{1}{4}\big|f(\xi_{2})\big|\leqslant\cdots\leqslant\frac{1}{2^{n}}\big|f(\xi_{n})\big|\to0(n\to\infty)~, $$ 
+
+其中  $ 0 < \xi_n < \xi_{n-1} < \cdots < \xi_1 < x \leq \frac{1}{2p} $.
+
+从而  $ f(x) $ 在区间  $ \left[0,\frac{1}{2p}\right] $ 上恒等于 0. 类似可得到  $ f(x) $ 在区间  $ \left[\frac{i}{2p},\frac{i+1}{2p}\right](i=\pm1,\pm2,\cdots) $ 上恒等于 0，所以  $ f(x) $ 在区间  $ (-\infty,+\infty) $ 恒等于 0.
+
+方法3 记  $ g(x) = f^2(x) $， $ x \in (-\infty, +\infty) $， $ k = 2p $。由  $ 2f(x)f'(x) = (f^2(x))'' $ 及  $ \left|f'(x)\right| \leq p \left|f(x)\right| $，可得
+
+ $$ \left|g^{\prime}(x)\right|\leq k g(x),\mathrm{~ 即 }-k g(x)\leq g^{\prime}(x)\leq k g(x),\ x\in(-\infty,+\infty). $$ 
+
+由 $ g'(x) \leqslant kg(x) $，可得 $ \left(e^{-\pi x} g(x)\right) \leqslant 0 $，则 $ e^{-\pi x} g(x) $是单调递减的，所以当 $ x \leqslant 0 $时， $ g(x) \geqslant g(0) = 0 $；当 $ x \geqslant 0 $时， $ g(x) \leqslant g(0) = 0 $。
+
+另一方面，由  $ -kg(x) \leqslant g'(x) $，可得  $ \left(e^{-kx} g(x)\right)' \geqslant 0 $，则  $ e^{kx} g(x) $ 是单调递增的，所以当  $ x \leqslant 0 $ 时， $ g(x) \leqslant 0 $；当  $ x \geqslant 0 $ 时， $ g(x) \geqslant 0 $。
+
+综合可得  $ g(x) = f^2(x) \equiv 0 $,  $ x \in (-\infty, +\infty) $.
+
+方法4 用反证法.
+
+若  $ \exists x_0 \in (-\infty, +\infty) $，使  $ f(x_0) \neq 0 $，不妨设  $ f(x_0) > 0 $。记  $ x_1 = \inf\{x \mid (x, x_0) \text{内} f > 0\} $，由连续函数的局部保号性，知  $ f(x_1) = 0 $，在  $ (x_1, x_0) $ 内  $ f(x) > 0 $。
+
+令  $ g(x)=\ln f(x) $， $ x\in(x_{1},x_{0}) $，则  $ \left|g'(x)\right|=\left|\frac{f'(x)}{f(x)}\right|<p $，由拉格朗日中值定理，知  $ g(x) $ 在  $ (x_{1},x_{0}) $ 内有界。但  $ \lim_{x\to x_{1}^{+}}f(x)=f(x_{1})=0 $，从而  $ \lim_{x\to x_{1}^{+}}g(x)=-\infty $，这是矛盾的。所以  $ f(x) $ 在区间  $ (-\infty,+\infty) $ 恒等于 0。
+
+评注 从后面几种解法可看出，该题结论与正常数p的大小无关.
+
+在方法1的证明中，记 $ \max\left\{\left|f(x)\right|:0\leq x\leq\frac{1}{2p}\right\}=\left|f(x_{0})\right|,0\leq x_{0}\leq\frac{1}{2p} $，则
+
+ $$ \big|f(x_{0})\big|=\big|f(x_{0})-f(0)\big|=\big|f^{\prime}(\xi)x_{0}\big|\leq\big|p f(\xi)x_{0}\big|\leq\bigg|p f(x_{0})\frac{1}{2p}\bigg|=\frac{1}{2}\big|f(x_{0})\big|, $$ 
+
+故  $ f(x_0)=0 $．进而  $ f(x)\equiv0 $， $ x\in\left[0,\frac{1}{2p}\right] $．递推可得  $ f(x)\equiv0 $， $ x\in(-\infty,+\infty) $．同样与  $ p $ 的大小无关．
+
+例4 当 $ x\geq0 $时，证明 $ \sqrt{x+1}-\sqrt{x}=\frac{1}{2\sqrt{x+\theta(x)}} $，且有 $ \frac{1}{4}\leq\theta(x)<\frac{1}{2} $.
+
+分析 等式左边是一函数的增量，容易想到拉格朗日中值公式. 为证明对应的不等式，只需解出 $ \theta(x) $ 的表达式，再求其值域范围（最值或确界）.
+
+证明 设  $ f(t)=\sqrt{t} $，当  $ x \geqslant 0 $ 时，在区间  $ [x, x+1] $ 上函数满足拉格朗日中值定理的条件，因此有
+
+ $$ f(x+1)-f(x)=f^{\prime}[x+(x+1-x)\theta(x)](x+1-x), $$ 
+
+即
+
+ $$ \sqrt{x+1}-\sqrt{x}=\frac{1}{2\sqrt{x+\theta(x)}}(0<\theta(x)<1), $$ 
+
+解得
+
+ $$ \theta(x)=\frac{1}{4}+\frac{1}{2}\left[\sqrt{x(x+1)}-x\right](x\geqslant0). $$ 
+
+因为
+
+ $$ \theta^{\prime}(x)=\frac{1}{2}\left[\frac{2x+1}{2\sqrt{x(x+1)}}-1\right]=\frac{1}{2}\left[\frac{x+\frac{1}{2}}{\sqrt{\left(x+\frac{1}{2}\right)^{2}-\frac{1}{4}}}-1\right]>0, $$ 
+
+所以  $ \theta(x) $ 在  $ [0,+\infty) $ 内严格单调递增. 由于  $ \theta(0)=\frac{1}{4} $，而
+
+ $$ \lim_{x\to+\infty}\theta(x)=\lim_{x\to+\infty}\left[\frac{1}{4}+\frac{1}{2}\left(\sqrt{x(x+1)}-x\right)\right]=\lim_{x\to+\infty}\left[\frac{1}{4}+\frac{1}{2}\left(\frac{x}{\sqrt{x(x+1)}+x}\right)\right]=\frac{1}{2} $$ 
+
+故 $ \frac{1}{4}\leq\theta(x)<\frac{1}{2} $
+
+例5 设  $ f(x) $ 是 x 轴上具有连续三阶导数的一个实函数，证明存在一个点 a，使得
+
+ $$ f(a)\cdot f^{\prime}(a)\cdot f^{n}(a)\cdot f^{m}(a)\geq0. $$ 
+
+分析 如果结论不成立，则  $ f(x) \cdot f'(x) \cdot f''(x) \cdot f'''(x) < 0 $ 对所有的 x 成立。根据连续性， $ f, f', f'', f''' $ 中的每一个都具有不变的符号。必要时用  $ f(-x), -f(x) $ 或者  $ -f(-x) $ 代替  $ f(x) $，我们可以假设  $ f(x) > 0 $ 和  $ f'(x) > 0 $ 对一切 x 成立。这样适当选择 g = f 或者  $ g = f' $，若  $ g(x) > 0 $， $ g'(x) > 0 $，则必有  $ g''(x) < 0 $ 成立。另一方面，因为 g 单调递增，而且有下界，所以必有一个常数  $ C \geq 0 $，使得当  $ x \to -\infty $ 时， $ g(x) \to C $。这一水平渐近性质迫使 g 在某些点 x 处是向下凸的，就会有  $ g''(x) > 0 $，这就会产生矛盾。
+
+证明 方法1 若存在 a 使得  $ f(a), f'(a), f''(a), f'''(a) $ 之一为 0，则结论成立. 若在任一点均不为 0，不妨设  $ f(x) > 0 $ 和  $ f'(x) > 0 $ 对一切 x 成立.
+
+适当选择  $ g = f $ 或者  $ g = f' $，如果对所有的 x 均有  $ g(x) > 0 $,  $ g'(x) > 0 $,  $ g''(x) < 0 $. 固定  $ x_1 $，并令  $ m = g'(x_1) > 0 $. 因为  $ \lim_{x_2 \to -\infty} \frac{g(x_1) - g(x_2)}{x_2 - x_1} = 0 $，则必存在  $ x_2 < x_1 $，使得
+
+ $$ 0<\frac{g(x_{1})-g(x_{2})}{x_{1}-x_{2}}<\frac{m}{2}, $$ 
+
+根据中值定理，必存在一个介于  $ x_{2} $ 与  $ x_{1} $ 之间的  $ x_{3} $，使得
+
+ $$ g^{\prime}(x_{3})=\frac{g(x_{1})-g(x_{2})}{x_{1}-x_{2}}<\frac{m}{2}. $$ 
+
+进而存在一个介于  $ x_{3} $ 与  $ x_{1} $ 之间的  $ x_{4} $，使得
+
+ $$ g^{\prime \prime}(x_{4})=\frac{g^{\prime}(x_{1})-g^{\prime}(x_{3})}{x_{1}-x_{3}}>\frac{m-\frac{m}{2}}{x_{1}-x_{3}}>0, 矛盾 . $$ 
+
+故必有 $ g''(x)>0 $．所以 $ f''(x) $， $ f'''(x) $均大于0.
+
+方法2 若  $ f(x), f'(x), f''(x), f'''(x) $ 在任一点均不为0，不妨设对一切x有 $ f(x) > 0 $， $ f'(x) > 0 $。若 $ f''(x) < 0 $，由于 $ f(-x) $单调递减且大于0，则 $ x \to +\infty $必有极限，即
+
+ $$ \lim_{x\to+\infty}f(-x)=\lim_{x\to-\infty}f(x)=C\geqslant0. $$ 
+
+取t<0，则
+
+ $$ f(0)=\int_{t}^{0}f^{\prime}(x)\mathrm{d}x+f(t)>\int_{t}^{0}f^{\prime}(0)\mathrm{d}x+f(t)=-f^{\prime}(0)t+f(t)\to+\infty\quad\left(t\to-\infty\right), $$ 
+
+这显然是矛盾的. 故必有  $ f''(x) > 0 $. 类似可证  $ f'''(x) > 0 $.
+
+例6 若函数  $ f(x) $ 对于一切  $ u \neq v $ 均有  $ \frac{f(u) - f(v)}{u - v} = \alpha f'(u) + \beta f'(v) $，其中， $ \alpha, \beta > 0 $， $ \alpha + \beta = 1 $。试证  $ f(x) $ 是一次或二次函数。
+
+分析：从所给等式可知  $ f(x) $ 具有任意阶导数。只需证明  $ f'(x) $ 或  $ f''(x) $ 为常数。另一方面，将所给等式转化为  $ f(x) $ 的微分方程，求解方程，问题也就解决了。
+
+解 方法1 因为
+
+ $$ \frac{f(u)-f(\nu)}{u-\nu}=\alpha f^{\prime}(u)+\beta f^{\prime}(\nu)~, $$ 
+
+交换 $ u,\nu $可得
+
+ $$ \frac{f(v)-f(u)}{v-u}=\alpha f^{\prime}(v)+\beta f^{\prime}(u)\;. $$ 
+
+当 $ \alpha\neq\beta $时，①-②式有
+
+ $$ (\alpha-\beta)(f^{\prime}(u)-f^{\prime}(v))=0, $$ 
+
+故  $ f'(x) $ 为常数. 所以  $ f(x) $ 是一次函数.
+
+当  $ \alpha = \beta = \frac{1}{2} $ 时，所给等式变形为
+
+ $$ f(u)-f(v)=\frac{1}{2}(u-v)(f^{\prime}(u)+f^{\prime}(v)), $$ 
+
+两边分别对u,v求导，整理得
+
+ $$ f^{\prime}(u)-f^{\prime}(v)=(u-v)f^{n}(u)\;,\quad f^{\prime}(u)-f^{\prime}(v)=(u-v)f^{n}(v)\;. $$ 
+
+由此得  $ f''(u) = f''(v) $. 即知  $ f''(x) $ 为常数，所以  $ f(x) $ 是二次函数.
+
+反之，易验证：若  $ f(x) $ 是一次或二次函数，对任意  $ \alpha, \beta > 0, \alpha + \beta = 1 $，均有等式
+
+ $$ \frac{f(u)-f(v)}{u-v}=\alpha f^{\prime}(u)+\beta f^{\prime}(v)\;. $$ 
+
+方法2 取u=x,  $ \nu=0 $，则有
+
+ $$ f(x)-f(0)=x(\alpha f^{\prime}(x)+\beta f^{\prime}(0)) $$ 
+
+即
+
+ $$ f^{\prime}(x)-\frac{1}{\alpha x}f(x)=\frac{1}{\alpha x}f(0)-\frac{\beta}{\alpha}f^{\prime}(0). $$ 
+
+这是一阶线性微分方程，其通解为
+
+ $$ f(x)=f(0)+f^{\prime}(0)x+C x^{\frac{1}{\alpha}}. $$ 
+
+将通解代入关系式 $ \frac{f(u)-f(v)}{u-v}=\alpha f'(u)+\beta f'(v) $，化简得
+
+ $$ \frac{C}{u-v}\left(u^{\frac{1}{\alpha}}-v^{\frac{1}{\alpha}}\right)=C\left(u^{\frac{1}{\alpha}-1}+\frac{\beta}{\alpha}v^{\frac{1}{\alpha}-1}\right), $$ 
+
+取u=0，可得 $ \alpha=\beta=\frac{1}{2} $或 $ C=0(\alpha\neq\beta) $。所以 $ f(x) $是一次或二次函数。
+
+评注 记  $ u = x_0 $， $ \nu = x_1 $，题设条件可写成： $ \frac{f(x_0)}{x_0 - x_1} + \frac{f(x_1)}{x_1 - x_0} = \alpha f'(x_0) + \beta f'(x_1) $。该题结论可推广成：设  $ f(x) $ 在  $ \mathbb{R} $ 上  $ n $ 阶可导，若对任意  $ n + 1 $ 个不同的点  $ x_0, x_1, \cdots, x_n $，都有
+
+ $$ \sum_{i=0}^{n}\frac{f(x_{i})}{(x_{i}-x_{0})\cdots(x_{i}-x_{i-1})(x_{i}-x_{i+1})\cdots(x_{i}-x_{n})}=\sum_{i=0}^{n}\alpha_{i}f^{(n)}(x_{i})~, $$ 
+
+其中  $ \alpha_{0}, \alpha_{1}, \cdots, \alpha_{n} $ 是 n+1 个常数. 则  $ f(x) $ 是次数不超过  $ n+1 $ 的多项式（见综合题 2 $ ^{*} $第 29 题）.
+
+例7 设  $ f(x) $ 在区间  $ [a,b] $ ( $ ab<0 $) 上连续，且满足  $ \int_{0}^{x}\left[f(t)+3f\left(\frac{t}{2}\right)\right]\mathrm{d}t=f(x)-x+x^{2}+\frac{21}{4}x^{3} $. 求  $ f(x) $.
+
+分析 容易判断  $ f(x) $ 在  $ [a,b] $ 上具有任意阶导数，等式两边求导可得微分方程，但所得微分方程很难求解. 从另一方面考虑，如能求得  $ f^{(k)}(0)(k=0,1,2,\cdots) $ 的值，就能由麦克劳林公式得到函数式.
+
+解　所给等式两边取 x=0，可得  $ f(0)=0 $.
+
+因为  $ f(x) $ 在  $ [a,b] $ 上连续，所以等式左边的积分函数可导，因而等式右边的函数也可导，即  $ f(x) $ 在  $ [a,b] $ 上可导。等式两边求导得
+
+ $$ f(x)+3f\left(\frac{x}{2}\right)=f^{\prime}(x)-1+2x+\frac{7}{4}x^{2}. $$ 
+
+上式左边的函数可导，因而右边的函数也可导，即  $ f(x) $ 在  $ [a,b] $ 上二阶可导，以此类推可知  $ f(x) $ 在  $ [a,b] $ 上任意阶可导. ①式两边分别求 1 至 n-1 阶导数，得
+
+ $$ f^{\prime}(x)+\frac{3}{2}f^{\prime}\left(\frac{x}{2}\right)=f^{\prime \prime}(x)+2+\frac{7}{8}x, $$ 
+
+ $$ f^{n}(x)+\frac{3}{4}f^{n}\left(\frac{x}{2}\right)=f^{m}(x)+\frac{7}{8}, $$ 
+
+ $$ f^{(n-1)}(x)+\frac{3}{2^{n-1}}f^{(n-1)}\left(\frac{x}{2}\right)=f^{(n)}(x)\quad(n>3). $$ 
+
+在以上各式中取 x=0，可求得
+
+ $$ f^{\prime}(0)=1,\ f^{\prime \prime}(0)=\frac{1}{2},\ f^{(n)}(0)=0\quad(n\geqslant3). $$ 
+
+由 n 阶麦克劳林公式得
+
+ $$ f(x)=x+\frac{1}{4}x^{2}+\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}\quad(\xi 介于 0 与 x 之间 ). $$ 
+
+由于  $ f^{(n+1)}(x) $ 在  $ [a,b] $ 上连续，所以有界，则有  $ \lim_{n\to\infty}\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}=0 $ 。②式两边取  $ n\to\infty $ ，得到
+
+ $$ f(x)=x+\frac{1}{4}x^{2}. $$ 
+
+评注 本题所给方程中只有未知函数与多项式，易于逐次求导，否则该解法难以施行。如果  $ f^{(k)}(0)(k=0,1,2,\cdots) $ 中有无穷个非零，则需用麦克劳林级数，并确定其收敛域。
+
+例8 设  $ f(x) $ 在  $ [1,+\infty) $ 上连续可导，且有  $ f'(x)=\frac{1}{1+f^2(x)}\left[\sqrt{\frac{1}{x}}-\sqrt{\ln\left(1+\frac{1}{x}\right)}\right] $. 证明：
+
+(1)  $ \lim_{x \to +\infty} f(x) $ 存在；（2）若  $ f(1) = 1 $，则  $ \lim_{x \to +\infty} f(x) \leq \sqrt{2} $.
+
+分析（1）易判定当x>1时， $ f'(x)>0 $， $ f(x) $单调递增，还需证明有上界；（2）该上界不超过 $ \sqrt{2} $
+
+证明 （1）当t>0时，对函数 $ \ln(1+x) $在区间 $ [0,t] $上用拉格朗日中值定理，有
+
+ $$ \ln(1+t)=\frac{t}{1+\xi}\;,\quad0<\xi<t\;. $$ 
+
+由此得 $ \frac{t}{1+t}<\ln(1+t)<t $，取 $ t=\frac{1}{x} $，有
+
+ $$ \frac{1}{1+x}<\ln\left(1+\frac{1}{x}\right)<\frac{1}{x}. $$ 
+
+所以，当 $ x\geq1 $时，有 $ f'(x)>0 $，即 $ f(x) $在 $ [1,+\infty) $上严格单调递增，且有 $ f(x)\geq f(1) $。从而
+
+ $$ f^{\prime}(x)\leqslant\frac{1}{1+f^{2}(1)}\left[\sqrt{\frac{1}{x}}-\sqrt{\ln\left(1+\frac{1}{x}\right)}\right]<\frac{1}{1+f^{2}(1)}\left(\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{x+1}}\right), $$ 
+
+积分得
+
+ $$ \int_{1}^{x}f^{\prime}(t)\mathrm{d}t<\frac{1}{1+f^{2}(1)}\int_{1}^{x}\left(\frac{1}{\sqrt{t}}-\frac{1}{\sqrt{t+1}}\right)\mathrm{d}t, $$ 
+
+即
+
+ $$ f(x)-f(1)<\frac{2}{1+f^{2}(1)}\left[\left(\sqrt{x}-\sqrt{x+1}\right)+\left(\sqrt{2}-1\right)\right]<\frac{2}{1+f^{2}(1)}\left(\sqrt{2}-1\right). $$ 
+
+所以  $ f(x) $ 有上界. 故  $ \lim_{x\to\infty}f(x) $ 存在.
+
+（2）若  $ f(1)=1 $ ，由①式知
+
+ $$ f(x)<\frac{2}{1+f^{2}(1)}\left(\sqrt{2}-1\right)+f(1)=\sqrt{2}. $$ 
+
+所以  $ \lim_{x \to +\infty} f(x) \leq \sqrt{2} $.
+
+例9 证明当x>0时， $ \frac{\ln(x+1)}{x}>\frac{x}{e^{x}-1} $.
+
+分析 记  $ f(x)=\frac{\ln(x+1)}{x} $，所证不等式为  $ f(x)>f(e^x-1) $。易知  $ e^x-1>x $，只需判定  $ f(x) $ 单调递减。
+
+证明 设  $ f(x)=\frac{\ln(x+1)}{x} $ (x>0)，则
+
+ $$ f^{\prime}(x)=\frac{\frac{x}{1+x}-\ln(x+1)}{x^{2}}<0\quad\left(\because\frac{x}{1+x}<\ln(x+1)\right). $$ 
+
+所以  $ f(x) $ 严格单调递减.
+
+又因为 $ e^x - 1 > x $，所以 $ f(x) > f(e^x - 1) $，即 $ \frac{\ln(x+1)}{x} > \frac{x}{e^x - 1} $。
+
+评注 不等式也可变形为 $ (e^{x}-1)\ln(x+1)-x^{2}>0 $，再用单调性来证明，但要困难些.
+
+例 10 设  $ f(x) $ 在  $ (0,+\infty) $ 单调递减，且满足  $ 0 < f(x) < |f'(x)| $。证明  $ xf(x) > \frac{1}{x}f\left(\frac{1}{x}\right) $， $ \forall x \in (0,1) $。
+
+分析 若  $ xf(x) $ 在  $ (0,+\infty) $ 内单调递减，则所证结论自然成立。但由题设条件无法确定  $ xf(x) $ 的单调性，却能确定  $ \mathrm{e}^{x}f(x) $ 是单调递减的，因而有  $ \mathrm{e}^{x}f(x) > \mathrm{e}^{\frac{1}{x}}f\left(\frac{1}{x}\right) $，即  $ f(x) > \mathrm{e}^{\frac{1}{x}-x}f\left(\frac{1}{x}\right) $，若有  $ \mathrm{e}^{\frac{1}{x}-x} > \frac{1}{x^{2}} $，则问题就解决了。
+
+证明 由于  $ f(x) $ 在  $ (0,+\infty) $ 内单调递减，所以  $ f'(x) \leq 0 $，则有
+
+ $$ f(x)+f^{\prime}(x)<0\Rightarrow\left(\mathrm{e}^{x}f(x)\right)^{\prime}<0. $$ 
+
+函数 $ F(x)=\mathrm{e}^{x}f(x) $在 $ (0,+\infty) $内严格单调递减，对 $ x\in(0,1) $，有
+
+ $$ F(x)>F\left(\frac{1}{x}\right),\  即 \mathbf{e}^{x}f(x)>\mathbf{e}^{\frac{1}{x}}f\left(\frac{1}{x}\right), $$ 
+
+从而
+
+ $$ f(x)>\mathrm{e}^{\frac{1}{x}-x}f\left(\frac{1}{x}\right). $$ 
+
+下面证明  $ e^{\frac{1}{x}-x} > \frac{1}{x^2} (0 < x < 1) $.
+
+设 $ g(x)=\frac{1}{x}-x+2\ln x $ (0 < x < 1)，则
+
+ $$ g^{\prime}(x)=-\frac{1}{x^{2}}-1+\frac{2}{x}=-\left(1-\frac{1}{x}\right)^{2}<0. $$ 
+
+$g(x)$ 在 $(0,1)$ 内严格单调递减，有 $g(x) > g(1) = 0$，可得到 $\mathrm{e}^{\frac{1}{x} - x} > \frac{1}{x^2}$。再由①式得
+
+ $$ x f(x)>\frac{1}{x}f\left(\frac{1}{x}\right),\quad\forall x\in(0,1). $$ 
+
+例11 对每一个正整数 n，令  $ p_{n}=\left(1+\frac{1}{n}\right)^{n} $， $ q_{n}=\left(1+\frac{1}{n}\right)^{n+1} $， $ h_{n}=\frac{2p_{n}q_{n}}{p_{n}+q_{n}} $。证明  $ \{h_{n}\} $ 严格单调递增。
+
+分析 当数列的单调性不易判断时，通常借助对应函数来判断.
+
+证明 容易得出  $ h_{n}=2(n+1)^{n+1}n^{-n}(2n+1)^{-1} $，取对数后可做辅助函数
+
+ $$ g(x)=\ln2+(x+1)\ln(x+1)-x\ln x-\ln(2x+1)\quad(x\geqslant1). $$ 
+
+因为
+
+ $$ g'(x)=\ln(x+1)-\ln x-\frac{2}{2x+1}, $$ 
+
+其符号不易判断，再求导数得
+
+ $$ g^{\prime \prime}(x)=\frac{1}{x+1}-\frac{1}{x}+\frac{4}{(2x+1)^{2}}=-\frac{1}{x(x+1)(2x+1)^{2}}<0~. $$ 
+
+因此 $ g' $在 $ x\geq1 $时严格单调递减.由于
+
+ $$ \lim_{x\to+\infty}g'(x)=\lim_{x\to+\infty}\ln\left(\frac{x+1}{x}\right)-\lim_{x\to+\infty}\frac{2}{2x+1}=0 $$ 
+
+所以  $ g'(x) > 0 $ 。因而  $ g(x) $ 在  $ x \geqslant 1 $ 时严格单调递增，故  $ h_n = \exp g(n) $ 是一严格增序列。
+
+评注 用单调性来证明不等式是很常用的方法，其步骤如下：
+
+（1）将不等式变形为 $ F(x)\geqslant0 $或 $ F(x)\leqslant0 $的形式，使 $ F'(x) $容易计算；
+
+（2）根据 $ F'(x) $的符号讨论 $ F(x) $的增减性或极值，由此确定 $ F(x) $的符号；
+
+（3）当 $ F'(x) $的符号不易判断时，可再次求导利用单调性做判别；
+
+（4）当直接利用单调性证明有困难时，要结合具体情况做改进与变通，如前面例9和例10.
+
+例12 设a>0, b>0,  $ a+b=1 $，证明 $ a^{b}+b^{a}\leq\sqrt{a}+\sqrt{b}\leq a^{a}+b^{b} $.
+
+分析 利用关系式  $ a+b=1 $ 可将不等式中的两个参数化为一个来处理. 为避免讨论幂指函数, 可令  $ f(x)=a^{x}+b^{1-x} $，问题转化为证明不等式  $ f(b)\leq f\left(\frac{1}{2}\right)\leq f(a) $. 因而可考虑用函数的单调性来证明.
+
+证明 当  $ a = b = \frac{1}{2} $ 时，显然不等式中的等号成立。当  $ a \neq b $ 时，不妨设  $ 0 < a < \frac{1}{2} < b < 1 $，考虑函数  $ f(x) = a^x + b^{1-x} $，只需证明  $ f(x) $ 在  $ (0, b] $ 上单调递减，则有  $ f(b) \leq f\left(\frac{1}{2}\right) \leq f(a) $，不等式得证。
+
+对  $ x \in (0, b) $，因为  $ f'(x) = a^x \ln a - b^{1-x} \ln b $，而  $ f''(x) = a^x (\ln a)^2 + b^{1-x} (\ln b)^2 > 0 $，所以  $ f'(x) $ 单调递增，有  $ f'(x) < f'(b) $。下证  $ f'(b) \leq 0 $，即证
+
+ $$ a^{b}\operatorname{l n}a\leqslant b^{a}\operatorname{l n}b\Leftrightarrow a^{1-a}\operatorname{l n}a\leqslant b^{1-b}\operatorname{l n}b\Leftrightarrow\frac{\operatorname{l n}a^{a}}{a^{a}}\leqslant\frac{\operatorname{l n}b^{b}}{b^{b}}. $$ 
+
+令  $ g'(x)=\frac{\ln x}{x}\quad(0<x<1) $。因为  $ g'(x)=\frac{1}{x^{2}}(1-\ln x)>0 $，所以  $ g(x)=\frac{\ln x}{x} $ 在  $ (0,1) $ 内单调递增。问题归结为证明  $ 0<a^{a}<b^{b}<1 $，这等价于  $ \frac{\ln a}{1-a}<\frac{\ln b}{1-b} $，而这由函数  $ h(x)=\frac{\ln x}{1-x} $ 在  $ (0,1) $ 内单调递增得到。这是因为
+
+ $$ h^{\prime}(x)=\frac{1}{\left(1-x\right)^{2}}\left(\ln x-\frac{x-1}{x}\right)>0~. $$ 
+
+故不等式①成立，从而  $ f'(x) < f'(b) \leq 0 $， $ f(x) $ 在  $ (0, b] $ 上单调递减，所证不等式成立.
+
+评注 利用单调性证明含字母参数的不等式，一定要将所证不等式做适当变形，以便辅助函数的选取，如本题中的①式；要使辅助函数的形式尽量简单，如本题中  $ f(x) $ 的选取（而不是简单的将 a 换为 x）；所选的辅助函数在所考虑的区间中要有单调性，如本题中证明  $ a^{a} < b^{b} $ 选取了  $ h(x) = \frac{\ln x}{1 - x} $，而不是选取  $ h(x) = x^{x} $ （因为该函数在  $ (0,1) $ 内不单调）。
+
+例 13 证明  $ \cos\sqrt{2}x < -x^{2} + \sqrt{1 + x^{4}}, \quad x \in\left(0, \frac{\sqrt{2}}{4}\pi\right) $.
+
+分析 只需证明  $ \sqrt{1+x^4}-x^2-\cos\sqrt{2}x>0 $，也可将不等式变形为  $ \cos\sqrt{2}x\cdot(x^2+\sqrt{1+x^4})<1 $ 或  $ 2x^2<\tan\sqrt{2}x\cdot\sin\sqrt{2}x $，利用函数的单调性都能完成其证明。
+
+证明 方法1 令  $ f(x)=\sqrt{1+x^{4}}-x^{2}-\cos\sqrt{2}x,\quad x\in\left(0,\frac{\sqrt{2}}{4}\pi\right) $，则
+
+ $$ f^{\prime}(x)=2x\left(\frac{x^{2}}{\sqrt{1+x^{4}}}-1\right)+\sqrt{2}\sin\sqrt{2}x\;. $$ 
+
+由泰勒展开式，有
+
+所以
+
+ $$ f^{\prime}(x)>2x\left(\frac{x^{2}}{\sqrt{1+x^{4}}}-1\right)+2x-\frac{2x^{3}}{3}=\frac{2x^{3}}{\sqrt{1+x^{4}}}-\frac{2x^{3}}{3}>0. $$ 
+
+因此，当  $ x \in \left(0, \frac{\sqrt{2}\pi}{4}\right) $ 时， $ f(x) $ 单调递增，又  $ f(0) = 0 $，所以  $ f(x) > 0 $。
+
+方法2 所 $ -r^{2}+\sqrt{1+x^{4}})<1 $
+
+令  $ g(x) = \cos \sqrt{2} x \cdot (x^2 + \sqrt{1 + x^4}) $， $ x \in \left(0, \frac{\sqrt{2}\pi}{4}\right) $，则  $ f(0) = 1 $；
+
+ $$ \begin{aligned}g^{\prime}(x)&=-\sqrt{2}\sin\sqrt{2}x\cdot(x^{2}+\sqrt{1+x^{4}})+\cos\sqrt{2}x\cdot\left(2x+\frac{2x^{3}}{\sqrt{1+x^{4}}}\right)\\&=(-\sqrt{2}\sin\sqrt{2}x\cdot\sqrt{1+x^{4}}+2x\cos\sqrt{2}x)\cdot\frac{x^{2}+\sqrt{1+x^{4}}}{\sqrt{1+x^{4}}}.\end{aligned} $$ 
+
+设  $ \varphi(x) = -\sqrt{2} \sin \sqrt{2} x \cdot \sqrt{1 + x^{4}} + 2 x \cos \sqrt{2} x $，则
+
+ $$ \varphi^{\prime}(x)=-2\cos\sqrt{2}x\cdot(\sqrt{1+x^{4}}-1)-\sqrt{2}\sin\sqrt{2}x\cdot\frac{2x^{3}}{\sqrt{1+x^{4}}}-2\sqrt{2}x\sin\sqrt{2}x<0. $$ 
+
+因此，当  $ x \in \left(0, \frac{\sqrt{2}\pi}{4}\right) $ 时，  $ \varphi(x) $ 单调递减，又  $ \varphi(0) = 0 $，所以  $ \varphi(x) < 0 $。
+
+由①式知  $ g'(x)<0 $ ，  $ g(x) $ 在区间  $ \left(0,\frac{\sqrt{2}\pi}{4}\right) $ 内单调递减，所以  $ g(x)<g(0)=1 $ 。得证.
+
+方法3 将所证不等式变形：
+
+ $$ \begin{aligned}&\cos\sqrt{2}x<-x^{2}+\sqrt{1+x^{4}}\Leftrightarrow(\cos\sqrt{2}x+x^{2})^{2}<1+x^{4}\\ &\Leftrightarrow\cos^{2}\sqrt{2}x+2x^{2}\cos\sqrt{2}x<1\Leftrightarrow2x^{2}\cos\sqrt{2}x<\sin^{2}\sqrt{2}x\\ &\Leftrightarrow2x^{2}<\tan\sqrt{2}x\cdot\sin\sqrt{2}x.\\ \end{aligned} $$ 
+
+令  $ h(x)=\tan x\cdot\sin x-x^{2} $， $ x\in\left(0,\frac{\pi}{4}\right) $，则
+
+ $$ h^{\prime}(x)=\sec^{2}x\sin x+\tan x\cdot\cos x-2x=\tan x\left(\frac{1}{\cos x}+\cos x\right)-2x\geqslant2(\tan x-x)>0 $$ 
+
+对  $ x \in \left(0, \frac{\pi}{2}\right) $，有  $ h(x) = \tan x \cdot \sin x - x^{2} > h(0) = 0 $，从而
+
+ $$ \tan\sqrt{2}x\cdot\sin\sqrt{2}x>2x^{2},\quad x\in\left(0,\frac{\sqrt{2}\pi}{4}\right). $$ 
+
+评注 由该题可见，对同一问题建立辅助函数的方法可能有多种，其难易程度也会不同。当需要用到二阶以上的导数时还是用泰勒公式为好。
+
+例14 设  $ f(x) $ 与  $ g(x) $ 在  $ [a,+\infty) $ 上  $ n $ 阶可导，且  $ f^{(k)}(a) = g^{(k)}(a) $ ( $ k = 0,1,\cdots,n-1 $)， $ f^{(n)}(x) > g^{(n)}(x) $ ( $ x > a $)。证明当  $ x > a $ 时，有  $ f(x) > g(x) $。
+
+分析 令  $ F(x)=f(x)-g(x) $，只需证当 x>a 时， $ F(x)>0 $。题设条件中有函数的高阶导数，可考虑用泰勒公式。
+
+证明 令  $ F(x)=f(x)-g(\dot{x}) $， $ x \geqslant a $。则
+
+ $$ F^{(k)}(x)=f^{(k)}(x)-g^{(k)}(x)\quad(k=0,1,2,\cdots,n). $$ 
+
+注意到  $ f^{(k)}(a)=g^{(k)}(a)(k=0,1,2,\cdots,n-1) $，对  $ F(x) $ 在 x=a 点用 n-1 阶泰勒公式，得
+
+ $$ F(x)=\frac{F^{(n)}(\xi)}{n!}(x-a)^{n}\quad(a<\xi<x). $$ 
+
+因为 $ F^{(n)}(\xi)=f^{(n)}(\xi)-g^{(n)}(\xi)>0 $，所以 $ F(x)>0 $。即 $ f(x)>g(x) $。
+
+例 15 证明不等式： $ \left(\frac{\sin x}{x}\right)^{3} > \cos x,\quad 0 < |x| < \frac{\pi}{2} $.
+
+分析分离函数，即证 $ \sin^{3}x\cdot(\cos x)^{-1}>x^{3}\left(0<x<\frac{\pi}{2}\right) $. 可用单调性或泰勒公式来证明.
+
+证明 方法1 记  $ f(x)=\sin x\cdot(\cos x)^{-1/3}-x,\ 0<x<\frac{\pi}{2} $，则
+
+ $$ f^{\prime}(x)=\frac{1}{3}\Big(3\cos^{2}x+\sin^{2}x\Big)(\cos x)^{-4/3}-1=\frac{1}{3}\Big(2\cos^{2}x+1-3(\cos x)^{4/3}\Big)(\cos x)^{-4/3}. $$ 
+
+利用均值不等式
+
+ $$ 2\cos^{2}x+1=\cos^{2}x+\cos^{2}x+1>3(\cos x)^{4/3}. $$ 
+
+则  $ f'(x) > 0 $， $ f(x) $ 严格单调递增，有  $ f(x) > f(0) = 0 $。变形即得
+
+ $$ \left(\frac{\sin x}{x}\right)^{3}>\cos x. $$ 
+
+由于不等式两边都是偶函数，所以当  $ 0 < |x| < \frac{\pi}{2} $ 时，不等式仍成立.
+
+方法2 用上例的结论来证明.
+
+记  $ f(x)=\sin^{3}x\cdot(\cos x)^{-1} $， $ g(x)=x^{3} $，则
+
+ $$ f^{\prime}(x)=2\sin^{2}x+(\cos x)^{-2}-1,\quad g^{\prime}(x)=3x^{2},\quad f^{\prime}(0)=g^{\prime}(0)=0. $$ 
+
+ $$ f^{\prime \prime}(x)=4\sin x\cos x+2(\cos x)^{-3}\sin x\ ,\quad g^{\prime \prime}(x)=6x\ ,\quad 有 \ f^{\prime \prime}(0)=g^{\prime \prime}(0)=0. $$ 
+
+ $$ f^{m}(x)=4\cos2x+6(\cos x)^{-4}\sin^{2}x+2(\cos x)^{-2},\quad g^{m}(x)=6,\mathrm{~ 有 ~}f^{m}(0)=g^{m}(0)=6. $$ 
+
+ $$ f^{(4)}(x)=[24(\cos x)^{-5}-8(\cos x)^{-3}-16\cos x]\sin x~,\quad g^{(4)}(x)=0~. $$ 
+
+当 $ 0<x<\frac{\pi}{2} $时， $ 0<\cos x<1 $，则
+
+ $$ \left(\operatorname{c o s}x\right)^{-5}>\left(\operatorname{c o s}x\right)^{-3}>\operatorname{c o s}x~,\quad f^{(4)}(x)>0=g^{(4)}(x). $$ 
+
+由例14的结论得
+
+ $$ f(x)>g(x)\left(0<x<\frac{\pi}{2}\right),\  即 \left(\frac{\sin x}{x}\right)^{3}>\cos x\;. $$ 
+
+评注 例14 结论的本质仍是泰勒公式.
+
+例 16 设  $ f(x) $ 是二次可微的函数，满足  $ f(0)=1 $， $ f'(0)=0 $，且对任意的  $ x(x \geqslant 0) $，有  $ f''(x)-5f'(x)+6f(x) \geqslant 0 $。证明对每个  $ x(x \geqslant 0) $，都有  $ f(x) \geqslant 3e^{2x}-2e^{3x} $。
+
+分析 由于  $ (f''(x)-2f'(x))-3(f'(x)-2f(x))\geq0 $，令  $ g(x)=f'(x)-2f(x) $，则  $ g'(x)-3g(x)\geq0 $，因此  $ (g(x)\mathrm{e}^{-3x})'\geq0 $，从而可利用函数的单调性。
+
+证明 方法 1 令  $ g(x)=f'(x)-2f(x) $，则  $ g'(x)-3g(x)\geq0 $，因此  $ (g(x)\mathrm{e}^{-3x})'\geq0 $，当  $ x\geq0 $ 时， $ g(x)\mathrm{e}^{-3x} $ 单调递增，有
+
+ $$ g(x)\mathbf{e}^{-3x}\geqslant g(0)=-2\Rightarrow f^{\prime}(x)-2f(x)\geqslant-2\mathbf{e}^{3x}. $$ 
+
+上式两边同乘以 $ e^{-2x} $，又有
+
+ $$ \left(f(x)\mathrm{e}^{-2x}\right)^{\prime}\geqslant-2\mathrm{e}^{x},\mathrm{~ 即 }\left(f(x)\mathrm{e}^{-2x}+2\mathrm{e}^{x}\right)^{\prime}\geqslant0, $$ 
+
+再由单调性，得
+
+ $$ f(x)\mathrm{e}^{-2x}+2\mathrm{e}^{x}\geqslant f(0)+2=3\ , 即 f(x)\geqslant3\mathrm{e}^{2x}-2\mathrm{e}^{3x} $$ 
+
+方法2 上面的做法是从条件入手来思考的，如果从结论入手来思考，又有下面的做法.
+
+要证  $ f(x) \geqslant 3e^{2x} - 2e^{3x} $，只需证明  $ \frac{f(x) + 2e^{3x}}{3e^{2x}} \geqslant 1 $.
+
+令  $ \varphi(x)=\frac{f(x)+2e^{3x}}{3e^{2x}} $，则
+
+ $$ \varphi^{\prime}(x)=\frac{e^{x}}{3}\left(\frac{f^{\prime}(x)-2f(x)}{e^{3x}}+2\right). $$ 
+
+设  $ h(x)=\frac{f'(x)-2f(x)}{e^{3x}} $，则  $ h'(x)=\frac{f''(x)-5f'(x)+6f(x)}{e^{3x}}\geq0 $，这说明当  $ x\geq0 $ 时， $ h(x) $ 单调递增，所以
+
+ $$ h(x)\geq h(0)=-2\ , 即 h(x)+2\geq0\Longrightarrow\varphi^{\prime}(x)\geq0. $$ 
+
+故当 $ x\geq0 $时， $ \varphi(x) $单调递增，有
+
+ $$ \varphi(x)\geq\varphi(0)=1\ ,\  即 \ f(x)\geq3\mathrm{e}^{2x}-2\mathrm{e}^{3x}. $$ 
+
+评注（1）“方法1”利用了凑微分的思想，技巧性较强；“方法2”是利用单调性证明不等式较为常规的方法，更容易掌握。读者还可构造其他的辅助函数，利用单调性来证明。
+
+（2）事实上，函数  $ g(x)=3\mathrm{e}^{2x}-2\mathrm{e}^{3x} $ 是二阶线性齐次微分方程  $ y''-5y'+6y=0 $ 满足初值条件  $ y(0)=1 $， $ y'(0)=0 $ 的解，读者可由此得到更一般的结论。此结论也可用微分方程的知识来解决（见 7.2 节例 18）。
+
+例  $ 17^{*} $ 设 n 为正整数， $ f(x)=x^{n}+x-1 $ 。证明：
+
+（1）若 n 为奇数，则  $ f(x) $ 存在唯一零点，是正的（记为  $ x_{n} $）；若 n 为偶数，则恰存在两个零点，一正（仍记为  $ x_{n} $），一负（记为  $ \overline{x}_{n} $）.
+
+（2） $ \{x_{n}\} $ 与  $ \{\overline{x}_{n}\} $ 均为严格单调递增的，并求  $ \lim_{n\to\infty}x_n $ 与  $ \lim_{n\to\infty}\overline{x}_n $.
+
+分析 （1）函数的具体表达式已知，零点的存在性可用介值定理证明，唯一性可根据函数的单调性或最值来判断.
+
+（2）数列的单调性可用对应的函数的导数来判断；极限要存在，还得说明数列有上界.
+
+解 (1)  $ f'(x) = nx^{n-1} + 1 $.
+
+（1）当 n 为奇数时， n-1 为偶数，  $ f'(x)>0 $，  $ f(x) $ 严格单调递增。又  $ f(0)=-1<0 $， $ f(1)=1>0 $，故  $ f(x) $ 有且仅有 1 个零点  $ x_n $，且  $ 0<x_n<1 $。
+
+（2）当n为偶数时，n-1为奇数.
+
+在区间 $ (0,+\infty) $内， $ f'(x)>0 $， $ f(0)=-1 $， $ f(1)=1 $，所以在区间 $ (0,+\infty) $内 $ f(x) $有且仅有1个零点 $ x_{n} $，且 $ 0<x_{n}<1 $。
+
+在区间  $ (-\infty,-1) $ 内， $ f'(x)=nx^{n-1}+1<0 $， $ f(-2)>0 $， $ f(-1)<0 $， $ f(x) $ 在区间  $ (-\infty,-1) $ 内有且仅有 1 个零点  $ \overline{x}_{n} $，且  $ -2<\overline{x}_{n}<-1 $。
+
+在区间 $ [-1,0] $内， $ f(0)=-1<0 $， $ f(-1)=-1<0 $。由 $ f'(x)=nx^{n-1}+1=0 $，得驻点 $ x_{0}=-\left(\frac{1}{n}\right)^{\frac{n-1}{n-1}} $
+
+ $$ f(x_{0})=\left[-\left(\frac{1}{n}\right)^{\frac{1}{n-1}}\right]^{n}-\left(\frac{1}{n}\right)^{\frac{1}{n-1}}-1=\left(\frac{1}{n}\right)^{\frac{n}{n-1}}-\left(\frac{1}{n}\right)^{\frac{1}{n-1}}-1=\left(\frac{1}{n}\right)^{\frac{1}{n-1}}\left(\frac{1}{n}-1\right)-1<0, $$ 
+
+ $$ f^{n}(x)=n(n-1)x^{n-2}>0. $$ 
+
+曲线  $ y = f(x) $ 在区间  $ [-1, 0] $ 内是下凸的，唯一极小值也是最小值  $ f(x_0) < 0 $; 最大值  $ \max\{f(-1), f(0)\} = -1 < 0 $，所以在区间  $ [-1, 0] $ 上均有  $ f(x) < 0 $。无零点。（1）证毕。
+
+（2）对于给定的正整数 n，记对应的正零点  $ x_{n}=\varphi(n) $，满足
+
+ $$ \left(\varphi(n)\right)^{n}+\varphi(n)-1=0. $$ 
+
+为了利用导数来判断单调性，将①式改写为连续变量的隐函数方程
+
+ $$ \left(\varphi(u)\right)^{u}+\varphi(u)-1=0\quad(u\geqslant1). $$ 
+
+两边对u求导，得
+
+ $$ \mathrm{e}^{u\ln\varphi(u)}\left(\ln\varphi(u)+\frac{u\varphi^{\prime}(u)}{\varphi(u)}\right)+\varphi^{\prime}(u)=0\Longrightarrow\varphi^{\prime}(u)=-\frac{(\varphi(u))^{u}\ln\varphi(u)}{u\varphi^{u-1}(u)+1}. $$ 
+
+由于当u=n时， $ \varphi(u)=x_n $， $ 0<x_n<1 $，所以 $ \ln\varphi(u)<0 $， $ \varphi'(u)>0 $。从而知 $ \{x_n\} $严格单调递增，又因 $ 0<x_n<1 $，所以 $ \lim_{n\to\infty}x_n $存在。记 $ \lim_{n\to\infty}x_n=a $，则有 $ 0<a\leq1 $。
+
+以下证明 a=1. 用反证法，设  $ 0 < a < 1 $。由于  $ \{x_{n}\} $ 严格单调递增且趋于 a，所以  $ x_{n} < a $，则
+
+ $$ 0=x_{n}^{n}+x_{n}-1<a^{n}+a-1. $$ 
+
+令  $ n \to \infty $，并注意到  $ \lim a^n = 0 $，可得 a > 1，矛盾。所以 a = 1。
+
+以下证明：当 n 为偶数时， $ \{\overline{x}_{n}\} $ 严格单调递增，且  $ \lim_{n\to\infty}\overline{x}_{n} = -1 $.
+
+做变换 y = -x，原函数成为  $ f(-y) = (-y)^n - y - 1 = y^n - y - 1 $，记为  $ \overline{f}(y) = y^n - y - 1 $。因为
+
+ $$ \overline{f}^{\prime}(y)=ny^{n-1}-1>0,\quad y\in(1,+\infty), $$ 
+
+又  $ \overline{f}(1) = -1 < 0 $,  $ \overline{f}(+\infty) > 0 $，所以当  $ y \in (1, +\infty) $ 时， $ \overline{f}(y) $ 存在唯一零点  $ y_n $,  $ 1 < y_n < +\infty $.
+
+记  $ y_{n}=\psi(n)\in(1,+\infty) $，它满足  $ (\psi(n))^{n}-\psi(n)-1=0 $。对应隐函数方程
+
+ $$ (\psi(\nu))^{\nu}-\psi(\nu)-1=0. $$ 
+
+两边对 v 求导，得
+
+ $$ e^{\nu\operatorname{l n}\psi(\nu)}\left(\operatorname{l n}\psi(\nu)+\frac{\nu\psi^{\prime}(\nu)}{\psi(\nu)}\right)-\psi^{\prime}(\nu)=0\Longrightarrow\psi^{\prime}(\nu)=-\frac{(\psi(\nu))^{\nu}\operatorname{l n}\psi(\nu)}{\nu\psi^{\nu-1}(\nu)-1}. $$ 
+
+由于当  $ v = n $ 时， $ \psi(v) = y_n $， $ 1 < y_n < +\infty $， $ \ln \psi(v) > 0 $，所以  $ \psi'(v) < 0 $。从而  $ \{y_n\} $ 严格单调递减， $ \{\overline{x}_n\} = \{-y_n\} $，所以  $ \{\overline{x}_n\} $ 严格单调递增，且  $ \overline{x}_n < -1 $，所以  $ \lim_{n \to \infty} \overline{x}_n \triangleq b $ 存在，且有  $ b \leq -1 $。
+
+以下证明 $ b = -1 $。用反证法，设 $ b < -1 $，由于 $ \{\overline{x}_{n}\} $严格单调递增且趋于 $ b $，所以：
+
+ $$ 1-\overline{x}_{n}=\overline{x}_{n}^{n}>b^{n}>1,\ ( 由于 n 为偶数 )\Rightarrow\frac{1}{b^{n}}- $$ 
+
+令  $ n \to \infty $，并注意到  $ \lim_{n \to \infty} b^n = \infty $，得  $ 0 \geq 1 $，矛盾。所以  $ b = -1 $，即
+
+评注 数列 $ \{x_{n}\} $的单调性也可用初等运算来得到：由 $ x_{n+1}^{n+1}+x_{n+1}-1=0 $与 $ x_{n}^{n}+x_{n}-1=0 $，有
+
+ $$ \begin{aligned}&0=(x_{n+1}^{n+1}+x_{n+1}-1)-(x_{n}^{n}+x_{n}-1)=x_{n+1}^{n+1}-x_{n}^{n}+(x_{n+1}-x_{n})\\&=x_{n+1}^{n+1}-x_{n}^{n+1}+x_{n}^{n+1}-x_{n}^{n}+(x_{n+1}-x_{n})=x_{n+1}^{n+1}-x_{n}^{n+1}+x_{n}^{n+1}-x_{n}^{n}+(x_{n+1}-x_{n})\\&=(x_{n+1}-x_{n})(x_{n+1}^{n}+x_{n+1}^{n-1}x_{n}+\cdots+x_{n}^{n})+x_{n}^{n}(x_{n}-1)+(x_{n+1}-x_{n})\\&=(x_{x+1}-x_{n})(x_{n+1}^{n}+x_{n+1}^{n-1}x_{n}+\cdots+x_{n}^{n}+1)+x_{n}^{n}(x_{n}-1).\\ \end{aligned} $$ 
+
+所以  $ x_{n+1}-x_{n}=\frac{(1-x_{n})x_{n}^{n}}{x_{n+1}^{n}+x_{n+1}^{n-1}x_{n}+\cdots+x_{n}^{n}+1}>0. $
+
+例18 若  $ a $ 是一个正常数，证明方程  $ a e^x = 1 + x + \frac{x^2}{2} $ 恰有一个实根.
+
+分析 利用连续函数的介值定理证明方程有根，由单调性或反证法证明根唯一.
+
+解 方法1 设  $ f(x)=ae^{x}-1-x-\frac{x^{2}}{2} $，显然  $ f(x)\in C(-\infty,+\infty) $.
+
+又  $ \lim_{x\to-\infty}f(x)=-\infty $， $ \lim_{x\to+\infty}f(x)=+\infty $，故  $ f(x)=0 $ 有实根.
+
+下面证明根的唯一性：
+
+ $$ f^{\prime}(x)=a\mathrm{e}^{x}-1-x=a\left(1+x+\frac{\mathrm{e}^{\xi}}{2}x^{2}\right)-1-x\quad(\xi 介于 0 与 x 之间 ). $$ 
+
+当 $ a\geqslant1 $时， $ f'(x)\geqslant\frac{e^{\xi}}{2}x^{2}>0 $， $ f(x) $单调递增， $ f(x)=0 $的根唯一；
+
+当 $0 < a < 1$ 时，若 $f(x)$ 至少有两个根，设 $x_1, x_2$ 是其中最小的两个，且 $x_1 < x_2$，由 $f(0) \ne 0$，知 $x_1 x_2 \ne 0$。又 $\lim_{x \to -\infty} f(x) = -\infty$，则必有 $f'(x_1) \ge 0$，$f'(x_2) \le 0$。但 $f'(x_2) = a e^{x_2} - 1 - x_2 = f(x_2) + \frac{x_2^2}{2} > 0$，矛盾。所以方程不可能有两个以上的根。
+
+方法2 设  $ f(x)=\frac{1+x+\frac{x^{2}}{2}}{e^{x}}-a $ （好处：避开  $ a $ 对  $ e^{x} $ 的影响!），则  $ \lim_{x\to-\infty}f(x)=+\infty $， $ \lim_{x\to+\infty}f(x)=-a<0 $，且
+
+ $$ f^{\prime}(x)=\frac{\mathrm{e}^{x}(1+x)-\left(1+x+\frac{x^{2}}{2}\right)\mathrm{e}^{x}}{\mathrm{e}^{2x}}=\frac{x^{2}}{2\mathrm{e}^{x}}>0. $$ 
+
+所以原方程恰有一个实根.
+
+评注 当方程中因有字母参数而不便确定  $ f'(x) $ 的符号时，最好将方程做恒等变形，使字母参数与变量分离开来，再做辅助函数.
+
+例19 讨论方程 $ a^{x}=bx(a>1) $ 实根的个数.
+
+分析 即求函数  $ f(x)=a^{x}-bx $ 的零点个数. 用连续函数的介值定理, 需对  $ f(x) $ 的最值, 以及  $ \lim_{x\to-\infty}f(x) $ 和  $ \lim_{x\to+\infty}f(x) $ 的符号做讨论.
+
+解 令  $ f(x)=a^{x}-bx $，则  $ f'(x)=a^{x}\ln a-b $.
+
+（1）当b<0时， $ f'(x)>0 $， $ f(x) $单调递增，而
+
+ $$ \lim_{x\to-\infty}f(x)=-\infty,\quad\lim_{x\to+\infty}f(x)=+\infty. $$ 
+
+由介值定理，知方程  $ f(x)=0 $ 在  $ (-\infty,+\infty) $ 内有且仅有一个根.
+
+（2）当b>0时，令 $ f'(x)=0 $，得唯一驻点
+
+ $$ x_{0}=\log_{a}\frac{b}{\ln a}=\frac{\ln b-\ln\ln a}{\ln a}. $$ 
+
+因  $ f''(x_{0})=a^{x_{0}}(\ln a)^{2}>0 $ ，所以
+
+ $$ f(x_{0})=a^{\log_{a}\frac{b}{\ln a}}-b\log_{a}\frac{b}{\ln a}=\frac{b}{\ln a}-b\frac{\ln b-\ln\ln a}{\ln a}=\frac{b}{\ln a}\ln\frac{e\ln a}{b} $$ 
+
+是  $ f(x) $ 在  $ (-\infty,+\infty) $ 上的极小值，也是最小值.
+
+又  $ \lim_{x \to -\infty} f(x) = +\infty $， $ \lim_{x \to +\infty} f(x) = +\infty $。因此当  $ f(x_0) < 0 $，即  $ \frac{b}{\ln a} \ln \frac{e \ln a}{b} < 0 $， $ b > e \ln a $ 时，方程  $ f(x) = 0 $ 有两个实根；当  $ f(x_0) > 0 $，即  $ 0 < b < e \ln a $ 时，方程无实根；当  $ f(x_0) = 0 $，即  $ b = e \ln a $ 时，方程有唯一实根。
+
+（3）当b=0时，原方程为 $ a^{x}=0 $，无实根.
+
+评注 确定连续函数零点（方程的根）的个数的方法如下：
+
+（1）用函数的极值点将其定义区间分成若干个单调区间，这样每个单调区间至多只有一个零点；
+
+（2）计算各单调区间端点的函数值（极值），若为开区间，则可能需要计算端点的极限，并由连续函数的介值定理判断在各单调区间内函数是否有零点.
+
+例  $ 20^{*} $ 求方程  $ x^{2}\sin\frac{1}{x}=2x-501 $ 的近似解，精确到 0.001.
+
+分析　为求得满足题设条件的近似解，只需将 $ \sin\frac{1}{r} $做一阶泰勒展开，并估计其误差.
+
+解 由泰勒公式  $ \sin t = t - \frac{\sin(\theta t)}{2}t^2 (0 < \theta < 1) $，令  $ t = \frac{1}{x} $，得
+
+ $$ \sin\frac{1}{x}=\frac{1}{x}-\frac{\sin\left(\frac{\theta}{x}\right)}{2x^{2}}, $$ 
+
+代入原方程，得
+
+ $$ x-\frac{1}{2}\sin\left(\frac{\theta}{x}\right)=2x-501\ ,\  即 \ x=501-\frac{1}{2}\sin\left(\frac{\theta}{x}\right). $$ 
+
+由此知  $ x \geq 500 $， $ 0 < \frac{\theta}{x} < \frac{1}{500} $，则有
+
+ $$ \left|x-501\right|=\frac{1}{2}\left|\sin\left(\frac{\theta}{x}\right)\right|\leqslant\frac{1}{2}\frac{\theta}{x}<\frac{1}{1000}=0.001. $$ 
+
+所以x=501是满足题设条件的解.
+
+例21 设函数  $ f(x) $ 满足方程  $ \frac{1}{x}f''(x)+3x(f'(x))^2=\left(1+\frac{1}{x}\right)\ln^2(1+x)-x $，若  $ x_0>0 $ 是  $ f(x) $ 的一个驻点，能否确定  $ x_0 $ 是  $ f(x) $ 的极值点？若是，说明是极大值点还是极小值点.
+
+分析 由于  $ f'(x_0)=0 $，若  $ f''(x_0)\neq0 $，则  $ x_0 $ 就是  $ f(x) $ 的极值点，是极大值点还是极小值点取决于  $ f''(x_0) $ 的符号.
+
+解 将  $ f'(x_{0})=0 $ 代入所给方程，有
+
+ $$ f^{\prime \prime}(x_{0})=(1+x_{0})\ln^{2}(1+x_{0})-x_{0}^{2}. $$ 
+
+下证  $ f''(x_{0})<0 $ :
+
+记  $ \varphi(x)=(1+x)\ln^{2}(1+x)-x^{2} $，因为
+
+ $$ \varphi^{\prime}(x)=\ln^{2}(1+x)+2\ln(1+x)-2x~,\quad\varphi^{\prime \prime}(x)=\frac{2}{1+x}(\ln(1+x)-x)~. $$ 
+
+当x>0时，由 $ \ln(1+x)<x $，知 $ \varphi''(x)<0 $，所以 $ \varphi'(x) $单调递减。又 $ \varphi'(0)=0 $，得 $ \varphi'(x)<0 $，故 $ \varphi(x) $在x>0处单调递减，又 $ \varphi(0)=0 $，所以 $ \varphi(x)<0 $。
+
+根据上面的判断，知  $ f(x) $ 在  $ x_{0} $ 点处取得极大值.
+
+例22 求函数  $ f(x)=|x|\mathrm{e}^{-|x-1|} $ 的极值与最值.
+
+分析（1）去掉绝对值，将函数用分段函数表示. 求出函数的驻点与不可导点，再确定其极值.
+
+(2) 函数的定义域为  $ (-∞,+∞) $，是否存在最值与  $ \lim f(x) $ 有关.
+
+解
+
+ $$ f(x)=|x|\mathbf{e}^{-|x-1|}=\left\{\begin{aligned}{}&{{}-x\mathbf{e}^{x-1},~x\leqslant0,}\\ {}&{{}x\mathbf{e}^{x-1},~~0<x\leqslant1,}\\ {}&{{}x\mathbf{e}^{1-x},~~x>1.}\\ \end{aligned}\right. $$ 
+
+显然  $ f(x) $ 在 x=0,1 处不可导. 且有
+
+ $$ f^{\prime}(x)=\begin{cases}{\mathsf{e}^{x-1}(-1-x),x<0,}\\ {\mathsf{e}^{x-1}(1+x),0<x<1,}\\ {\mathsf{e}^{1-x}(1-x),x>1.}\\ \end{cases} $$ 
+
+令  $ f'(x)=0 $，得唯一驻点 x=-1。情况讨论如下：
+
+
+
+<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>x</td><td style='text-align: center; word-wrap: break-word;'>(-∞, -1)</td><td style='text-align: center; word-wrap: break-word;'>-1</td><td style='text-align: center; word-wrap: break-word;'>(-1, 0)</td><td style='text-align: center; word-wrap: break-word;'>0</td><td style='text-align: center; word-wrap: break-word;'>(0, 1)</td><td style='text-align: center; word-wrap: break-word;'>1</td><td style='text-align: center; word-wrap: break-word;'>(1, +∞)</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>f&#x27;(x)</td><td style='text-align: center; word-wrap: break-word;'>+</td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'>-</td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'>+</td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'>-</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>f(x)</td><td style='text-align: center; word-wrap: break-word;'>↗</td><td style='text-align: center; word-wrap: break-word;'>极大</td><td style='text-align: center; word-wrap: break-word;'>↘</td><td style='text-align: center; word-wrap: break-word;'>极小</td><td style='text-align: center; word-wrap: break-word;'>↗</td><td style='text-align: center; word-wrap: break-word;'>极大</td><td style='text-align: center; word-wrap: break-word;'>↘</td></tr></table>
+
+由此可知  $ f(-1) = e^{-2} $ 是函数的极大值； $ f(0) = 0 $ 是函数的极小值； $ f(1) = 1 $ 是函数的极大值。显然  $ f(x) $ 非负，且  $ \lim_{x \to 0} f(x) = 0 $，所以函数的最小值为  $ f(0) = 0 $，最大值为  $ f(1) = 1 $。
+
+评注（1）求函数的极值，要注意对不可导点的讨论；
+
+（2）当可能的极值点较多时，采用列表的方式来讨论较为简洁.
+
+例 23 设  $ g(x) $ 为连续函数，当  $ x \neq 0 $ 时， $ \frac{g(x)}{x} > 0 $，且  $ \lim_{x \to 0} \frac{g(x)}{x} = 1 $。又设  $ f(x) $ 在包含 x = 0 在内的某区间  $ (a, b) $ 内存在二阶导数且满足式子：
+
+ $$ x^{2}f^{n}(x)-\left(f^{\prime}(x)\right)^{2}=\frac{1}{4}x g(x). $$ 
+
+证明：（1）x=0 是  $ f(x) $ 在区间  $ (a,b) $ 内的唯一驻点，且是极小值点；
+
+(2) 曲线  $ y = f(x) $ 在区间  $ (a, b) $ 内是凹（下凸）的.
+
+分析（1）显然  $ f'(0)=0 $，要确定 x=0 是  $ f(x) $ 的极小值点，只需确定  $ f''(0)>0 $ 。若驻点不唯一，则  $ f''(x) $ 在两驻点之间会有零点，这会出现矛盾。
+
+（2）容易看出，当 $ x\neq0 $时，总有 $ f''(x)>0 $，所以曲线 $ y=f(x) $是凹的.
+
+证明 （1）将 x=0 代入所给等式，得  $ f'(0)=0 $ 。所以 x=0 是  $ f(x) $ 的一个驻点。由  $ f''(0) $ 的定义：
+
+ $$ \begin{aligned}f^{\prime \prime}(0)=&\lim_{x\to0}\frac{f^{\prime}(x)-f^{\prime}(0)}{x-0}=\lim_{x\to0}f^{\prime \prime}(x)\quad( 洛必达法则 )\\=&\lim_{x\to0}\left[\left(\frac{f^{\prime}(x)}{x}\right)^{2}+\frac{1}{4}\cdot\frac{g(x)}{x}\right]=\lim_{x\to0}\left(\frac{f^{\prime}(x)-f^{\prime}(0)}{x-0}\right)^{2}+\frac{1}{4}\lim_{x\to0}\frac{g(x)}{x}\\=&\left(f^{\prime \prime}(0)\right)^{2}+\frac{1}{4}\text{,}\end{aligned} $$ 
+
+得
+
+ $$ \left(f^{n}(0)\right)^{2}-f^{n}(0)+\frac{1}{4}=0\Longrightarrow f^{n}(0)=\frac{1}{2}>0. $$ 
+
+所以x=0是 $ f(x) $的极小值点.
+
+(2) 当  $ x \neq 0 $ 时， $ f''(x) = \left(\frac{f'(x)}{x}\right)^2 + \frac{1}{4} \cdot \frac{g(x)}{x} > 0 $，且  $ f''(0) = \frac{1}{2} > 0 $，所以  $ f''(x) > 0 $（当  $ x \in (a, b) $）。显然  $ f(x) $ 连续，从而曲线  $ y = f(x) $ 在区间  $ (a, b) $ 内是凹的。
+
+若函数  $ f(x) $ 在  $ (a,b) $ 内还有驻点  $ x_{0} \neq 0 $，即  $ f'(x_{0}) = 0 $，根据罗尔定理，在 0 与  $ x_{0} $ 之间必存在  $ f''(x) $ 的一个零点，这显然不可能。所以 x = 0 是  $ f(x) $ 在区间  $ (a,b) $ 内的唯一驻点。
+
+例24 设  $ y = f(x) $ 在点  $ x_0 $ 处  $ n (n \geq 3) $ 阶可导，且  $ f^{(k)}(x_0) = 0 (k = 1, 2, \cdots, n-1) $。证明若  $ f^{(n)}(x_0) \neq 0 $，当  $ n $ 为奇数时， $ x_0 $ 不是函数  $ f(x) $ 的极值点， $ (x_0, f(x_0)) $ 是曲线  $ y = f(x) $ 的拐点；当  $ n $ 为偶数时， $ x_0 $ 是
+
+函数  $ f(x) $ 的极值点， $ (x_{0},f(x_{0})) $ 不是曲线  $ y=f(x) $ 的拐点.
+
+分析  $ x_{0} $ 是否是  $ f(x) $ 的极值点，在于  $ f'(x) $ 在点  $ x_{0} $ 的左、右两侧附近是否异号； $ (x_{0},f(x_{0})) $ 是否为曲线的拐点，在于  $ f''(x) $ 在点  $ x_{0} $ 的左、右两侧附近是否异号。由于  $ f^{(k)}(x_{0})=0(k=1,2,\cdots,n-1) $，所以只需将  $ f'(x) $ 与  $ f''(x) $ 在点  $ x_{0} $ 处分别做 n-1 与 n-2 阶泰勒展开。
+
+解 将  $ f'(x) $ 与  $ f''(x) $ 在点  $ x_{0} $ 处分别做 n-1 与 n-2 阶泰勒展开，有
+
+ $$ f^{\prime}(x)=\frac{f^{(n)}(x_{0})}{(n-1)!}(x-x_{0})^{n-1}+o((x-x_{0})^{n-1})~, $$ 
+
+ $$ f^{n}(x)=\frac{f^{(n)}(x_{0})}{(n-2)!}(x-x_{0})^{n-2}+o((x-x_{0})^{n-2})~. $$ 
+
+由于  $ f^{(n)}(x_{0}) \neq 0 $，不妨设  $ f^{(n)}(x_{0}) > 0 $。
+
+（1）当 n 为奇数时，由①式知  $ f'(x) $ 在点  $ x_{0} $ 的左、右两侧附近是同号的（为正），由②式知  $ f''(x) $ 在点  $ x_{0} $ 的左、右两侧附近是异号的，所以  $ x_{0} $ 不是函数的极值点， $ (x_{0}, f(x_{0})) $ 是曲线  $ y = f(x) $ 的拐点.
+
+（2）当 n 为偶数时，由①式知  $ f'(x) $ 在点  $ x_{0} $ 的左、右两侧附近是异号的，由②式知  $ f''(x) $ 在点  $ x_{0} $ 的左、右两侧附近是同号的（为正），所以  $ x_{0} $ 是函数的极值点， $ (x_{0}, f(x_{0})) $ 不是曲线  $ y = f(x) $ 的拐点.
+
+评注 该题结论可作为定理来用.
+
+例25 求所有实数  $ \alpha $ 的集合，使得对于任意正数 x, y，有不等式  $ x \leqslant \frac{\alpha-1}{\alpha} y + \frac{1}{\alpha} \frac{x^{\alpha}}{y^{\alpha-1}} $.
+
+分析 记  $ f(y)=\frac{\alpha-1}{\alpha}y+\frac{1}{\alpha}\cdot\frac{x}{y^{\alpha-1}} $，只需讨论  $ \alpha $ 的范围，使  $ f(y) $ 在  $ (0,+\infty) $ 内的最小值大于或等于 x 即可.
+
+解 记  $ f(y)=\frac{\alpha-1}{\alpha}y+\frac{1}{\alpha}\cdot\frac{x^{\alpha}}{y^{\alpha-1}} $ (y>0)，则  $ f'(y)=\frac{\alpha-1}{\alpha}\left[1-\left(\frac{x}{y}\right)^{\alpha}\right] $，当  $ \alpha\neq1 $ 时，令  $ f'(y)=0 $，得唯一的驻点 y=x。
+
+（1）当 $ \alpha<1 $时，若y<x，则 $ f^{\prime}(y)>0 $；若y>x，则 $ f^{\prime}(y)<0 $；所以y=x是 $ f(y) $的极大值点，也是最大值点。其最大值为 $ f(x)=x $。此时不等式不可能成立。
+
+（2）当 $ \alpha>1 $时，若y<x，则 $ f^{\prime}(y)<0 $；若y>x，则 $ f^{\prime}(y)>0 $；所以y=x是 $ f(y) $的极小值点，也是最小值点。其最小值为 $ f(x)=x $。此时有 $ f(y)\geq x $。
+
+（3）当 $ \alpha=1 $时，有 $ f(y)=x $。
+
+故使所给不等式成立的  $ \alpha $ 的范围是  $ [1, +\infty) $
+
+例26 证明：（1）若x>0，则 $ \frac{4}{\pi^2}<\frac{1}{(\arctan x)^2}-\frac{1}{x^2}<\frac{2}{3} $；（2）若 $ x\neq0 $，则 $ \left|\frac{1}{\arctan x}-\frac{1}{x}\right|<\frac{2}{\pi} $。分析（1）不等式两边均为数，只需证明它们分别是中间函数的最大与最小值（或上下确界）；
+
+（2）绝对值内的函数是奇函数，只需证明当x>0时，有 $ \frac{1}{\arctan x}-\frac{1}{x}<\frac{2}{\pi} $.
+
+证明 （1） 令  $ f(x)=\frac{1}{\left(\arctan x\right)^{2}}-\frac{1}{x^{2}}\quad(x>0) $，则
+
+ $$ f^{\prime}(x)=\frac{-2}{(1+x^{2})(\arctan x)^{3}}+\frac{2}{x^{3}}=\frac{2[(1+x^{2})(\arctan x)^{3}-x^{3}]}{x^{3}(1+x^{2})(\arctan x)^{3}}. $$ 
+
+下证 $ (1+x^{2})(\arctan x)^{3}-x^{3}<0 $，即 $ \arctan x<\frac{x}{\sqrt[3]{1+x^{2}}} $.
+
+令  $ g(x)=\arctan x-\frac{x}{\sqrt[3]{1+x^{2}}}(x>0) $，因为
+
+ $$ g^{\prime}(x)=\frac{1}{1+x^{2}}-\frac{1}{\sqrt[3]{1+x^{2}}}-\frac{2x^{2}}{3\sqrt[3]{\left(1+x^{2}\right)^{4}}}<0~, $$ 
+
+所以当 $x>0$ 时，$g(x)$ 单调递减。又 $g(0)=0$，故 $g(x)<0$，即有 $\arctan x<\frac{\sim}{\sqrt[3]{1+x^2}}$。由①式，知当 $x>0$ 时，$f'(x)<0$，从而 $f(x)$ 单调递减。所以 $\lim_{x\to+\infty}f(x)<f(x)<\lim_{x\to0^+}f(x)$。
+
+由于
+
+ $$ \begin{aligned}\lim_{x\to0^{+}}f(x)&=\lim_{x\to0^{+}}\frac{x^{2}-(\arctan x)^{2}}{x^{2}(\arctan x)^{2}}=\lim_{x\to0^{+}}\frac{x+\arctan x}{x}\cdot\frac{x-\arctan x}{x^{3}}\\&=2\lim_{x\to0^{+}}\frac{x-\arctan x}{x^{3}}=2\lim_{x\to0^{+}}\frac{1-\frac{1}{1+x^{2}}}{3x^{2}}=\frac{2}{3}；\end{aligned} $$ 
+
+ $$ \lim_{x\to+\infty}f(x)=\frac{4}{\pi^{2}} $$ 
+
+所以
+
+ $$ \frac{4}{\pi^{2}}<\frac{1}{\left(\arctan x\right)^{2}}-\frac{1}{x^{2}}<\frac{2}{3}\quad(x>0). $$ 
+
+(2) 令  $ h(x)=\frac{1}{\arctan x}-\frac{1}{x}(x \neq 0) $，则
+
+ $$ h^{\prime}(x)=\frac{1}{(1+x^{2})(\arctan x)^{2}}-\frac{1}{x^{2}}=\frac{(1+x^{2})(\arctan x)^{2}-x^{2}}{x^{2}(1+x^{2})(\arctan x)^{2}}. $$ 
+
+类似于（1），易证当x>0时，有 $ \arctan x > \frac{x}{\sqrt{1+x^2}} $，所以当x>0时， $ h'(x)>0 $， $ h(x) $单调递增。
+
+由于 $ \lim_{x \to +\infty} h(x) = \frac{2}{\pi} $，所以当x>0时， $ h(x) < \frac{2}{\pi} $，即
+
+ $$ \frac{1}{\arctan x}-\frac{1}{x}<\frac{2}{\pi}. $$ 
+
+由于  $ h(x) $ 是奇函数，所以当  $ x \neq 0 $ 时，有
+
+ $$ \left|\frac{1}{\arctan x}-\frac{1}{x}\right|<\frac{2}{\pi}. $$ 
+
+评注 若所证不等式两边均为数值，则只需证明它们分别是中间函数的最大值与最小值（或上下确界）。
+
+例  $ 27^{*} $ 求最大的数  $ \alpha $ 和最小的数  $ \beta $，使得对所有的自然数 n，有  $ \left(1+\frac{1}{n}\right)^{n+\alpha} \leqslant e \leqslant \left(1+\frac{1}{n}\right)^{n+\beta} $.
+
+分析 只需求出满足条件 $ \left(1+\frac{1}{n}\right)^{n+f(n)}=\mathrm{e} $ 的函数 $ f(n) $的最小值与最大值.
+
+解 设  $ \left(1+\frac{1}{n}\right)^{n+f(n)}=\mathrm{e} $，得  $ f(n)=\frac{1}{\ln\left(1+\frac{1}{n}\right)}-n $，问题转化为求最大的数  $ \alpha $ 和最小的数  $ \beta $，使得  $ \alpha\leq f(n)\leq\beta $，即  $ \alpha $ 与  $ \beta $ 分别为函数  $ f(n) $ 的最小值与最大值（或下确界与上确界）.
+
+记  $ g(x) = f\left(\frac{1}{x}\right) = \frac{1}{\ln(1+x)} - \frac{1}{x} $， $ x \in (0,1] $，则
+
+ $$ g^{\prime}(x)=\frac{(1+x)\ln^{2}(1+x)-x^{2}}{x^{2}(1+x)\ln^{2}(1+x)}. $$ 
+
+在例 21 中已证明， $ g'(x) $ 的分子  $ \varphi(x)=(1+x)\ln^2(1+x)-x^2<0 $。所以当  $ x\in(0,1) $ 时， $ g'(x)<0 $， $ g(x) $ 在  $ (0,1) $ 内单调递减，从而  $ f(n) $ 单调递增。有
+
+ $$ f(1)\leq f(n)<\lim_{n\to\infty}f(n). $$ 
+
+由于
+
+ $$ \begin{aligned}\lim_{n\to\infty}f(n)&=\lim_{x\to0^{+}}\left(\frac{1}{\ln(1+x)}-\frac{1}{x}\right)=\lim_{x\to0^{+}}\frac{x-\ln(1+x)}{x\ln(1+x)}\\&=\lim_{x\to0^{+}}\frac{x-\ln(1+x)}{x^{2}}=\lim_{x\to0^{+}}\frac{x}{2x(1+x)}=\frac{1}{2},\end{aligned} $$ 
+
+ $$ f(1)=\frac{1}{\ln2}-1. $$ 
+
+所以
+
+ $$ \frac{1}{\ln2}-1\leq f(n)<\frac{1}{2}．即 \alpha=\frac{1}{\ln2}-1,\beta=\frac{1}{2}． $$ 
+
+评注 题解将不等式问题转换成了求函数的最大与最小值问题，这种转换使我们很快就找到了解决问题的方法。它启示我们：对陌生问题要尽可能地改写或变形它的描述，使之成为我们熟悉的问题。
+
+例28 已知  $ y^{2}=6x $，试从其所有与法线重合的弦中找出一条最短弦.
+
+分析 为便于计算，将曲线方程化为参数形式. 当弦与法线重合时，可得到弦的两个端点处参数之间的关系，从而得到弦长的一元函数表达式，再求其最小值.
+
+解 抛物线的参数方程为  $ \left\{\begin{aligned}x=6t^{2}\\ y=6t\end{aligned}\right. $，其上点  $ A(6t^{2},6t) $ 处的法线斜率为  $ -\frac{dx}{dy}=-2t $
+
+设  $ B(6s^2, 6s) $ 是抛物线上的另一点，则线段  $ AB $ 的斜率为  $ \frac{6(s-t)}{6(s^2-t^2)} = \frac{1}{s+t} $。若此弦与法线重合，则有  $ \frac{1}{s+t} = -2t $，即  $ s = -t - \frac{1}{2t} $。
+
+设  $ f(t) = AB^2 = (6t - 6s)^2 + (6t^2 - 6s^2)^2 = \frac{9}{4} \frac{(4t^2 + 1)^3}{t^4} $，由  $ f'(t) = \frac{9(4t^2 + 1)^3(2t^2 - 1)}{t^5} = 0 $，得  $ t^2 = \frac{1}{2} $。在  $ t^2 = \frac{1}{2} $ 的两侧， $ f'(t) $ 的值由负变正， $ f(t) $ 取得极小值  $ 9^2 \cdot 3 $。又因为当  $ t \to 0 $ 或  $ \infty $ 时， $ f(t) \to \infty $，所以该极小值也是  $ f(t) $ 的最小值，即  $ AB_{\min} = 9\sqrt{3} $。
+
+评注 该题解利用曲线的参数方程，巧妙地将二元函数（两点间的距离）转化成了一元函数来处理，使问题得到了简化。如果用直角坐标计算，计算量会更大。
+
+例  $ 29^{*} $ 根据经验，一架水平飞行的飞机其降落曲线为一条三次抛物线，如图2.1所示，已知飞机的飞行高度为h，飞机的着陆点为原点O，且在整个降落过程中，飞机的水平速度始终保持着常数u.出于安全考虑，飞机垂直加速度的最大绝大值不得超过 $ \frac{g}{10} $，此处g为重力加速度.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//22ae102d-9175-4c1a-9181-8265b388d4a6/markdown_3/imgs/img_in_image_box_915_1668_1329_1966.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A33Z%2F-1%2F%2F92c29910efe6f94371497902eccc8efcc13b337ff594e7a5ca672b813b63e62a" alt="Image" width="28%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图2.1</div> </div>
+
+
+（1）若飞机从  $ x = x_{0} $ 处开始下降，试确定其降落曲线；
+
+（2）求开始下降点 $ x_{0} $所能允许的最小值.
+
+分析 由于降落前飞机是水平飞行的，所以在起降点与着陆点飞机的垂直速度均为零，再由起降点与着陆点飞机的高度就可确定出飞机的降落曲线；由降落曲线可求得飞机降落中垂直加速度的最大绝对值，由该值不超过 $ \frac{g}{10} $就可定出 $ x_{0} $的最小值.
+
+解 （1）设飞机的降落曲线为  $ y=ax^{3}+bx^{2}+cx+d $，由题设条件知： $ y(0)=0, y(x_{0})=h $。由于飞机的飞行曲线是光滑的，即  $ y(x) $ 连续可导，所以  $ y(x) $ 还应满足  $ y'(0)=0, y'(x_{0})=0 $。将上述4个条件代入 y 的表达式，有
+
+ $$ y(0)=d=0,\ y^{\prime}(0)=c=0,\ y(x_{0})=ax_{0}^{3}+bx_{0}^{2}+cx_{0}+d=h,\ y^{\prime}(x_{0})=3ax_{0}^{2}+2bx_{0}+c=0. $$ 
+
+解此方程组，得到 $ a=-\frac{2h}{x_{0}^{3}} $， $ b=\frac{3h}{x_{0}^{2}} $，c=d=0。即飞机的飞行曲线为
+
+ $$ y=-\frac{2h}{x_{0}^{3}}x^{3}+\frac{3h}{x_{0}^{2}}x^{2}=-\frac{h}{x_{0}^{2}}\left(\frac{2}{x_{0}}x^{3}-3x^{2}\right). $$ 
+
+（2）飞行的垂直速度是 y 关于时间 t 的导数，故
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}t}=\frac{\mathrm{d}y}{\mathrm{d}x}\cdot\frac{\mathrm{d}x}{\mathrm{d}t}=-\frac{h}{x_{0}^{2}}\left(\frac{6}{x_{0}}x^{2}-6x\right)\frac{\mathrm{d}x}{\mathrm{d}t} $$ 
+
+其中 $ \frac{dx}{dt} $是飞行的水平速度. 据题设 $ \frac{dx}{dt}=u $，因此
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}t}=-\frac{6hu}{x_{0}^{2}}\left(\frac{x^{2}}{x_{0}}-x\right). $$ 
+
+垂直加速度为
+
+ $$ \frac{\mathrm{d}^{2}y}{\mathrm{d}t^{2}}=-\frac{6hu}{x_{0}^{2}}\left(\frac{2x}{x_{0}}-1\right)\frac{\mathrm{d}x}{\mathrm{d}t}=-\frac{6hu^{2}}{x_{0}^{2}}\left(\frac{2x}{x_{0}}-1\right). $$ 
+
+将垂直加速度记为 $ \alpha(x) $，则
+
+ $$ \left|\alpha(x)\right|=\frac{6hu^{2}}{x_{0}^{2}}\left|\frac{2x}{x_{0}}-1\right|,x\in\left[0,x_{0}\right]. $$ 
+
+因此，垂直加速度的最大绝对值为  $ \max_{x\in[0,x_0]}\left|\alpha(x)\right|=\frac{6hu^2}{x_0^2} $.
+
+根据要求，有 $ \frac{6hu^2}{x_0^2} \leq \frac{g}{10} $，此时 $ x_0 $应满足 $ x_0 \geq u\sqrt{\frac{60h}{g}} $，所以 $ x_0 $所能允许的最小值为 $ u\sqrt{\frac{60h}{g}} $，飞机降落所需的水平距离不得小于 $ u\sqrt{\frac{60h}{g}} $。
+
+例  $ 30^* $ 设函数  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二阶可导，且对  $ x\in(a,b) $， $ \left|f''(x)\right|\geq1 $。证明在曲线  $ y=f(x) $ ( $ a\leq x\leq b $) 上，存在 3 个点  $ A $、 $ B $、 $ C $，使  $ \triangle ABC $ 的面积  $ S_{\triangle ABC}\geq\frac{(b-a)^3}{4\sqrt{\epsilon}} $。
+
+分析 根据所证不等式右边的形式，需将点 $ (a,f(a)) $， $ (b,f(b)) $选为三角形的两个顶点，另一点可在曲线上任选一点待定.三角形的面积用向量的叉积来计算较为简便.由于题设条件给出了函数 $ f(x) $二阶导数的估计，因此证明不等式可考虑利用泰勒公式.
+
+证明 方法1 以  $ A(a,f(a)), B(b,f(b)), C(x_{0},f(x_{0})) $ 为顶点的三角形面积为
+
+ $$ \begin{aligned}{S(x_{0})=}&{{}\frac{1}{2}\|\overrightarrow{C A}\times\overrightarrow{C B}\|=\frac{1}{2}\left\|\begin{matrix}{i}&{j}&{k}\\ {a-x_{0}}&{f(a)-f(x_{0})}&{0}\\ {b-x_{0}}&{f(b)-f(x_{0})}&{0}\\ \end{matrix}\right\|}\\ {=}&{{}\frac{1}{2}\big|[f(b)-f(x_{0})](a-x_{0})-[f(a)-f(x_{0})](b-x_{0})\big|}\\ \end{aligned} $$ 
+
+由泰勒公式
+
+ $$ \begin{align*}f(a)-f(x_{0})&=\dot{f}^{\prime}(x_{0})(a-x_{0})+\frac{1}{2}f^{\prime \prime}(\xi_{1})(a-x_{0})^{2},\\f(b)-f(x_{0})&=f^{\prime}(x_{0})(b-x_{0})+\frac{1}{2}f^{\prime \prime}(\xi_{2})(b-x_{0})^{2},\\&\left(a<\xi_{1}<x_{0}<\xi_{2}<b\right).\end{align*} $$ 
+
+取  $ x_{0}=\frac{a+b}{2} $，并将上面两式代入  $ S(x_{0}) $，得
+
+ $$ S\left(\frac{a+b}{2}\right)=\frac{1}{4}\left(\frac{b-a}{2}\right)^{3}\left|f^{n}(\xi_{1})+f^{n}(\xi_{2})\right| $$ 
+
+由题设条件  $ \forall x \in (a,b), |f''(x)| \geq 1 $，由导数的达布定理（2.3 节例 1），知要么  $ f''(x) \geq 1 $，要么  $ f''(x) \leq -1 $。根据上面①式可得
+
+ $$ S\left(\frac{a+b}{2}\right)\geq\frac{(b-a)^{3}}{16}. $$ 
+
+方法2 以曲线  $ y = f(x) $ 上 3 点  $ A(a, f(a)) $,  $ B(b, f(b)) $,  $ C(x, f(x)) $ ( $ a \leq x \leq b $) 为顶点的三角形的面积为
+
+ $$ \begin{aligned}F(x)&=\frac{1}{2}\left|\begin{matrix}{{{1}}}&{{{1}}}&{{{1}}} \\{{{a}}}&{{{b}}}&{{{x}}} \\{{{f(a)}}}&{{{f(b)}}}&{{{f(x)}}}\end{matrix}\right| 的绝对值 .\end{aligned} $$ 
+
+由于
+
+ $$ F^{\prime \prime}(x)=\frac{1}{2}\left|\begin{matrix}{1}&{1}&{0}\\ {a}&{b}&{0}\\ {f(a)}&{f(b)}&{f^{\prime \prime}(x)}\\ \end{matrix}\right|=\frac{1}{2}(b-a)f^{\prime \prime}(x)\;, $$ 
+
+且已知 $ \left|f''(x)\right|\geq1 $，故 $ \left|F''(x)\right|\geq\frac{b-a}{2} $
+
+又 $ F(a)=F(b)=0 $，由2.2节例22的结论，知存在 $ x_{0}\in(a,b) $，使
+
+ $$ \left|F(x_{0})\right|=\max_{a\leqslant x\leqslant b}\left|F(x)\right|\geqslant\frac{b-a}{2}\cdot\frac{(b-a)^{2}}{8}=\frac{(b-a)^{3}}{16}. $$ 
+
+例  $ 31^{\circ} $ 设单位圆  $ \Gamma $ 的外切 n 边形  $ A_{1}A_{2}\cdots A_{n} $ 各边与  $ \Gamma $ 分别切于  $ B_{1}B_{2}\cdots B_{n} $ 。令  $ P_{A},P_{B} $ 分别表示多边形  $ A_{1}A_{2}\cdots A_{n} $ 与  $ B_{1}B_{2}\cdots B_{n} $ 的周长，证明  $ P_{A}^{\frac{1}{3}}P_{B}^{\frac{2}{3}}>2\pi $ 。
+
+分析  $ 2\pi $ 是圆周角. 要证明所给不等式，需先找到  $ P_{A} $、 $ P_{B} $ 与圆心角之间的关系，再证对应不等式.
+
+证明（如图2.2所示）设 $ \Gamma $的圆心为 $ O,\alpha_{i}=\frac{1}{2}\angle B_{i}OB_{i+1},B_{n+1}=B_{1} $则
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//6121fa51-c6ae-4e60-bac2-063b75627863/markdown_1/imgs/img_in_image_box_1031_1647_1332_1946.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A31Z%2F-1%2F%2F5c293d25f6ace3a17f5d60f4369dddadfa1a2bd829fd7b1cbfdb6964a7ab8b04" alt="Image" width="20%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图2.2</div> </div>
+
+
+ $$ P_{A}=2\sum_{i=1}^{n}\tan\alpha_{i}\;,\quad P_{B}=2\sum_{i=1}^{n}\sin\alpha_{i}\;. $$ 
+
+下面先证明：当 $ 0<x<\frac{\pi}{2} $时，有
+
+ $$ \tan^{\frac{1}{3}}x\cdot\sin^{\frac{2}{3}}x>x. $$ 
+
+令  $ f(x)=\frac{\sin x}{\cos^{\frac{1}{3}}x}-x $，则  $ f(0)=0 $，
+
+ $$ f^{\prime}(x)=\frac{\cos^{\frac{4}{3}}x+\frac{1}{3}\cos^{\frac{2}{3}}x\sin^{2}x}{\cos^{\frac{2}{3}}x}-1=\frac{2\cos^{2}x+1}{3\cos^{\frac{4}{3}}x}-1>\frac{3\sqrt[3]{\cos^{2}x\cdot\cos^{2}x\cdot1}}{3\cos^{\frac{4}{3}}x}-1=0. $$ 
+
+故  $ f(x) $ 严格单调递增，因而  $ f(x) > f(0) = 0 $，即①式成立.
+
+利用赫尔德（Hölder）不等式及上面的 $ ^{①} $式，可得
+
+ $$ \begin{aligned}{P_{A}^{\frac{1}{3}}P_{B}^{\frac{2}{3}}}&{{}=2\Biggl(\sum_{i=1}^{n}\operatorname{t a n}\alpha_{i}\Biggr)^{\frac{1}{3}}\Biggl(\sum_{i=1}^{n}\operatorname{s i n}\alpha_{i}\Biggr)^{\frac{2}{3}}=2\Biggl(\sum_{i=1}^{n}(\operatorname{t a n}^{\frac{1}{3}}\alpha_{i})^{3}\Biggr)^{\frac{1}{3}}\Biggl(\sum_{i=1}^{n}(\operatorname{s i n}^{\frac{2}{3}}\alpha_{i})^{\frac{3}{2}}\Biggr)^{\frac{2}{3}}}\\ {}&{{}\geqslant2\sum_{i=1}^{n}(\operatorname{t a n}^{\frac{1}{3}}\alpha_{i}\cdot\operatorname{s i n}^{\frac{2}{3}}\alpha_{i})>2\sum_{i=1}^{n}\alpha_{i}=2\pi\:.}\\ \end{aligned} $$ 
+
+评注（1）赫尔德不等式：设 $ a_{i},b_{i}(i=1,2,\cdots,n) $为非负实数，p,q>1， $ \frac{1}{p}+\frac{1}{q}=1 $．则有
+
+ $$ \Biggl(\sum_{i=1}^{n}a_{i}^{p}\Biggr)^{\frac{1}{p}}\Biggl(\sum_{i=1}^{n}b_{i}^{q}\Biggr)^{\frac{1}{q}}\geqslant\sum_{i=1}^{n}a_{i}b_{i}, $$ 
+
+当且仅当  $ a_{i}^{p}=\lambda b_{i}^{q}(i=1,2,\cdots,n) $ 时取等号.
+
+当 p=q=2 时，赫尔德不等式即为常见的柯西不等式.
+
+(2) 不等式①即是例15中的不等式.
+
+例  $ 32^{*} $ 在区间  $ \left(0,\frac{\pi}{2}\right) $ 内，试比较函数  $ \tan(\sin x) $ 与  $ \sin(\tan x) $ 的大小，并证明结论.
+
+分析 令  $ f(x)=\tan(\sin x)-\sin(\tan x) $，显然  $ f(0)=0 $，只需判断  $ f(x) $ 在区间  $ \left(0,\frac{\pi}{2}\right) $ 内的单调性.
+
+证明 设  $ f(x)=\tan(\sin x)-\sin(\tan x) $，则
+
+ $$ f^{\prime}(x)=\sec^{2}(\sin x)\cos x-\cos(\tan x)\sec^{2}x=\frac{\cos^{3}x-\cos(\tan x)\cos^{2}(\sin x)}{\cos^{2}(\sin x)\cos^{2}x}. $$ 
+
+当  $ 0 < x < \arctan \frac{\pi}{2} $ 时， $ 0 < \tan x < \frac{\pi}{2} $， $ 0 < \sin x < \frac{\pi}{2} $。
+
+利用均值不等式，再由余弦函数在区间 $ \left(0,\frac{\pi}{2}\right) $内是上凸的，有
+
+ $$ \sqrt[3]{\cos(\tan x)\cos^{2}(\sin x)}\leq\frac{1}{3}[\cos(\tan x)+2\cos(\sin x)]\leq\cos\frac{\tan x+2\sin x}{3}. $$ 
+
+设  $ \varphi(x)=\tan x+2\sin x-3x $ ，则
+
+ $$ \begin{aligned}{\varphi^{\prime}(x)}&{{}=\sec^{2}x+2\operatorname{c o s}x-3=\sec^{2}x+\operatorname{c o s}x+\operatorname{c o s}x-3}\\ {}&{{}\geqslant3\sqrt[3]{\sec^{2}x\cdot\operatorname{c o s}x\cdot\operatorname{c o s}x}-3=0.}\\ \end{aligned} $$ 
+
+所以当x>0时， $ \varphi(x)>\varphi(0) $，于是 $ \tan x+2\sin x>3x $，从而
+
+ $$ \cos\frac{\tan x+2\sin x}{3}<\cos x．由\textcircled{2}式知 \cos(\tan x)\cos^{2}(\sin x)<\cos^{3}x． $$ 
+
+于是当  $ x \in \left(0, \arctan \frac{\pi}{2}\right) $ 时， $ f'(x) > 0 $，又  $ f(0) = 0 $，所以  $ f(x) > 0 $。
+
+当  $ x \in \left[\arctan \frac{\pi}{2}, \frac{\pi}{2}\right) $ 时， $ \sin\left(\arctan \frac{\pi}{2}\right) < \sin x < 1 $，由于
+
+ $$ \sin\left(\arctan\frac{\pi}{2}\right)=\frac{\tan\left(\arctan\frac{\pi}{2}\right)}{\sqrt{1+\tan^{2}\left(\arctan\frac{\pi}{2}\right)}}=\frac{\frac{\pi}{2}}{\sqrt{1+\frac{\pi^{2}}{4}}}.=\frac{\pi}{\sqrt{4+\pi^{2}}}>\frac{\pi}{4}, $$ 
+
+故 $ \frac{\pi}{4}<\sin x<1 $，于是 $ 1<\tan(\sin x)<\tan 1 $，所以当 $ x\in\left|\arctan\frac{\pi}{2},\frac{\pi}{2}\right) $时， $ f(x)>0 $。
+
+综上可得，当  $ x \in \left(0, \frac{\pi}{2}\right) $ 时， $ \tan(\sin x) > \sin(\tan x) $.
+
+评注本章有多处涉及不等式的证明，归纳起来有以下一些常见方法：
+
+(1) 利用导数的定义：
+
+(2) 利用微分中值定理：
+
+(3) 利用函数的单调性：
+
+(4) 利用泰勒公式：
+
+(5) 利用函数的极值与最值;
+
+(6) 利用函数的凸凹性：
+
+(7) 利用一些重要不等式：
+
+(8) 利用归纳法或反正法.
+
+在应用中要合理设置函数，注意方法的灵活与综合运用。
+
+例 33 设  $ y = f(x) $ 有渐近线，且  $ f''(x) > 0 $．证明函数  $ y = f(x) $ 的图象从上方趋近于此渐近线.
+
+分析 设渐近线为  $ y = ax + b $，该题即为：已知  $ \lim_{x \to +\infty} (f(x) - ax - b) = 0 $（或  $ x \to -\infty $）且  $ f''(x) > 0 $。证明当  $ |x| $ 较大时，有  $ f(x) > ax + b $。由于  $ f'(x) $ 的情况未知，所以需要做讨论。
+
+证明 由题意，此渐近线为水平渐近线或斜渐近线，设其方程为  $ y = ax + b $
+
+令  $ F(x)=f(x)-ax-b $，则
+
+ $$ \lim_{x\to+\infty}F(x)=\lim_{x\to+\infty}(f(x)-ax-b)=0\quad( 或 x\to-\infty) $$ 
+
+下面证明：当 $ |x| $较大时（记 $ |x|>c $），有 $ F(x)>0 $。
+
+这里仅讨论  $ x \to +\infty $ 的情况 ( $ x \to -\infty $ 可类似). 由于  $ F''(x) = f''(x) > 0 $，因此  $ F'(x) $ 在区间  $ [c, +\infty) $ 上严格递增.
+
+若 $ \exists\alpha\in(c,+\infty) $，使 $ F'(\alpha)>0 $，在 $ [\alpha,x] $上应用拉格朗日中值定理，必有 $ \exists\xi\in(\alpha,x) $，使得
+
+ $$ F(x)=F(\alpha)+F^{\prime}(\xi)(x-\alpha)>F(\alpha)+F^{\prime}(\alpha)(x-\alpha)~, $$ 
+
+令  $ x \to +\infty $，得  $ \lim_{x \to +\infty} F(x) = +\infty $，此与  $ F(+\infty) = 0 $ 矛盾。故  $ \forall x \in (c, +\infty) $，有  $ F'(x) \leq 0 $。因此  $ F(x) $ 在  $ [c, +\infty) $ 上单调递减。
+
+若 $ \exists\beta\in(c,+\infty) $，使 $ F(\beta)<0 $，则当 $ x>\beta $时，有
+
+ $$ F(x)\leq F(\beta)<0\;, $$ 
+
+故  $ \lim_{x\to0}F(x)\leq F(\beta)<0 $，此与  $ F(+\infty)=0 $ 矛盾.
+
+若  $ F(\beta)=0 $，因为  $ F(+\infty)=0 $，所以当  $ x>\beta $ 时， $ F(x)\equiv0 $，因而当  $ x>\beta $ 时， $ F'(x)=0 $，此与
+
+ $ F''(x)>0 $矛盾.
+
+故  $ \forall x \in (c, +\infty) $， $ F(x) > 0 $。此表明  $ f(x) > ax + b $，即  $ y = f(x) $ 的图象从上方趋近于渐近线。
+
+例 34 如果一个质点在平面内运动，它的坐标可以表示为时间 t 的函数， $ x=t^{3}-t $， $ y=t^{4}+t $。证明曲线在 t=0 处有一个拐点，并且质点运动的速度在 t=0 有一个极大值。
+
+分析 直接计算参数曲线的拐点与速度函数的极值即可验证命题的正确性.
+
+证明 因为当 t=0 时， $ \frac{ax}{dt}\neq0 $ 。在 t=0 的某邻域，y 可作为 x 的函数，且有
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\mathrm{d}y}{\mathrm{d}t}\bigg/\frac{\mathrm{d}x}{\mathrm{d}t}=\frac{4t^{3}+1}{3t^{2}-1},\quad\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=\frac{6t(2t^{3}-2t-1)}{(3t^{2}-1)}. $$ 
+
+因 $ \left.\frac{d^{2}y}{dx^{2}}\right|_{i=0}=0 $，且 $ \frac{d^{2}y}{dx^{2}} $在t=0两侧附近异号，所以曲线在t=0处有一个拐点.
+
+速度的大小 $ \nu $的平方为
+
+ $$ \nu^{2}=\left(\frac{\mathrm{d}x}{\mathrm{d}t}\right)^{2}+\left(\frac{\mathrm{d}y}{\mathrm{d}t}\right)^{2}=\left(3t^{2}-1\right)^{2}+\left(4t^{3}+1\right)=2-6t^{2}+8t^{3}+9t^{4}+16t^{6}, $$ 
+
+ $$ \frac{\mathrm{d}\boldsymbol{v}^{2}}{\mathrm{d}t}=-12t+24t^{2}+36t^{3}+96t^{5},\quad\frac{\mathrm{d}^{2}\boldsymbol{v}^{2}}{\mathrm{d}t^{2}}=-12+48t+108t^{2}+480t^{4}. $$ 
+
+由 $ \left.\frac{d v^{2}}{d t}\right|_{t=0}=0 $及 $ \left.\frac{d^{2}v^{2}}{d t^{2}}\right|_{t=0}=-12<0 $，可知v在t=0处有一个极大值.
+
+评注 由曲线拐点的判别法易知：函数的拐点一定是其一阶导数的极值点.
+
+例 35 证明三角形三边之和不大于  $ 3\sqrt{3}R $，这里 R 为其外接圆半径.
+
+分析　首先要建立三角形边长与外接圆半径的关系，自然会想到正弦定理.
+
+证明 设三角形的三边为  $ a, b, c $，它们所对应的角分别为 A, B, C. 由正弦定理
+
+ $$ a=2R\sin A,b=2R\sin B,c=2R\sin C, $$ 
+
+得
+
+ $$ a+b+c=2R(\sin A+\sin B+\sin C)\;. $$ 
+
+考虑函数  $ y = \sin x (0 < x < \pi) $. 由于  $ y'' = -\sin x < 0 $，所以曲线  $ y = \sin x $ 在区间  $ (0, \pi) $ 内是上凸的，从而
+
+ $$ \frac{\sin A+\sin B+\sin C}{3}\leqslant\sin\left(\frac{A+B+C}{3}\right)=\sin\frac{\pi}{3}=\frac{\sqrt{3}}{2}, $$ 
+
+ $$ a+b+c\leqslant3\sqrt{3}R. $$ 
+
+所以
+
+例36 求曲线  $ 2y^{3}-2y^{2}+2xy-x^{2}=1 $ 在点 (1,1) 处的曲率半径.
+
+分析 用隐函数求导法则得到  $ y' $ 和  $ y'' $，代入曲率公式.
+
+ $$ 6y^{2}y^{\prime}-4y y^{\prime}+2y+2x y^{\prime}-2x=0, $$ 
+
+所以  $ y' = \frac{x - y}{3y^2 - 2y + x} $. 在点  $ (1, 1) $ 处有  $ y' = 0 $.
+
+将①式两端对x求导，得
+
+ $$ (6y y^{\prime}-2y^{\prime}+1)y^{\prime}+(3y^{2}-2y+x)y^{\prime \prime}+y^{\prime}-1=0, $$ 
+
+ $$ y^{\prime \prime}=-\frac{(6y y^{\prime}-2y^{\prime}+1)y^{\prime}+y^{\prime}-1}{3y^{2}-2y+x}. $$ 
+
+在点(1,1)处有  $ y''=\frac{1}{2} $. 故曲线  $ 2y^{3}-2y^{2}+2xy-x^{2}=1 $ 在(1,1)处的曲率为
+
+ $$ \kappa\big|_{(11)}=\frac{\left|y^{\prime\prime}\right|}{(1+y^{\prime2})^{\frac{3}{2}}}=\frac{1}{2}. $$ 
+
+曲率半径为 $ R=\frac{1}{\kappa}=2 $
+
+例 37 设  $ f(x) $ 满足  $ 2f(x) + f\left(\frac{1}{x}\right) = \frac{1}{x} $， $ \rho = \rho(x) $ 是曲线  $ y = 3f(x) + x $ 上任一点  $ M(x, y) (x \geq 1) $ 处的曲率半径， $ s = s(x) $ 是曲线上的动点 M 到定点  $ M_0(x_0, y_0) $ 的弧长函数（当  $ x \geq x_0 $ 时， $ s \geq 0 $；当  $ x \leq x_0 $ 时， $ s \leq 0 $），求  $ \frac{d\rho}{ds} $.
+
+分析 将 x 作为参数，该题即为参数式函数  $ \begin{cases} \rho = \rho(x) \\ s = s(x) \end{cases} $ 的求导问题，为此须先求得  $ f(x) $，再分别计算  $ \rho(x) $、 $ s(x) $ 及所求的导数.
+
+解 令  $ t = \frac{1}{x} $，则  $ 2f\left(\frac{1}{t}\right) + f(t) = t $，联立已知条件，得
+
+ $$ \begin{cases}2f\left(\frac{1}{x}\right)+f(x)=x\\2f(x)+f\left(\frac{1}{x}\right)=\frac{1}{x}\end{cases}\Rightarrow f(x)=\frac{1}{3}\bigg(\frac{2}{x}-x\bigg). $$ 
+
+则  $ y=\frac{2}{x} $， $ y'=-\frac{2}{x^{2}} $， $ y''=\frac{4}{x^{3}} $
+
+曲率半径
+
+ $$ \rho=\frac{1}{\kappa}=\frac{(1+y^{\prime2})^{3/2}}{|y^{\prime \prime}|}=\frac{1}{4}(x^{4}+4)^{3/2}x^{-3}\;. $$ 
+
+弧长函数
+
+ $$ s=\widehat{A M}=\int_{x_{0}}^{x}\sqrt{1+y^{\prime2}}\mathrm{d}t=\int_{x_{0}}^{x}\sqrt{1+\frac{4}{t^{4}}}\mathrm{d}t. $$ 
+
+所以
+
+ $$ \frac{\mathrm{d}\rho}{\mathrm{d}s}=\frac{\mathrm{d}\rho}{\mathrm{d}x}\bigg/\frac{\mathrm{d}s}{\mathrm{d}x}=\frac{3}{4}\cdot\frac{(x^{4}+4)^{1/2}(1-4x^{-4})}{(1+4x^{-4})^{1/2}}=\frac{3}{4}(x^{2}-4x^{-2})\quad(x>0). $$ 
+
+评注 该题求解的精妙之处在于将 $ \frac{d\rho}{ds} $作为参数方程的求导来处理, 当然也可视为复合函数求导.
+
+##### 习题2.3
+
+1. 证明当 0 < x < a 时，多项式  $ (a - x)^6 - 3a(a - x)^5 + \frac{5}{2}a^2(a - x)^4 - \frac{1}{2}a^4(a - x)^2 $ 仅取负值.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//4b6e55a3-e624-4cc3-b67d-7957d1e6e831/markdown_1/imgs/img_in_image_box_1184_1541_1319_1669.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A29Z%2F-1%2F%2Faef9671e2cda00152d47b6449b036b199bd18abdae1e3a9c1a868cd8b1a64dfa" alt="Image" width="9%" /></div>
+
+
+习题2.3答案
+
+2. 设 0 < x < y < 1 或 1 < x < y，证明  $ \frac{y}{x} > \frac{y^x}{x^y} $.
+
+3. 证明不等式  $ x^{y} + y^{x} > 1 (x, y > 0) $.
+
+4. 证明  $ \sin(\tan x) \geq x $,  $ x \in \left[0, \frac{\pi}{4}\right] $.
+
+5. 证明不等式 $ \frac{e^{b}-e^{a}}{b-a}<\frac{e^{b}+e^{a}}{2}(a\neq b) $.
+
+6. 设  $ 0 < x < +\infty $，证明  $ \left(1 + \frac{1}{x}\right)^{x} (1 + x)^{\frac{1}{x}} \leqslant 4 $。且仅当 x = 1 时等号成立。
+
+7. 设在  $ [0,2] $ 上定义函数  $ f(x) \in C^{(2)} $，且  $ f(a) \geq f(a+b) $， $ f''(x) \leq 0 $，证明对于  $ 0 < a < b < a+b < 2 $，恒有
+
+ $$ \frac{af(a)+bf(b)}{a+b}\geq f(a+b). $$ 
+
+8. 试比较 $ \pi^{e} $与 $ e^{\pi} $的大小.
+
+9. 比较  $ \prod_{n=1}^{25}\left(1-\frac{n}{365}\right) $ 与  $ \frac{1}{2} $ 的大小.
+
+10. 比较 $ \left(\sqrt{n}\right)^{\sqrt{n+1}} $ 与 $ \left(\sqrt{n+1}\right)^{\sqrt{n}} $ 的大小，这里 n>8.
+
+11. 设  $ f(x) $ 二阶可导， $ f(1)=6 $， $ f'(1)=0 $。若对任意  $ x \geq 1 $，有  $ x^2 f''(x) - 3x f'(x) - 5f(x) \geq 0 $，证明  $ f(x) \geq x^5 + \frac{5}{x} (x \geq 1) $。
+
+12. 设  $ f(x) $ 满足方程  $ 3f(x)+4x^{2}f\left(-\frac{1}{x}\right)+\frac{7}{x}=0 $，求  $ f(x) $ 的极值.
+
+13. 设函数  $ y = y(x) $ 由  $ x^{3} + 3x^{2}y - 2y^{3} = 2 $ 所确定，求  $ y(x) $ 的极值.
+
+14. 设  $ f(x)=\left\{\begin{aligned}&\frac{x}{1+e^{1/x}},&x\neq0\\ &0,&x=0\end{aligned}\right. $，讨论  $ f(x) $ 的单调性与极值.
+
+15. 求由参数方程  $ \left\{\begin{aligned}x=t-\lambda\sin t\\ y=1-\lambda\cos t\end{aligned}\right. $ 所确定的函数  $ y=y(x) $ 的极值，其中  $ 0<\lambda<1 $.
+
+16. 求函数  $ f(x)=\left|\sin x+\cos x+\tan x+\cot x+\sec x+\csc x\right| $ 的最小值.
+
+17. 设 a 为常数，若方程  $ 3x^{4}-8x^{3}-30x^{2}+72x+a=0 $ 有 3 个不同的实根，试确定 a 的取值.
+
+18. 设  $ f(x) $ 在  $ [a,b] $ 内有二阶连续导数，且满足方程  $ f''(x) + xf'(x) - 2f(x) = 0 $，若  $ f(a) = f(b) = 0 $，则  $ f(x) $ 在  $ [a,b] $ 上恒等于 0.
+
+19. 设  $ x \in (0,1) $，证明  $ \frac{1}{\ln 2} - 1 < \frac{1}{\ln(1+x)} - \frac{1}{x} < \frac{1}{2} $.
+
+20. 设  $ 0 < x < 1 $，证明  $ x^n (1 - x) < \frac{1}{n e} $，其中  $ n \in \mathbb{N}_+ $.
+
+21. 在区间  $ (-\infty, +\infty) $ 内确定方程  $ \left|x\right|^{\frac{1}{4}} + \left|x\right|^{\frac{1}{2}} - \cos x = 0 $ 根的个数.
+
+22. 确定方程  $ x e^{-x} = a (a > 0) $ 实根的个数.
+
+23. 设当 x > 0 时，方程  $ kx + \frac{1}{x^{2}} = 1 $ 有且仅有一个实根，求 k 的取值范围.
+
+24. 设 $ f $是二次可微的实值函数，且满足 $ f(x)+f''(x)=-xg(x)f'(x) $，其中对所有实数 $ x, g(x) \geq 0 $。证明 $ f(x) $有界。
+
+25. 设曲线  $ y = 4 - x^2 $ 与  $ y = 2x + 1 $ 相交于  $ A $、 $ B $ 两点， $ C $ 为弧段  $ AB $ 上的一点，问  $ C $ 点在何处时  $ \triangle ABC $ 的面积最大？并求此最大面积.
+
+26. 求曲线  $ y = x^{2} \ln(ax) (a > 0) $ 的拐点，并求当 a 变动时，拐点的轨迹方程.
+
+27. 已知曲线  $ y = x^4 + ax^2 + bx $ 与曲线  $ y = \begin{cases} \ln x, & x \geq 1 \\ \sin(x-1), & x < 1 \end{cases} $ 在  $ x=1 $ 处相切。求  $ a, b $ 的值，以及曲线  $ y = x^4 + ax^2 + bx $ 的凸凹区间及拐点。
+
+28. 若  $ f(x) $ 二阶可导，且  $ f(x) > 0 $， $ f''(x)f(x) - (f'(x))^2 > 0 $， $ x \in \mathbb{R} $。
+
+（1）证明  $ f(x_1)f(x_2) \geq f^2\left(\frac{x_1 + x_2}{2}\right) $， $ \forall x_1, x_2 \in \mathbb{R} $；
+
+（2）若  $ f(0)=1 $，证明  $ f(x)\geq\mathrm{e}^{f'(0)x} $， $ \forall x\in\mathbb{R} $。
+
+29. 设  $ f(x)=x^{2}(x-1)^{2}(x-3)^{2} $，试问曲线  $ y=f(x) $ 有几个拐点，并证明结论.
+
+30. 设  $ f(x) $ 在  $ (0,+\infty) $ 内连续可导， $ \lim_{x\to+\infty}f(x) $ 存在， $ f(x) $ 的图形在  $ (0,+\infty) $ 内是下凸的，证明  $ \lim_{x\to+\infty}f'(x)=0 $.
+
+31. 对于  $ i=1,2,\cdots,n $，设  $ 0<x_{i}<\pi $ 并且取  $ \overline{x}=\frac{x_{1}+x_{2}+\cdots+x_{n}}{n} $，证明：
+
+ $$ \prod_{i=1}^{n}\frac{\sin x_{i}}{x_{i}}\leqslant\left(\frac{\sin\overline{x}}{\overline{x}}\right)^{n}. $$ 
+
+32. 过正弦曲线  $ y = \sin x $ 上点  $ M\left(\frac{\pi}{2}, 1\right) $ 处作一抛物线  $ y = ax^{2} + bx + c $，使抛物线与正弦曲线在 M 点具有相同的曲率与凸向，并写出 M 点处两曲线的公共曲率圆方程.
+
+33. 设曲线  $ y = f(x) $ 与  $ y = 2\sin x + x^{2} $ 在原点有相同的曲率圆，求曲线  $ y = x\left[1 + f\left(\frac{1}{2x}\right)\right]^{x} $ 的斜渐近线.
+
+#### 综合题2 $ ^{*} $
+
+1. 设  $ f(x)=\left\{\begin{aligned}&\lim_{n\to\infty}\left(\frac{|x|^{1/n}}{n+\frac{1}{n}}+\frac{|x|^{2/n}}{n+\frac{2}{n}}+\cdots+\frac{|x|^{n/n}}{n+\frac{n}{n}}\right),&x\neq0\\&\lim_{n\to\infty}\frac{1}{n}\ln\left(\frac{\pi}{2}-\arctan n\right),&x=0\end{aligned}\right. $，求  $ f'(x) $
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//4b6e55a3-e624-4cc3-b67d-7957d1e6e831/markdown_3/imgs/img_in_image_box_1189_1129_1325_1260.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A32Z%2F-1%2F%2Fde931808e738fc412d0e30e85c8690a0f943691ecdc4206807319db29272952f" alt="Image" width="9%" /></div>
+
+
+综合题2答案
+
+2. 证明  $ \frac{1}{2}\tan\frac{x}{2}+\frac{1}{4}\tan\frac{x}{4}+\cdots+\frac{1}{2^n}\tan\frac{x}{2^n}=\frac{1}{2^n}\cot\frac{x}{2^n}-\cot x $.
+
+3. 证明极坐标方程  $ r = f(\theta) $ 给出的曲线 C 在曲线上点  $ M(\theta, f(\theta)) $ 处的切线与向径 OM 的夹角  $ \varphi = \arctan \frac{f(\theta)}{f'(\theta)} $.
+
+4. 设 A 为正常数，直线 l 与双曲线  $ x^{2}-y^{2}=2(x>0) $ 所围成有限部分的面积为 A．证明：
+
+（1）所有上述l与双曲线 $ x^{2}-y^{2}=2(x>0) $的截线段的中点的轨迹为双曲线.
+
+（2）l总是（1）中轨迹曲线的切线.
+
+5. 某人以 5/3(m/s) 的速率，沿直径为 200/3(m) 且四周有围墙的圆形球场的一条直径前进，在与此直径相垂直的另一直径的一端有一灯，灯光照射人影于围墙上，问此人行进到离中心 20/3(m) 时，围墙上人影的移动速率是多少？
+
+6. 求下列函数的 n 阶导数值  $ f^{(n)}(0) $ ( $ n \geqslant 1 $).
+
+(1)
+
+ $$ f(x)=\cos(\beta\arcsin x) $$ 
+
+ $$ f(x)=\mathrm{e}^{-x}\int_{0}^{x}\arctan t\mathrm{d}t. $$ 
+
+7. 设  $ y = x^{n-1} \ln x $，求  $ y^{(n)} $
+
+8. 设函数  $ f(x) $ 在  $ [0,1] $ 上二阶可导，且  $ f(0)=0 $， $ f(1)=1 $，证明存在  $ \xi \in (0,1) $，使得
+
+ $$ \xi f^{\prime \prime}(\xi)+(1+\xi)f^{\prime}(\xi)=1+\xi. $$ 
+
+9. 设函数  $ f(x) $ 在  $ [0,1] $ 上有二阶连续导数，证明对任意  $ \xi \in \left(0, \frac{1}{4}\right) $ 和  $ \eta \in \left(\frac{3}{4}, 1\right) $，有
+
+ $$ \left|f^{\prime}(x)\right|<2\left|f(\xi)-f(\eta)\right|+\int_{0}^{1}\left|f^{\prime \prime}(x)\right|\mathrm{d}x\;,\quad x\in[0,1]\;. $$ 
+
+10. 设函数  $ f(x) $ 在  $ [0,1] $ 上二阶可导. 证明  $ \exists\xi\in(0,1) $，使得  $ f''(\xi)=4f(0)+4f(1)-8f\left(\frac{1}{2}\right) $.
+
+11. 设函数  $ f(x) $ 在  $ [-2, 2] $ 上二阶可导，且  $ \left|f(x)\right| < 1 $， $ f^2(0) + \left[f'(0)\right]^2 = 4 $。证明  $ \exists \xi \in (-2, 2) $，使得  $ f(\xi) + f''(\xi) = 0 $。
+
+12. 设函数  $ f(x) $ 在  $ (a,+\infty) $ 内有二阶导数，且  $ f(a+1)=0 $， $ \lim_{x\to a^+}f(x)=0 $， $ \lim_{x\to+\infty}f(x)=0 $。证明在  $ (a,+\infty) $ 内至少有一点  $ \xi $，满足  $ f''(\xi)=0 $。
+
+13. 设  $ f(x) $ 在  $ [a,b] $ 上连续，在  $ (a,b) $ 内二阶可导，证明  $ \exists\xi\in(a,b) $，使
+
+ $$ f(x)=\frac{x-b}{a-b}f(a)+\frac{x-a}{b-a}f(b)+\frac{f''(\xi)}{2}(x-a)(x-b). $$ 
+
+14. 设  $ f(x) $ 在  $ (0,1) $ 内有三阶导数， $ 0 < a < b < 1 $，证明存在  $ \xi \in (a,b) $，使得
+
+ $$ f(b)=f(a)+\frac{1}{2}(b-a)(f^{\prime}(a)+f^{\prime}(b))-\frac{(b-a)^{3}}{12}f^{m}(\xi). $$ 
+
+15. 设在  $ [0,2] $ 上定义函数  $ f(x) \in C^{(2)} $，且  $ f(a) \geq f(a+b) $， $ f''(x) \leq 0 $，证明对于  $ 0 < a < b < a+b < 2 $，恒有
+
+ $$ \frac{af(a)+bf(b)}{a+b}\geq f(a+b). $$ 
+
+16. 设 s 为正数，证明  $ \frac{n^{s+1}}{s+1}<1^{s}+2^{s}+\cdots+n^{s}<\frac{(n+1)^{s+1}}{s+1} $.
+
+17. 证明方程  $ \sum_{k=0}^{2n+1}\frac{x^k}{k!}=0 $ 有且仅有一个实数根，其中 n 为自然数.
+
+18. 设  $ P(x) $ 是一个实系数多项式. 构造多项式  $ Q(x) $ 如下:
+
+ $$ \begin{array}{r}{Q(x)=(x^{2}+1)P(x)P^{\prime}(x)+x\Big[(P(x))^{2}+(P^{\prime}(x))^{2}\Big].}\end{array} $$ 
+
+ $$ P(x)=0 $$ 
+
+ $$ Q(x)=0 $$ 
+
+19. 设函数  $ f(x) $ 在  $ (-\infty, +\infty) $ 上具有二阶导数，满足  $ f''(x) > 0 $， $ \lim_{x \to +\infty} f'(x) = \alpha > 0 $， $ \lim_{x \to -\infty} f'(x) = \beta < 0 $，且存在一点  $ x_0 $，使得  $ f(x_0) < 0 $。证明方程  $ f(x) = 0 $ 在  $ (-\infty, +\infty) $ 上恰有两个实根。
+
+20. 在 $ (-∞,+∞) $上，函数 $ f(x)=\sum_{k=1}^{∞}c_{k}e^{a_{k}x} $最多有几个不同的零点？这里 $ a_{k} $为互不相同的实数， $ c_{k} $为不同时等于零的实数.
+
+21. 设  $ f(x)=a_{n}x^{n}+a_{n-1}x^{n-1}+\cdots+a_{1}x+a_{0} $ 是实系数多项式， $ n\geq2 $，且某个  $ a_{k}=0(1\leq k\leq n-1) $ 应当  $ l\neq k $ 时， $ a_{l}\neq0 $ 。证明若  $ f(x) $ 有 n 个相异的实根，则  $ a_{k-1}a_{k+1}<0 $ 。
+
+22. 设  $ k_{0} < k_{1} < \cdots < k_{n} $ 为给定的正整数， $ A_{1}, A_{2}, \cdots, A_{n} $ 为实参数，指出函数
+
+ $$ f(x)=\sin k_{0}x+A_{1}\sin k_{1}x+\cdots+A_{n}\sin k_{n}x $$ 
+
+在 $ [0,2\pi) $上零点的个数（当 $ A_{1},A_{2},\cdots,A_{n} $变化时）的最小可能值并加以证明.
+
+23. 设函数  $ f(x) $ 二阶可导，且  $ f(0)=0 $， $ f'(0)=0 $， $ f''(0)>0 $。在曲线  $ y=f(x) $ 上任意取一点  $ (x,f(x)) $ ( $ x\neq0 $) 作曲线的切线，此切线在 x 轴上的截距记为 u，求  $ \lim_{x\to0}\frac{xf(u)}{uf(x)} $。
+
+24. 设 $f$ 是区间 $I$ 上的三次可导函数，$a,b,c \in I$，证明 $\exists \xi \in I$，使得
+
+ $$ \begin{aligned}&f\Biggl(\frac{a+2b}{3}\Biggr)+f\Biggl(\frac{b+2c}{3}\Biggr)+f\Biggl(\frac{c+2a}{3}\Biggr)-f\Biggl(\frac{2a+b}{3}\Biggr)-f\Biggl(\frac{2b+c}{3}\Biggr)-f\Biggl(\frac{2c+a}{3}\Biggr)\\&=\frac{1}{27}(a-b)(b-c)(c-a)f^{m}(\xi).\\ \end{aligned} $$ 
+
+25. 设  $ f(x) $ 在区间  $ (-1,1) $ 内二阶可导，且  $ \left|f''(x)\right| \leq \left|f(x)\right| + \left|f'(x)\right| $， $ \lim_{x \to 0} \frac{f(x)}{x} = 0 $。证明  $ f(x) $ 在区间  $ (-1,1) $ 内恒等于零。
+
+26. 设  $ f(x) $ 在  $ (-\infty, \infty) $ 上无穷次可微，并且满足：存在  $ M > 0 $，使得  $ |f^{(k)}(x)| \leq M (k = 1, 2, \cdots) $， $ \forall x \in (-\infty, \infty) $．且  $ f\left(\frac{1}{2^n}\right) = 0 $（ $ n = 1, 2, \cdots $）．证明在  $ (-\infty, \infty) $ 上  $ f(x) \equiv 0 $．
+
+27. 设函数  $ f(x) $ 在  $ (x_0 - \delta, x_0 + \delta) $ 上有  $ n $ 阶连续导数，且  $ f^{(k)}(x_0) = 0 $ ( $ k = 2, 3, \cdots, n-1 $)， $ f^{(n)}(x_0) \ne 0 $，当  $ 0 < |h| < \delta $ 时， $ f(x_0 + h) - f(x_0) = h f'(x_0 + \theta h) $ ( $ 0 < \theta < 1 $)。证明  $ \lim_{h \to 0} \theta = \frac{1}{n - \sqrt[n]{n}} $。
+
+28. 设  $ f(x) $ 在区间  $ I $ 内有直到  $ n+1 $ ( $ n \geq 2 $) 阶连续导数，且  $ \forall x \in I $， $ f^{(n)}(x) \neq 0 $。若对  $ \forall h \neq 0 $， $ x+h \in I $，有
+
+ $$ f(x+h)=f(x)+f^{\prime}(x)h+\frac{f^{\prime\prime}(x)}{2!}h^{2}+\cdots+\frac{f^{(n-2)}\left(x\right)}{(n-2)!}h^{n-2}+\frac{f^{(n-1)}\left(x+\frac{h}{n}\right)}{(n-1)!}h^{n-1}, $$ 
+
+证明  $ f(x) $ 是 n 次多项式.
+
+29. 设  $ f(x) $ 在  $ \mathbb{R} $ 上 n 阶可导，若对任意  $ n+1 $ 个不同的点  $ x_{0}, x_{1}, \cdots, x_{n} $，都有
+
+ $$ \sum_{i=0}^{n}\frac{f(x_{i})}{(x_{i}-x_{0})\cdots(x_{i}-x_{i-1})(x_{i}-x_{i+1})\cdots(x_{i}-x_{n})}=\sum_{i=0}^{n}\alpha_{i}f^{(n)}(x_{i})~, $$ 
+
+其中  $ \alpha_{0}, \alpha_{1}, \cdots, \alpha_{n} $ 是  $ n+1 $ 个常数. 证明  $ f(x) $ 是次数不超过  $ n+1 $ 的多项式.
+
+30. 证明  $ \sin1 $ 是无理数.
+
+31. 设  $ f(x) $ 在  $ [0,1] $ 上连续可微，在  $ x=0 $ 处有任意阶导数， $ f^{(n)}(0)=0 $ ( $ \forall n\geq0 $)，且存在常数  $ C>0 $，使得  $ \left|xf'(x)\right|\leq C $ ( $ f(x) $)， $ \forall x\in[0,1] $。证明：（1） $ \lim_{x\to0^+}\frac{f(x)}{x^n}=0 $ ( $ \forall n\geq0 $)；（2）在  $ [0,1] $ 上  $ f(x)\equiv0 $。
+
+32. 设  $ \alpha > 1 $，证明不存在  $ [0, +\infty) $ 上的正可导函数  $ f(x) $，满足  $ f'(x) \geq f^{\alpha}(x) $， $ x \in [0, +\infty) $。
+
+33. 设  $ f(x) $ 在  $ \mathbb{R} $ 上二阶可导， $ f(x) $,  $ f'(x) $,  $ f''(x) $ 都大于零，假设存在正数  $ a, b $，使得对一切  $ x \in \mathbb{R} $，都有  $ f''(x) \leq af(x) + bf'(x) $ 成立：
+
+（1）证明  $ \lim_{x\to a}f'(x)=0 $;
+
+（2）证明存在常数c，使得 $ f'(x)\leq cf(x) $;
+
+（3）求使上面不等式成立的最小常数c.
+
+34. 设 y > x > 0，证明  $ y^{x^{y}} > x^{y^{z}} $
+
+35. 对于所有  $ n > 1 $ 的整数，证明  $ \frac{1}{2n\mathrm{e}} < \frac{1}{\mathrm{e}} - \left(1 - \frac{1}{n}\right)^n < \frac{1}{n\mathrm{e}} $.
+
+36. 设 n 为自然数，证明  $ \left(1+\frac{1}{2n+1}\right)\left(1+\frac{1}{n}\right)^{n} < \mathrm{e} < \left(1+\frac{1}{2n}\right)\left(1+\frac{1}{n}\right)^{n} $.
+
+37. 设  $ 0 < x < \frac{\pi}{2} $，证明  $ \frac{4}{\pi^{2}} < \frac{1}{x^{2}} - \frac{1}{\tan^{2}x} < \frac{2}{3} $.
+
+38. 对于一切满足  $ 1 \leq r \leq s \leq t \leq 4 $ 的实数 r, s, t，求  $ (r-1)^{2}+\left(\frac{s}{r}-1\right)^{2}+\left(\frac{t}{s}-1\right)^{2}+\left(\frac{4}{t}-1\right)^{2} $ 的最小值.
+
+39. 方程  $ x^{3}-3x+1=0 $ 有几个实数根？求出其绝对值最小的一个近似根. 精确到 0.001.
+
+40. 设  $ f(x) $ 是一具有三阶连续导数的实函数，并且对所有的  $ x, f(x), f'(x), f''(x), f'''(x) $ 为正值。假设有  $ \forall x, f'''(x) \leq f(x) $。证明对一切 x 有  $ f'(x) < 2f(x) $。
+
+41. 研究由微分方程  $ f''(x)=(x^3+ax)f(x) $ 及初始条件  $ f(0)=1 $,  $ f'(0)=0 $ 定义的函数  $ f $. 证明  $ f(x) $ 的根有上界而无下界.
+
+42. 点 A 到点 B 的距离为 S，若质点 M 从点 A 沿直线由静止状态运动到点 B 停止，耗时  $ T(s) $，证明在此运动过程中某一时刻加速度的绝对值大于或等于  $ \frac{4S}{T^{2}} $.
+
+43. 众所周知，为判别二次三项式  $ x^2 + bx + c $ 的实根的情况，我们可以引入判别式  $ \Delta = b^2 - 4c $。那么，当  $ \Delta > 0 $、 $ \Delta = 0 $ 和  $ \Delta < 0 $ 时，二次三项式  $ x^2 + bx + c $ 分别具有两个不等实根、两个相等实根、没有实根。对于三次三项式  $ p(x) = x^3 + bx + c $，请给出一个利用  $ b, c $ 判别  $ p(x) $ 的实根情况的方法，并且证明其结论。
+
+44. 设函数 $ f $满足 $ f^n(x)>0 $， $ \int_0^1 f(x) \, dx=0 $，证明对 $ \forall x\in[0,1] $，有 $ |f(x)|\leq \max\{f(0), f(1)\} $。
+
+45. 设 n 为大于 1 的奇数，证明 n 次实系数多项式最少有一个拐点.
+
