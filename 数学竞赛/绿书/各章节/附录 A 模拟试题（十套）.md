@@ -259,7 +259,7 @@ related:
 
 五、（10分）讨论积分 $\int_{\pi}^{+\infty}\frac{x\cos x}{x^{p}+x^{q}}dx$的敛散性.
 
-六、（10分）曲线  $y = x(t - x)(t > 0)$ 与 x 轴交于原点 O 和点 A，且曲线在点 A 的切线交 y 轴于 B， $\overrightarrow{AB}$ 为点 A 至点 B 的直线段，求 t 的值，使曲线积分  $I = \int_{\frac{AB}} \left( \frac{\sin y}{x + 1} - y + 1 \right) dx + [\cos y \cdot \ln(x + 1) + x + 1] dy$ 最小.
+六、（10分）曲线  $y = x(t - x)(t > 0)$ 与 x 轴交于原点 O 和点 A，且曲线在点 A 的切线交 y 轴于 B， $\overrightarrow{AB}$ 为点 A 至点 B 的直线段，求 t 的值，使曲线积分  $I = \int_{\overrightarrow{AB}} \left( \frac{\sin y}{x + 1} - y + 1 \right) dx + [\cos y \cdot \ln(x + 1) + x + 1] dy$ 最小.
 
 七、（12分）以初速  $V_{0}$ 与倾角  $\alpha$ 把一个球抛射出去，此球在  $P_{1}(x_{1},0),P_{2}(x_{2},0),\cdots,P_{n}(x_{n},0)$ 处又以相同的倾角弹跳出去. 设每次弹跳运动的初速为  $V_{1},V_{2},\cdots,V_{n}$，速度  $V_{k}$ 按照下面的规律递减：
 
@@ -291,17 +291,19 @@ related:
 
 二、（10分）设 $f(x)$的定义域为 $\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$， $f(x)$可导，且 $f(0)=1$， $f(x)>0$，满足极限式
 
-$$\lim_{h\to0}\left[\frac{f(x+h\cos^2x)}{f(x)}\right]^{\frac{1}{h}}=\mathrm{e}^{x\cos^2x+\tan x}\)。试求 $f(x)$ 以及 $f(x)$ 的极值。
+$$\lim_{h\to0}\left[\frac{f(x+h\cos^2x)}{f(x)}\right]^{\frac{1}{h}}=\mathrm{e}^{x\cos^2x+\tan x}$$
 
-三、（10分）若  $ m $ 为常数且对任何正数  $ x $ 有  $ mx^2 > x - \ln(1+x) > \frac{mx^2}{1+x} $，证明  $ m = \frac{1}{2} $。
+试求$f(x)$以及$f(x)$的极值。
 
-四、（11分）求极限  $ \lim_{n \to \infty} \left[ \sum_{i=1}^{n} e^{\frac{i}{n}} - (e-1)n \right] $。
+三、（10分）若  $m$ 为常数且对任何正数  $x$ 有  $mx^2 > x - \ln(1+x) > \frac{mx^2}{1+x}$，证明  $m = \frac{1}{2}$。
+
+四、（11分）求极限  $\lim_{n \to \infty} \left[ \sum_{i=1}^{n} e^{\frac{i}{n}} - (e-1)n \right]$。
 
 五、（10分）试求内接于定圆的三角形中面积最大者.
 
-六、（12分）设 $ f(x)=\sqrt{\frac{x^3}{x+3}}-x-11 $（x<-3）的最小值为 $ f(x_0) $，记曲线 $ y=f(x) $的渐近线与直线 $ y=f(x_0) $所围成的区域为 $ D $， $ g(x,y)=\begin{cases}xy,&x<0,\ 0\leq y<1\\0,& 其他\end{cases} $，求 $ g(x,y) $在 $ D $上的平均值。
+六、（12分）设 $f(x)=\sqrt{\frac{x^3}{x+3}}-x-11$（x<-3）的最小值为 $f(x_0)$，记曲线 $y=f(x)$的渐近线与直线 $y=f(x_0)$所围成的区域为 $D$， $g(x,y)=\begin{cases}xy,&x<0,\ 0\leq y<1\\0,& 其他\end{cases}$，求 $g(x,y)$在 $D$上的平均值。
 
-七、（11分）设 $ f(r) $二阶可导， $ r=\sqrt{x^2+y^2+z^2} $，计算 $ \operatorname{div}[\operatorname{grad}f(r)] $，并求函数 $ f(r) $使 $ \operatorname{div}[\operatorname{grad}f(r)]=0 $。
+七、（11分）设 $f(r)$二阶可导， $r=\sqrt{x^2+y^2+z^2}$，计算 $\operatorname{div}[\operatorname{grad}f(r)]$，并求函数 $f(r)$使 $\operatorname{div}[\operatorname{grad}f(r)]=0$。
 
 八、（11分）设n阶方阵A,B满足AB=A+B，证明：
 
@@ -317,21 +319,21 @@ $$\lim_{h\to0}\left[\frac{f(x+h\cos^2x)}{f(x)}\right]^{\frac{1}{h}}=\mathrm{e}^{
 
 <div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//7427a682-4e85-4a4d-9cb0-6404f5c1ed4a/markdown_2/imgs/img_in_image_box_1215_927_1344_1054.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A41Z%2F-1%2F%2Fc2ca0ffb08d324cf363fb42a5dcbca22399eb271263233b81d2fb5431dc78701" alt="Image" width="8%" /></div>
 
-1*. 设  $ f_{n}(x)=x^{n}\ln x $，n 为自然数，求极限  $ \lim_{n\to\infty}\frac{f_{n}^{(n)}\left(\frac{1}{n}\right)}{n!} $.
+1*. 设  $f_{n}(x)=x^{n}\ln x$，n 为自然数，求极限  $\lim_{n\to\infty}\frac{f_{n}^{(n)}\left(\frac{1}{n}\right)}{n!}$.
 
 试题七解答
 
-2. 计算积分  $ \int \frac{x \cos^{4} \frac{x}{2}}{\sin^{3} x} \, dx $.
+2. 计算积分  $\int \frac{x \cos^{4} \frac{x}{2}}{\sin^{3} x} \, dx$.
 
-3. 设  $ f(x), g(x) $ 是连续函数， $ F(x, y) = \int_{1}^{x} \mathrm{d}u \int_{0}^{yu} f(tu) g\left(\frac{1}{u}\right) \mathrm{d}t $，求  $ \frac{\partial^{2} F}{\partial x \partial y} $.
+3. 设  $f(x), g(x)$ 是连续函数， $F(x, y) = \int_{1}^{x} \mathrm{d}u \int_{0}^{yu} f(tu) g\left(\frac{1}{u}\right) \mathrm{d}t$，求  $\frac{\partial^{2} F}{\partial x \partial y}$.
 
-4. 求曲线  $ \Gamma $:  $ \left\{\begin{aligned}&z=x^{2}+2y^{2}\\ &z=6-2x^{2}-y^{2}\end{aligned}\right. $ 上竖坐标 z 的最大与最小点.
+4. 求曲线  $\Gamma$:  $\left\{\begin{aligned}&z=x^{2}+2y^{2}\\ &z=6-2x^{2}-y^{2}\end{aligned}\right.$ 上竖坐标 z 的最大与最小点.
 
-5. 已知三阶实矩阵  $ A=(a_{ij}) $ 满足条件  $ a_{33}=-1 $， $ a_{ij}=A_{ij}(i,j=1,2,3) $，其中  $ A_{ij} $ 为  $ a_{ij} $ 的代数余子式。试求方程组  $ AX=b $ 的解，其中  $ b=(0,0,1)^{\mathrm{T}} $。
+5. 已知三阶实矩阵  $A=(a_{ij})$ 满足条件  $a_{33}=-1$， $a_{ij}=A_{ij}(i,j=1,2,3)$，其中  $A_{ij}$ 为  $a_{ij}$ 的代数余子式。试求方程组  $AX=b$ 的解，其中  $b=(0,0,1)^{\mathrm{T}}$。
 
-二、（10分）设函数 $ f(x) $可导， $ \lim_{x\to+\infty}f'(x)=c\neq0 $，且
+二、（10分）设函数 $f(x)$可导， $\lim_{x\to+\infty}f'(x)=c\neq0$，且
 
-$$ \lim_{x\to0}\frac{bx-\sin x}{\int_{a}^{x}\frac{\ln(1+t^{3})}{t}\mathrm{d}t}=\lim_{x\to+\infty}\left[f(x+1)-f(x)\right], $$
+$$\lim_{x\to0}\frac{bx-\sin x}{\int_{a}^{x}\frac{\ln(1+t^{3})}{t}\mathrm{d}t}=\lim_{x\to+\infty}\left[f(x+1)-f(x)\right],$$
 
 求常数a,b,c.
 
