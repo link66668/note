@@ -1,0 +1,2141 @@
+# 第4章 多元函数微分学
+
+知识结构
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//f4e3e6c9-540b-4e0d-a4a7-c677c397f403/markdown_0/imgs/img_in_image_box_301_389_1203_855.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A31Z%2F-1%2F%2Fd6c2c3b7cb139662c5380501026693e8adf95aba75654cc5c5489a9701eea340" alt="Image" width="61%" /></div>
+
+
+## 4.1 多元函数的极限与连续
+
+多元函数的极限是多元函数微分学的基础. 高等数学只简单介绍了二元函数的极限（二重极限）. 二重极限保持了一元函数极限的很多良好性质，如唯一性、局部有界性、局部保号性、夹逼性、四则运算性与复合运算性等. 但由于平面上点趋于某定点的方式的多样性，又使得二重极限较一元函数的极限更为复杂；同时一元函数极限中与序有关的、与微分中值定理有关的极限方法在二重极限中不再成立（如极限的单调有界原理、洛必达法则、级数等），这就使得求二重极限更为困难. 所以我们只能求一些较为简单的极限，了解一些常用方法，并判断一些极限不存在的情况.
+
+例1 设函数 $ f $ 对任意 $ x,y\in\mathbb{R} $，有 $ \left|f(x+y)-f(x-y)-y\right|\leq y^2 $，求 $ f(x+y) $.
+
+分析 作变量代换，将已知不等式转化为函数增量与自变量增量比的形式，再取极限转化为微分方程求解.
+
+解 记  $ u = x + y $, v = x - y, 构造函数  $ g(t) = f(t) - \frac{t}{2} $, 则条件  $ \left|f(x + y) - f(x - y) - y\right| \leq y^{2} $ 转化为
+
+ $$ \left|g(u)-g(v)\right|\leq\frac{(u-v)^{2}}{4} $$ 
+
+当 $ u\neq v $时，有 $ \left|\frac{g(u)-g(v)}{u-v}\right|\leq\frac{|u-v|}{4} $，令 $ u\to v $，得到
+
+$$\lim_{u\to v}\frac{g(u)-g(v)}{u-v}=0\text{，即 }g'(v)=0(v\in\mathbb{R}).$$
+
+所以  $ g(t) $ 是常函数. 又  $ g(0) = f(0) $，所以  $ f(x + y) = \frac{x + y}{2} + f(0) $.
+
+例2 求极限  $ \lim_{\substack{x\to0\\y\to0}}\frac{(4+\sin xy)^{x+y}-4^{x+y}}{\sqrt{\cos\sqrt{x^{2}+y^{2}}}-1} $.
+
+分析 这属于 $ \frac{0}{0} $型的极限，可利用一元函数极限中的等价无穷小来化简极限式.
+
+解
+
+ $$ \begin{aligned}&\lim_{x\to0\atop y\to0}\frac{(4+\sin xy)^{x+y}-4^{x+y}}{\sqrt{\cos\sqrt{x^{2}+y^{2}}}-1}=\lim_{x\to0\atop y\to0}4^{x+y}\left(\sqrt{\cos\sqrt{x^{2}+y^{2}}}+1\right)\frac{\left(1+\frac{1}{4}\sin xy\right)^{x+y}-1}{\cos\sqrt{x^{2}+y^{2}}-1}\\&=2\lim_{x\to0\atop y\to0}\frac{\mathrm{e}^{(x+y)\ln\left(1+\frac{1}{4}\sin xy\right)}-1}{\cos\sqrt{x^{2}+y^{2}}}-1=-2\lim_{x\to0\atop y\to0}\frac{(x+y)\ln\left(1+\frac{1}{4}\sin xy\right)}{\frac{1}{2}\left(x^{2}+y^{2}\right)}\\&=-\lim_{x\to0\atop y\to0}\frac{(x+y)\sin xy}{x^{2}+y^{2}}=-\lim_{x\to0\atop y\to0}\frac{(x+y)xy}{x^{2}+y^{2}}.\end{aligned} $$ 
+
+由于  $ 0 \leqslant \left| \frac{(x+y)xy}{x^{2}+y^{2}} \right| \leqslant \frac{|x+y|}{2} \rightarrow 0 (x \rightarrow 0, y \rightarrow 0) $，所以  $ \lim_{{x \to 0 \atop y \to 0}} \frac{(x+y)xy}{x^{2}+y^{2}} = 0 $，故原极限为 0.
+
+例3 求极限  $ \lim_{{x \to 0 \atop y \to 0}} (e^{xy} + x + y)^{\frac{1}{xy}} $
+
+分析 这属于 $ 1^{\infty} $型的极限，可利用一元函数极限的运算法则将其化简，再看极限是否存在或求其极限.
+
+解
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}(\mathtt{e}^{x y}+x+y)^{\frac{1}{x y}}=\operatorname*{l i m}_{x\to0\atop y\to0}\Bigl[1+(\mathtt{e}^{x y}-1+x+y)\Bigr]^{\frac{1}{x y}}=\mathtt{e}^{\lim\limits_{x\to0\atop y\to0}\frac{\mathtt{e}^{x y}-1+x+y}{x y}}, $$ 
+
+取 $ y=-x+kx^{2}\rightarrow0 $，有
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}\frac{\mathrm{e}^{x y}-1+x+y}{x y}=\operatorname*{l i m}_{x\to0\atop y\to0}\frac{\mathrm{e}^{x y}-1}{x y}+\operatorname*{l i m}_{x\to0}\frac{k x^{2}}{x(-x+k x^{2})}=1-k $$ 
+
+如果原极限存在，则其极限值为 $ e^{1-k} $，该值与k有关，显然原极限不存在.
+
+评注 否定一个极限存在的常用方法：取一条特殊路径，说明沿该路径极限不存在；或取两条（或多条）不同的路径，说明沿不同的路径的极限值也不同.
+
+例4 讨论函数的连续性  $ f(x,y)=\left\{\begin{aligned}&\frac{\sin(x^{2}y)}{x^{2}+y^{2}},(x,y)\neq(0,0)\\&0,\quad(x,y)=(0,0)\end{aligned}\right. $
+
+分析 当 $ (x,y)\neq(0,0) $时，函数显然连续；当 $ (x,y)=(0,0) $时，只需计算是否有 $ \lim_{{x\to0\atop y\to0}}f(x,y)=0 $
+
+解 方法1 当 $ (x,y)\neq(0,0) $时， $ f(x,y)=\frac{\sin(x^{2}y)}{x^{2}+y^{2}} $是初等函数，在其定义区域内处处连续.
+
+又
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}f(x,y)=\operatorname*{l i m}_{x\to0\atop y\to0}\frac{\sin(x^{2}y)}{x^{2}+y^{2}}=\operatorname*{l i m}_{x\to0\atop y\to0}\frac{\sin(x^{2}y)}{x^{2}y}\cdot\frac{x^{2}y}{x^{2}+y^{2}}, $$ 
+
+其中
+
+ $$ \lim_{x\to0\atop y\to0}\frac{\sin(x^2y)}{x^2y}\xlongequal{u=x^2y}\lim_{u\to0}\frac{\sin u}{u}=1,\quad\left|\frac{x^2y}{x^2+y^2}\right|\leqslant\frac{1}{2}|x|-\frac{x\to0}{x\to0}\to0 $$ 
+
+所以  $ \lim_{{x \to 0} \atop {y \to 0}} f(x, y) = 0 = f(0, 0) $，函数在  $ (0, 0) $ 点连续。所以函数在全平面上处处连续。
+
+方法2 取极坐标  $ x = \rho \cos \varphi $,  $ y = \rho \sin \varphi $，则当  $ (x, y) \to (0, 0) $ 时，有  $ \rho \to 0 $，得
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}\frac{\operatorname{s i n}(x^{2}y)}{x^{2}+y^{2}}=\operatorname*{l i m}_{\rho\to0^{+}}\frac{\operatorname{s i n}(\rho^{3}\operatorname{c o s}^{2}\varphi\operatorname{s i n}\varphi)}{\rho^{2}}=\operatorname*{l i m}_{\rho\to0^{+}}\frac{\rho^{3}\operatorname{c o s}^{2}\varphi\operatorname{s i n}\varphi}{\rho^{2}}=0\;. $$ 
+
+评注 当极限式中有  $ x^{2}+y^{2} $ 的因子时，用极坐标代换求极限是比较方便的，读者可考虑对例1中化简后的极限用极坐标代换做计算.
+
+计算二重极限的常用方法：
+
+（1）通过恒等变形，将函数化为在极限点的连续函数，则极限值等于函数值；
+
+(2) 作变量代换(或用极坐标)，转化为一元函数的极限：
+
+(3) 利用极限的四则运算法则、无穷小的性质；
+
+(4) 利用夹逼原理.
+
+例 5 设函数  $ f(x,y)=\begin{cases}\dfrac{x^{2}y}{x^{4}+y^{2}},&x^{2}+y^{2}\neq0\\0,&x^{2}+y^{2}=0\end{cases} $，证明当  $ (x,y) $ 沿过点  $ (0,0) $ 的每一条射线  $ \begin{cases}x=t\cos\alpha\\y=t\sin\alpha\end{cases}(0<t<+\infty) $ 趋于点  $ (0,0) $ 时， $ f(x,y) $ 的极限等于  $ f(0,0) $，即  $ \lim_{t\to0^{+}}f(t\cos\alpha,t\sin\alpha)=f(0,0) $，但  $ f(x,y) $ 在点  $ (0,0) $ 处不连续.
+
+分析　要说明  $ f(x,y) $ 在点  $ (0,0) $ 处不连续，只需说明  $ \lim_{{x \to 0 \atop y \to 0}} f(x,y) $ 不存在，或  $ \lim_{{x \to 0 \atop y \to 0}} f(x,y) \neq f(0,0) $.
+
+证明
+
+ $$ \operatorname*{l i m}_{t\to0^{+}}f(t\operatorname{c o s}\alpha,t\operatorname{s i n}\alpha)=\operatorname*{l i m}_{t\to0^{+}}\frac{t\operatorname{c o s}^{2}\alpha\operatorname{s i n}\alpha}{t^{2}\operatorname{c o s}^{4}\alpha+\operatorname{s i n}^{2}\alpha}=0=f(0,0)\;. $$ 
+
+又  $ \lim_{{x \to 0 \atop y = kx^2}} f(x, y) = \lim_{{x \to 0 \atop x^4 + k^2 x^4}} \frac{kx^4}{1 + k^2} $，与 k 有关，所以极限  $ \lim_{{x \to 0 \atop y \to 0}} f(x, y) $ 不存在，从而  $ f(x, y) $ 在点  $ (0, 0) $ 处不连续.
+
+评注 极限  $ \lim_{t\to0^{+}}f(t\cos\alpha,t\sin\alpha) $ 与  $ \lim_{\substack{x\to0\\ y\to0}}f(x,y) $ 的极坐标代换  $ \lim_{\rho\to0^{+}}f(\rho\cos\varphi,\rho\sin\varphi) $ 是两个不同的极限，计算中不要产生混淆。前者中的  $ \alpha $ 是与变量 t 无关的常数，极限是一元函数的极限；极坐标中的  $ \rho $ 与  $ \varphi $ 是两个独立的变量，后者是二重极限。当选定某条确定的路径  $ \rho=\rho(\varphi) $ 时， $ \rho $ 与  $ \varphi $ 又有相应的函数关系。对本题来说，用极坐标代换，其极限也是不存在的。因为
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}f(x,y)=\operatorname*{l i m}_{\rho\to0^{+}}\frac{\rho\cos^{2}\varphi\sin\varphi}{\rho^{2}\cos^{4}\varphi+\sin^{2}\varphi}, $$ 
+
+沿曲线  $ \rho=\frac{k\sin\varphi}{\cos^{2}\varphi}\rightarrow0\ (\varphi\rightarrow0) $，得
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}f(x,y)=\operatorname*{l i m}_{\stackrel{\rho\to0^{+}}{(\varphi\to0)}}\frac{k\sin^{2}\varphi}{k^{2}\sin^{2}\varphi+\sin^{2}\varphi}=\frac{k}{k^{2}+1}\;, $$ 
+
+与k有关，所以极限不存在.
+
+例6 设二元函数  $ f(x,y)=\left\{\begin{aligned}&\frac{(x+y)^{n}}{x^{2}+y^{2}},&x^{2}+y^{2}\neq0\\ &0,&x^{2}+y^{2}=0\end{aligned}\right. $，求使  $ f(x,y) $ 在点  $ (0,0) $ 处连续的正整数 n.
+
+分析 由于  $ 0 \leqslant \frac{(x+y)^{2}}{x^{2}+y^{2}} = 1 + \frac{2xy}{x^{2}+y^{2}} \leqslant 2 $，可知当 n > 2 时， $ \lim_{{x \to 0 \atop y \to 0}} f(x, y) = 0 $，函数连续；当 n = 1 或
+
+2时，取特殊路径y=kx，易知极限不存在.
+
+解 当n=1时，沿直线 $ y=x\to0 $，有
+
+ $$ \lim\limits_{x\to0\atop y\to0}f(x,y)=\lim\limits_{x\to0\atop y\to0}\frac{x+y}{x^{2}+y^{2}}=\lim\limits_{x\to0}\frac{2x}{2x^{2}}=\lim\limits_{x\to0}\frac{1}{x}\ , $$ 
+
+极限不存在，所以函数  $ f(x,y) $ 在点  $ (0,0) $ 处不连续.
+
+当n=2时，沿直线 $ y=kx\to0 $，有
+
+ $$ \operatorname*{l i m}_{x\to0\atop y\to0}f(x,y)=\operatorname*{l i m}_{x\to0}\frac{x^{2}(1+k)^{2}}{x^{2}(1+k^{2})}=\frac{(1+k)^{2}}{1+k^{2}}, $$ 
+
+与 k 有关，极限不存在. 从而不连续.
+
+当 $ n \geq 2 $时，由于 $ 0 \leq \frac{(x+y)^2}{x^2+y^2} \leq 2 $，则
+
+ $$ \mid f(x,y)\mid=\frac{\mid x+y\mid^{n}}{x^{2}+y^{2}}=\mid x+y\mid^{n-2}\frac{(x+y)^{2}}{x^{2}+y^{2}}\leq2\mid x+y\mid^{n-2}\to0\left((x,y)\to(0,0)\right). $$ 
+
+所以  $ \lim_{\substack{x\to0\\ y\to0}}f(x,y)=0=f(0,0) $， $ f(x,y) $ 在点  $ (0,0) $ 处连续.
+
+综上可知，使  $ f(x,y) $ 在点  $ (0,0) $ 处连续的正整数  $ n=3,4,\cdots $.
+
+评注 该题用极坐标代换计算极限会更为简便（读者可自行完成）.
+
+例7 设  $ z = f(x, y) $ 满足  $ \frac{\partial z}{\partial x} = -\sin y + \frac{1}{1 - xy} $，且有  $ f(1, y) = \sin y $，讨论  $ f(x, y) $ 在点  $ (1, 1) $ 处的连续性.
+
+分析 题设给出了函数  $ f(x,y) $ 的微分方程，积分可求出  $ f(x,y) $ 的表达式，再讨论连续性.
+
+解  $ f(1,1)=\sin1 $，当 $ (x,y)\neq(1,1) $时，由 $ \frac{\partial z}{\partial x}=-\sin y+\frac{1}{1-xy} $对x求积分，得
+
+ $$ z=-x\sin y-\frac{1}{y}\ln\left|1-xy\right|+\varphi(y), $$ 
+
+ $ \varphi(y) $为待定函数. 又由  $ f(1,y)=\sin y $ , 得
+
+ $$ -\sin y-\frac{1}{y}\ln\left|1-y\right|+\varphi(y)=\sin y, $$ 
+
+所以
+
+ $$ \varphi(y)=2\sin y+\frac{1}{y}\ln\left|1-y\right|, $$ 
+
+从而
+
+ $$ f(x,y)=(2-x)\sin y+\frac{1}{y}\ln\left|\frac{1-y}{1-xy}\right|. $$ 
+
+由于  $ \lim_{{x \to 1}_{y \to 1}} f(x, y) = \sin 1 + \lim_{{x \to 1}_{y \to 1}} \ln \left| \frac{1 - y}{1 - xy} \right| $，取  $ x = y^k \to 1 (k \in \mathbb{N}) $，则有
+
+ $$ \operatorname*{l i m}_{x\to1\atop y\to1}\ln\left|\frac{1-y}{1-x y}\right|=\operatorname*{l i m}_{y\to1}\ln\left|\frac{1-y}{1-y^{k+1}}\right|=\operatorname*{l i m}_{y\to1}\ln\left|\frac{1}{y^{k}+y^{k-1}+\cdots+y+1}\right|=\ln\frac{1}{k+1}. $$ 
+
+该极限与 k 有关，所以  $ \lim_{{x \to 1 \\ y \to 1}} f(x, y) $ 不存在，故函数  $ f(x, y) $ 在点  $ (1, 1) $ 处不连续.
+
+例8 设  $ f(x) $ 在  $ (0,1) $ 内连续，且存在两两互异的点  $ x_{1}, x_{2}, x_{3}, x_{4} \in (0,1) $，使得  $ \dot{\alpha} = \frac{f(x_{1}) - f(x_{2})}{x_{1} - x_{2}} < $
+
+ $ \frac{f(x_{3})-f(x_{4})}{x_{3}-x_{4}}=\beta $.证明对任意 $ \lambda\in(\alpha,\beta) $，存在互异的点 $ x_{5},x_{6}\in(0,1) $，使得 $ \lambda=\frac{f(x_{5})-f(x_{6})}{x_{5}-x_{6}} $.
+
+分析 不妨设  $ x_1 < x_2 $， $ x_3 < x_4 $，由连续函数的介值定理，只需证明  $ F(x, y) = \frac{f(x) - f(y)}{x - y} $ 在区域  $ D: \begin{cases} 0 < x < 1 \\ x < y < 1 \end{cases} $ 内连续。该结论是显然的。
+
+证明 方法1 令 $ F(x,y)=\frac{f(x)-f(y)}{x-y} $. 因为 $ f(x) $在 $ (0,1) $内连续，故 $ F(x,y) $在区域 $ D:\begin{cases}0<x<1\\x<y<1\end{cases} $内连续.
+
+不妨设  $ x_{1}<x_{2} $， $ x_{3}<x_{4} $，则有  $ (x_{1},x_{2}),(x_{3},x_{4})\in D $ 。由于  $ \alpha=F(x_{1},x_{2})<\beta=F(x_{3},x_{4}) $ ，由连续函数的介值定理知，对任意  $ \lambda\in(\alpha,\beta) $，必存在  $ (x_{5},x_{6})\in D $ （ $ x_{5},x_{6}\in(0,1) $ 且  $ x_{5}<x_{6} $），使得
+
+ $$ \lambda=F(x_{5},x_{6})=\frac{f(x_{5})-f(x_{6})}{x_{5}-x_{6}}. $$ 
+
+事实上，点 $ (x_{5},x_{6}) $也可在由两点 $ (x_{1},x_{2}),(x_{3},x_{4}) $连成的线段上取得.据此又有如下方法.
+
+方法2 不妨设 $ x_{1}<x_{2},x_{3}<x_{4} $，令
+
+ $$ F(t)=\frac{f\left((1-t)x_{2}+tx_{4}\right)-f\left((1-t)x_{1}+tx_{3}\right)}{\left((1-t)x_{2}+tx_{4}\right)-\left((1-t)x_{1}+tx_{3}\right)}, $$ 
+
+则  $ F(t) $ 在闭区间  $ [0,1] $ 上连续，且  $ F(0) = \alpha < \lambda < \beta = F(1) $，根据连续函数的介值定理， $ \exists t_0 \in (0,1) $，使得  $ F(t_0) = \lambda $。
+
+令  $ x_{5}=(1-t_{0})x_{1}+t_{0}x_{3} $， $ x_{6}=(1-t_{0})x_{2}+t_{0}x_{4} $，则  $ x_{5},x_{6}\in(0,1) $， $ x_{5}<x_{6} $，且
+
+ $$ \lambda=F(t_{0})=\frac{f(x_{5})-f(x_{6})}{x_{5}-x_{6}}. $$ 
+
+评注（1）与一元函数相同，有界闭区域上的多元连续函数具有以下性质：
+
+①有界；②有最大与最小值；③可取到介于最小值与最大值之间的所有值.
+
+（2）方法1中的区域D虽然不是闭区域，但连续函数总可以取到介于两个函数值之间的所有值。因为可在区域D内以两个已知点为端点作一条曲线段，这条曲线段就是一个连通闭集，连通闭集上的连续函数可取到介于两个函数值之间的所有值。
+
+##### 习题4.1
+
+1. 设  $ u(x,y)=y^{2}F(3x+2y) $，其中  $ u\left(x,\frac{1}{2}\right)=x^{2} $，求  $ u(x,y) $.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c2014d6b-00b5-4de0-bf7c-66ed80ed159a/markdown_0/imgs/img_in_image_box_1241_1398_1374_1531.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A30Z%2F-1%2F%2Fbead68e68cd579525e366631df85f278b4005ff55e52e67d5069f95efc870ea9" alt="Image" width="9%" /></div>
+
+
+2. 已知  $ z = \sqrt{y} + f(\sqrt{x} - 1) $，若当 y = 1 时，z = x，求函数  $ f(t) $ 和 z.
+
+<div style="text-align: center;"><div style="text-align: center;">习题4.1答案</div> </div>
+
+
+3. 求下列极限：
+
+(1)  $ \lim_{{x \to 0 \atop y \to 0}} \frac{(x^2 + y^2) \sin(xy^2)}{1 - \cos(x^2 + y^2)} $; \quad (2)  $ \lim_{{x \to 0 \atop y \to 0}} \ln(1 + xy)^{\frac{1}{x+y}} $; \quad (3)  $ \lim_{{x \to +\infty \atop y \to +\infty}} \left( \frac{xy}{x^2 + y^2} \right)^x \sin(xy) $;
+
+(4)  $ \lim_{\substack{x \to 0 \\ y \to 0}} \left( |x| + |y| \right)^{|xy|}; $
+
+(5)  $ \lim_{\substack{x \to 0 \\ y \to 0}} \frac{\sqrt{xy+1}-1}{(x+y)\ln|xy|} $.
+
+4. 讨论函数  $ f(x, y)=\left\{\begin{aligned}&\frac{(xy)^{n}}{x^{2}+y^{2}},&x^{2}+y^{2}\neq0\\ &0,&x^{2}+y^{2}=0\end{aligned}\right. $ 在  $ (0,0) $ 点处的连续性.
+
+5. 讨论函数  $ f(x, y) = \left\{ \begin{aligned} & \frac{x \sin(x - 2y)}{x - 2y}, & x \neq 2y \\ & 0, & x = 2y \end{aligned} \right. $ 的连续性.
+
+6. 设  $ D = \{(x, y) \mid x \geq 0, y \geq 0\} $， $ f(x, y) = \begin{cases} \frac{x^2 + y^2}{x^2 y^2} e^{\frac{x + y}{xy}}, & \text{当}(x, y) \in D, \text{且} xy \neq 0 \text{时} \\ 0, & \text{当}(x, y) \in D, \text{且} xy = 0 \text{时} \end{cases} $
+
+试讨论  $ f(x,y) $ 在 D 上的连续性.
+
+7. 设  $ f(x,y) $ 在  $ D=\{(x,y)\mid x^{2}+y^{2}\leq1\} $ 上连续，且  $ f(1,0)=1 $， $ f(0,1)=-1 $。证明至少存在两个不同的点  $ (\xi_{1},\eta_{1}) $ 与  $ (\xi_{2},\eta_{2}) $， $ (\xi_{1},\eta_{1})\neq(\xi_{2},\eta_{2}) $， $ \xi_{i}^{2}+\eta_{i}^{2}=1 $ (i=1,2)，使  $ f(\xi_{i},\eta_{i})=0 $ (i=1,2).
+
+## 4.2 多元函数的微分法
+
+本节主要讨论多元函数偏导数、方向导数与全微分的概念与计算。由于这些概念是一元函数相关概念的推广，所以在处理方式与计算方法上都有很多相似之处，学习中要善于类比、归纳，要善于将多元问题转化为一元问题去解决。由于变量个数的增加使得多元函数的变化规律较一元函数更为复杂，在研究上也更为困难，同时一元函数中的某些性质在多元函数中也不再保持（如与单调性相关的命题；函数的连续、偏导数存在、可微之间的关系；罗尔定理、柯西中值定理等），学习中要注意这些相异性。要熟悉相关概念与计算，掌握定理、法则的应用以及它们成立的条件。
+
+# 1. 偏导数、方向导数与全微分的概念与计算
+
+例1 已知函数  $ z = f(x, y) $ 连续，且满足  $ \lim_{{x \to 1 \atop x \to 0}} \frac{f(x, y) - 2x + y + 1}{\sqrt{(x - 1)^2 + y^2}} = 0 $，求  $ \lim_{{t \to 0}} \frac{f(1 + t, 0) - f(1, 2t)}{t} $.
+
+分析 因为  $ \lim_{t\to0}\frac{f(1+t,0)-f(1,2t)}{t}=\lim_{t\to0}\frac{\left[f(1+t,0)-f(1,0)\right]-\left[f(1,2t)-f(1,0)\right]}{t} $，所以若能求得  $ f_x(1,0) $ 与  $ f_y(1,0) $ 的值，问题就解决了；从另一个方面看，由所给极限式可得到  $ f(x,y) $ 的局部表达式，因而所求极限也就容易计算了.
+
+解 方法1 由  $ \lim_{\substack{x\to1\\y\to0}}\frac{f(x,y)-2x+y+1}{\sqrt{(x-1)^2+y^2}}=0 $ ，得
+
+ $$ \lim\limits_{\substack{x\to1\\ y\to0}}\left[f(x,y)-2x+y+1\right]=0\Longrightarrow\lim\limits_{\substack{x\to1\\ y\to0}}f(x,y)=1. $$ 
+
+因为  $ f(x,y) $ 连续，所以  $ f(1,0)=1 $ 。从而
+
+ $$ \operatorname*{l i m}_{x\to1\atop y\to0}\frac{f(x,y)-2x+y+1}{\sqrt{(x-1)^{2}+y^{2}}}=\operatorname*{l i m}_{x\to1\atop y\to0}\frac{\left[f(x,y)-1\right]-\left[2(x-1)-y\right]}{\sqrt{(x-1)^{2}+y^{2}}}=0. $$ 
+
+由微分的定义，知函数  $ z = f(x, y) $ 在点  $ (1, 0) $ 处可微，并且  $ f_{x}(1, 0) = 2 $， $ f_{y}(1, 0) = -1 $。所以
+
+ $$ \begin{aligned}\lim_{t\to0}\frac{f(1+t,0)-f(1,2t)}{t}&=\lim_{t\to0}\frac{f(1+t,0)-f(1,0)}{t}-2\lim_{t\to0}\frac{f(1,2t)-f(1,0)}{2t}\\&=f_{x}(1,0)-2f_{y}(1,0)=2+2=4.\end{aligned} $$ 
+
+方法2 由  $ \lim_{{x \to 1 \atop y \to 0}} \frac{f(x, y) - 2x + y + 1}{\sqrt{(x - 1)^2 + y^2}} = 0 $，得
+
+ $$ f(x,y)=2x-y-1+o\left(\sqrt{(x-1)^2+y^2}\right), $$ 
+
+所以
+
+ $$ \begin{aligned}\lim_{t\to0}\frac{f(1+t,0)-f(1,2t)}{t}&=\lim_{t\to0}\frac{2(1+t)-1+o(|t|)-\left[2-2t-1+o(|t|)\right]}{t}\\&=\lim_{t\to0}\frac{4t++o(|t|)}{t}=4\;.\end{aligned} $$ 
+
+评注 由微分的定义容易得到：若  $ f(x,y) $ 在点  $ (x_{0},y_{0}) $ 处连续，且  $ \lim_{{x\to x_{0}}\atop{y\to y_{0}}}\frac{f(x,y)-(ax+by+c)}{\sqrt{(x-x_{0})^{2}+(y-y_{0})^{2}}}=0 $，则  $ f(x,y) $ 在点  $ (x_{0},y_{0}) $ 处可微，且  $ f_{x}(x_{0},y_{0})=a $， $ f_{y}(x_{0},y_{0})=b $。
+
+例2 设函数  $ f(x,y) $ 可微， $ \frac{\partial f}{\partial x}=-f(x,y) $， $ f\left(0,\frac{\pi}{2}\right)=1 $，且满足  $ \lim_{n\to\infty}\left(\frac{f\left(0,y+\frac{1}{n}\right)}{f(0,y)}\right)^n=e^{\cot y} $ 处，求  $ f(x,y) $.
+
+分析（1）求出左边的极限就可得到一个函数等式或微分方程， $ f(x,y) $ 的表达式就容易求得了.
+
+（2）也可以先解微分方程 $ \frac{\partial f}{\partial x}=-f(x,y) $，再由所给极限式确定通解中的待定函数.
+
+解 方法1 利用偏导数的定义，得
+
+ $$ \begin{aligned}&\lim_{n\rightarrow\infty}\left[\frac{f\left(0,y+\frac{1}{n}\right)}{f(0,y)}\right]^{n}=\lim_{n\rightarrow\infty}\left[1+\frac{f\left(0,y+\frac{1}{n}\right)-f(0,y)}{f(0,y)}\right]^{n}\\ &=\exp\left[\lim_{n\rightarrow\infty}\frac{f\left(0,y+\frac{1}{n}\right)-f(0,y)}{\frac{1}{n}f(0,y)}\right]=\exp\left(\frac{f_{y}(0,y)}{f(0,y)}\right),\\ \end{aligned} $$ 
+
+所给等式化为
+
+ $$ \begin{aligned}\mathrm{e}^{\frac{f_{y}(0,y)}{f(0,y)}}=\mathrm{e}^{\cot y},\mathrm{~ 即 ~}\frac{f_{y}(0,y)}{f(0,y)}=\cot y.\end{aligned} $$ 
+
+对y积分得
+
+ $$ \ln f(0,y)=\ln\sin y+\ln C,\  即 \quad f(0,y)=C\sin y. $$ 
+
+代入  $ f\left(0,\frac{\pi}{2}\right)=1 $，得 C=1，所以  $ f(0,y)=\sin y $．又已知  $ \frac{\partial f}{\partial x}=-f(x,y) $，解得
+
+ $ f(x,y)=\varphi(y)\mathrm{e}^{-x},\quad\varphi(y) $ 为待定函数.
+
+由  $ f(0,y)=\sin y $ ，得  $ \varphi(y)=\sin y $ ，故  $ f(x,y)=\mathrm{e}^{-x}\sin y $
+
+方法2 将方程 $ \frac{\partial f}{\partial x}=-f(x,y) $化为 $ \frac{f_{x}(x,y)}{f(x,y)}=-1 $，视y为常数，两边关于x求积分，得
+
+ $ \ln f(x,y)=-x+\ln\varphi(y)\Rightarrow f(x,y)=\varphi(y)\mathrm{e}^{-x} $， $ \varphi(y) $为待定函数.
+
+将上式代入所给极限式，有
+
+ $$ \mathbf{e}^{\mathsf{c o t y}}=\operatorname*{l i m}_{n\to\infty}\left[\frac{\varphi\left(y+\frac{1}{n}\right)}{\varphi(y)}\right]^{n}=\operatorname*{l i m}_{n\to\infty}\left[1+\frac{\varphi\left(y+\frac{1}{n}\right)-\varphi(y)}{\varphi(y)}\right]^{n}=\mathbf{e}^{\frac{\varphi^{\prime}(y)}{\varphi(y)}}\;, $$ 
+
+所以
+
+ $$ \frac{\varphi^{\prime}(y)}{\varphi(y)}=\mathrm{c o t y}\Rightarrow\varphi(y)=C\sin y\;. $$ 
+
+再由  $ \varphi\left(\frac{\pi}{2}\right)=f\left(0,\frac{\pi}{2}\right)=1\Rightarrow C=1 $ ，所以  $ f(x,y)=\mathrm{e}^{-x}\sin y $ 。
+
+例3 $ ^{*} $ 设  $ f(x,y)=\left\{\begin{aligned}&\frac{x^{5}}{(y-x^{2})^{2}+x^{6}},&x^{2}+y^{2}\neq0\\&0,&x^{2}+y^{2}=0\end{aligned}\right. $，求：
+
+（1）使方向导数 $ \left.\frac{\partial f}{\partial l}\right|_{(0,0)}\neq0 $（方向 $ l=(\cos\alpha,\sin\alpha),\alpha\in[0,2\pi) $）的最大 $ \alpha $值（记为 $ \alpha_{0} $）；
+
+（2）过点  $ M(2,-1,3) $，与直线  $ L_{1}:\frac{x-1}{1}=\frac{y}{-1}=\frac{z+2}{1} $ 相交，且与平面  $ \pi_{1} $: 3x-2y+z+5=0 夹角为  $ \alpha_{0} $ 的直线 L 的方程.
+
+分析（1）由于(0,0)是函数的分段点，所以 $ \left.\frac{\partial f}{\partial l}\right|_{(0,0)} $需用定义计算.
+
+（2）求直线L方程的方法有多种，关键是要求得L的方向向量或与已知直线 $ L_{1} $的交点.
+
+解 （1）设过原点方向向量为  $ I $ 的射线为  $ \Gamma $， $ (r\cos\alpha, r\sin\alpha) $ 是  $ \Gamma $ 上的任一点，则
+
+ $$ \begin{aligned}\left.\frac{\partial f}{\partial l}\right|_{(0,0)}=&\lim_{r\rightarrow0}\frac{f(r\cos\alpha,r\sin\alpha)-f(0,0)}{r}=\lim_{r\rightarrow0}\frac{\frac{r^{5}\cos^{5}\alpha}{(r\sin\alpha-r^{2}\cos^{2}\alpha)^{2}+r^{6}\cos^{6}\alpha}}{r}\\=&\lim_{r\rightarrow0}\frac{r^{2}\cos^{5}\alpha}{(\sin\alpha-r\cos^{2}\alpha)^{2}+r^{4}\cos^{6}\alpha}=\left\{\begin{array}{ll}1,&\alpha=0,\\-1,&\alpha=\pi,\\0,& 其他 .\end{array}\right.\end{aligned} $$ 
+
+因此使 $ \left.\frac{\partial f}{\partial l}\right|_{(0,0)}\neq0 $的最大 $ \alpha $值 $ \alpha_{0}=\pi $.
+
+（2）方法1 设 $L$ 的方向向量为 $\boldsymbol{s} = (l, m, n)$，则由 $L$ 过点 $M(2, -1, 3)$ 及与直线 $L_1$ 相交，知向量 $\overrightarrow{M_0M}$, $\boldsymbol{s}_1$, $\boldsymbol{s}$ 共面（其中 $M_0(1, 0, -2) \in L_1$, $\boldsymbol{s}_1 = (1, -1, 1)$ 是 $L_1$ 的方向向量），于是有
+
+ $$ \begin{aligned}\left[\overrightarrow{M_{0}M},\boldsymbol{s}_{1},\boldsymbol{s}\right]&=0, 即 \left|\begin{matrix}1&-1&5\\1&-1&1\\l&m&n\end{matrix}\right|=0.\end{aligned} $$ 
+
+由此得到
+
+ $$ l+m=0. $$ 
+
+ $ l+m=0 $
+
+此外，由于L与平面 $ \pi_{1} $的夹角为 $ \alpha_{0}=\pi $，即L与平面 $ \pi_{1} $平行，所以
+
+ $$ s\cdot\boldsymbol{n}=3l-2m+n=0 $$ 
+
+由①，②式解得 $ l=-\frac{1}{5}n,\quad m=\frac{1}{5}n $，所以L的方向向量可取为 $ s=(-1,1,5) $，L的方程为
+
+ $$ \frac{x-2}{-1}=\frac{y+1}{1}=\frac{z-3}{5}. $$ 
+
+方法2 只需求得直线L与已知直线 $ L_{1} $的交点.
+
+过点  $ M(2,-1,3) $ 作与已知平面  $ \pi_{1} $ 平行的平面  $ \pi: 3(x-2)-2(y+1)+(z-3)=0 $，求得平面  $ \pi $ 与直线  $ L_{1} $ 的交点为  $ N\left(\frac{8}{3},-\frac{5}{3},-\frac{1}{3}\right) $.
+
+由于 L 过点  $ M(2,-1,3) $ 且与平面  $ \pi_{1} $ 平行，所以点 N 也是 L 与  $ L_{1} $ 的交点，由此可写出 L 的方程.
+
+方法3 直线 $ L_{1} $的参数形式为 $ \left\{\begin{aligned}x&=1+t\\ y&=-t\\ z&=-2+t\end{aligned}\right. $，设 $ L $与 $ L_{1} $的交点为 $ N(1+t,-t,-2+t) $，由L平行于 $ \pi_{1} $，得
+
+ $$ \overrightarrow{MN}\cdot\boldsymbol{n}=0\ ,\  即 3(t-1)-2(1-t)+(t-5)=0. $$ 
+
+求得 $ t=\frac{5}{3} $，点 $ N\left(\frac{8}{3},-\frac{5}{3},-\frac{1}{3}\right) $.
+
+评注 几何问题通常有多种解法；求直（曲）线与某平（曲）面的交点，用直（曲）线的参数式方程便于计算.
+
+例4 设 n 是曲面  $ 2x^{2}+3y^{2}+z^{2}=6 $ 在点 P(1,1,1) 处指向外侧的法向量，求函数  $ u=\frac{\sqrt{6x^{2}+8y^{2}}}{z} $ 在点 P 处沿方向 n 的方向导数. 函数在该点沿什么方向的方向导数最大？最大值为多少？
+
+分析 计算 n 方向的方向导数必须要先求得 n 的表达式；函数沿梯度方向的方向导数最大，最大值为梯度的模.
+
+解  $ n=(4x,6y,2z)|_{P}=2(2,3,1) $，方向余弦为
+
+ $$ \cos\alpha=\frac{2}{\sqrt{14}},\quad\cos\beta=\frac{3}{\sqrt{14}},\quad\cos\gamma=\frac{1}{\sqrt{14}}. $$ 
+
+又
+
+ $$ \left.\frac{\partial u}{\partial x}\right|_{P}=\frac{6x}{z\sqrt{6x^{2}+8y^{2}}}\bigg|_{P}=\frac{6}{\sqrt{14}}\ ,\mathrm{~ 同理得 ~}\left.\frac{\partial u}{\partial y}\right|_{P}=\frac{8}{\sqrt{14}}\ ,\left.\frac{\partial u}{\partial z}\right|_{P}=-\sqrt{14}\ . $$ 
+
+所以
+
+ $$ \left.\frac{\partial u}{\partial\boldsymbol{n}}\right|_{P}=\left(\left.\frac{\partial u}{\partial x}\cos\alpha+\frac{\partial u}{\partial y}\cos\beta+\frac{\partial u}{\partial z}\cos\gamma\right)\right|_{(1,1)}=\frac{1}{14}(6\times2+8\times3-14\times1)=\frac{11}{7}. $$ 
+
+函数在该点沿梯度方向  $ \mathrm{grad}u\vert_{(1,1,1)}=\left(\frac{6}{\sqrt{14}},\frac{8}{\sqrt{14}},-\sqrt{14}\right) $ 的方向导数最大，最大值为
+
+ $$ \left\|\mathrm{grad}u\right\|_{(1,1,1)}=\sqrt{\left(\frac{6}{\sqrt{14}}\right)^{2}+\left(\frac{8}{\sqrt{14}}\right)^{2}+\left(-\sqrt{14}\right)^{2}}=2\sqrt{\frac{37}{7}}\;. $$ 
+
+评注（1）方向导数公式
+
+ $$ \left.\frac{\partial f}{\partial\boldsymbol{l}}\right|_{P}=\left(\frac{\partial f}{\partial x}\mathbf{c o s}\alpha+\frac{\partial f}{\partial y}\mathbf{c o s}\beta+\frac{\partial f}{\partial z}\mathbf{c o s}\gamma\right)\bigg|_{P} $$ 
+
+成立的条件是函数 f 在点 P 处可微. 否则，上面公式可能不成立. 如 4.2 节例 3（1）中的方向导数用该公式计算就不正确.
+
+（2）函数沿梯度方向的方向导数最大，即梯度的方向是函数增长最快的方向，其增长率就是梯度的模 $ \|\text{grad } f\| $。
+
+例5 设函数
+
+ $$ f(x,y)=\left\{\begin{aligned}&xy\sin\frac{1}{\sqrt{x^{2}+y^{2}}},&x^{2}+y^{2}\neq0,\\ &0,&x^{2}+y^{2}=0.\end{aligned}\right. $$ 
+
+（1）求  $ f(x,y) $ 的偏导数，并讨论其连续性.
+
+（2）函数  $ f(x,y) $ 在点  $ (0,0) $ 处是否可微？
+
+分析 由于点 $ (0,0) $是分段点，所以其偏导数要用定义计算；偏导数的连续性要考察其极限值是否存在且等于偏导数的函数值； $ f $ 在点 $ (0,0) $处的可微性需检验是否有 $ \Delta f=(f_x(0,0)\cdot\Delta x+f_y(0,0)\cdot\Delta y)+o(\rho) $.
+
+解 由偏导数的定义易，得  $ f_{x}(0,0)=f_{y}(0,0)=0 $.
+
+当 $ (x,y)\neq(0,0) $时，
+
+ $$ f_{x}(x,y)=y\sin\frac{1}{\sqrt{x^{2}+y^{2}}}-\frac{x^{2}y}{\sqrt{(x^{2}+y^{2})^{3}}}\cos\frac{1}{\sqrt{x^{2}+y^{2}}}, $$ 
+
+ $$ f_{y}(x,y)=x\sin\frac{1}{\sqrt{x^{2}+y^{2}}}-\frac{xy^{2}}{\sqrt{(x^{2}+y^{2})^{3}}}\cos\frac{1}{\sqrt{x^{2}+y^{2}}} $$ 
+
+当点 $ (x,y) $沿直线y=x趋于 $ (0,0) $时，
+
+ $$ \operatorname*{l i m}_{(x,x)\to(0,0)}f_{x}(x,y)=\operatorname*{l i m}_{x\to0}\left(x\sin\frac{1}{\sqrt{2}\mid x\mid}-\frac{x^{3}}{2\sqrt{2}\mid x\mid^{3}}\cos\frac{1}{\sqrt{2}\mid x\mid}\right), $$ 
+
+该极限不存在，所以  $ f_{x}(x,y) $ 在点  $ (0,0) $ 处不连续。同理  $ f_{y}(x,y) $ 在点  $ (0,0) $ 处也不连续。
+
+又
+
+ $$ \Delta f-\left(f_{x}(0,0)\cdot\Delta x+f_{y}(0,0)\cdot\Delta y\right)=\Delta f=\Delta x\cdot\Delta y\cdot\sin\frac{1}{\sqrt{\left(\Delta x\right)^{2}+\left(\Delta y\right)^{2}}}. $$ 
+
+而
+
+ $$ \begin{align*}\left|\Delta x\cdot\Delta y\cdot\sin\frac{1}{\sqrt{(\Delta x)^{2}+(\Delta y)^{2}}}\right|\leq&\frac{1}{2}[(\Delta x)^{2}+(\Delta y)^{2}]=\frac{1}{2}\rho^{2}\left(\rho=[(\Delta x)^{2}+(\Delta y)^{2}]^{\frac{1}{2}}\right)\\\Rightarrow&\frac{\left|\Delta f-(f_{x}(0,0)\cdot\Delta x+f_{y}(0,0)\cdot\Delta y)\right|}{\rho}\leq&\frac{1}{2}\rho\rightarrow0\left(\rho\rightarrow0\right).\end{align*} $$ 
+
+即有
+
+ $$ \Delta f=f_{x}(0,0)\cdot\Delta x+f_{y}(0,0)\cdot\Delta y+o(\rho)\;. $$ 
+
+故 f 在点  $ (0,0) $ 处可微，且  $ \left.\mathrm{d}f\right|_{(0,0)}=0 $.
+
+评注 函数可微的概念：
+
+ $ z = f(x, y) $ 在点  $ (x_{0}, y_{0}) $ 处可微
+
+ $$ \begin{aligned}&\Leftrightarrow\Delta z=f_{x}(x_{0},y_{0})\cdot\Delta x+f_{y}(x_{0},y_{0})\cdot\Delta y+o(\rho)\left(\rho=\sqrt{\left(\Delta x\right)^{2}+\left(\Delta y\right)^{2}}\right)\\ &\Leftrightarrow\lim_{\rho\rightarrow0^{*}}\frac{\Delta f-\left(f_{x}(x_{0},y_{0})\cdot\Delta x+f_{y}(x_{0},y_{0})\cdot\Delta y\right)}{\rho}=0.\\ \end{aligned} $$ 
+
+例6 设  $ f(x,y)=\left\{\begin{aligned}&x\sin(4\arctan\frac{y}{x}),&x\neq0,\\ &0,&x=0.\end{aligned}\right. $
+
+（1）求  $ f_{x}(x,y) $ 与  $ f_{x}(x,y) $，并讨论它们的连续性与有界性；
+
+(2) $ f(x,y) $在点 $ (0,0) $处是否可微？
+
+分析与上例相同.
+
+解（1）当 $ x\neq0 $时，有
+
+ $$ f_{x}(x,y)=\sin\left(4\arctan\frac{y}{x}\right)+\cos\left(4\arctan\frac{y}{x}\right)\cdot\left(\frac{-4xy}{x^{2}+y^{2}}\right); $$ 
+
+当x=0时，有
+
+ $$ f_{x}(0,y)=\lim_{x\to0}\frac{f(x,y)-f(0,y)}{x-0}=\lim_{x\to0}\frac{x\sin\left(4\arctan\frac{y}{x}\right)}{x}=\lim_{x\to0}\sin\left(4\arctan\frac{y}{x}\right). $$ 
+
+当y=0时，②式中的极限显然为0.
+
+当  $ y \neq 0 $，则分 4 种情形：（I） $ y > 0 $， $ x \to 0^{+} $；（II） $ y > 0 $， $ x \to 0^{-} $；（III） $ y < 0 $， $ x \to 0^{+} $；（IV） $ y < 0 $， $ x \to 0^{-} $。对于（I）（IV）两种情形， $ \lim_{x \to 0} \arctan \frac{y}{x} = \frac{\pi}{2} $；对于（II）（III）两种情形， $ \lim_{x \to 0} \arctan \frac{y}{x} = -\frac{\pi}{2} $。所以总有
+
+ $$ f_{x}(0,y)=\lim_{x\to0}\sin\left(4\arctan\frac{y}{x}\right)=0. $$ 
+
+所以
+
+ $$ f_{x}(x,y)=\left\{\begin{aligned}{}&{{}\operatorname{s i n}(4\operatorname{a r c t a n}\frac{y}{x})-\frac{4x y}{x^{2}+y^{2}}\operatorname{c o s}(4\operatorname{a r c t a n}\frac{y}{x}),\quad x\neq0,}\\ {}&{{}0,\quad x=0.}\\ \end{aligned}\right. $$ 
+
+同理可得
+
+ $$ f_{y}(x,y)=\left\{\begin{aligned}{}&{{}\operatorname{c o s}\left(4\operatorname{a r c t a n}\frac{y}{x}\right),~x\neq0,}\\ {}&{{}0,\quad x=0.}\\ \end{aligned}\right. $$ 
+
+当 $ x\neq0 $时， $ f_{x}(x,y) $与 $ f_{y}(x,y) $都是初等函数，它们是连续的；当x=0时， $ f_{x}(x,y) $与 $ f_{y}(x,y) $都不连续，其原因是
+
+ $$ \operatorname*{l i m}_{x\to0\atop y=x}f_{x}(x,y)=2,\operatorname*{l i m}_{x\to0\atop y=-x}f_{x}(x,y)=-2;\operatorname*{l i m}_{x\to0\atop y=kx}f_{y}(x,y)=\cos\left(4\arctan k\right). $$ 
+
+即 $ \lim_{\substack{x\to0\\y\to0}}f_{x}(x,y) $与 $ \lim_{\substack{x\to0\\y\to0}}f_{y}(x,y) $均不存在.
+
+由于 $ \left|\frac{-4xy}{x^{2}+y^{2}}\right|\leq2 $，所以无论是x=0还是 $ x\neq0 $，均有 $ \left|f_{x}(x,y)\right|\leq3 $， $ \left|f_{y}(x,y)\right|\leq1 $。两个函数均有界.
+
+（2）因为  $ \Delta f\Big|_{(0,0)}=f(0+\Delta x,0+\Delta y)-f(0,0)=\Delta x\sin\left(4\arctan\frac{\Delta y}{\Delta x}\right) $，所以有
+
+ $$ \operatorname*{l i m}_{\rho\to0^{+}}\frac{\Delta f-(f_{x}(0,0)\Delta x+f_{y}(0,0)\Delta y)}{\rho}=\operatorname*{l i m}_{\rho\to0^{+}}\frac{\Delta x\sin\left(4\operatorname{a r c}\tan\frac{\Delta y}{\Delta x}\right)}{\rho}, $$ 
+
+其中  $ \rho=[\left(\Delta x\right)^{2}+\left(\Delta y\right)^{2}]^{\frac{1}{2}} $
+
+若取  $ \Delta y = k\Delta x $，让  $ \Delta x \to 0 $，则有
+
+ $$ \operatorname*{l i m}_{\rho\to0^{+}}\frac{\Delta x\operatorname{s i n}\left(4\operatorname{a r c}\operatorname{t a n}\frac{\Delta y}{\Delta x}\right)}{\rho}=\operatorname*{l i m}_{\Delta x\to0}\frac{\Delta x\operatorname{s i n}(4\operatorname{a r c t a n}k)}{|\Delta x|\sqrt{1+k^{2}}}. $$ 
+
+显然上式右边不等于零. 即有  $ \Delta f \neq f_{x}(0,0)\Delta x + f_{y}(0,0)\Delta y + o(\rho) $，故知  $ f(x,y) $ 在点  $ (0,0) $ 处不可微.
+
+例 7 证明若函数  $ f(x,y) $ 在点  $ P(x_{0},y_{0}) $ 的某邻域  $ U(P) $ 内的两个偏导数  $ f_{x}(x,y) $ 与  $ f_{y}(x,y) $ 均存在且有界，则  $ f(x,y) $ 在  $ U(P) $ 内连续.
+
+分析 要建立函数与偏导数的联系，自然会想到拉格朗日中值定理. 所以只需将二元函数在一点的增量转化为一元函数的增量（偏增量）.
+
+证明 因为 f 的两个偏导数在  $ U(P) $ 内有界，则存在常数 M > 0，使得  $ \forall (x, y) \in U(P) $，有
+
+ $$ |f_{x}(x,y)|\leqslant M,\mid f_{y}(x,y)\mid\leqslant M. $$ 
+
+取 $ (x+\Delta x,y+\Delta y)\in U(P) $，由一元函数的拉格朗日中值定理，有
+
+ $$ \begin{aligned}\Delta f&=f(x+\Delta x,y+\Delta y)-f(x,y)\\&=\left[f(x+\Delta x,y+\Delta y)-f(x,y+\Delta y)\right]+\left[f(x,\dot{y}+\Delta y)-f(x,y)\right]\\&=f_{x}(x+\theta_{1}\Delta x,y+\Delta y)\Delta x+f_{x}(x,y+\theta_{2}\Delta y)\Delta y,\end{aligned} $$ 
+
+其中 $ 0<\theta_{1}<1,\quad0<\theta_{2}<1 $。由此可得
+
+ $$ \mid\Delta f\mid\leqslant\mid f_{x}(x+\theta_{1}\Delta x,y+\Delta y)\Delta x\mid+\mid f_{x}(x,y+\theta_{2}\Delta y)\Delta y\mid\leqslant M(\mid\Delta x\mid+\mid\Delta y\mid). $$ 
+
+所以  $ \lim_{\Delta x \to 0 \atop \Delta y \to 0} \Delta f = 0 $， $ f(x, y) $ 在点  $ (x, y) $ 处连续。由点  $ (x, y) $ 的任意性，知  $ f(x, y) $ 在  $ U(P) $ 内连续。
+
+评注 函数的可微、连续、偏导数及方向导数之间的关系如下：
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//fdc0068e-f0fc-4723-8211-c2bfb8ed6d96/markdown_3/imgs/img_in_image_box_396_632_1020_956.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A34Z%2F-1%2F%2F6df3eeb71858527b2372cd1f7707eadc39b3ffc53262fdec3f8e36867f9d6a71" alt="Image" width="42%" /></div>
+
+
+例8 设二元函数  $ f(x,y)=\left\{\begin{aligned}&xy\frac{x^{2}-y^{2}}{x^{2}+y^{2}},&x^{2}+y^{2}\neq0\\ &0.&\quad x^{2}+\nu^{2}=0\end{aligned}\right. $，求  $ f_{xy}(0,0) $ 与  $ f_{yx}(0,0) $.
+
+分析 由于(0,0)是函数的分段点，所以其一阶与二阶偏导数只能用定义计算.
+
+解 由偏导数的定义，得
+
+ $$ f_{x}(0,0)=\lim_{x\to0}\frac{f(x,0)-f(0,0)}{x-0}=0,\quad f_{y}(0,0)=\lim_{y\to0}\frac{f(0,y)-f(0,0)}{y-0}=0. $$ 
+
+当 $ y\neq0 $时，有
+
+ $$ f_{x}(0,y)=\left.\frac{\partial}{\partial x}\left(xy\frac{x^{2}-y^{2}}{x^{2}+y^{2}}\right)\right|_{x=0}=\frac{y(x^{4}+4x^{2}y^{2}-y^{4})}{(x^{2}+y^{2})^{2}}\bigg|_{x=0}=-y, $$ 
+
+当 $ x\neq0 $时，有
+
+ $$ f_{y}(x,0)=\frac{\partial}{\partial y}\Bigg(x y\frac{x^{2}-y^{2}}{x^{2}+y^{2}}\Bigg)\Bigg|_{y=0}=\frac{x(x^{4}-4x^{2}y^{2}-y^{4})}{(x^{2}+y^{2})^{2}}\Bigg|_{y=0}=x. $$ 
+
+所以
+
+ $$ f_{x y}(0,0)=\lim_{y\to0}\frac{f_{x}(0,y)-f_{x}(0,0)}{y}=\lim_{y\to0}\frac{-y}{y}=-1, $$ 
+
+ $$ f_{yx}(0,0)=\lim_{x\to0}\frac{f_{y}(x,0)-f_{y}(0,0)}{x}=\lim_{x\to0}\frac{x}{x}=1. $$ 
+
+评注 混合偏导数  $ f_{xy}(x,y) $ 与  $ f_{yx}(x,y) $ 不一定相等，但在它们的连续点处是相等的. 对高阶混合偏导数也有相应的结论.
+
+例9 设  $ f(x,y) $ 在点  $ (2,-2) $ 处可微，满足
+
+ $$ f\left(\sin(x y)+2\cos x,x y-2\cos y\right)=1+x^{2}+y^{2}+o(x^{2}+y^{2})~, $$ 
+
+其中  $ o(x^{2}+y^{2}) $ 是  $ x^{2}+y^{2} $ 的高阶无穷小  $ \left((x,y)\rightarrow(0,0)\right) $. 求曲面 z=f(x,y) 在点  $ \left(2,-2,f(2,-2)\right) $ 处的切平面.
+
+分析 只需求得函数值  $ f(2,-2) $ 与曲面  $ z = f(x,y) $ 的法向量  $ \boldsymbol{n} = (-f_{x}(2,-2), -f_{y}(2,-2), 1) $.
+
+解 由所给等式，知
+
+ $$ f(2,-2)=1\;,\quad f(2\cos x,-2)=1+x^{2}+o(x^{2})\;,\quad f(2,-2\cos y)=1+y^{2}+o(y^{2})\;. $$ 
+
+则
+
+ $$ f_{x}(2,-2)=\lim_{x\to0}\frac{f\left(2+2(\cos x-1),-2\right)-f(2,-2)}{2(\cos x-1)}=\lim_{x\to0}\frac{\left(1+x^{2}+o(x^{2})\right)-1}{-x^{2}}=-1 $$ 
+
+ $$ f_{y}(2,-2)=\lim_{y\to0}\frac{f(2,-2+2(1-\cos y))-f(2,-2)}{2(1-\cos y)}=\lim_{y\to0}\frac{(1+y^{2}+o(y^{2}))-1}{y^{2}}=1. $$ 
+
+得曲面  $ z = f(x, y) $ 在点  $ (2, -2) $ 处的法向量  $ \boldsymbol{n} = (1, -1, 1) $. 所求切平面为
+
+ $$ 1\cdot(x-2)-1\cdot(y+2)+1\cdot(z-1)=0\ , 即 x-y+z=5\ . $$ 
+
+例  $ 10^{*} $ 设  $ I_{k}(k=1,2,\cdots,n) $ 是平面上点  $ P_{0} $ 处的  $ n (n \geqslant 2) $ 个方向向量，相邻两个向量之间的夹角为  $ \frac{2\pi}{n} $，若函数  $ f(x,y) $ 在点  $ P_{0} $ 处有连续的偏导数，则证明  $ \sum_{k=1}^{n} \frac{\partial f(P_{0})}{\partial l_{k}} = 0 $.
+
+分析 由方向导数的公式  $ \frac{\partial f(P_{0})}{\partial l_{k}} = \nabla f(P_{0}) \cdot l_{k} $，只需证明  $ \sum_{k=1}^{n} l_{k} = 0 $。根据向量加法的几何意义这是显然的。若用代数方法计算，则需要设出  $ l_{k} $ 的分量形式。
+
+证明 方法1 由方向导数的公式 $ \frac{\partial f(P_{0})}{\partial l_{k}}=\nabla f(P_{0})\cdot l_{k} $，得
+
+ $$ \sum_{k=1}^{n}\frac{\partial f(P_{0})}{\partial l_{k}}=\sum_{k=1}^{n}\nabla f(P_{0})\cdot\boldsymbol{l}_{k}=\nabla f(P_{0})\cdot\sum_{k=1}^{n}\boldsymbol{l}_{k}\;. $$ 
+
+由于  $ I_{k}(k=1,2,\cdots,n) $ 是 n 个单位向量，且相邻两个向量之间的夹角为  $ \frac{2\pi}{n} $，由向量加法的多边形法则（相邻向量首尾相接），这 n 个向量刚好构成一个正 n 边形（其外角和为  $ n\cdot\frac{2\pi}{n}=2\pi $），因而  $ \sum_{k=1}^{n}I_{k}=0 $，所以  $ \sum_{k=1}^{n}\frac{\partial f(P_{0})}{\partial I_{k}}=0 $。
+
+方法2 设  $ l_{k}=\left(\cos\left(\alpha+k\frac{2\pi}{n}\right),\sin\left(\alpha+k\frac{2\pi}{n}\right)\right) $ ( $ \alpha\in[0,\pi) $; k=1,2, $ \cdots $,n).
+
+则
+
+ $$ \begin{aligned}\sum_{k=1}^{n}\frac{\partial f(P_{0})}{\partial I_{k}}=&\sum_{k=1}^{n}\left(\frac{\partial f(P_{0})}{\partial x}\cdot\cos\left(\alpha+k\frac{2\pi}{n}\right)+\frac{\partial f(P_{0})}{\partial y}\cdot\sin\left(\alpha+k\frac{2\pi}{n}\right)\right)\\=&\frac{\partial f(P_{0})}{\partial x}\cdot\sum_{k=1}^{n}\cos\left(\alpha+k\frac{2\pi}{n}\right)+\frac{\partial f(P_{0})}{\partial y}\cdot\sum_{j=1}^{n}\sin\left(\alpha+k\frac{2\pi}{n}\right)\\=&\frac{\partial f(P_{0})}{\partial x}\cdot\sum_{k=1}^{n}\left(\cos\alpha\cdot\cos\left(k\frac{2\pi}{n}\right)-\sin\alpha\cdot\sin\left(k\frac{2\pi}{n}\right)\right)+\\&\frac{\partial f(P_{0})}{\partial y}\cdot\sum_{k=1}^{n}\left(\sin\alpha\cdot\cos\left(k\frac{2\pi}{n}\right)+\cos\alpha\cdot\sin\left(k\frac{2\pi}{n}\right)\right)\end{aligned} $$ 
+
+ $$ \begin{align*}=&\frac{\partial f(P_{0})}{\partial x}\cdot\Biggl(\cos\alpha\cdot\sum_{k=1}^{n}\cos\Biggl(k\frac{2\pi}{n}\Biggr)-\sin\alpha\cdot\sum_{k=1}^{n}\sin\Biggl(k\frac{2\pi}{n}\Biggr)\Biggr)+\\&\frac{\partial f(P_{0})}{\partial y}\cdot\Biggl(\sin\alpha\cdot\sum_{k=1}^{n}\cos\Biggl(k\frac{2\pi}{n}\Biggr)+\cos\alpha\cdot\sum_{k=1}^{n}\sin\Biggl(k\frac{2\pi}{n}\Biggr)\Biggr).\end{align*} $$ 
+
+由于
+
+ $$ \begin{aligned}\sum_{k=1}^{n}\cos\left(k\frac{2\pi}{n}\right)&=\frac{1}{\sin\frac{\pi}{n}}\cdot\sum_{k=1}^{n}\cos\left(k\frac{2\pi}{n}\right)\cdot\sin\frac{\pi}{n}\\&=\frac{1}{2\sin\frac{\pi}{n}}\cdot\sum_{k=1}^{n}\left(\sin(2k+1)\frac{\pi}{n}-\sin(2k-1)\frac{\pi}{n}\right)\\&=\frac{1}{2\sin\frac{\pi}{n}}\cdot\left(\sin(2n+1)\frac{\pi}{n}-\sin\frac{\pi}{n}\right)=\frac{1}{2\sin\frac{\pi}{n}}\cdot\left(\sin\frac{\pi}{n}-\sin\frac{\pi}{n}\right)=0\;;\end{aligned} $$ 
+
+ $$ \begin{align*}\sum_{k=1}^{n}\sin\left(k\frac{2\pi}{n}\right)&=\frac{1}{\sin\frac{\pi}{n}}\cdot\sum_{k=1}^{n}\sin\left(k\frac{2\pi}{n}\right)\cdot\sin\frac{\pi}{n}\\&=\frac{1}{2\sin\frac{\pi}{n}}\cdot\sum_{k=1}^{n}\left(\cos(2k-1)\frac{\pi}{n}-\cos(2k+1)\frac{\pi}{n}\right)\\&=\frac{1}{2\sin\frac{\pi}{n}}\cdot\left(\cos\frac{\pi}{n}-\cos(2n+1)\frac{\pi}{n}\right)=\frac{1}{2\sin\frac{\pi}{n}}\cdot\left(\cos\frac{\pi}{n}-\cos\frac{\pi}{n}\right)=0\;.\end{align*} $$ 
+
+所以 $ \sum_{k=1}^{n}\frac{\partial f(P_{0})}{\partial l_{k}}=0 $.
+
+例 11 设  $ u(x,y) $ 有二阶连续偏导数，证明  $ u(x,y)=f(x)g(y) $ 的充分必要条件是  $ u\frac{\partial^2 u}{\partial x \partial y} = \frac{\partial u}{\partial x} $.  $ \frac{\partial u}{\partial y} $ ( $ u \neq 0 $).
+
+分析 对函数  $ u(x,y)=f(x)g(y) $ 求二阶混合偏导数，很容易验证必要性成立；对充分性部分，由于  $ u\frac{\partial^{2}u}{\partial x\partial y}=\frac{\partial u}{\partial x}\cdot\frac{\partial u}{\partial y} $ 是一个二阶方程，令  $ \frac{\partial u}{\partial y}=v $，可将方程降为一阶，再凑微分求解方程，最后可求得方程的解为  $ u(x,y)=f(x)g(y) $.
+
+证明 必要性：若  $ u(x,y)=f(x)g(y) $，则
+
+ $$ \frac{\partial u}{\partial x}=f^{\prime}(x)g(y),\quad\frac{\partial u}{\partial y}=f(x)g^{\prime}(y),\quad\frac{\partial^{2}u}{\partial x\partial y}=f^{\prime}(x)g^{\prime}(y) $$ 
+
+所以
+
+ $$ u\frac{\partial^{2}u}{\partial x\partial y}=f(x)g(y)f^{\prime}(x)g^{\prime}(y)=\frac{\partial u}{\partial x}\cdot\frac{\partial u}{\partial y}. $$ 
+
+充分性：令  $ \frac{\partial u}{\partial y} = v $，则  $ \frac{\partial^2 u}{\partial x \partial y} = \frac{\partial}{\partial x} \left( \frac{\partial u}{\partial y} \right) = \frac{\partial v}{\partial x} $。由  $ u \frac{\partial^2 u}{\partial x \partial y} = \frac{\partial u}{\partial x} \cdot \frac{\partial u}{\partial y} $，有
+
+ $$ u\cdot\frac{\partial\nu}{\partial x}=\nu\cdot\frac{\partial u}{\partial x}~, $$ 
+
+变形为
+
+ $$ \frac{u\cdot\frac{\partial v}{\partial x}-v\cdot\frac{\partial u}{\partial x}}{u^{2}}=0,\quad 即 \frac{\partial}{\partial x}\left(\frac{v}{u}\right)=0. $$ 
+
+两边对x积分，得
+
+ $ \frac{v}{u}=\varphi(y) $，即 $ \frac{\frac{\partial u}{\partial y}}{u}=\varphi(y) $ ( $ \varphi(y) $是任意的待定函数).
+
+上式即为 $ \frac{\partial(\ln u)}{\partial y}=\varphi(y) $，两边对y积分，得
+
+ $$ \ln u=\int\varphi(y)\mathrm{d}y+h(x)\quad(h(x) 是任意的待定函数 ), $$ 
+
+即
+
+ $$ u=\mathrm{e}^{\int\varphi(y)\mathrm{d}y+h(x)}=\mathrm{e}^{h(x)}\cdot\mathrm{e}^{\int\varphi(y)\mathrm{d}y}=f(x)g(y). $$ 
+
+评注 注意，二元函数对其某一变量做偏积分时，积分常数应该是另一变量的任意函数.
+
+# 2. 复合函数、隐函数的微分法
+
+多元复合函数的偏导计算关键是要弄清楚函数的复合结构，按链式法则从外层到内层逐层计算；隐函数的偏导数可由公式计算，也可利用复合函数求导法则在方程两边对某一变量求偏导数（或求微分）再求解；对求由方程组所确定的隐函数的偏导数，最好采用方程两边求微分的方法求解.
+
+例 12 设  $ f(x,y) $ 在点  $ (1,1) $ 处可微，且  $ f(1,1)=1 $， $ f_x(1,1)=2 $， $ f_y(1,1)=3 $， $ \varphi(x)=f(x,f(x,x)) $，求  $ \left.\frac{\mathrm{d}[\varphi^3(x)]}{\mathrm{d}x}\right|_{x=1} $。
+
+分析  $ \varphi(x) $ 虽然是一元函数，但却有多重复合关系，记  $ w = f(u, v) $，则函数的结构图如图 4.1 所示.
+
+解
+
+ $$ \frac{\mathrm{d}[\phi^{3}(x)]}{\mathrm{d}x}=3\phi^{2}(x)\phi^{\prime}(x). $$ 
+
+记  $ f(x,y) $ 的两个变量分别为 1,2，则
+
+ $$ \varphi^{\prime}(x)=f_{1}\big(x,f(x,x)\big)+f_{2}\big(x,f(x,x)\big)[f_{1}(x,x)+f_{2}(x,x)], $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//1eb4ced0-db48-4566-b996-29a2057f25cf/markdown_2/imgs/img_in_image_box_1144_1240_1359_1363.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A33Z%2F-1%2F%2F9269123debb7efab162044a6de0306238194f0c94aabbd42a41f42bb4f99f77d" alt="Image" width="14%" /></div>
+
+
+又  $ \varphi(1)=f[1,f(1,1)]=f(1,1)=1 $ ，则
+
+ $$ \varphi^{\prime}(1)=f_{1}[1,f(1,1)]+f_{2}[1,f(1,1)][f_{1}(1,1)+f_{2}(1,1)]=2+3(2+3)=17~. $$ 
+
+<div style="text-align: center;"><div style="text-align: center;">图4.1</div> </div>
+
+
+所以
+
+ $$ \frac{\mathrm{d}[\varphi^{3}(x)]}{\mathrm{d}x}\Big|_{x=1}=3\cdot1^{2}\cdot17=51. $$ 
+
+评注多元复合函数求偏导数的关键是要将清楚变量之间的关系，即函数结构。画出函数结构图，然后再按链式法则逐层求偏导数，求偏导顺序可依次从外层到内层，也可以顺序相反。
+
+例 13 设  $ f(u,v) $ 有一阶连续偏导数， $ z = f(x^2 - y^2, \cos xy) $， $ x = \rho \cos \varphi $， $ y = \rho \sin \varphi $。证明：
+
+ $$ \cos\varphi\cdot\frac{\partial z}{\partial\rho}-\frac{1}{\rho}\sin\varphi\cdot\frac{\partial z}{\partial\varphi}=2x\frac{\partial z}{\partial u}-y\frac{\partial z}{\partial v}\sin xy $$ 
+
+分析 这里  $ u = x^{2} - y^{2} $,  $ v = \cos xy $，函数的复合结构如图 4.2 所示. 只需分别求出  $ \frac{\partial z}{\partial r} $,  $ \frac{\partial z}{\partial\theta} $，代入等式左边化简即可.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//1eb4ced0-db48-4566-b996-29a2057f25cf/markdown_2/imgs/img_in_image_box_1083_1732_1357_1829.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A33Z%2F-1%2F%2F22708103acdfe43093226df5b190a2fbc9fb0f07e801db20183985fb367cab73" alt="Image" width="18%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图4.2</div> </div>
+
+
+证明　因为  $ x = \rho \cos \varphi $， $ y = \rho \sin \varphi $，则  $ \frac{\partial x}{\partial \rho} = \cos \varphi $， $ \frac{\partial y}{\partial \rho} = \sin \varphi $。记  $ u = x^2 - y^2 $， $ v = \cos xy $，则
+
+ $$ \begin{aligned}{\frac{\partial z}{\partial\rho}=}&{{}\frac{\partial z}{\partial x}\cdot\frac{\partial x}{\partial\rho}+\frac{\partial z}{\partial y}\cdot\frac{\partial y}{\partial\rho}=\left(\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial x}+\frac{\partial z}{\partial\nu}\cdot\frac{\partial\nu}{\partial x}\right)\frac{\partial x}{\partial\rho}+\left(\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial y}+\frac{\partial z}{\partial\nu}\cdot\frac{\partial\nu}{\partial y}\right)\frac{\partial y}{\partial\rho}}\\ {=}&{{}2(x\operatorname{c o s}\varphi-y\operatorname{s i n}\varphi)\frac{\partial z}{\partial u}-\operatorname{s i n}x y\cdot(y\operatorname{c o s}\varphi+x\operatorname{s i n}\varphi)\frac{\partial z}{\partial\nu},}\\ \end{aligned} $$ 
+
+ $$ \begin{aligned}\frac{\partial z}{\partial\varphi}=&\frac{\partial z}{\partial x}\cdot\frac{\partial x}{\partial\varphi}+\frac{\partial z}{\partial y}\cdot\frac{\partial y}{\partial\varphi}=\left(\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\cdot\frac{\partial v}{\partial x}\right)\frac{\partial x}{\partial\varphi}+\left(\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial y}+\frac{\partial z}{\partial v}\cdot\frac{\partial v}{\partial y}\right)\frac{\partial y}{\partial\varphi}\\ =&-2\rho(x\sin\varphi+y\cos\varphi)\frac{\partial z}{\partial u}+\rho\sin xy\cdot(y\sin\varphi-x\cos\varphi)\frac{\partial z}{\partial v}\,.\end{aligned} $$ 
+
+代入所证等式左边化简即可得到所证等式右边.
+
+评注 该题的函数有两层中间变量，偏导数的计算是从内到外的，也可从外到内，即
+
+ $$ \frac{\partial z}{\partial\rho}=\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial\rho}+\frac{\partial z}{\partial v}\cdot\frac{\partial v}{\partial\rho}=\frac{\partial z}{\partial u}\cdot\left(\frac{\partial u}{\partial x}\cdot\frac{\partial x}{\partial\rho}+\frac{\partial u}{\partial y}\cdot\frac{\partial y}{\partial\rho}\right)+\frac{\partial z}{\partial v}\cdot\left(\frac{\partial v}{\partial x}\cdot\frac{\partial x}{\partial\rho}+\frac{\partial v}{\partial y}\cdot\frac{\partial y}{\partial\rho}\right). $$ 
+
+例 14 设  $ u = f(x, y, z) $，f 是可微函数，若  $ \frac{f_{x}}{x} = \frac{f_{y}}{y} = \frac{f_{z}}{z} $，证明 u 仅为 r 的函数。其中  $ r = \sqrt{x^{2} + y^{2} + z^{2}} $
+
+分析 引入球坐标  $ x = r \cos \theta \sin \varphi $， $ y = r \sin \theta \sin \varphi $， $ z = r \cos \varphi $，则 u 为 r,  $ \theta $,  $ \varphi $ 的函数，只需证明  $ \frac{\partial u}{\partial \theta} $ 与  $ \frac{\partial u}{\partial \varphi} $ 均等于 0.
+
+证明  $ u = f(x, y, z) = f(r \cos \theta \sin \varphi, r \sin \theta \sin \varphi, r \cos \varphi) $，令  $ \frac{f_x}{x} = \frac{f_y}{y} = \frac{f_z}{z} = t $，则
+
+ $$ f_{x}=t x,\ f_{y}=t y,\ f_{z}=t z, $$ 
+
+于是
+
+ $$ \begin{aligned}\frac{\partial u}{\partial\theta}&=f_{x}\frac{\partial x}{\partial\theta}+f_{y}\frac{\partial y}{\partial\theta}+f_{z}\frac{\partial z}{\partial\theta}=f_{x}\cdot r(-\sin\theta)\sin\varphi+f_{y}\cdot r\cos\theta\sin\varphi+0\\&=txr(-\sin\theta)\sin\varphi+tyr\cos\theta\sin\varphi=t(-xy+xy)=0;\end{aligned} $$ 
+
+ $$ \begin{aligned}\frac{\partial u}{\partial\varphi}&=f_{x}\frac{\partial x}{\partial\varphi}+f_{y}\frac{\partial y}{\partial\varphi}+f_{z}\frac{\partial z}{\partial\varphi}\\&=f_{x}\cdot r\cos\theta\cos\varphi+f_{y}\cdot r\sin\theta\cos\varphi-f_{z}\cdot r\sin\varphi\\&=tr^{2}(\cos^{2}\theta\sin\varphi\cos\varphi+\sin^{2}\theta\sin\varphi\cos\varphi-\sin\varphi\cos\varphi)\\&=tr^{2}(\sin\varphi\cos\varphi-\sin\varphi\cos\varphi)=0.\end{aligned} $$ 
+
+由此可知 u 仅为 r 的函数.
+
+例15 $ ^{*} $ 设  $ f(x,y) $ 具有连续偏导数，且满足方程  $ x\frac{\partial f}{\partial x}=ky\frac{\partial f}{\partial y} $， $ k\in\mathbb{N}_{+} $， $ f(1,1)=1 $，求  $ f\left(10,\frac{1}{10^k}\right) $
+
+分析　所给方程是关于  $ f(x,y) $ 的一阶线性齐次偏微分方程，该方程的特征线方程为  $ \frac{dy}{dx} = -\frac{ky}{x} $，其通解为  $ yx^{k} = C $，沿该曲线  $ f(x,y) $ 的值不变。所以作变量代换  $ u = x^{k}y $，t = x，可化简方程或得到方程的解。
+
+解 设  $ u = x^{k}y $, t = x，则  $ f(x, y) = f\left(t, \frac{u}{t^{k}}\right) $. 求偏导数，得
+
+ $$ \frac{\partial f}{\partial x}=f_{1}+f_{2}\cdot\left(\frac{ku}{t^{k+1}}-\frac{ku}{t^{k+1}}\right)=f_{1},\quad\frac{\partial f}{\partial y}=f_{2}. $$ 
+
+代入方程  $ x\frac{\partial f}{\partial x}=ky\frac{\partial f}{\partial y} $，得
+
+ $$ t f_{1}=k\frac{u}{t^{k}}f_{2}\Rightarrow t f_{1}-\frac{k u}{t^{k}}f_{2}=0\;. $$ 
+
+由于 $ \frac{\partial f}{\partial t}=f_{1}-\frac{ku}{t^{k+1}}f_{2} $，所以方程化为
+
+ $$ t\frac{\partial f}{\partial t}=0\Rightarrow\frac{\partial f}{\partial t}=0\;. $$ 
+
+所以 f 与 t 无关．记  $ f\left(t,\frac{u}{t^{k}}\right)=g(u) $，则  $ f(1,1)=g(1)=1 $，故  $ f\left(10,\frac{1}{10^{k}}\right)=g(1)=1 $．
+
+评注 一阶线性方程  $ af_{x} + bf_{y} = 0 $ （ $ a, b $ 为已知函数）的特征线方程为  $ \frac{dy}{dx} = \frac{b}{a} $，沿特征线 f 为常数. 读者不难从隐函数方程  $ f(x, y) = C $ （ $ C $ 为常数）的导数公式  $ \frac{dy}{dx} = -\frac{f_{x}}{f_{y}} $ 去理解.
+
+例 16 设函数  $ z = z(x, y) $ 具有二阶连续偏导数，变换  $ \left\{\begin{aligned}u &= x + a\sqrt{y}\\ v &= x + 2\sqrt{y}\end{aligned}\right. $，把方程  $ \frac{\partial^2 z}{\partial x^2} - y \frac{\partial^2 z}{\partial y^2} - \frac{1}{2} \cdot \frac{\partial z}{\partial y} = 0 $ 化为  $ \frac{\partial^2 z}{\partial u \partial v} = 0 $，试确定 a 的值.
+
+分析 将 u, v 作为中间变量分别计算  $ \frac{\partial z}{\partial y} $,  $ \frac{\partial^{2}z}{\partial y^{2}} $,  $ \frac{\partial^{2}z}{\partial x^{2}} $，代入方程化简，再与方程  $ \frac{\partial^{2}z}{\partial u \partial v} = 0 $ 比较即可确定 a 的值.
+
+解
+
+ $$ \frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}+\frac{\partial z}{\partial v},\quad\frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\cdot\frac{a}{2\sqrt{y}}+\frac{\partial z}{\partial v}\cdot\frac{1}{\sqrt{y}}=\frac{1}{\sqrt{y}}\left(\frac{a}{2}\cdot\frac{\partial z}{\partial u}+\frac{\partial z}{\partial v}\right); $$ 
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}=\frac{\partial^{2}z}{\partial u^{2}}+2\frac{\partial^{2}z}{\partial u\partial v}+\frac{\partial^{2}z}{\partial v^{2}}, $$ 
+
+ $$ \frac{\partial^{2}z}{\partial y^{2}}=-\frac{1}{2}y^{-\frac{3}{2}}\left(\frac{a}{2}\cdot\frac{\partial z}{\partial u}+\frac{\partial z}{\partial v}\right)+\frac{1}{\sqrt{y}}\left(\frac{\partial^{2}z}{\partial u^{2}}\cdot\frac{a^{2}}{4\sqrt{y}}+\frac{\partial^{2}z}{\partial u\partial v}\cdot\frac{a}{\sqrt{y}}+\frac{\partial^{2}z}{\partial v^{2}}\cdot\frac{1}{\sqrt{y}}\right). $$ 
+
+代入方程 $ \frac{\partial^{2}z}{\partial x^{2}}-y\frac{\partial^{2}z}{\partial y^{2}}-\frac{1}{2}\cdot\frac{\partial z}{\partial y}=0 $，得到
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}-y\frac{\partial^{2}z}{\partial y^{2}}-\frac{1}{2}\cdot\frac{\partial z}{\partial y}=\left(1-\frac{a^{2}}{4}\right)\frac{\partial^{2}z}{\partial u^{2}}+(2-a)\frac{\partial^{2}z}{\partial u\partial u}=0. $$ 
+
+可见，当 $ 1-\frac{a^2}{4}=0 $， $ 2-a\neq0 $，即 $ a=-2 $时，上面方程化为 $ \frac{\partial^2 z}{\partial u \partial v}=0 $。
+
+评注（1）化简中用到了 $ \frac{\partial^{2}z}{\partial u\partial v}=\frac{\partial^{2}z}{\partial v\partial u} $，二阶混合偏导数在其连续点处与偏导顺序无关.
+
+(2) 求复合函数  $ f(u(x,y), v(x,y)) $ 的高阶偏导数时应注意： $ f_{u}, f_{v} $ 与 f 具有相同的函数结构，对  $ f_{u}, f_{v} $ 求偏导数时仍按与 f 相同的链式法则进行.
+
+（3）在变换 $ \begin{cases}u=x-2\sqrt{y}\\v=x+2\sqrt{y}\end{cases} $下，原方程化为 $ \frac{\partial^{2}z}{\partial u\partial v}=0 $。进一步求解此方程可得 $ z=f(u)+g(v) $，即原方程的解为 $ z=f(x-2\sqrt{y})+g(x+2\sqrt{y}) $，其中 $ f,g $为任意二阶连续可微函数。
+
+例17 设  $ \varphi \in C^{(2)} $， $ z = \varphi (e^x \cos y, e^x \sin y) $，求  $ \Delta z = z_{xx} + z_{yy} $.
+
+分析 为便于计算，引入中间变量  $ u = e^x \cos y $， $ v = e^x \sin y $，函数结构如图4.3所示.
+
+解 令  $ u = e^{x} \cos y $， $ v = e^{x} \sin y $，则  $ z_{x} = \varphi_{u} u_{x} + \varphi_{v} v_{x} $，
+
+ $$ z_{x x}=\varphi_{u u}u_{x}^{2}+2\varphi_{u\nu}u_{x}\nu_{x}+\varphi_{\nu\nu}\nu_{x}^{2}++\varphi_{u}u_{x x}+\varphi_{\nu}\nu_{x x}. $$ 
+
+将上式中的x换为y，可得 $ z_{yy} $，相加可得
+
+ $$ \Delta z=\varphi_{u u}(u_{x}^{2}+u_{y}^{2})+2\varphi_{u\nu}(u_{x}\nu_{x}+u_{y}\nu_{y})+\varphi_{\nu\nu}(v_{x}^{2}+\nu_{y}^{2})+\varphi_{u}\Delta u+\varphi_{\nu}\Delta\nu\;. $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c5cec6a6-6031-4203-a7ea-7711a316a721/markdown_1/imgs/img_in_image_box_1128_230_1339_334.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A32Z%2F-1%2F%2F0633b74019296d9f2c07ebb0d14fddd60a5a128d04e4f9c25931c61b4fa43d77" alt="Image" width="14%" /></div>
+
+
+由 $ u,v $的表达式，有
+
+<div style="text-align: center;"><div style="text-align: center;">图4.3</div> </div>
+
+
+ $$ u_{x}=\mathrm{e}^{x}\cos y=v_{y}\;,\quad u_{y}=-\mathrm{e}^{x}\sin y=-\nu_{x}\;. $$ 
+
+据此得到
+
+ $$ u_{x}^{2}+u_{y}^{2}=v_{x}^{2}+v_{y}^{2}=\mathrm{e}^{2x},\quad u_{x}v_{x}+u_{y}v_{y}=0,\quad\Delta u=\Delta v=0. $$ 
+
+代入 $ ^{①} $式得到
+
+ $$ \Delta z=\mathbf{e}^{2x}(\varphi_{u u}+\varphi_{v v})\;. $$ 
+
+评注（1）引入中间变量u，v可使函数结构清晰，书写简洁。在演算过程中出现的 $ u_{x}, u_{y}, v_{x}, v_{y} $等不宜过早写出其具体表达式（延迟代入），以免多余的计算（对有消去项或约分化简的情况更是如此）。
+
+(2)题中得到的①式与函数 $ \varphi,u,v $的具体形式无关，所以①式可视为二元复合函数 $ \Delta z $的计算公式。且由此可看出：若 $ \varphi(u,v) $满足拉普拉斯方程 $ \varphi_{uu}+\varphi_{vv}=0 $，且变换 $ u=u(x,y) $， $ v=v(x,y) $满足 $ u_{x}=v_{y} $， $ u_{y}=-v_{x} $，则仍有 $ \varphi_{xx}+\varphi_{yy}=0 $。
+
+（3）计算中利用对称性，可使计算工作量减少. 常见的对称性有以下两种形式：
+
+① 抽象形式的对称. 如本题中  $ z_{x}=\varphi_{u}u_{x}+\varphi_{v}v_{x} $，将 x 换为 y 即得  $ z_{y}=\varphi_{u}u_{y}+\varphi_{v}v_{y} $； $ z_{xx} $ 与  $ z_{yy} $ 的关系也一样.
+
+② 具体变量的对称. 若  $ f(x,y)=f(y,x) $，z=f(u(x),v(y))，则互换 u(x) 与  $ v(y) $， $ u'(x) $ 与  $ v'(y) $，就可由  $ z_{x} $ 得到  $ z_{y} $； $ z_{xx} $ 与  $ z_{yy} $ 的关系也一样.
+
+例 18 设  $ z = z(x, y) $ 是由方程  $ x^{2} + y^{2} - z = \varphi(x + y + z) $ 所确定的函数，其中  $ \varphi $ 具有二阶导数，且  $ \varphi' \neq -1 $。（1）求 dz；（2）记  $ u(x, y) = \frac{1}{x - y} \left( \frac{\partial z}{\partial x} - \frac{\partial z}{\partial y} \right) $，求  $ \frac{\partial u}{\partial x} $.
+
+分析　这是隐函数的求导问题. 对（1），可利用隐函数的偏导数公式计算 $ \frac{\partial z}{\partial x} $和 $ \frac{\partial z}{\partial y} $，再写出 dz，也可将方程两边求微分，解出 dz. 对（2），只需将（1）中所求的 $ \frac{\partial z}{\partial x} $和 $ \frac{\partial z}{\partial y} $代入  $ u(x,y) $，整理后再求 $ \frac{\partial u}{\partial x} $.
+
+解 （1）对  $ x^{2}+y^{2}-z=\varphi(x+y+z) $ 两边求微分，得
+
+ $$ 2x\mathrm{d}x+2y\mathrm{d}y-\mathrm{d}z=\varphi^{\prime}(x+y+z)(\mathrm{d}x+\mathrm{d}y+\mathrm{d}z) $$ 
+
+解得
+
+ $$ \mathrm{d}z=\frac{1}{\left(1+\varphi^{\prime}\right)}\left[\left(2x-\varphi^{\prime}\right)\mathrm{d}x-\left(2y-\varphi^{\prime}\right)\mathrm{d}y\right]. $$ 
+
+(2)
+
+ $ u(x,y)=\frac{1}{x-y}\left(\frac{2x-\varphi'}{1+\varphi'}-\frac{2y-\varphi'}{1+\varphi'}\right)=\frac{2}{1+\varphi'} $，则
+
+ $$ \frac{\partial u}{\partial x}=-\frac{2}{\left(1+\varphi^{\prime}\right)^{2}}\cdot\varphi^{\prime \prime}\cdot\left(1+\frac{\partial z}{\partial x}\right)=-\frac{2\varphi^{\prime \prime}}{\left(1+\varphi^{\prime}\right)^{2}}\cdot\left(1+\frac{2x-\varphi^{\prime}}{1+\varphi^{\prime}}\right)=-\frac{2(1+2x)\varphi^{\prime \prime}}{\left(1+\varphi^{\prime}\right)^{3}}\;. $$ 
+
+评注（1）读者不难发现该题中的方程  $ x^2 + y^2 - z = \varphi(x + y + z) $ 与函数  $ u(x, y) = \frac{1}{x - y} \left( \frac{\partial z}{\partial x} - \frac{\partial z}{\partial y} \right) $ 均关于  $ x, y $ 对称，所以将  $ x, y $ 互换就可由  $ \frac{\partial z}{\partial x} $ 得到  $ \frac{\partial z}{\partial y} $，也可由  $ \frac{\partial u}{\partial x} $ 得到  $ \frac{\partial u}{\partial y} $。
+
+（2）该题在求 $ \frac{\partial z}{\partial x} $和 $ \frac{\partial z}{\partial y} $时，采用的是在方程 $ x^{2}+y^{2}-z=\varphi(x+y+z) $两边求微分，当然也可用复合函数求导法则，或隐函数的偏导数公式来计算．当函数关系较复杂时，采用求微分的方式来计算偏导数更为方便，因为这样能避免复杂函数关系所造成的困扰.
+
+例19 已知函数  $ z = z(x, y) $ 满足  $ x^2 \frac{\partial z}{\partial x} + y^2 \frac{\partial z}{\partial y} = z^2 $，设  $ u = x $， $ \nu = \frac{1}{y} - \frac{1}{x} $， $ \psi = \frac{1}{z} - \frac{1}{x} $，对函数  $ \psi = \psi(u, \nu) $，求证  $ \frac{\partial \psi}{\partial u} = 0 $。
+
+分析　这是由方程组所确定的隐函数的求导问题. 计算 $ \frac{\partial \psi}{\partial u} $时需将x,y作为中间变量（化为u,v的函数），再利用关系式 $ x^2 \frac{\partial z}{\partial x} + y^2 \frac{\partial z}{\partial y} = z^2 $化简. 为避免复杂的函数关系，也可用求全微分的方式来计算.
+
+证明 方法1 由  $ \left\{\begin{aligned}u&=x\\ v&=\frac{1}{y}-\frac{1}{x}\end{aligned}\right. $，解得  $ \left\{\begin{aligned}x&=u,\\ y&=\frac{u}{1+uv}\end{aligned}\right. $。这样  $ \psi=\frac{1}{z}-\frac{1}{x} $ 便是 u,v 的复合函数，对 u 求偏导数，得
+
+ $$ \frac{\partial\psi}{\partial u}=-\frac{1}{z^{2}}\left(\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\right)+\frac{1}{u^{2}}=-\frac{1}{z^{2}}\left(\frac{\partial z}{\partial x}+\frac{\partial z}{\partial y}\frac{1}{\left(1+u v\right)^{2}}\right)+\frac{1}{u^{2}}, $$ 
+
+利用 $ \frac{1}{1+uv}=\frac{y}{x} $和 $ z(x,y) $满足的等式，有
+
+ $$ \frac{\partial\psi}{\partial u}=-\frac{1}{z^{2}x^{2}}\left(x^{2}\frac{\partial z}{\partial x}+y^{2}\frac{\partial z}{\partial y}\right)+\frac{1}{u^{2}}=-\frac{1}{x^{2}}+\frac{1}{u^{2}}=0. $$ 
+
+方法二 因为  $ \nu = \frac{1}{y} - \frac{1}{x} $， $ \psi = \frac{1}{z} - \frac{1}{x} $，两边求微分，有
+
+ $$ \mathrm{d}\nu=-\frac{1}{y^{2}}\mathrm{d}y+\frac{1}{x^{2}}\mathrm{d}x, $$ 
+
+ $$ \mathrm{d}\psi=-\frac{1}{z^{2}}\mathrm{d}z+\frac{1}{x^{2}}\mathrm{d}x\;. $$ 
+
+将  $ \mathrm{d}z = \frac{\partial z}{\partial x}\,\mathrm{d}x + \frac{\partial z}{\partial y}\,\mathrm{d}y $ 代入②式，并与①式联立消去  $ \mathrm{d}y $，得到
+
+ $$ \mathrm{d}\psi=\left(\frac{1}{x^{2}}-\frac{1}{z^{2}}\cdot\frac{\partial z}{\partial x}-\frac{y^{2}}{x^{2}z^{2}}\cdot\frac{\partial z}{\partial y}\right)\mathrm{d}x+\frac{y^{2}}{z^{2}}\cdot\frac{\partial z}{\partial y}\mathrm{d}z. $$ 
+
+由一阶微分形式不变性，得到
+
+ $$ \frac{\partial\psi}{\partial x}=\frac{1}{x^{2}}-\frac{1}{z^{2}}\cdot\frac{\partial z}{\partial x}-\frac{y^{2}}{x^{2}z^{2}}\cdot\frac{\partial z}{\partial y}=\frac{1}{x^{2}}-\frac{1}{z^{2}x^{2}}\left(x^{2}\frac{\partial z}{\partial x}+y^{2}\frac{\partial z}{\partial y}\right)=\frac{1}{x^{2}}-\frac{1}{x^{2}}=0. $$ 
+
+即 $ \frac{\partial\psi}{\partial u}=0 $.
+
+例 20 设  $ z = f(x, y) $ 在  $ \mathbb{R}^2 $ 上有连续的一阶偏导数， $ w = w(u, v) $ 是由方程组  $ u = x^2 + y^2 $， $ v = \frac{1}{x} + \frac{1}{y} $， $ z = e^{w + x + y} $ 所确定的隐函数，试将方程  $ y \frac{\partial z}{\partial x} - x \frac{\partial z}{\partial y} = (y - x)z $ ( $ x \neq y $) 化为以  $ w $ 为未知函数， $ u, v $ 为自变量的形式.
+
+分析 这与上题是同类型问题. 为将  $ \frac{\partial w}{\partial u} $ 和  $ \frac{\partial w}{\partial v} $ 引入方程，需将  $ z = f(x, y) $ 看成由  $ z = e^{w + x + y} $,  $ w = w(u, v) $,  $ u = u(x, y) $,  $ v = v(x, y) $ 复合而成，只需计算  $ \frac{\partial z}{\partial x} $ 和  $ \frac{\partial z}{\partial y} $ 并代入方程化简即可. 为避免复杂的函数关系，也可用一阶微分形式不变性来计算两个偏导数.
+
+解 方法1 将  $ z = f(x, y) $ 看成由  $ z = e^{w + x + y} $,  $ w = w(u, v) $,  $ u = u(x, y) $,  $ v = v(x, y) $ 复合而成，由链式法则，有
+
+ $$ \begin{aligned}\frac{\partial z}{\partial x}=&\frac{\partial f}{\partial x}+\frac{\partial f}{\partial w}\cdot\frac{\partial w}{\partial x}=\mathbf{e}^{w+x+y}+\mathbf{e}^{w+x+y}\left(\frac{\partial w}{\partial u}\cdot\frac{\partial u}{\partial x}+\frac{\partial w}{\partial\nu}\cdot\frac{\partial\nu}{\partial x}\right)\\ &=z\left(1+2x\cdot\frac{\partial w}{\partial u}-\frac{1}{x^{2}}\cdot\frac{\partial w}{\partial\nu}\right),\end{aligned} $$ 
+
+利用x,y的对称性，有
+
+ $$ \frac{\partial z}{\partial y}=z\left(1+2y\cdot\frac{\partial w}{\partial u}-\frac{1}{y^{2}}\cdot\frac{\partial w}{\partial v}\right). $$ 
+
+将 $ \frac{\partial z}{\partial x} $和 $ \frac{\partial z}{\partial y} $代入所给方程，化简得
+
+ $$ z\left(\frac{x}{y^{2}}-\frac{y}{x^{2}}\right)\cdot\frac{\partial w}{\partial v}=0. $$ 
+
+由题设，知  $ z\left(\frac{x}{y^{2}}-\frac{y}{x^{2}}\right)=\frac{z(x^{3}-y^{3})}{x^{2}y^{2}}\neq0 $，故原方程可化为  $ \frac{\partial w}{\partial v}=0 $
+
+方法2 在等式  $ z = e^{w + x + y} $,  $ w = w(u, v) $,  $ u = x^{2} + y^{2} $,  $ \nu = \frac{1}{x} + \frac{1}{y} $ 两边取微分，得
+
+ $$ \left\{\begin{aligned}{\mathbf{d}z}&{{}=\mathbf{e}^{w+x+y}(\mathbf{d}w+\mathbf{d}x+\mathbf{d}y),}\\ {\mathbf{d}w}&{{}=\frac{\partial w}{\partial u}\mathbf{d}u+\frac{\partial w}{\partial\nu}\mathbf{d}\nu,}\\ {\mathbf{d}u}&{{}=2x\mathbf{d}x+2y\mathbf{d}y,}\\ {\mathbf{d}v}&{{}=-\frac{1}{x^{2}}\mathbf{d}x-\frac{1}{y^{2}}\mathbf{d}y.}\\ \end{aligned}\right. $$ 
+
+将后3式代入第1式化简得
+
+ $$ \mathbf{d}z=\mathbf{e}^{w+x+y}\Biggl[\Biggl(1+2x\frac{\partial w}{\partial u}-\frac{1}{x^{2}}\frac{\partial w}{\partial v}\Biggr)\mathbf{d}x+\Biggl(1+2y\frac{\partial w}{\partial u}-\frac{1}{y^{2}}\frac{\partial w}{\partial v}\Biggr)\mathbf{d}y\Biggr], $$ 
+
+由此可得到 $ \frac{\partial z}{\partial x} $和 $ \frac{\partial z}{\partial y} $，此后同方法1.
+
+评注 由于微分运算是将各变量地位平等对待，所以对函数结构较复杂或由方程组所确定的隐函数的求导问题，采用微分运算会更为方便。
+
+例 21 设函数  $ z = f(x, y) $ 具有二阶连续偏导数， $ \frac{\partial f}{\partial y} \neq 0 $，证明对任意常数 C， $ f(x, y) = C $ 为一直线的充分必要条件是  $ f_-(f_+)^2 - 2f_-, f_-, f_-, + f_-(f_-)^2 = 0 $。
+
+分析 由于  $ \frac{\partial f}{\partial y} \neq 0 $，则方程  $ f(x, y) = C $ 确定了隐函数  $ y = y(x) $。则  $ f(x, y) = C $ 为一直线的充要条件是  $ \frac{d^2 y}{d x^2} = 0 $。
+
+证明 必要性显然.
+
+因为当 $ f(x,y)=C $为直线时， $ \frac{\partial f}{\partial x} $和 $ \frac{\partial f}{\partial y} $均为常数，故 $ f_{xx}=f_{yy}=f_{xy}=0 $，从而等式成立.
+
+充分性：因为  $ f_{y} \neq 0 $，方程  $ f(x, y) = C $ 两边对 x 求导，得  $ f_{x} + f_{y} \frac{dy}{dx} = 0 $，两边再对 x 求导，得
+
+ $$ f_{x x}+f_{x y}\frac{\mathrm{d}y}{\mathrm{d}x}+\left(f_{y x}+f_{y y}\frac{\mathrm{d}y}{\mathrm{d}x}\right)\frac{\mathrm{d}y}{\mathrm{d}x}+f_{y}\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=0, $$ 
+
+代入 $ \frac{dy}{dx}=-\frac{f_{x}}{f_{y}} $，即有
+
+ $$ f_{x x}-\frac{2f_{x}f_{x y}}{f_{y}}+\frac{f_{y y}(f_{x})^{2}}{(f_{y})^{2}}+f_{y}\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=0, $$ 
+
+得到
+
+ $$ \frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}}=-\frac{f_{xx}(f_{y})^{2}-2f_{x}f_{y}f_{xy}+f_{yy}(f_{x})^{2}}{(f_{y})^{3}}. $$ 
+
+由题设条件可得 $ \frac{d^{2}y}{dx^{2}}=0 $，所以 $ y=y(x) $为线性函数，故方程 $ f(x,y)=C $为一直线.
+
+例 22 已知函数  $ z = f(x, y) $ 有连续的二阶偏导数，且  $ f_x(x, y) \neq 0 $， $ \frac{\partial^2 z}{\partial x^2} \frac{\partial^2 z}{\partial y^2} - \left( \frac{\partial^2 z}{\partial x \partial y} \right)^2 = 0 $，又设  $ x = x(y, z) $ 是由  $ z = f(x, y) $ 所确定的函数，证明  $ \frac{\partial^2 x}{\partial y^2} \cdot \frac{\partial^2 x}{\partial z^2} - \left( \frac{\partial^2 x}{\partial y \partial z} \right)^2 = 0 $。
+
+分析 将  $ z = f(x, y) $ 视为隐函数方程  $ (x $ 为  $ y, z $ 的函数 $ ) $ ，由此计算  $ \frac{\partial x}{\partial y} $ 和  $ \frac{\partial x}{\partial z} $ ，再计算  $ \frac{\partial^{2}x}{\partial y^{2}} $、 $ \frac{\partial^{2}x}{\partial z^{2}} $ 和  $ \frac{\partial^{2}x}{\partial y\partial z} $ 代入等式左端，利用所给条件化简即得证.
+
+证明 记  $ F(x,y,z)=f(x,y)-z $，则  $ F_{x}=f_{x} $， $ F_{y}=f_{y} $， $ F_{z}=-1 $，由隐函数的偏导公式，得
+
+ $$ \frac{\partial x}{\partial y}=-\frac{F_{y}}{F_{x}}=-\frac{f_{y}}{f_{x}},\quad\frac{\partial x}{\partial z}=-\frac{F_{z}}{F_{x}}=\frac{1}{f_{x}}; $$ 
+
+对上式再求偏导数，得
+
+ $$ \frac{\partial^{2}x}{\partial y^{2}}=-\frac{\left(f_{yx}\frac{\partial x}{\partial y}+f_{yy}\right)f_{x}-\left(f_{xx}\frac{\partial x}{\partial y}+f_{xy}\right)f_{y}}{\left(f_{x}\right)^{2}}=\frac{2f_{yx}f_{x}f_{y}-f_{xx}(f_{y})^{2}-f_{yy}(f_{x})^{2}}{\left(f_{x}\right)^{3}}, $$ 
+
+ $$ \frac{\partial^{2}x}{\partial z^{2}}=-\frac{f_{xx}\frac{\partial x}{\partial z}}{\left(f_{x}\right)^{2}}=-\frac{f_{xx}}{\left(f_{x}\right)^{3}}\;,\quad\frac{\partial^{2}x}{\partial y\partial z}=\frac{\partial^{2}x}{\partial z\partial y}=-\frac{f_{xx}\frac{\partial x}{\partial y}+f_{xy}}{\left(f_{x}\right)^{2}}=\frac{f_{xx}f_{y}-f_{xy}f_{x}}{\left(f_{x}\right)^{3}}\;. $$ 
+
+由已知条件 $ \frac{\partial^{2}z}{\partial x^{2}}\cdot\frac{\partial^{2}z}{\partial y^{2}}-\left(\frac{\partial^{2}z}{\partial x\partial y}\right)^{2}=0 $，故
+
+ $$ \begin{aligned}\frac{\partial^{2}x}{\partial y^{2}}.\frac{\partial^{2}x}{\partial z^{2}}-\left(\frac{\partial^{2}x}{\partial y\partial z}\right)^{2}&=-\frac{2f_{yx}f_{x}f_{y}-f_{xx}(f_{y})^{2}-f_{yy}(f_{x})^{2}}{(f_{x})^{3}}\cdot\frac{f_{xx}}{(f_{x})^{3}}-\frac{(f_{xx}f_{y}-f_{xy}f_{x})^{2}}{(f_{x})^{6}}\\&=\frac{(f_{x})^{2}f_{xx}f_{yy}-(f_{xy})^{2}(f_{x})^{2}}{(f_{x})^{6}}=0.\end{aligned} $$ 
+
+例 23 设函数  $ z = z(x, y) $ 有连续的二阶偏导数，且满足方程
+
+ $$ \operatorname{d i v}(\operatorname{g r a d}z)-2\frac{\partial^{2}z}{\partial y^{2}}=0\:. $$ 
+
+（1）用变量代换u=x-y，v=x+y将上述方程化为以u,v为自变量的方程；
+
+（2）已知 $ z(x,2x)=x $， $ z_{x}(x,2x)=x^{2} $，求 $ z(x,y) $。
+
+分析（1）将div(gradz)写成偏导数的形式，按复合函数求导法则计算、化简即可.
+
+（2）求解（1）中化简后的微分方程得到一般解，再由所给条件确定一般解中的待定函数.
+
+解 （1） $ \operatorname{div}(\operatorname{grad}z)=\operatorname{div}(z_{x},z_{y})=z_{xx}+z_{yy} $，于是原方程为
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}-\frac{\partial^{2}z}{\partial y^{2}}=0\;. $$ 
+
+由于
+
+ $$ \frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\cdot\frac{\partial v}{\partial x}=\frac{\partial z}{\partial u}+\frac{\partial z}{\partial v}~, $$ 
+
+ $$ \frac{\partial z}{\partial y}=\frac{\partial z}{\partial u}\cdot\frac{\partial u}{\partial y}+\frac{\partial u}{\partial v}\cdot\frac{\partial v}{\partial y}=-\frac{\partial z}{\partial u}+\frac{\partial z}{\partial v}； $$ 
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}=\frac{\partial^{2}z}{\partial u^{2}}\cdot\frac{\partial u}{\partial x}+\frac{\partial^{2}z}{\partial u\partial v}\cdot\frac{\partial v}{\partial x}+\frac{\partial^{2}z}{\partial v\partial u}\cdot\frac{\partial u}{\partial x}+\frac{\partial^{2}z}{\partial v^{2}}\cdot\frac{\partial v}{\partial x}=\frac{\partial^{2}z}{\partial u^{2}}+2\frac{\partial^{2}z}{\partial u\partial v}+\frac{\partial^{2}z}{\partial v^{2}}\ , $$ 
+
+ $$ \frac{\partial^{2}z}{\partial y^{2}}=-\frac{\partial^{2}z}{\partial u^{2}}.\frac{\partial u}{\partial y}-\frac{\partial^{2}z}{\partial u\partial v}.\frac{\partial v}{\partial y}+\frac{\partial^{2}z}{\partial v\partial u}.\frac{\partial u}{\partial y}+\frac{\partial^{2}z}{\partial v^{2}}.\frac{\partial v}{\partial y}=\frac{\partial^{2}z}{\partial u^{2}}-2\frac{\partial^{2}z}{\partial u\partial v}+\frac{\partial^{2}z}{\partial v^{2}}. $$ 
+
+将②，③式代入①式，方程化为 $ \frac{\partial^{2}z}{\partial u\partial v}=0 $。
+
+（2）方程 $ \frac{\partial^{2}z}{\partial u\partial v}=0 $两边对v求积分，得
+
+ $$ \frac{\partial z}{\partial u}=\varphi(u)\quad(\varphi(u) 为 u 的任意可微函数 ). $$ 
+
+此式两边对u求积分，得
+
+ $$ z=\int\varphi(u)\mathrm{d}u+g(v)=f(u)+g(v), $$ 
+
+这里 f, g 为任意可微函数. 于是
+
+ $$ z(x,y)=f(x-y)+g(x+y)\;. $$ 
+
+由条件  $ z(x,2x)=x $ ，得
+
+ $$ f(-x)+g(3x)=x. $$ 
+
+④式两边对 x 求偏导，得
+
+由条件  $ z_{x}(x,2x)=x^{2} $，得
+
+ $$ z_{x}=f^{\prime}(x-y)+g^{\prime}(x+y), $$ 
+
+⑥式两边对x求积分，得
+
+ $$ z_{x}(x,2x)=f^{\prime}(-x)+g^{\prime}(3x)=x^{2}. $$ 
+
+联立⑤式与⑦式，解得
+
+ $$ -3f(-x)+g(3x)=x^{3}+C\;. $$ 
+
+ $$ f(-x)=\frac{1}{4}(x-x^{3})-\frac{1}{4}C,\quad g(3x)=\frac{1}{4}(3x+x^{3})+\frac{1}{4}C, $$ 
+
+即有
+
+ $$ f(x)=\frac{1}{4}(x^{3}-x)-\frac{1}{4}C,\ g(x)=\frac{1}{4}x+\frac{1}{108}x^{3}+\frac{1}{4}C. $$ 
+
+于是由④式可得所求函数为
+
+ $$ \begin{aligned}z(x,y)=&\frac{1}{4}[(x-y)^{3}-(x-y)]-\frac{1}{4}C+\frac{1}{4}(x+y)+\frac{1}{108}(x+y)^{3}+\frac{1}{4}C\\ =&\frac{1}{4}(x-y)^{3}+\frac{1}{108}(x+y)^{3}+\frac{1}{2}y.\end{aligned} $$ 
+
+例  $ 2A^* $ 设  $ u = f(z) $，而  $ z $ 是由方程  $ z = x + y\varphi(z) $ 确定的。 $ \varphi, f $ 都是任意次可微的函数，证明  $ \frac{\partial^n u}{\partial y^n} = \frac{\partial^{n-1} u}{\partial x^{n-1}} \left[ \left( \varphi(z) \right)^n \frac{\partial u}{\partial x} \right] $.
+
+分析 n 阶偏导数问题，可对求导阶数 n 用归纳法.
+
+证明  $ z = x + y\varphi(z) $ 的两边分别对 x, y 求偏导数后，解得
+
+ $$ \frac{\partial z}{\partial x}=\frac{1}{1-y\varphi^{\prime}(z)}\;,\quad\frac{\partial z}{\partial y}=\frac{\varphi(z)}{1-y\varphi^{\prime}(z)}=\varphi(z)\frac{\partial z}{\partial x}\;, $$ 
+
+于是
+
+ $$ \begin{align*}\frac{\partial u}{\partial x}=f^{\prime}(z)\frac{\partial z}{\partial x}\;,\quad\frac{\partial u}{\partial y}=f^{\prime}(z)\frac{\partial z}{\partial y}=f^{\prime}(z)\varphi(z)\frac{\partial z}{\partial x}=\varphi(z)\frac{\partial u}{\partial x}\;.\\\Rightarrow\frac{\partial z}{\partial y}\cdot\frac{\partial u}{\partial x}=\varphi(z)\frac{\partial z}{\partial x}\cdot\frac{\partial u}{\partial x}=\frac{\partial z}{\partial x}\cdot\frac{\partial u}{\partial y}\;.\end{align*} $$ 
+
+由 $ ^{①} $式，知当n=1时，等式成立.
+
+设对 n 阶偏导数等式成立，即  $ \frac{\partial^{n}u}{\partial y^{n}}=\frac{\partial^{n-1}}{\partial x^{n-1}}\left[\left(\varphi(z)\right)^{n}\frac{\partial u}{\partial x}\right] $，对 y 求偏导，得
+
+ $$ \begin{aligned}\frac{\partial^{n+1}u}{\partial y^{n+1}}=&\frac{\partial}{\partial y}\cdot\frac{\partial^{n-1}}{\partial x^{n-1}}\Biggl[\left(\varphi(z)\right)^{n}\frac{\partial u}{\partial x}\Biggr]=\frac{\partial^{n-1}}{\partial x^{n-1}}\cdot\frac{\partial}{\partial y}\Biggl[\left(\varphi(z)\right)^{n}\frac{\partial u}{\partial x}\Biggr]\\=&\frac{\partial^{n-1}}{\partial x^{n-1}}\Biggl[n\bigl(\varphi(z)\bigr)^{n-1}\varphi^{\prime}(z)\frac{\partial z}{\partial y}\cdot\frac{\partial u}{\partial x}+\bigl(\varphi(z)\bigr)^{n}\frac{\partial^{2}u}{\partial x\partial y}\Biggr]\\=&\frac{\partial^{n-1}}{\partial x^{n-1}}\Biggl[n\bigl(\varphi(z)\bigr)^{n-1}\varphi^{\prime}(z)\frac{\partial z}{\partial x}\cdot\frac{\partial u}{\partial y}+\bigl(\varphi(z)\bigr)^{n}\frac{\partial^{2}u}{\partial x\partial y}\Biggr]\\=&\frac{\partial^{n-1}}{\partial x^{n-1}}\frac{\partial}{\partial x}\Biggl[\bigl(\varphi(z)\bigr)^{n}\frac{\partial u}{\partial y}\Biggr]=\frac{\partial^{n}}{\partial x^{n}}\Biggl[\bigl(\varphi(z)\bigr)^{n+1}\frac{\partial u}{\partial x}\Biggr].\end{aligned} $$ 
+
+可见对  $ n+1 $ 阶偏导数等式也成立，由归纳法，知对任意自然数 n 等式成立.
+
+# 3. 泰勒公式
+
+多元函数的泰勒公式虽不及一元函数泰勒公式应用那样广泛，但在多元函数微分学中仍有重要的作用，在求函数极限、等式与不等式的证明、函数极值的判定等方面都有诸多应用. 这里以二元函数为例（n元函数有类似的结果），进行简单介绍.
+
+二元函数的 n 阶泰勒公式：
+
+定理 设  $ f(x,y) $ 在凸区域  $ D \subset \mathbb{R}^2 $ 上具有  $ n+1 $ 阶连续偏导数， $ (x_0,y_0) $ 与  $ (x_0+h,y_0+k) $ 是  $ D $ 内两点，则至少有一个  $ \theta \in (0,1) $，使得
+
+ $$ \begin{aligned}{f(x_{0}+h,y_{0}+k)}&{{}=f(x_{0},y_{0})+\left(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y}\right)f(x_{0},y_{0})+\frac{1}{2!}\Bigg(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y}\Bigg)^{2}f(x_{0},y_{0})}\\ {}&{{}\quad+\cdots+\frac{1}{n!}\Bigg(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y}\Bigg)^{n}f(x_{0},y_{0})+R_{n},}\\ \end{aligned} $$ 
+
+其中  $ R_{n}=\frac{1}{(n+1)!}\left(h\frac{\partial}{\partial x}+k\frac{\partial}{\partial y}\right)^{n+1}f(x_{0}+\theta k,y_{0}+\theta k) $ （称为 Lagrange 型余项），或  $ R_{n}=o(\rho^{n}) $， $ \rho=\sqrt{k^{2}+h^{2}} $ （称为 Peano 型余项. 该余项的 n 阶泰勒公式只要求 f 在  $ (x_{0},y_{0}) $ 点处有 n 阶连续偏导数）.
+
+零阶泰勒公式就是函数的拉格朗日中值公式.
+
+例25 设函数  $ f(x,y,z) $ 有连续偏导数，且  $ f(0,0,0)=1 $，当  $ x^{2}+y^{2}+z^{2}\leq9 $ 时， $ \|grad f\|\leq1 $，证明在球体  $ x^{2}+y^{2}+z^{2}\leq9 $ 上， $ \left|f(x,y,z)\right|\leq4 $。
+
+分析 因为  $ f(0,0,0)=1 $， $ \|\text{grad } f\| \leq 1 $，所以可将  $ f(x,y,z) $ 在原点做零阶泰勒展开，再做估计.
+
+证明 由泰勒公式，得
+
+ $$ \begin{aligned}{f(x,y,z)}&{{}=f(0,0,0)+f_{x}(\xi,\eta,\zeta)x+f_{y}(\xi,\eta,\zeta)y+f_{z}(\xi,\eta,\zeta)z}\\ {}&{{}=1+\operatorname{g r a d}f(\xi,\eta,\zeta)\cdot(x,y,z)}\\ \end{aligned} $$ 
+
+其中 $ \xi,\eta,\zeta $分别在0与x，0与y，0与z之间.由柯西不等式，得
+
+ $$ \begin{aligned}\left|f(x,y,z)\right|\leq&1+\left|\operatorname{grad}f(\xi,\eta,\zeta)\cdot(x,y,z)\right|\leq1+\left\|\operatorname{grad}f(\xi,\eta,\zeta)\right\|\cdot\left\|(x,y,z)\right\|\\ \leq&1+\sqrt{x^{2}+y^{2}+z^{2}}\leq4.\end{aligned} $$ 
+
+例26 设函数  $ f(x,y) $ 在平面上有连续的二阶偏导数. 对任何角度  $ \alpha $，定义一元函数  $ g_{\alpha}(t)=f(t\cos\alpha,t\sin\alpha) $. 若对任何  $ \alpha $ 都有  $ \frac{\mathrm{d}g_{\alpha}(0)}{\mathrm{d}t}=0 $ 且  $ \frac{\mathrm{d}^{2}g_{\alpha}(0)}{\mathrm{d}t^{2}}>0 $. 证明  $ f(0,0) $ 是  $ f(x,y) $ 的极小值.
+
+分析 只需证明在点 $ (0,0) $的某去心邻域内有 $ f(x,y)>f(0,0) $.根据题设条件会想到利用函数的二阶泰勒公式.
+
+证明 由于  $ \frac{\mathrm{d}g_{\alpha}(0)}{\mathrm{d}t}=(f_{x},f_{y})_{(0,0)}\left(\begin{array}{c}\cos\alpha\\\sin\alpha\end{array}\right)=0 $ 对一切  $ \alpha $ 成立，故  $ (f_{x},f_{y})_{(0,0)}=(0,0) $.
+
+又
+
+ $$ \begin{aligned}\frac{\mathrm{d}^{2}g_{\alpha}(t)}{\mathrm{d}t^{2}}=&\frac{\mathrm{d}}{\mathrm{d}t}(f_{x},f_{y})\binom{\cos\alpha}{\sin\alpha}=(f_{xx}\cos\alpha+f_{xy}\sin\alpha,f_{yx}\cos\alpha+f_{yy}\sin\alpha)\binom{\cos\alpha}{\sin\alpha}\\=&(\cos\alpha,\sin\alpha)\binom{f_{xx}-f_{yx}}{f_{xy}-f_{yy}}\binom{\cos\alpha}{\sin\alpha}.\end{aligned} $$ 
+
+由于 $ \frac{d^{2}g_{\alpha}(0)}{dt^{2}}>0 $，由 $ \alpha $的任意性，知黑塞矩阵 $ H_{f}(0,0)=\begin{pmatrix}f_{xx}&f_{yx}\\f_{xy}&f_{yy}\end{pmatrix}_{(0,0)} $正定.
+
+由泰勒公式，得
+
+ $$ f(x,y)-f(0,0)=(x,y)H_{f}(0,0)\binom{x}{y}+o(\rho^{2})>0,\  当 (x,y)\neq(0,0) 时 . $$ 
+
+其中  $ \rho=\sqrt{x^{2}+y^{2}} $ 。所以  $ f(0,0) $ 是  $ f(x,y) $ 的极小值.
+
+评注 由于矩阵 $ H_{f} $ 正定的充要条件是其顺序主子式全大于0，即 $ f_{xx}>0,f_{xx}f_{yy}-f_{xy}^{2}>0 $，所以证明过程也可以用极小值的判定定理来描述.
+
+例  $ 27^{*} $ 设二元函数  $ f(u,v) $ 具有连续的偏导数，且对任意实数 t 满足  $ f(tu,tv)=t^{2}f(u,v) $， $ f(1,2)=0 $ 和  $ f_{u}(1,2)=3 $，求极限  $ \lim_{x\to0}\frac{1}{x}\int_{0}^{x}\left[1+f\left(t-\sin t+1,\sqrt{1+t^{3}}+1\right)\right]^{\frac{1}{\ln(1+t^{3})}} $ dt.
+
+分析 该极限属于 $ \frac{0}{0} $型，可用洛必达法则与等价无穷小代替等方法计算. 求导时要注意利用多元函数的全导数公式. 也可用泰勒公式将 f 展开后再求极限.
+
+解 方法1 该极限属于 $ \frac{0}{0} $型，由洛必达法则，得
+
+ $$ \begin{aligned} 原式 &=\lim_{x\to0}\left[1+f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\right]^{\frac{1}{\ln(1+x^{3})}}\\&=\exp\left[\lim_{x\to0}\frac{\ln\left[1+f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\right]}{\ln(1+x^{3})}\right].\end{aligned} $$ 
+
+由于 f 连续，则有  $ \lim_{x\to0}f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)=f(1,2)=0 $ ，利用等价无穷小替换，有
+
+ $$ \begin{aligned}&\lim_{x\to0}\frac{\ln\left[1+f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\right]}{\ln(1+x^{3})}=\lim_{x\to0}\frac{f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)}{x^{3}}\\&=\frac{1}{3}\lim_{x\to0}\frac{\frac{\mathrm{d}}{\mathrm{d}x}f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)}{x^{2}}\quad( 洛必达法则 )\\&=\frac{1}{3}\lim_{x\to0}\frac{f_{u}\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)(1-\cos x)+f_{v}\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\frac{3x^{2}}{2\sqrt{1+x^{3}}}}{x^{2}}\\&=\frac{1}{3}\left[\lim_{x\to0}f_{u}\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\frac{1-\cos x}{x^{2}}+\lim_{x\to0}f_{v}\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\frac{3}{2\sqrt{1+x^{3}}}\right]\\&=\frac{1}{3}\left[f_{u}(1,2)\times\frac{1}{2}+f_{v}(1,2)\times\frac{3}{2}\right].\end{aligned} $$ 
+
+为计算  $ f_{v}(1,2) $，在等式  $ f(tu,tv)=t^{2}f(u,v) $ 的两边对 t 求导，得
+
+ $$ f_{1}(t u,t v)u+f_{2}(t u,t v)\nu=2t f(u,\nu)~, $$ 
+
+令t=1, u=1, v=2，得
+
+即
+
+ $$ f_{1}(1,2)\cdot1+f_{2}(1,2)\cdot2=2f(1,2)~, $$ 
+
+ $$ f_{v}(1,2)=f_{2}(1,2)=f(1,2)-\frac{1}{2}f_{1}(1,2)=0-\frac{1}{2}\times3=-\frac{3}{2}. $$ 
+
+代入②式，得
+
+ $$ \lim_{x\to0}\frac{\ln\left[1+f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)\right]}{\ln(1+x^{3})}=\frac{1}{3}\left[3\times\frac{1}{2}+\left(-\frac{3}{2}\right)\times\frac{3}{2}\right]=-\frac{1}{4}. $$ 
+
+将③式代入①式，得
+
+ $$ \operatorname*{l i m}_{x\to0}\frac{1}{x}\int_{0}^{x}\biggl[1+f\Bigl(t-\sin t+1,\sqrt{1+t^{3}}+1\Bigr)\biggr]^{\frac{1}{\ln(1+t^{3})}}\mathrm{d}t=\mathrm{e}^{-\frac{1}{4}}. $$ 
+
+方法2 利用泰勒公式计算极限  $ \lim_{x\to0}\frac{f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)}{x^{3}} $
+
+由 f 在点  $ (1,2) $ 的一阶泰勒公式，有
+
+ $$ \begin{align*}f\Big(x-\sin x+1,\sqrt{1+x^{3}}+1\Big)&=f(1,2)+f_{u}(1,2)(x-\sin x)+f_{v}(1,2)\big(\sqrt{1+x^{3}}-1\big)+o(\rho)\\&=3(x-\sin x)-\frac{3}{2}\big(\sqrt{1+x^{3}}-1\big)+o(\rho),\end{align*} $$ 
+
+ $$ \rho=\sqrt{(x-\sin x)^{2}+\left(\sqrt{1+x^{3}}-1\right)^{2}}\sim\sqrt{\frac{5}{18}}x^{3}\quad\left(\because x-\sin x-\frac{1}{6}x^{3},\sqrt{1+x^{3}}-1-\frac{1}{2}x^{3}\right). $$ 
+
+所以
+
+ $$ \begin{aligned}&\lim_{x\rightarrow0}\frac{f\left(x-\sin x+1,\sqrt{1+x^{3}}+1\right)}{x^{3}}=\lim_{x\rightarrow0}\frac{3(x-\sin x)-\frac{3}{2}\left(\sqrt{1+x^{3}}-1\right)+O(x^{3})}{x^{3}}\\&=\lim_{x\rightarrow0}\frac{3(x-\sin x)-\frac{3}{2}\left(\sqrt{1+x^{3}}-1\right)+O(x^{3})}{x^{3}}=3\cdot\frac{1}{6}-\frac{3}{2}\cdot\frac{1}{2}=-\frac{1}{4}.\end{aligned} $$ 
+
+评注 注意，该题是一元函数的极限问题，不要误解为二重极限.
+
+例 28 $ ^{*} $ 设  $ f(x,y) $ 在凸区域  $ D \subset \mathbb{R}^{2} $ 上具有三阶连续偏导数，若对  $ D $ 内任意两点  $ (x,y) $ 与  $ (x+h,y+k) $，都有
+
+ $$ f(x+h,y+k)=f(x,y)+f_{x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k. $$ 
+
+证明  $ f(x,y) $ 是 D 上的二元二次多项式.
+
+分析 由二阶泰勒公式，知只需证明  $ f_{xx}(x,y) $， $ f_{yx}(x,y) $， $ f_{xy}(x,y) $ 均为常数.
+
+证明 ①式两边对 h 求导，得
+
+ $$ f_{x}(x+h,y+k)=f_{x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)+\frac{1}{2}f_{x x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+\frac{1}{2}f_{x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k\;. $$ 
+
+②式两边分别对x,h求导，得
+
+ $$ \begin{align*}f_{xx}(x+h,y+k)&=f_{xx}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)+\frac{1}{2}f_{xxx}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+\frac{1}{2}f_{xxy}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k,\\f_{xx}(x+h,y+k)&=f_{xx}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)+\frac{1}{4}f_{xxx}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+\frac{1}{4}f_{xxy}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k.\end{align*} $$ 
+
+上面两式相减，可得
+
+ $$ f_{x x x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k=0. $$ 
+
+②式两边分别对 y, k 求导，得
+
+ $$ f_{x y}\left(x+h,y+k\right)=f_{x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)+\frac{1}{2}f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+\frac{1}{2}f_{x y y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k~, $$ 
+
+ $$ f_{x y}\left(x+h,y+k\right)=f_{x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)+\frac{1}{4}f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+\frac{1}{4}f_{x y y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k. $$ 
+
+上面两式相减，可得
+
+ $$ f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{x y y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k=0\;. $$ 
+
+①式两边对x求一阶、二阶导数，得
+
+ $$ f_{x}(x+h,y+k)=f_{x}(x,y)+f_{x x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k, $$ 
+
+ $$ f_{x x}(x+h,y+k)=f_{x x}(x,y)+f_{x x x}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k. $$ 
+
+③式代入⑥式，得
+
+ $$ f_{x x}(x+h,y+k)=f_{x x}(x,y). $$ 
+
+由x,y,h,k的任意性，知 $ f_{xx}(x,y) $为常数。同理 $ f_{yy}(x,y) $也为常数。
+
+⑤式两边对 y 求导，得
+
+ $$ f_{x y}\left(x+h,y+k\right)=f_{x y}\left(x,y\right)+f_{x x y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)h+f_{x y y}\left(x+\frac{1}{2}h,y+\frac{1}{2}k\right)k. $$ 
+
+④式代入⑦式，得
+
+ $$ f_{x y}(x+h,y+k)=f_{x y}(x,y). $$ 
+
+所以  $ f_{xy}(x,y) $ 也为常数.
+
+由于  $ f_{xx}(x,y) $， $ f_{yy}(x,y) $， $ f_{xy}(x,y) $ 均为常数，由二阶泰勒公式，知  $ f(x,y) $ 是二元二次多项式.
+
+##### 习题4.2
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//db960489-0aa2-43fa-bc63-3ab02bd32a25/markdown_2/imgs/img_in_image_box_1235_652_1370_783.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A34Z%2F-1%2F%2F8277d84a2f3e1e312024df2c42938498ab92dcc9a7cea1ea88b005245f8caccb" alt="Image" width="9%" /></div>
+
+
+习题4.2答案
+
+1. 设  $ S = \mathbb{R}^2 \setminus \left\{(x, y) \mid x = 0, y \geq 0\right\} $， $ D = \left\{(x, y) \mid x > 0, y > 0\right\} $， $ f(x, y) = \begin{cases} y^2, & (x, y) \in D \\ 0, & (x, y) \in S \setminus D \end{cases} $。试求  $ f_x(x, y) $， $ f_y(x, y) $；并说明  $ f(x, y) $ 是否与 x 无关。
+
+2. 已知函数  $ z = f(x, y) $ 连续，且满足  $ \lim_{{x \to -1 \atop y \to 0}} \frac{f(x, y) - x + 2y + 1}{(x + 1)^2 + y^2} = 1 $，求曲面  $ z = f(x, y) $ 在点  $ (-1, 0) $ 处的切平面.
+
+3. 设函数  $ f(x,y)=\left\{\begin{aligned}&\frac{\sin xy}{\sqrt{x^{2}+y^{2}}},(x,y)\neq(0,0)\\&0,(x,y)=(0,0)\end{aligned}\right. $，讨论函数在点  $ (0,0) $ 处的可微性.
+
+4. 设函数  $ f(x,y)=\left|x-y\right|g(x,y) $，其中  $ g(x,y) $ 在点  $ (0,0) $ 的某邻域内连续，试问：
+
+（1） $ g(0,0) $ 为何值时，偏导数  $ f_{x}(0,0) $， $ f_{y}(0,0) $ 存在？
+
+（2） $ g(0,0) $ 为何值时， $ f(x,y) $ 在点  $ (0,0) $ 处可微？
+
+5*. 设  $ f(x,y)=\begin{cases}\frac{x-y}{x^{2}+y^{2}}\tan(x^{2}+y^{2}),&(x,y)\neq(0,0)\\0,&(x,y)=(0,0)\end{cases} $，问
+
+（1） $ f(x,y) $ 在  $ (0,0) $ 点处是否可微？如果可微，求  $ \mathrm{d}f(x,y)\big|_{(0,0)} $
+
+(2） $ f_{x}(x,y) $ 在(0,0)点处是否连续？
+
+6. 求函数  $ f(x,y)=\left\{\begin{aligned}&\frac{xy^{2}}{x^{2}+y^{4}},x^{2}+y^{2}\neq0\\&0,\quad x^{2}+y^{2}=0\end{aligned}\right. $ 在点  $ (0,0) $ 处沿方向  $ I=(\cos\varphi,\sin\varphi) $ 的方向导数.
+
+7. 设  $ f(x) $ 在  $ \mathbb{R} $ 上连续，且  $ f(0)=0 $， $ f'(0)=2 $。如果  $ g(x,y)=\int_0^y f(xt) \, \mathrm{d}t $ 关于  $ x $ 的偏导数存在，求  $ \frac{\partial g}{\partial x} $。
+
+8. 设  $ f(x,y) $ 具有一阶连续偏导数，且满足方程  $ \frac{\partial f}{\partial x} + y\frac{\partial f}{\partial v} = 0 $，且  $ f(0,y) = y^{3} $，求  $ f(x,y) $.
+
+9. 已知  $ (axy^{3}-y^{2}\cos x)\mathrm{d}x+(1+by\sin x+3x^{2}y^{2})\mathrm{d}y $ 为某函数  $ f(x,y) $ 的全微分，求 a,b 的值.
+
+10. 设函数  $ f(x,y) $ 可微，又  $ f(0,0)=0 $,  $ f_{x}(0,0)=a $,  $ f_{y}(0,0)=b $, 且  $ \varphi(t)=f[t,f(t,t^{2})] $，求  $ \varphi'(0) $
+
+11. 已知函数  $ u(x,y) $ 满足  $ 2\frac{\partial^2 u}{\partial x^2} - 2\frac{\partial^2 u}{\partial y^2} + 3\frac{\partial u}{\partial x} + 3\frac{\partial u}{\partial y} = 0 $，求  $ a,b $ 的值，使得在变换  $ u(x,y) = v(x,y)e^{ax+by} $ 下，等式可以化为  $ v(x,y) $ 不含一阶偏导数的形式.
+
+12. 设  $ z = z(x, y) $ 是由方程  $ F\left(z + \frac{1}{x}, z + \frac{1}{y}\right) = 0 $ 确定的隐函数，且具有连续的二阶偏导数。证明  $ x^2 \frac{\partial z}{\partial x} + y^2 \frac{\partial z}{\partial y} = 1 $ 和  $ x^3 \frac{\partial^2 z}{\partial x^2} + xy(x + y) \frac{\partial^2 z}{\partial x \partial y} + y^3 \frac{\partial^2 z}{\partial y^2} = -2 $。
+
+13. 设函数  $ f(x,y) $ 有二阶连续偏导数，满足  $ f_{x}^{2}f_{yy}-2f_{x}f_{y}f_{xy}+f_{y}^{2}f_{xx}=0 $，且  $ f_{y}\neq0 $， $ y=y(x,z) $ 是由方程  $ z=f(x,y) $ 所确定的函数，求  $ \frac{\partial^{2}y}{\partial x^{2}} $.
+
+14. 设  $ f(x,y) $ 具有连续二阶偏导数， $ u=\int_{0}^{2\pi}f(r\cos\theta,r\sin\theta)\mathrm{d}\theta $，且满足
+
+$$\frac{\mathrm{d}u}{\mathrm{d}r}=\int_{0}^{2\pi}\frac{\partial}{\partial r}f(r\cos\theta,r\sin\theta)\mathrm{d}\theta\,,\quad\frac{\mathrm{d}^{2}u}{\mathrm{d}r^{2}}=\int_{0}^{2\pi}\frac{\partial^{2}}{\partial r^{2}}f(r\cos\theta,r\sin\theta)\mathrm{d}\theta\,,\quad f_{11}+f_{22}=\frac{1}{r}.$$
+
+求 $r\frac{\mathrm{d}^{2}u}{\mathrm{d}r^{2}}+\frac{\mathrm{d}u}{\mathrm{d}r}$.
+
+15. 已知函数  $ z = f(r) $ 具有二阶连续导数， $ r = \sqrt{x^2 + y^2} $，满足  $ \frac{\partial^2 z}{\partial x^2} + \frac{\partial^2 z}{\partial y^2} = \sin \sqrt{x^2 + y^2} $， $ f(\pi) = 0 $，且  $ \lim_{t \to 0^+} f'(t) = 0 $，求积分  $ \int_0^\pi f(t) \, dt $。
+
+16. 设  $ z = z(x, y) $ 具有二阶连续偏导数，且满足  $ \begin{cases} z = ux + y\varphi(u) + \psi(u) \\ 0 = x + y\varphi'(u) + \psi'(u) \end{cases} $. 证明：
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}.\frac{\partial^{2}z}{\partial y^{2}}-\left(\frac{\partial^{2}z}{\partial x\partial y}\right)^{2}=0. $$ 
+
+17. 设  $ u = f(x, y, z) $ 有连续的一阶偏导数，又函数  $ y = y(x) $ 及  $ z = z(x) $ 分别由下列两式确定：
+
+ $ e^{xy}-xy=2 $ 和  $ e^{x}=\int_{0}^{x-z}\frac{\sin t}{t}dt $，求  $ \frac{du}{dx} $.
+
+18. 设  $ x = \frac{1}{u} + \frac{1}{v} $， $ y = \frac{1}{u^2} + \frac{1}{v^2} $， $ z = \frac{1}{u^3} + \frac{1}{v^3} + e^x $，求  $ \frac{\partial z}{\partial y} $ 和  $ \frac{\partial z}{\partial v} $.
+
+19. 设  $ f(u,v) $ 具有二阶连续偏导数，且满足  $ \frac{\partial^2 f}{\partial u^2} + \frac{\partial^2 f}{\partial v^2} = 1 $，又  $ g(x,~y) = f\left(xy, \frac{1}{2}(x^2 - y^2)\right) $，求  $ \frac{\partial^2 g}{\partial x^2} + \frac{\partial^2 g}{\partial y^2} $.
+
+20. 设函数  $ u(x,y) $ 二阶连续可微，且满足  $ u_{xx} - u_{yy} = 0 $ 与  $ u(x,2x) = x $， $ u_x(x,2x) = x^2 $，求  $ u_{xx}(x,2x) $， $ u_{xy}(x,2x) $， $ u_{yy}(x,2x) $。
+
+21. 设  $ z^3 - 3xyz = a^3 $，求  $ \Delta z = z_{xx} + z_{yy} $.
+
+22. 已知  $ C^{(2)} $ 函数  $ z = z(x, y) $ 满足方程  $ \frac{\partial^{2}z}{\partial x^{2}} + \frac{\partial^{2}z}{\partial x\partial y} + \frac{\partial z}{\partial x} = z $．做变换  $ u = \frac{1}{2}(x + y) $， $ v = \frac{1}{2}(x - y) $，
+
+ $ w = ze^y $，将方程化为以 $ u, v $为自变量， $ w $为因变量的微分方程。
+
+ $ 23^* $。若 $ u = \frac{x + y}{x - y} $，求 $ \left. \frac{\partial^{m+n} u}{\partial x^m \partial y^n} \right|_{(2,1)} $。
+
+24. 对于函数  $ F(x,y) $，如果存在常数 k，使得对于任何 x,y 及 t > 0 恒有  $ F(tx,ty) = t^{k}F(x,y) $ 成立，则称  $ F(x,y) $ 是 k 次齐次函数. 证明可微函数  $ F(x,y) $ 是 k 次齐次函数的充要条件为对任何 x,y 恒有  $ xF_{1}(x,y) + yF_{2}(x,y) = kF(x,y) $ 成立.
+
+25. 设  $ z = f(x, y) $ 在区域 D 有连续的偏导数， $ \Gamma: x = x(t), y = y(t) (a \leq t \leq b) $ 是 D 中的光滑曲线， $ \Gamma $ 的端点为 A, B. 若  $ f(A) = f(B) $，证明存在点  $ M_0(x_0, y_0) \in \Gamma $，使得  $ \frac{\partial f(M_0)}{\partial l} = 0 $，其中  $ l $ 是  $ \Gamma $ 在  $ M_0 $ 点的切线的方向向量.
+
+26. 设  $ P(x,y,z) $ 为曲面 S 上一点，n 为 S 在点 P 处的法向量，点  $ A(a,b,c) $ 为空间中一定点（不在 S 上）。证明函数  $ r=\sqrt{(x-a)^2+(y-b)^2+(z-c)^2} $ 在点 P 处沿 n 方向的方向导数等于 n 与  $ \overrightarrow{PA} $ 夹角余弦的相反数，即  $ \frac{\partial r}{\partial n}=-\cos(n,\overrightarrow{PA}) $。
+
+27. 设二元函数  $ f(x,y) $ 有一阶连续偏导数，且  $ f(0,1)=f(1,0) $. 证明在单位圆周  $ x^{2}+y^{2}=1 $ 上至少存在两个不同的点满足方程  $ y\cdot\frac{\partial f}{\partial x}=x\cdot\frac{\partial f}{\partial y} $.
+
+28. 设  $ f(x,y) $ 在  $ \mathbb{R}^2 $ 上可微， $ l_1 $ 和  $ l_2 $ 是两个给定的方向，它们之间的夹角为  $ \varphi $ ( $ 0 < \varphi < \pi $)
+
+ $$ \left(\frac{\partial f}{\partial x}\right)^{2}+\left(\frac{\partial f}{\partial y}\right)^{2}\leqslant\frac{2}{\mathbf{s i n}^{2}\varphi}\left[\left(\frac{\partial f}{\partial\boldsymbol{l}_{1}}\right)^{2}+\left(\frac{\partial f}{\partial\boldsymbol{l}_{2}}\right)^{2}\right]. $$ 
+
+29. 设 $ \triangle ABC $的外接圆半径为一定值，且 $ \angle A, \angle B, \angle C $所对的边长分别为 $ a, b, c $。证明：
+
+ $$ \frac{\mathrm{d}a}{\cos A}+\frac{\mathrm{d}b}{\cos B}+\frac{\mathrm{d}c}{\cos C}=0. $$ 
+
+30. 设  $ f(x,y) $ 可微， $ l_1 $ 与  $ l_2 $ 是  $ \mathbb{R}^2 $ 上一组线性无关的向量，证明若  $ \frac{\partial f(x,y)}{\partial l_i} \equiv 0 $ ( $ i=1,2 $)，则  $ f(x,y) \equiv $ 常数.
+
+31. 设  $ f(x,y) $ 在区域 D 内可微，且  $ \sqrt{\left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2} \leqslant M $， $ A(x_1,y_1) $， $ B(x_2,y_2) $ 是 D 内两点，线段 AB 包含在 D 内。证明  $ \left|f(x_1,y_1) - f(x_2,y_2)\right| \leqslant M|AB| $。其中  $ |AB| $ 表示线段 AB 的长度。
+
+32. 设  $ f(x,y) $ 在 xoy 面上具有连续偏导数，且  $ f(0,0)=0 $， $ |f_x(x,y)| \leqslant 2|x-y| $， $ |f_y(x,y)| \leqslant 2|x-y| $，证明  $ \left|f(5,4)\right| \leqslant 1 $。
+
+33*. 设  $ f(x,y) $ 在凸区域  $ D \subset R^{2} $ 上具有二阶连续偏导数，且有
+
+ $$ f(x+h,y+k)=f(x,y)+f_{x}(x+\theta h,y+\theta k)h+f_{y}(x+\theta h,y+\theta k)k. $$ 
+
+若  $ f_{xy}^{2}(x,y)-f_{xx}(x,y)f_{yy}(x,y)<0 $ ，证明  $ \lim_{\substack{h\to0\\ k\to0}}\theta=\frac{1}{2} $
+
+34. 设函数  $  z = f(x, y)  $ 具有二阶连续偏导数， $  f_{x}(0,0) = f_{y}(0,0) = f(0,0) = 0  $。证明：
+
+ $$ f(x,y)=\int_{0}^{1}(1-t)\Big[x^{2}f_{11}(t x,t y)+2x y f_{12}(t x,t y)+y^{2}f_{22}(t x,t y)\Big]\mathrm{d}t. $$ 
+
+## 4.3 多元函数微分学的应用
+
+# 1. 函数的极值与最值
+
+函数的极值是函数在一点附近的最大与最小值（局部最值），是一个局部概念。极值的判定常用到其定义、泰勒公式或在驻点处函数黑塞（Hesse）矩阵的正（负）定性。
+
+函数的最值是针对某一确定的范围来说的，是一个整体概念。有界闭区域上连续函数的最值可通过比较函数在区域内的可能极值（驻点或偏导数不存在点的函数值）与区域边界上的可能最值（驻点、不可导点或区间端点的函数值）的大小来确定。
+
+条件极值是求函数在某些约束条件下的最值问题，可用降元法（利用约束条件使目标函数中的变量个数减少），化为无条件极值问题。当用降元法求解困难时，常用拉格朗日乘数法（升元法）。拉格朗日乘数法是求条件极值的有效方法。先求拉格朗日函数的驻点，再比较目标函数在各驻点值的大小来确定最值。当驻点唯一时，可根据问题的实际意义来确定它是最大值还是最小值。
+
+例1 已知 $ f(x,y) $在点 $ (0,0) $的某邻域内连续，且 $ \lim_{{x\to0}\atop{y\to0}}\frac{f(x,y)-xy^2}{1-\cos\sqrt{x^2+y^2}}=1 $，证明点 $ (0,0) $是 $ f(x,y) $的驻点，也是 $ f(x,y) $的极小值点.
+
+分析 由极限与函数的关系得到函数在点(0,0)附近的局部表达式，再进行证明.
+
+解 因为  $ \lim_{\substack{x\to0\\y\to0}}\frac{f(x,y)-xy^{2}}{1-\cos\sqrt{x^{2}+y^{2}}}=\frac{1}{2}\lim_{\substack{x\to0\\y\to0}}\frac{f(x,y)-xy^{2}}{x^{2}+y^{2}}=1 $，则
+
+ $$ \frac{f(x,y)-xy^{2}}{x^{2}+y^{2}}=2+\alpha(\rho)\left(\rho=\sqrt{x^{2}+y^{2}}\right),\mathrm{~ 其中 ~}\lim_{\rho\to0}\alpha(\rho)=0\mathrm{~.} $$ 
+
+从而
+
+ $$ f(x,y)=2x^{2}+(x+2)y^{2}+o(\rho^{2}). $$ 
+
+由 $ f(x,y) $在点 $ (0,0) $处连续，知 $ f(0,0)=0 $，且
+
+ $$ f_{x}(0,0)=\lim_{x\to0}\frac{f(x,0)}{x}=\lim_{x\to0}(2x+o(x))=0\ ,\quad f_{y}(0,0)=\lim_{y\to0}\frac{f(0,y)}{y}=\lim_{y\to0}(2y+o(y))=0. $$ 
+
+即(0,0)是 $ f(x,y) $的驻点.
+
+再由①式，知当  $ 0 < |x| < 1 $， $ 0 < |y| < 1 $ 时，必有
+
+ $$ f(x,y)>f(0,0) $$ 
+
+所以 $ (0,0) $也是 $ f(x,y) $的极小值点.
+
+评注（1）函数的极值是一个局部概念，它是函数在一点的值与附近（邻域）函数值比较而定义的，它常常与极限或函数的局部表达式相关联。
+
+（2）如果题目仅要求证明(0,0)是 $ f(x,y) $的极小值点，则②式无须给出，按极值的定义，只要是局部最值即可.
+
+例2 设  $ f(x,y)=(x^{2}-y^{2})e^{-x^{2}-y^{2}} $ ，求 f 的极值与最值.
+
+分析 求函数的驻点，再判定在驻点处是否取得极值. f 在  $ \mathbb{R}^2 $ 上均有定义，要确定最值，需考虑  $ r = \sqrt{x^2 + y^2} \to \infty $ 时函数的极限值.
+
+解 求函数的一、二阶偏导数，得到
+
+ $$ \frac{\partial z}{\partial x}=-2x(x^{2}-y^{2}-1)\mathrm{e}^{-x^{2}-y^{2}},\quad\frac{\partial z}{\partial y}=-2y(x^{2}-y^{2}+1)\mathrm{e}^{-x^{2}-y^{2}}, $$ 
+
+ $$ \frac{\partial^{2}z}{\partial x^{2}}=2(2x^{4}-2x^{2}y^{2}-5x^{2}+y^{2}+1)\mathrm{e}^{-x^{2}-y^{2}}, $$ 
+
+ $$ \frac{\partial^{2}z}{\partial x\partial y}=-4x y(x^{2}-y^{2})\mathrm{e}^{-x^{2}-y^{2}}, $$ 
+
+ $$ \frac{\partial^{2}z}{\partial y^{2}}=-2(2y^{4}-2x^{2}y^{2}-5y^{2}+x^{2}+1)\mathrm{e}^{-x^{2}-y^{2}}. $$ 
+
+令 $ \frac{\partial z}{\partial x}=\frac{\partial z}{\partial y}=0 $，得到函数的5个驻点 $ (0,0) $， $ (0,\pm1) $， $ (\pm1,0) $。
+
+在点(0,0)处，有
+
+ $$ A=\frac{\partial^{2}z}{\partial x^{2}}\bigg|_{(0,0)}=2\;,\quad B=\frac{\partial^{2}z}{\partial x\partial y}\bigg|_{(0,0)}=0\;,\quad C=\frac{\partial^{2}z}{\partial y^{2}}\bigg|_{(0,0)}=-2\;, $$ 
+
+此时  $ AC - B^{2} = -4 < 0 $，不是极值点.
+
+在点 $ (0,\pm1) $处，有
+
+ $$ A=\frac{\partial^{2}z}{\partial x^{2}}\bigg|_{(0,\pm1)}=4\mathbf{e}^{-1}\;,\quad B=\frac{\partial^{2}z}{\partial x\partial y}\bigg|_{(0,\pm1)}=0\;,\quad C=\frac{\partial^{2}z}{\partial y^{2}}\bigg|_{(0,\pm1)}=4\mathbf{e}^{-1}\;, $$ 
+
+此时  $ AC - B^{2} = 16e^{-2} > 0 $，A > 0，是极小值点，极小值为  $ -e^{-1} $
+
+在点 $ (\pm1,0) $处，有
+
+ $$ A=\frac{\partial^{2}z}{\partial x^{2}}\bigg|_{(\pm1,0)}=-4\mathrm{e}^{-1}\;,\quad B=\frac{\partial^{2}z}{\partial x\partial y}\bigg|_{(\pm1,0)}=0\;,\quad C=\frac{\partial^{2}z}{\partial y^{2}}\bigg|_{(\pm1,0)}=-4\mathrm{e}^{-1}\;, $$ 
+
+此时  $ AC - B^2 = 16e^{-2} > 0 $， $ A < 0 $，是极大值点，极大值为  $ e^{-1} $。
+
+所给函数的定义域为  $ \mathbb{R}^2 $。令  $ x = r \cos \theta $， $ y = r \sin \theta $，则
+
+ $$ f(x,y)=(\cos^{2}\theta-\sin^{2}\theta)r^{2}\mathrm{e}^{-r^{2}}, $$ 
+
+易看出当 $ r = \sqrt{x^2 + y^2} \to \infty $时，有 $ f \to 0 $。取充分大的 $ R $，使得在 $ \overline{D}: \sqrt{x^2 + y^2} \leq R $内含有函数的全部极值点，而在 $ \overline{D} $之外有 $ -\mathbf{e}^{-1} < f(x, y) < \mathbf{e}^{-1} $。则在点 $ (\pm 1, 0) $处函数取得在 $ \overline{D} $上的最大值 $ \mathbf{e}^{-1} $，在点 $ (0, \pm 1) $处函数取得在 $ \overline{D} $上的最小值 $ -\mathbf{e}^{-1} $，从而它们也是函数在定义域 $ \mathbb{R}^2 $上的最大值和最小值。
+
+评注 求连续函数在某区域上的最值，只需将函数在该区域内的可能极值点（驻点与奇点）处的函数值与区域边界上函数的最值进行比较。如果区域是无界的，则需与自变量趋于无穷时函数的极限值进行比较。
+
+例3 $ ^{*} $ 求函数  $ f(x,y)=3(x-2y)^{2}+x^{3}-8y^{3} $ 的极值，并证明  $ f(0,0)=0 $ 不是  $ f(x,y) $ 的极值.
+
+分析 先求驻点，再判定驻点是否为极值点.
+
+解 由  $ \left\{\begin{array}{l}f_{x}=6(x-2y)+3x^{2}=0\\f_{y}=-12(x-2y)-24y^{2}=0\end{array}\right. $ 解得驻点  $ P_{1}(-4,2) $ 和  $ P_{2}(0,0) $. 因为
+
+ $$ A=\frac{\partial^{2}f}{\partial x^{2}}=6x+6,\ B=\frac{\partial^{2}f}{\partial x\partial y}=-12,\ C=\frac{\partial^{2}f}{\partial y^{2}}=-48y+24, $$ 
+
+在  $ P_1 $ 处， $ A = -18 $， $ B = -12 $， $ C = -72 $， $ AC - B^2 = 1152 > 0 $，且  $ A < 0 $，所以  $ f(-4,2) = 64 $ 为极大值；在  $ P_2 $ 处， $ A = 6 $， $ B = -12 $， $ C = 24 $， $ AC - B^2 = 0 $，不能判定  $ f(0,0) $ 是否为极值。
+
+下面用极值的定义来判断. 任取  $ (0,0) $ 的去心领域  $ \mathring{U}_{\delta}=\{(x,y)\mid0<\sqrt{x^{2}+y^{2}}<\delta\} $.
+
+（1）在 y=0 上，取  $ (x_n, y_n) = \left( \frac{1}{n}, 0 \right) (n \in \mathbb{N}^+) $，则当 n 充分大时，显然有  $ (x_n, y_n) \in \bigcup_s^0 $，且
+
+ $$ f(x_{n},y_{n})=f\left(\frac{1}{n},0\right)=\frac{1}{n^{2}}\left(3+\frac{1}{n}\right)>0; $$ 
+
+（2）在  $ x=ky(0<k<2) $ 处，有  $ f(ky,y)=(k^{3}-8)y^{2}\left(y-\frac{3(2-k)}{4+2k+k^{2}}\right) $，取  $ y=\frac{4(2-k)}{4+2k+k^{2}}>0 $，有  $ f(ky,y)=(k^{3}-8)y^{2}\frac{2-k}{4+2k+k^{2}}<0 $，即取  $ (x_{k},y_{k})=\left(\frac{4k(2-k)}{4+2k+k^{2}},\frac{4(2-k)}{4+2k+k^{2}}\right) $ 时，有
+
+ $$ f(x_{k},y_{k})=f\left(\frac{4k(2-k)}{4+2k+k^{2}},\frac{4(2-k)}{4+2k+k^{2}}\right)=(k^{3}-8)\frac{16(2-k)^{3}}{(4+2k+k^{2})^{3}}=-\frac{16(2-k)^{4}}{(4+2k+k^{2})^{2}}<0~. $$ 
+
+又因为
+
+ $$ \lim_{k\to2^{-}}(x_{k},y_{k})=\lim_{k\to2^{-}}\left(\frac{4k(2-k)}{4+2k+k^{2}},\frac{4(2-k)}{4+2k+k^{2}}\right)=(0,0) $$ 
+
+所以当 k 小于 2 且充分接近 2 时， $ (x_{k}, y_{k}) \in \mathring{U}_{\delta} $.
+
+由上述（1）和（2）可得，在 $ P_{2}(0,0) $的任意小领域 $ \bar{U}_{\delta} $内，既存在点 $ (x_{n},y_{n}) $，使得 $ f(x_{n},y_{n})>0 $，也存在点 $ (x_{k},y_{k}) $，使得 $ f(x_{k},y_{k})<0 $，故 $ f(0,0)=0 $不是极值.
+
+例4 设  $ f(x,y) $ 有二阶连续偏导数，且  $ f(x,y)=1-x-y+o(\sqrt{(x-1)^2+y^2}) $，若  $ g(x,y)=f(e^{xy},x^2+y^2) $，则证明  $ g(x,y) $ 在  $ (0,0) $ 取得极值，判断此极值是极大值还是极小值，并求出此极值
+
+分析（1）只需证明(0,0)是函数 $ g(x,y) $的驻点，且在该点处有 $ AC-B^{2}>0 $。为此需计算 $ g(x,y) $在点(0,0)处的一阶与二阶偏导数，因而需先求得f在点(1,0)处的一阶偏导数值。
+
+（2）根据函数 $ g(x,y) $局部表达式看能否由极值的定义做出判断.
+
+解 方法1 由于  $ f(x,y)=1-x-y+o(\sqrt{(x-1)^{2}+y^{2}}) $，由全微分的定义，知
+
+ $$ f(1,0)=0,\ f_{1}(1,0)=f_{2}(1,0)=-1 $$ 
+
+则
+
+ $$ g_{x}=f_{1}\cdot\mathrm{e}^{xy}y+f_{2}\cdot2x,\quad g_{y}=f_{1}\cdot\mathrm{e}^{xy}x+f_{2}\cdot2y, $$ 
+
+又
+
+ $$ g_{x}(0,0)=0\;,\quad g_{y}(0,0)=0\;. $$ 
+
+ $$ g_{x x}=(f_{11}\cdot\mathbf{e}^{x y}\;y+f_{12}\cdot2x)\mathbf{e}^{x y}\;y+f_{1}\cdot\mathbf{e}^{x y}\;y^{2}+(f_{21}\cdot\mathbf{e}^{x y}\;y+f_{22}\cdot2x)2x+2f_{2}, $$ 
+
+ $$ g_{x y}=(f_{11}\cdot\mathtt{e}^{x y}x+f_{12}\cdot2y)\mathtt{e}^{x y}y+f_{1}\cdot(\mathtt{e}^{x y}x y+\mathtt{e}^{x y})+(f_{21}\cdot\mathtt{e}^{x y}x+f_{22}\cdot2y)2x, $$ 
+
+ $$ g_{y y}=(f_{11}\cdot\mathbf{e}^{x y}x+f_{12}\cdot2y)\mathbf{e}^{x y}x+f_{1}\cdot\mathbf{e}^{x y}x^{2}+(f_{21}\cdot\mathbf{e}^{x y}x+f_{22}\cdot2y)2y+2f_{2}, $$ 
+
+ $$ A=g_{x x}(0,0)=2f_{2}(1,0)=-2~,\quad B=g_{x y}(0,0)=f_{1}(1,0)=-1~,\quad C=g_{y y}(0,0)=2f_{2}(1,0)=-2. $$ 
+
+因此  $ AC - B^{2} = 3 > 0 $，且 A < 0，故  $ g(0,0) = f(1,0) = 0 $ 是极大值.
+
+方法2 由于
+
+ $$ g(x,y)=f(\mathrm{e}^{xy},x^{2}+y^{2})=1-\mathrm{e}^{xy}-(x^{2}+y^{2})+o\left(\sqrt{(\mathrm{e}^{xy}-1)^{2}+(x^{2}+y^{2})^{2}}\right), $$ 
+
+显然  $ g(0,0)=0 $；在点  $ (0,0) $ 附近， $ g(x,y) $ 的符号由  $ h(x,y)=1-\mathrm{e}^{xy}-(x^{2}+y^{2}) $ 所确定.
+
+当x y=0，且x,y 不同时为0时，有
+
+ $$ h(x,y)=-(x^{2}+y^{2})<0\Rightarrow g(x,y)<0\;; $$ 
+
+当 $ xy\neq0 $时，由于 $ e^{xy}>1+xy $， $ x^{2}+y^{2}\geqslant2|xy| $，所以
+
+ $$ h(x,y)<-xy-2\mid xy\mid<0\Rightarrow g(x,y)<0. $$ 
+
+综上知，在点 $ (0,0) $附近总有 $ g(x,y)\leq0 $，故 $ g(0,0)=0 $是函数的极大值.
+
+评注 知道函数在一点附近的局部表达式，通常可从定义出发去判断函数是否在该点取得极值.
+
+例 5 设函数  $ f(x,y) $ 在  $ \mathbb{R}^{2} $ 上有一阶连续偏导数， $ r=\sqrt{x^{2}+y^{2}} $，证明若  $ \lim_{r\to+\infty}\left(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right)=a>0 $，则  $ f(x,y) $ 在  $ \mathbb{R}^{2} $ 上有最小值.
+
+分析 由  $ \lim_{r\to+\infty}\left(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right)=a>0 $ ，知当 r 较大时，f 沿任意方向的方向导数均为正，从而 f 的最小值只可能在某有界闭圆内取得，由 f 的连续性，知在有界闭圆内必有最小值.
+
+证明 由  $ \lim_{r\to+\infty}\left(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right)=a>0 $ ，知存在 R>0 ，当  $ r\geq R $ 时，有  $ x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}>0 $
+
+令  $ x = r \cos \theta $， $ y = r \sin \theta $， $ e = (\cos \theta, \sin \theta) $，则有
+
+ $$ \frac{\partial f}{\partial e}{=}\frac{\partial f}{\partial x}\mathbf{c o s}\theta{+}\frac{\partial f}{\partial y}\mathbf{s i n}\theta{=}\frac{1}{r}{\left(x\frac{\partial f}{\partial x}{+}y\frac{\partial f}{\partial y}\right)}{>}0. $$ 
+
+如图 4.4 所示，设  $ M_{0} $ 是圆 r = R 上的点，L 是过  $ O, M_{0} $ 的射线，则当  $ M \in L $，且  $ OM > OM_{0} $ 时，有  $ f(M) > f(M_{0}) $。因此，当  $ r \geq R $ 时， $ f(x, y) $ 在圆 r = R 上取得最小值。
+
+又  $ f(x,y) $ 在有界闭区域  $ r \leq R $ 上有最小值，则该最小值也是  $ f(x,y) $ 在全平面上的最小值.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//3665b120-b851-4a83-9110-e022aee6a5b3/markdown_0/imgs/img_in_image_box_1045_596_1371_908.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A31Z%2F-1%2F%2F5cb648b3c1da51da951b81ecb33c6378fc5d3d6113fc742bc2cdf752e6e41b06" alt="Image" width="22%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图4.4</div> </div>
+
+
+例6 设  $ f $ 是在  $ x^2 + y^2 \leq 1 $ 上有偏导数，且  $ \left|f(x,y)\right| \leq 1 $，证明在这
+
+单位元内存在一点  $ (x_0,y_0) $，满足  $ \left(\frac{\partial f(x_0,y_0)}{\partial x}\right)^2 + \left(\frac{\partial f(x_0,y_0)}{\partial y}\right)^2 \leq 16 $。
+
+分析 由于函数  $ z = 2(x^2 + y^2) $ 在单位圆内处处满足所证结论，因此只需选取  $ (x_0,y_0) $ 为函数  $ f(x,y) + 2(x^2 + y^2) $ 在单位圆内的极值点即可。
+
+解 令  $ g(x,y)=f(x,y)+2(x^{2}+y^{2}) $，在单位圆  $ x^{2}+y^{2}=1 $ 上，由于  $ \left|f(x,y)\right|\leq1 $，则有  $ g(x,y)\geq1 $，而在原点  $ \left|g(0,0)\right|\leq1 $，故  $ g(x,y) $ 在  $ x^{2}+y^{2}<1 $ 内取得极小值，令  $ (x_{0},y_{0}) $ 是  $ g(x,y) $ 在圆内的极小值点，则
+
+ $$ \begin{align*}\frac{\partial f(x_{0},y_{0})}{\partial x}=&\frac{\partial g(x_{0},y_{0})}{\partial x}-4x_{0}=-4x_{0}\ ,\quad\frac{\partial f(x_{0},y_{0})}{\partial y}=\frac{\partial g(x_{0},y_{0})}{\partial y}-4y_{0}=-4y_{0}\ ;\\&\left(\frac{\partial f(x_{0},y_{0})}{\partial x}\right)^{2}+\left(\frac{\partial f(x_{0},y_{0})}{\partial y}\right)^{2}=16\Big(x_{0}^{2}+y_{0}^{2}\Big)\leq16\ .\end{align*} $$ 
+
+例 7 给定半径为 R 的圆，问：是否存在该圆的一个外切三角形，使其面积为圆面积的  $ \frac{3}{2} $ 倍？是否存在该圆的一个外切三角形，使其面积为圆面积的 2 倍？证明结论.
+
+分析 由于圆外切三角形面积一定有最小值而无最大值，所以只需将其最小值与 $ \frac{3}{2}\pi R^{2} $（圆面积的 $ \frac{3}{2} $倍值）及 $ 2\pi R^{2} $（圆面积的2倍值）比较，就可做出判断.
+
+解 构造该圆的任一外切三角形，连接圆心与3个切点，设3个圆心角分别为x,y, $ 2\pi-(x+y) $，则外切三角形的面积
+
+ $$ S(x,y)=R^{2}\left(\tan\frac{x}{2}+\tan\frac{y}{2}-\tan\frac{x+y}{2}\right), $$ 
+
+其定义域为 $ D=\{(x,y)\mid0<x,y<\pi,x+y>\pi\} $.令
+
+ $$ \frac{\partial S}{\partial x}=\frac{R^{2}}{2\cos^{2}\frac{x}{2}}-\frac{R^{2}}{2\cos^{2}\frac{x+y}{2}}=0, $$ 
+
+ $$ \frac{\partial S}{\partial y}=\frac{R^{2}}{2\cos^{2}\frac{y}{2}}-\frac{R^{2}}{2\cos^{2}\frac{x+y}{2}}=0. $$ 
+
+求得唯一驻点  $ x_{0}=\frac{2\pi}{3} $， $ y_{0}=\frac{2\pi}{3} $.
+
+由于圆外切三角形的面积一定有最小值，而驻点又唯一，所以
+
+ $$ \min_{(x,y)\in D}S(x,y)=S(x_{0},y_{0})=3\sqrt{3}R^{2}>\frac{3}{2}\pi R^{2}. $$ 
+
+这表明面积等于圆面积 $ \frac{3}{2} $倍的外切三角形不存在.
+
+下面回答第2个问题：
+
+取定圆周上两点 A, B，使劣弧  $ \widehat{AB} $ 对应的圆心角为  $ \frac{2\pi}{3} $，在优弧  $ \widehat{AB} $ 上取点 P，设劣弧  $ \widehat{AP} $ 对应的圆心角为 x， $ 0 < x < \pi $，则以 A, B, P 为切点的外切三角形的面积为
+
+ $$ \begin{aligned}{f(x)=S\Bigg(x,\frac{2\pi}{3}\Bigg)=R^{2}\Bigg[\operatorname{t a n}\frac{\pi}{3}+\operatorname{t a n}\frac{x}{2}-\operatorname{t a n}\Bigg(\frac{\pi}{3}+\frac{x}{2}\Bigg)\Bigg],}\\ {f\Bigg(\frac{2\pi}{3}\Bigg)=3\sqrt{3}R^{2}<2\pi R^{2}.}\\ \end{aligned} $$ 
+
+当  $ x \to \pi^{-} $时， $ f(x) \to +\infty $，故存在  $ x_1 \in \left( \frac{2\pi}{3}, \pi \right) $，使  $ f(x_1) > 2\pi R^2 $。
+
+由  $ f(x) $ 是 x 的连续函数，根据介值定理，故存在  $ \xi \in \left( \frac{2\pi}{3}, x_1 \right) $，使  $ f(\xi) = 2\pi R^2 $，即存在面积等于圆面积 2 倍的外切三角形.
+
+例  $ 8^{*} $ 求  $ f(x,y,z)=(x-1)^{2}+\left(\frac{y}{x}-1\right)^{2}+\left(\frac{z}{y}-1\right)^{2}+\left(\frac{4}{z}-1\right)^{2} $ 在区域  $ \{(x,y,z)|1\leq x\leq y\leq z\leq4\} $ 上的最大值与最小值.
+
+分析 直接求三元函数在给定区域上的最值有困难，可考虑作变量代换将函数式化简，转化为条件极值问题来解决.
+
+解 作变量代换： $ a=x,\quad b=\frac{y}{x},\quad c=\frac{z}{y},\quad d=\frac{4}{z} $，则问题转化为求函数
+
+ $$ f(a,b,c,d)=(a-1)^{2}+(b-1)^{2}+(c-1)^{2}+(d-1)^{2} $$ 
+
+在区域$\{(a,b,c,d)|1\leq a,b,c,d\leq4\}$上满足约束条件$abcd=4$的极值.构造拉格朗日函数，得$L=(a-1)^2+(b-1)^2+(c-1)^2+(d-1)^2+\lambda(abcd-4)$,
+
+令 $ \frac{\partial L}{\partial a}=0,\frac{\partial L}{\partial b}=0,\frac{\partial L}{\partial c}=0,\frac{\partial L}{\partial d}=0 $，可得
+
+ $ 2(a-1)=-\lambda bcd $， $ 2(b-1)=-\lambda acd $， $ 2(c-1)=-\lambda abd $， $ 2(d-1)=-\lambda abc $
+
+由此得 $ a(a-1)=b(b-1)=c(c-1)=d(d-1) $。因此 $ a=b=c=d=\sqrt{2} $，从而有
+
+ $$ f(\sqrt{2},\sqrt{2},\sqrt{2},\sqrt{2})=4(\sqrt{2}-1)^{2}=4(3-2\sqrt{2}). $$ 
+
+在区域边界上，a,b,c,d 中仅有一个等于 4，其余 3 个都等于 1，此时 f = 9.
+
+因此，函数的最大值与最小值分别为  $ f_{\max} = 9 $ 和  $ f_{\min} = 4(3 - 2\sqrt{2}) $.
+
+评注（1）该题也可转化为一元函数的最值问题，见综合题2 $ ^{*} $第38题.
+
+（2）将一个n元函数换元为 $ n+1 $元函数，要使这种换元可逆，一定会增加一个约束条件.
+
+例 9 证明  $ f(x,y)=Ax^{2}+2Bxy+Cy^{2} $ 在约束条件  $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 下有最大值和最小值，且它们是方程  $ t^{2}-(Aa^{2}+Cb^{2})t+(AC-B^{2})a^{2}b^{2}=0 $ 的根.
+
+分析 由于椭圆  $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 是一个闭集， $ f(x,y) $ 在椭圆上连续，最值的存在性是显然的；其后半问只需求出其最值并证明它们满足所给方程即可. 条件极值问题要用拉格朗日乘数法.
+
+证明 因为  $ f(x,y) $ 在全平面连续， $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 为有界闭集，故  $ f(x,y) $ 在此约束条件下必有最大和最小值.
+
+设 $ (x_{1},y_{1}),(x_{2},y_{2}) $分别为最大值点和最小值点，做拉格朗日函数，得
+
+ $$ L(x,y,\lambda)=A x^{2}+2B x y+C y^{2}+\lambda\left(1-\frac{x^{2}}{a^{2}}-\frac{y^{2}}{b^{2}}\right), $$ 
+
+则 $ (x_{1},y_{1}),(x_{2},y_{2}) $应满足方程组
+
+ $$ \left\{\begin{aligned}\frac{\partial L}{\partial x}&=2\left[\left(A-\frac{\lambda}{a^{2}}\right)x+B y\right]=0,\\ \frac{\partial L}{\partial y}&=2\left[B x+\left(C-\frac{\lambda}{b^{2}}\right)y\right]=0,\\ \frac{\partial L}{\partial\lambda}&=1-\frac{x^{2}}{a^{2}}-\frac{y^{2}}{b^{2}}=0.\end{aligned}\right. $$ 
+
+记相应乘子为 $ \lambda_{1},\lambda_{2} $，则 $ (x_{1},y_{1},\lambda_{1}) $满足
+
+ $$ \left(A-\frac{\lambda_{1}}{a^{2}}\right)x_{1}+B y_{1}=0,\quad B x_{1}+\left(C-\frac{\lambda_{1}}{b^{2}}\right)y_{1}=0. $$ 
+
+解得  $ \lambda_{1}=Ax_{1}^{2}+2Bx_{1}y_{1}+Cy_{1}^{2} $，同理  $ \lambda_{2}=Ax_{2}^{2}+2Bx_{2}y_{2}+Cy_{2}^{2} $ 。即  $ \lambda_{1},\lambda_{2} $ 分别是  $ f(x,y) $ 在椭圆  $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 上的最大值和最小值.
+
+又线性方程组 $ ^{①} $有非零解，其系数行列式为0，有
+
+ $$ \left(A-\frac{\lambda}{a^{2}}\right)\left(C-\frac{\lambda}{b^{2}}\right)-B^{2}=0\ , 即 \lambda^{2}-(A a^{2}+C b^{2})\lambda+(A C-B^{2})a^{2}b^{2}=0. $$ 
+
+所以， $ \lambda_{1},\lambda_{2} $ 是上述方程（即题目所给方程）的根.
+
+例 10 在椭圆  $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 上绘制距原点最远的法线，求其方程.
+
+分析 这是条件极值问题，目标函数是原点到椭圆法线的距离，所以需先求法线的方程.
+
+解 方程  $ \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1 $ 两边对 x 求导，得
+
+ $$ \frac{2x}{a^{2}}+\frac{2yy^{\prime}}{b^{2}}=0\ ,\ \ y^{\prime}=-\frac{b^{2}x}{a^{2}y}. $$ 
+
+过点 $ (x,y) $的法线方程为
+
+ $$ Y-y=\frac{a^{2}y}{b^{2}x}(X-x)\;. $$ 
+
+原点到该直线的距离的平方为
+
+ $$ d^{2}=\frac{\left(-\frac{a^{2}y}{b^{2}}+y\right)^{2}}{\left(\frac{a^{2}y}{b^{2}x}\right)^{2}+1}=\frac{(a^{2}-b^{2})^{2}x^{2}y^{2}}{a^{4}y^{2}+b^{4}x^{2}}=\frac{(a^{2}-b^{2})^{2}\frac{x^{2}}{a^{2}}\cdot\frac{y^{2}}{b^{2}}}{b^{2}\frac{x^{2}}{a^{2}}+a^{2}\frac{y^{2}}{b^{2}}}. $$ 
+
+令  $ u=\frac{x^{2}}{a^{2}} $， $ v=\frac{y^{2}}{b^{2}} $， $ f(u,v)=\frac{uv}{b^{2}u+a^{2}v} $，则 d 与 f 同时取到最大值与最小值。下面求  $ f(u,v) $ 在条件  $ u+v=1 $ ( $ u\geqslant0,v\geqslant0 $) 下的最大值点。令
+
+ $$ \begin{aligned}{L(u,\nu,\lambda)=}&{{}\frac{u\nu}{b^{2}u+a^{2}\nu}+\lambda(u+\nu-1)\;,}\\ {\left\{\begin{aligned}{L_{u}=}&{{}\frac{a^{2}\nu^{2}}{(b^{2}u+a^{2}\nu)^{2}}+\lambda=0,}\\ {L_{\nu}=}&{{}\frac{b^{2}u^{2}}{(b^{2}u+a^{2}\nu)^{2}}+\lambda=0,}\\ {L_{\lambda}=}&{{}u+\nu-1=0.}\\ \end{aligned}\right.}\\ \end{aligned} $$ 
+
+解得  $ u = \frac{a}{a+b} $， $ v = \frac{b}{a+b} $。由实际问题， $ d^2 $ 确有最大值，故 f 确有最大值。因此当  $ u = \frac{a}{a+b} $， $ v = \frac{b}{a+b} $ 时，即  $ x = \sqrt{\frac{a^3}{a+b}} $， $ y = \sqrt{\frac{b^3}{a+b}} $ 时， $ d^2 $ 取得最大值。利用对称性，距原点最远的法线有 4 条，其方程分别为
+
+ $$ Y-\sqrt{\frac{b^{3}}{a+b}}=\pm\sqrt{\frac{a}{b}}\left(X\mp\sqrt{\frac{a^{3}}{a+b}}\right),\quad Y+\sqrt{\frac{b^{3}}{a+b}}=\pm\sqrt{\frac{a}{b}}\left(X\pm\sqrt{\frac{a^{3}}{a+b}}\right). $$ 
+
+评注 当目标函数的表达式较复杂时，其拉格朗日函数的驻点就难以计算。在不影响目标函数最值点的情况下要尽量使其函数的偏导数易于计算且形式简单（如作变量代换，取倒数，取对数，平方，开方等）。
+
+例 11 设椭球面  $ \Sigma: x^2 + 3y^2 + z^2 = 1 $， $ \pi $ 为  $ \Sigma $ 在第一卦限内的切平面，求：
+
+（1）使 $ \pi $与3个坐标平面所围成的四面体的体积最小的切点坐标；
+
+（2）使 $ \pi $与3个坐标平面截出的三角形的面积最小的切点坐标.
+
+分析 这是条件极值问题. 问题(1)的目标函数是平面 $ \pi $与3个坐标平面所围成的四面体的体积; 问题(2)的目标函数是平面 $ \pi $与三个坐标平面截出的三角形的面积. 约束条件为 $ x^{2}+3y^{2}+z^{2}=1 $.
+
+解 记 $ F(x,y,z)=x^{2}+3y^{2}+z^{2}-1 $，则椭球面 $ \sum $在第一卦限内的点 $ P(x,y,z) $处的法向量为
+
+ $$ n=(F_{x},F_{y},F_{z})=2(x,3y,z)\;. $$ 
+
+ $ \Sigma $ 在点 P 处的切平面  $ \pi $ 为
+
+ $ x(X-x)+3y(Y-y)+z(Z-x)=0 $，即  $ xX+3yY+zZ=1 $.
+
+切平面 $ \pi $与3个坐标轴的交点分别为 $ A\left(\frac{1}{x},0,0\right) $， $ B\left(0,\frac{1}{3y},0\right) $， $ C\left(0,0,\frac{1}{z}\right) $.
+
+（1） $ \pi $与3个坐标平面所围成的四面体的体积为
+
+ $$ V=\frac{1}{6}\cdot\frac{1}{x}\cdot\frac{1}{3y}\cdot\frac{1}{z}. $$ 
+
+由于点 P 在  $ \Sigma $ 上，即满足约束条件  $ x^{2}+3y^{2}+z^{2}=1 $，故
+
+ $$ xyz=\frac{1}{\sqrt{3}}\sqrt{x^{2}\cdot3y^{2}\cdot z^{2}}\leqslant\frac{1}{\sqrt{3}}\sqrt{\left(\frac{x^{2}+3y^{2}+z^{2}}{3}\right)^{3}}=\frac{1}{9}. $$ 
+
+其中等号当且仅当  $ x^2 = 3y^2 = z^2 $，即  $ x = z = \frac{\sqrt{3}}{3} $， $ y = \frac{1}{3} $ 时成立，此时  $ xyz $ 取最大值  $ \frac{1}{9} $，从而  $ V $ 取最小值  $ \frac{1}{2} $，故所求的点为  $ \left( \frac{\sqrt{3}}{3}, \frac{1}{3}, \frac{\sqrt{3}}{3} \right) $。
+
+（2）三角形 ABC 的面积为
+
+ $$ \begin{aligned}S=&\frac{1}{2}\Big\|\overrightarrow{AB}\times\overrightarrow{AC}\Big\|=\frac{1}{2}\left\|\left(-\frac{1}{x},\frac{1}{3y},0\right)\times\left(-\frac{1}{x},0,\frac{1}{z}\right)\right\|\\=&\frac{1}{2}\left\|\left(\frac{1}{3yz},\frac{1}{zx},\frac{1}{3xy}\right)\right\|=\frac{1}{2}\sqrt{\frac{1}{9y^{2}z^{2}}+\frac{1}{z^{2}x^{2}}+\frac{1}{9x^{2}y^{2}}}.\end{aligned} $$ 
+
+记 $ f(x,y,z)=\frac{1}{9y^{2}z^{2}}+\frac{1}{z^{2}x^{2}}+\frac{1}{9x^{2}y^{2}} $，则S与f同时取最小值，做拉格朗日函数
+
+ $$ L(x,y,z,\lambda)=\frac{1}{9y^{2}z^{2}}+\frac{1}{z^{2}x^{2}}+\frac{1}{9x^{2}y^{2}}+\lambda\left(x^{2}+3y^{2}+z^{2}-1\right), $$ 
+
+解方程组
+
+ $$ \left\{\begin{aligned}{}&{{}L_{x}=-\frac{2}{9x^{3}}\Bigg(\frac{9}{z^{2}}+\frac{1}{y^{2}}\Bigg)+2x\lambda=0,}\\ {}&{{}L_{y}=-\frac{2}{9y^{3}}\Bigg(\frac{1}{z^{2}}+\frac{1}{x^{2}}\Bigg)+6y\lambda=0,}\\ {}&{{}L_{z}=-\frac{2}{9z^{3}}\Bigg(\frac{9}{x^{2}}+\frac{1}{y^{2}}\Bigg)+2z\lambda=0,}\\ {}&{{}L_{\lambda}=x^{2}+3y^{2}+z^{2}-1=0.}\\ \end{aligned}\right. $$ 
+
+由于函数  $ L(x,y,z,\lambda) $ 关于  $ x^2, z^2 $ 对称，且  $ (x,y,z) $ 在第一卦限内，故上面方程组的解应满足 x = z，解出  $ x = z = \frac{\sqrt{6}}{4} $， $ y = \frac{\sqrt{3}}{4} $。
+
+由于题设中具有最小面积的三角形是实际存在的，并且所求的驻点唯一，故点 $ P\left(\frac{\sqrt{6}}{4},\frac{\sqrt{3}}{6},\frac{\sqrt{6}}{4}\right) $即为所求.
+
+评注（1）解方程组求驻点时，要尽量利用 $L$ 函数中自变量的对称性，使计算简便。若该题中没有 $x, y, z > 0$ 的限制，其对称性表现为 $x, \pm z$ 对称，则有 $x = \pm z$。
+
+(2) 该题在求函数  $ f(x,y,z)=\frac{1}{9y^{2}z^{2}}+\frac{1}{z^{2}x^{2}}+\frac{1}{9x^{2}y^{2}} $ 的条件极值时，也可用降元法：
+
+① 将条件  $ x^{2}+3y^{2}+z^{2}=1 $，代入函数  $ f(x,y,z) $ 消去 y，有
+
+ $$ f(x,z)=\frac{1}{3(1-x^{2}-z^{2})z^{2}}+\frac{1}{z^{2}x^{2}}+\frac{1}{3x^{2}(1-x^{2}-z^{2})}=\frac{3-2(x^{2}+z^{2})}{3x^{2}z^{2}(1-x^{2}-z^{2})}. $$ 
+
+令  $ f_{x}(x,z)=0 $ ，化简整理得
+
+ $$ 2x^{4}+2z^{4}+4x^{2}z^{2}-6x^{2}-5z^{2}+3=0, $$ 
+
+由  $ f(x,z) $ 的对称性，将上式中的 x,z 互换，可得  $ f_{z}(x,z)=0 $ 的简化方程为
+
+ $$ 2z^{4}+2x^{4}+4x^{2}z^{2}-6z^{2}-5x^{2}+3=0. $$ 
+
+两式相减，得 $ x^{2}=z^{2} $. 注意到x>0, z>0，故x=z，且 $ 8x^{2}-11x^{2}+3=0 $，解该方程可求得驻点.
+
+② 由  $ f(x,z)=\frac{3-2(x^{2}+z^{2})}{3x^{2}z^{2}(1-x^{2}-z^{2})} $ 关于 x,z 对称，将 x=z 代入，可将目标函数化为  $ f(x,z)=\frac{3-4x^{2}}{3x^{4}(1-2x^{2})} $，最后归结为一元函数的极值问题.
+
+例 12 设有一小山，取它的底面所在的平面为 xOy 坐标面，其底部所占的区域为  $ D=\left\{(x,y) \mid x^{2}+y^{2}-xy \leq 75\right\} $，小山的高度函数为  $ h(x,y)=75-x^{2}-y^{2}+xy $。现欲利用此小山开展攀岩活动，为此需要在山脚寻找一上山坡度最大的点作为攀登的起点。试确定攀登起点的位置。
+
+分析：上山坡度最大的点即为高度函数  $ h(x,y) $ 增长最快的点，也就是  $ h(x,y) $ 的方向导数取最大值的点。由于  $ \left\|\operatorname{grad}h(x,y)\right\| $ 是  $ h(x,y) $ 在点  $ (x,y) $ 处的最大方向导数，所以问题即求  $ \left\|\operatorname{grad}h(x,y)\right\| $ 在条件  $ x^{2}+y^{2}-xy=75 $ 下的极大值点。
+
+解 因为  $ \text{grad } h(x,y)=(y-2x)i+(x-2y)j $ ，则  $ h(x,y) $ 在点  $ (x,y) $ 处的最大方向导数为
+
+ $$ \left\| \operatorname{grad }h ( x , y ) \right\| = \sqrt { 5 x ^ { 2 } + 5 y ^ { 2 } + 8 x y }~. $$ 
+
+令  $ f=5x^{2}+5y^{2}+8xy $，下面求 f 在条件  $ x^{2}+y^{2}-xy=75 $ 下的极值.
+
+做拉格朗日函数
+
+ $$ L=5x^{2}+5y^{2}+8x y+\lambda(75-x^{2}-y^{2}+x y)~, $$ 
+
+解方程组
+
+ $$ \left\{\begin{aligned}{}&{{}L_{x}=10x-8y+\lambda(y-2x)=0,}\\ {}&{{}L_{y}=10y-8x+\lambda(x-2y)=0,}\\ {}&{{}L_{\lambda}=75-x^{2}-y^{2}+x y=0.}\\ \end{aligned}\right. $$ 
+
+利用函数  $ L(x,y,z) $ 关于  $ x,\pm y $ 的对称性，解得  $ x=y=\pm5\sqrt{3} $， $ x=-y=\pm5 $．得到4个可能的极值点：
+
+ $$ M_{1}(5\sqrt{3},5\sqrt{3}),M_{2}(-5\sqrt{3},-5\sqrt{3}),M_{3}(5,-5),M_{4}(-5,5) $$ 
+
+由于  $ f(M_{1})=f(M_{2})=150,\quad f(M_{3})=f(M_{4})=450 $ ，所以  $ M_{3} $ 或  $ M_{4} $ 可作为攀登的起点.
+
+例 13 设三角形三边长之和为定值 2p，将此三角形绕其一条边旋转产生一旋转体，欲使此旋转体体积最大，求此三角形各边分别为多长？并问是绕哪条边旋转的？最大体积 V 是多少？
+
+分析　无论三角形的两底角都是锐角或者有一底角为钝角或直角，绕其底边旋转产生的旋转体体积V 的公式都是 $ V=\frac{\pi}{3}H^{2}B $，其中B为底边的长，H为对于此底边的高（图4.5）。利用此公式，可较方便地解决本问题。
+
+解 方法1 设三角形的一边长为  $ 2c (c < p) $，则另两边长之和为  $ 2p - 2c \triangleq 2a $，因此顶点 C 位于以底边两端点为焦点，半长轴为 a 的椭圆弧上。由椭圆标准方程，知顶点 C 到对边的高
+
+ $$ y=b\sqrt{1-\frac{x^{2}}{a^{2}}}, $$ 
+
+其中  $ b=\sqrt{a^{2}-c^{2}} $，上面的 H 就是这里的 y，于是
+
+ $$ V=\frac{\pi}{3}\left[\frac{(a^{2}-c^{2})(a^{2}-x^{2})}{a^{2}}\right]\cdot2c $$ 
+
+将a=p-c代入化为 $ (x,c) $的二元函数：
+
+ $$ V{\mathrm{=}}\frac{2\pi}{3}{\left[p^{2}-2p c-\frac{p^{2}-2p c}{\left(p-c\right)^{2}}x^{2}\right]}c. $$ 
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//dadedeb6-28c1-44f0-a493-b82606ba86a7/markdown_1/imgs/img_in_image_box_1015_1686_1329_1921.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A32Z%2F-1%2F%2Fe1eedf91df1d087ebbc860d88cdccf8b5863c941920ce3bf30806171fbc564aa" alt="Image" width="21%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图4.5</div> </div>
+
+
+下求 V 的驻点：
+
+ $$ \frac{\partial V}{\partial x}=\frac{2\pi}{3}\left(-\frac{p^{2}-2p c}{(p-c)^{2}}\cdot2x\right)c, $$ 
+
+ $$ \frac{\partial V}{\partial c}=\frac{2\pi}{3}\left[\left(p^{2}-2p c-\frac{p^{2}-2p c}{\left(p-c\right)^{2}}x^{2}\right)+\left(-2p-\frac{\left(p-c\right)\left(-2p\right)+2\left(p^{2}-2p c\right)}{\left(p-c\right)^{3}}x^{2}\right)c\right], $$ 
+
+由 $ \frac{\partial V}{\partial c}=0 $，解得x=0或 $ c=\frac{p}{2} $。但当 $ c=\frac{p}{2} $时， $ a=p-c=\frac{p}{2} $，这不能构成三角形。所以只能有x=0。代入 $ \frac{\partial V}{\partial c}=0 $中，得 $ c=\frac{p}{4} $。
+
+以下验证当 x=0,  $ c=\frac{p}{4} $ 时，V 达最大（实际上可以不必验证. 因为由实际问题本身可知必有最大值）. 经简单的计算，并将 x=0,  $ c=\frac{p}{4} $ 代入，得
+
+ $$ \begin{aligned}\frac{\partial^{2}V}{\partial x^{2}}=&-\frac{32\pi}{27}<0,\ \frac{\partial^{2}V}{\partial x\partial c}=0,\ \frac{\partial^{2}V}{\partial c^{2}}=-\frac{8\pi p}{3}<0,\\&\left(\frac{\partial^{2}V}{\partial x^{2}}\right)\left(\frac{\partial^{2}V}{\partial c^{2}}\right)-\left(\frac{\partial^{2}V}{\partial x\partial c}\right)^{2}>0,\end{aligned} $$ 
+
+所以在x=0,  $ c=\frac{p}{4} $ 处，V达最大， $ V_{max}=\frac{p^{3}}{12} $.
+
+方法2 用三边求三角形面积的公式. 设三角形的三边长分别为x、y、z，则由平面几何公式，知该三角形的面积
+
+ $$ S=\sqrt{p(p-x)(p-y)(p-z)}. $$ 
+
+设绕其旋转的那条边长为 B = y，则又有  $ S = \frac{1}{2}H y $。于是
+
+ $$ V=\frac{\pi}{3}H^{2}B=\frac{4\pi}{3}\cdot\frac{S^{2}}{y}=\frac{4}{3}\pi p\frac{(p-x)(p-y)(p-z)}{y}, $$ 
+
+其中 $ x+y+z=2p $.
+
+将V取对数以化简计算：
+
+ $$ \ln V=\ln\left(\frac{4}{3}\pi p\right)+\ln(p-x)+\ln(p-y)+\ln(p-z)-\ln y. $$ 
+
+做拉格朗日函数. 令
+
+ $$ L(x,y,z,\lambda)=\ln(p-x)+\ln(p-y)+\ln(p-z)-\ln y+\lambda(x+y+z-2p), $$ 
+
+由
+
+ $$ \frac{\partial L}{\partial x}=-\frac{1}{p-x}+\lambda=0,\quad\frac{\partial L}{\partial y}=-\frac{1}{p-y}-\frac{1}{y}+\lambda=0, $$ 
+
+ $$ \frac{\partial L}{\partial z}=-\frac{1}{p-z}+\lambda=0,\quad\frac{\partial L}{\partial\lambda}=x+y+z-2p=0. $$ 
+
+解得  $ x = z = \frac{3}{4}p $,  $ y = \frac{p}{2} $，为唯一可能的极值点。而根据问题本身知旋转最大体积是存在的，所以知当  $ x = z = \frac{3}{4}p $,  $ y = \frac{p}{2} $ 时，V 最大，最大值为  $ \frac{\pi}{12}p^3 $。
+
+例14 设 $ D=\left\{(x,y)\mid x^{2}+y^{2}<1\right\} $， $ f(x,y) $在D内连续， $ g(x,y) $在D内连续且有界，并满足条件：
+
+（1）当 $ x^{2}+y^{2}\rightarrow1 $时， $ f(x,y)\rightarrow+\infty $；
+
+（2）在D内f与g有二阶偏导数， $ \frac{\partial^{2}f}{\partial x^{2}}+\frac{\partial^{2}f}{\partial y^{2}}=e^{f} $和 $ \frac{\partial^{2}g}{\partial x^{2}}+\frac{\partial^{2}g}{\partial y^{2}}\geq e^{g} $.
+
+证明  $ f(x,y) \geq g(x,y) $ 在 D 内处处成立.
+
+分析 如果命题结论不成立，则函数  $ F(x,y)=f(x,y)-g(x,y) $ 的最小值（如果存在）应该为负. 由于区域内的最值也是极值，这就会与二阶偏导数产生联系，再去发现矛盾.
+
+证明 用反证法. 假设该不等式在D内某一点不成立，我们将导出矛盾.
+
+令  $ F(x,y)=f(x,y)-g(x,y) $。由题设条件，知当  $ x^{2}+y^{2}\to1 $ 时， $ F(x,y)\to+\infty $。由  $ F(x,y) $ 的连续性，知它在 D 内必然有最小值，设最小值点为  $ (x_{0},y_{0})\in D $，根据反证法假设，必有
+
+ $$ F(x_{0},y_{0})=f(x_{0},y_{0})-g(x_{0},y_{0})<0. $$ 
+
+记 $ \Delta=\frac{\partial^{2}}{\partial x^{2}}+\frac{\partial^{2}}{\partial y^{2}} $，由已知条件知
+
+ $$ \Delta F=\Delta f-\Delta g\leqslant\mathsf{e}^{f(x,y)}-\mathsf{e}^{g(x,y)}~,\quad(x,y)\in D~. $$ 
+
+特别地，
+
+ $$ \left.\Delta F\right|_{(x_{0},y_{0})}\leqslant\mathrm{e}^{f(x_{0},y_{0})}-\mathrm{e}^{g(x_{0},y_{0})}<0. $$ 
+
+但 $ (x_{0},y_{0}) $是 $ F(x,y) $在D内的最小值，也是极小值，应该有 $ F_{xx}(x_{0},y_{0})\geq0,\ F_{yy}(x_{0},y_{0})\geq0 $ ,由此得 $ \Delta F\big|_{(x_{0},y_{0})}\geq0 $ ，矛盾.该矛盾说明在D内只可能处处有 $ f(x,y)\geq g(x,y) $
+
+例15 证明当0<x<1, 0<y<+\infty 时，有 $ ey(1-x)<x^{-y} $.
+
+分析：所证不等式变形为  $ yx^y (1-x) < e^{-1} $，记  $ f(x,y) = yx^y (1-x) $，只需证  $ e^{-1} $ 是  $ f(x,y) $ 的最大值或一个上界。故需要求函数的极值与最值。
+
+证明 方法1 令  $ f(x,y)=yx^{y}(1-x)\quad(0<x<1,0<y<+\infty) $，由
+
+ $$ f_{x}=y x^{y-1}(y-x y-x)=0,\quad f_{y}=x^{y}(1-x)(1+y\ln x)=0, $$ 
+
+得驻点所满足的方程为
+
+ $$ y(1-x)=x,\quad x^{y}=\mathrm{e}^{-1}. $$ 
+
+在驻点处有
+
+ $$ A=f_{x x}=-(y+1)y x^{y-1}+y(y-x y-x)(y-1)x^{y-2}=-(y+1)y x^{y-1}<0, $$ 
+
+ $$ \begin{aligned}B=f_{xy}=-x^{y}(1+y\ln x)+x^{y-1}y(1-x)(2+y\ln x)&=x^{y-1}y(1-x)=\mathrm{e}^{-1},\\C=f_{yy}=x^{y}(1-x)(2+y\ln x)\ln x=\mathrm{e}^{-1}(1-x)\ln x.\end{aligned} $$ 
+
+由于
+
+ $$ A C-B^{2}=-\mathrm{e}^{-1}(y+1)y x^{y-1}(1-x)\ln x-\mathrm{e}^{-2}=\left(\frac{1}{x}-1\right)\mathrm{e}^{-2}>0, $$ 
+
+所以满足①式的点 $ (x_{0},y_{0}) $是函数f的极大值点，其极大值为
+
+ $$ f(x_{0},y_{0})=x_{0}\mathrm{e}^{-1}<\mathrm{e}^{-1}. $$ 
+
+又对任一确定的 $ 0<x_{0}<1 $，均有 $ \lim_{y\to0^{+}}f(x_{0},y)=\lim_{y\to+\infty}f(x_{0},y)=0 $；以及对任一确定的 $ 0<y_{0}<+\infty $，均有 $ \lim_{x\to0^{+}}f(x,y_{0})=\lim_{x\to1^{-}}f(x,y_{0})=0 $，所以 $ f(x_{0},y_{0})=x_{0}e^{-1} $也是函数在所给区域内的最大值。故
+
+ $$ f(x,y)=yx^{y}(1-x)<\mathrm{e}^{-1}. $$ 
+
+方法2 对 $ \forall y_{0}>0,\ f(x,y_{0})=y_{0}x^{y_{0}}(1-x) $ 是定义在区间(0,1)内的一元恒正连续函数. 由于
+
+ $$ \lim_{x\to0^{+}}f(x,y_{0})=\lim_{x\to1^{-}}f(x,y_{0})=0, $$ 
+
+则  $ f(x,y_{0}) $ 在区间 (0,1) 内必有最大值，令
+
+ $$ f_{x}(x,y_{0})=y_{0}x^{y_{0}-1}(y_{0}-x y_{0}-x)=0, $$ 
+
+得函数的唯一驻点  $ x=\frac{y_{0}}{1+y_{0}} $，这也是  $ f(x,y_{0}) $ 的最大值点，其最大值为
+
+ $$ g(y_{0})=f\left(\frac{y_{0}}{1+y_{0}},y_{0}\right)=\left(\frac{y_{0}}{1+y_{0}}\right)^{y_{0}+1}=\frac{1}{\left(1+\frac{1}{y_{0}}\right)^{y_{0}+1}}. $$ 
+
+由于当  $ y_0 \to +\infty $（此时  $ x_0 \to 1^- $）时， $ g(y_0) $ 递增地趋于  $ e^{-1} $，所以  $ e^{-1} $ 是  $ f(x,y) $ 在所给区域内的上界。故所证不等式成立。
+
+评注 证明多元函数不等式常用的方法有：
+
+（1）变形、移项，将不等式的一端视为某个变量的一元函数，利用一元函数不等式的方法证明：
+
+(2) 利用多元函数的极值（最值）或条件极值等；
+
+(3) 利用泰勒公式：
+
+（4）利用一些已知不等式，如均值不等式、柯西不等式、凸函数的 Jensen 不等式等；
+
+(5) 用反证法.
+
+例16 证明对任何正实数a,b,c，恒有不等式 $ abc^{3}\leq27\left(\frac{a+b+c}{5}\right)^{5} $.
+
+分析 只需证明目标函数  $ f(x,y,z)=xyz^{3}(x,y,z>0) $ 在条件  $ x+y+z=r $ 下的最大值为  $ 27\left(\frac{r}{5}\right)^{3} $
+
+证明 设目标函数为
+
+ $$ f(x,y,z)=xyz^{3}\quad(x,y,z>0) $$ 
+
+约束条件为 $ x+y+z=r $.
+
+做拉格朗日函数，得
+
+ $$ L(x,y,z,\lambda)=xyz^{3}+\lambda(x+y+z-r), $$ 
+
+ $$ \left\{L_{x}=y z^{3}+\lambda=0,\right. $$ 
+
+令
+
+ $$ \int L_{y}=xz^{3}+\lambda=0, $$ 
+
+ $$ \left\{\begin{aligned}{}&{{}L_{z}=3x y z^{2}+\lambda=0,}\\ {}&{{}L_{\lambda}=x+y+z-r=0.}\\ \end{aligned}\right. $$ 
+
+由前3式得 $ x=y=\frac{z}{3} $，代入第④式得驻点 $ x=y=\frac{r}{5} $， $ z=\frac{3r}{5} $.
+
+因  $ f(x,y,z)=xyz^{3} $ 在有界闭集  $ x+y+z=r $ ( $ x\geqslant0,y\geqslant0,z\geqslant0 $) 上必有最大值，且最大值必在 x>0, y>0, z>0 取得，而  $ \left(\frac{r}{5},\frac{r}{5},\frac{3r}{5}\right) $ 为唯一驻点，故最大值为  $ f\left(\frac{r}{5},\frac{r}{5},\frac{3r}{5}\right)=27\left(\frac{r}{5}\right)^{5} $. 所以
+
+ $$ xyz^{3}\leqslant27\left(\frac{r}{5}\right)^{5}=27\left(\frac{x+y+z}{5}\right)^{5}. $$ 
+
+即对任何正实数  $ a, b, c $，恒有  $ abc^{\frac{1}{3}} \leq 27 \left( \frac{a + b + c}{5} \right)^{5} $.
+
+评注（1）该题若用降元法求解，也可取目标函数为  $ f=\ln x+\ln y+3\ln z $
+
+（2）由目标函数与约束条件在形式上的对偶性，还可将题解中的条件极大值问题改为下述条件极小值问题：求目标函数  $ f(x,y,z)=x+y+z $ (x,y,z>0) 在条件  $ xyz^{3}=r $ 下的最小值 只是在计算上略困难.
+
+# 2. 几何应用
+
+几何应用涉及较多的是曲线的切线、曲面的切平面、动点轨迹方程。读者要熟悉曲线的切线与曲面的切平面方程的计算及向量代数的基本知识；了解一些常见曲面的几何特征与代数特征。几何问题还常与极值问题相交互，在上面的极值问题中我们已有部分接触。
+
+例 17 设有曲面  $ S: e^{2x+y-z}=f(x-2y+z) $，f 可微，证明：
+
+（1）S 上任意一点处的切平面都平行于某一确定的直线；
+
+（2）如果  $ f(0)=1 $ ，则 S 是过坐标原点的柱面，并写出它的一条母线与准线方程.
+
+分析（1）只需证明曲面上任意一点处的法向量都与一固定方向（直线的方向向量）垂直.
+
+（2）在（1）中找到的固定方向就是柱面的母线方向，只需验证过曲面上任意一点以固定方向为方向向量的直线都在曲面上，则 S 就是一柱面.
+
+证明（1）令  $ F(x,y,z)=\mathrm{e}^{2x+y-z}-f(x-2y+z) $，则
+
+ $$ F_{x}=2\mathrm{e}^{2x+y-z}-f^{\prime}(x-2y+z),\;F_{y}=\mathrm{e}^{2x+y-z}+2f^{\prime}(x-2y+z), $$ 
+
+ $$ F_{z}(x,y,z)=-\mathrm{e}^{2x+y-z}-f^{\prime}(x-2y+z)\;. $$ 
+
+曲面上点 $ (x,y,z) $处的法向量为
+
+ $$ \begin{aligned}{n=}&{{}\left(F_{x},F_{y},F_{z}\right)}\\ {=}&{{}\left(2\mathsf{e}^{2x+y-z}-f^{\prime}(x-2y+z),\mathsf{e}^{2x+y-z}+2f^{\prime}(x-2y+z),-\mathsf{e}^{2x+y-z}-f^{\prime}(x-2y+z)\right).}\\ \end{aligned} $$ 
+
+取直线的方向向量为  $ s=(1,3,5) $，由于
+
+ $$ s\cdot n=2\mathrm{e}^{2x+y-z}-f^{\prime}(x-2y+z)+3\mathrm{e}^{2x+y-z}+6f^{\prime}(x-2y+z)-5\mathrm{e}^{2x+y-z}-5f^{\prime}(x-2y+z)=0, $$ 
+
+所以曲面上任意一点处的切平面都平行于直线 $ \frac{x}{1}=\frac{y}{3}=\frac{z}{5} $.
+
+（2）设 $ (x_{0},y_{0},z_{0}) $是曲面S上的任意一点，过该点作直线 $ l:\begin{cases}x=x_{0}+t\\y=y_{0}+3t\\z=z_{0}+5t\end{cases} $，将l的方程分别代入曲
+
+面方程的左、右两边，有
+
+ $$  左边 =\mathrm{e}^{2(x_{0}+t)+(y_{0}+3t)-(z_{0}+5t)}=\mathrm{e}^{2x_{0}+y_{0}-z_{0}}, $$ 
+
+ $$  右边 =f\left((x_{0}+t)-2(y_{0}+3t)+(z_{0}+5t)\right)=f(x_{0}-2y_{0}+z_{0}). $$ 
+
+因为 $ (x_{0},y_{0},z_{0}) $是曲面S上的点，所以
+
+ $$ \begin{array}{r}{\mathsf{e}^{2x_{0}+y_{0}-z_{0}}=f(x_{0}-2y_{0}+z_{0}).}\end{array} $$ 
+
+即曲线l上的点都满足曲面S的方程，这说明l在曲面S上，故S是一柱面.
+
+由于  $ f(0)=1 $，故曲面经过坐标原点，直线  $ l:\frac{x}{1}=\frac{y}{3}=\frac{z}{5} $ 就是 S 的一条母线。过原点，以  $ \boldsymbol{n}=(1,3,5) $ 为法向量的平面为  $ \pi:x+3y+5z=0 $，则  $ \pi $ 与 S 的交线就是 S 的一条准线，其方程为
+
+ $$ \left\{\begin{aligned}{\mathsf{e}^{2x+y-z}}&{{}=f(x-2y+z),}\\ {x+3y+5z}&{{}=0.}\\ \end{aligned}\right. $$ 
+
+评注 一般而言，由方程  $ F(a_{1}x+b_{1}y+c_{1}z,a_{2}x+b_{2}y+c_{2}z)=0 $ 所确定的曲面 S 都是柱面. 其原因如下：
+
+设 $ P_{0}(x_{0},y_{0},z_{0}) $是曲面S上的任一点，记
+
+ $$ n_{i}=(a_{i},b_{i},c_{i})\ (i=1,2) $$ 
+
+若  $ n_{1} // n_{2} $，取  $ \tau = (l, m, n) \perp n_{1} $，则过  $ P_{0} $ 点以  $ \tau $ 为方向向量的直线 L 一定在曲面 S 上；
+
+若 $ n_{1}\times n_{2} $，取 $ \tau=n_{1}\times n_{2} $，则过 $ P_{0} $点以 $ \tau $为方向向量的直线L一定在曲面S上.
+
+故无论何种情况，S都是柱面.
+
+例 18 设  $ F(x,y,z) $ 具有连续偏导数，且对任意实数 t 有  $ F(tx,ty,tz)=t^{k}F(x,y,z) $ （k 是自然数），证明曲面  $ F(x,y,z)=0 $ 上任意一点的切平面相交于一点.
+
+分析 求出曲面上任意一点处的切平面方程，再看是否所有切平面都过同一点.
+
+证明 在  $ F(tx,ty,tz)=t^{k}F(x,y,z) $ 的两边对 t 求导，并令 t=1，得
+
+ $$ x F_{x}+y F_{y}+z F_{z}=k F~. $$ 
+
+设  $ M_{0}(x_{0},y_{0},z_{0}) $ 为曲面上的一点，则过该点的切平面
+
+ $$ F_{x}(M_{0})(x-x_{0})+F_{y}(M_{0})(y-y_{0})+F_{z}(M_{0})(z-z_{0})=0\;, $$ 
+
+利用 $ ^{①} $式化简得
+
+ $$ x F_{x}(M_{0})+y F_{y}(M_{0})+z F_{z}(M_{0})=0\;. $$ 
+
+可见，曲面在任意一点的切平面均过坐标原点.
+
+评注 若 F 对任意 t 均有  $ F(tx, ty, tz) = t^{k}F(x, y, z) $，则称 F 为 x, y, z 的 k 次齐次函数。易验证：若  $ F(x, y, z) $ 为 x, y, z 的齐次函数，则曲面  $ F(x - x_{0}, y - y_{0}, z - z_{0}) = 0 $ 是以  $ (x_{0}, y_{0}, z_{0}) $ 为顶点的锥面，锥面上任意一点的切平面都过顶点。
+
+例 19 已知锐角  $ \triangle ABC $，若取点  $ P(x,y) $，令  $ f(x,y)=|AP|+|BP|+|CP| $（ $ |·| $表示线段的长度）。证明在  $ f(x,y) $ 取极值的点  $ P_0 $ 处，向量  $ \overrightarrow{P_0A} $， $ \overrightarrow{P_0B} $， $ \overrightarrow{P_0C} $ 所夹的角相等。
+
+分析　为便于讨论，需写出  $ f(x,y) $ 的坐标表达式，由  $ P_{0} $ 一定是 f 的驻点可得  $ \left.\frac{\partial f}{\partial x}\right|_{P_{0}}=\left.\frac{\partial f}{\partial y}\right|_{P_{0}}=0 $，根据该关系式去讨论几个向量夹角的余弦，并说明它们相等.
+
+证明 设 A, B, C 三点的坐标为  $ (x_{i}, y_{i}) (i = 1, 2, 3) $，极值点  $ P_{0} $ 的坐标为  $ (x_{0}, y_{0}) $，则
+
+ $$ \overrightarrow{P_{0}A}=(x_{1}-x_{0},y_{1}-y_{0})\:,\quad\overrightarrow{P_{0}B}=(x_{2}-x_{0},y_{2}-y_{0})\:,\quad\overrightarrow{P_{0}C}=(x_{3}-x_{0},y_{3}-y_{0}) $$ 
+
+又  $ f(x,y)=\sum_{i=1}^{3}\sqrt{(x-x_{i})^{2}+(y-y_{i})^{2}} $ ，得
+
+ $$ \left\{\begin{aligned}\frac{\partial f}{\partial x}&=\sum_{i=1}^{3}\frac{x-x_{i}}{\sqrt{(x-x_{i})^{2}+(y-y_{i})^{2}}},\\ \frac{\partial f}{\partial y}&=\sum_{i=1}^{3}\frac{y-y_{i}}{\sqrt{(x-x_{i})^{2}+(y-y_{i})^{2}}}.\end{aligned}\right. $$ 
+
+极值点  $ P_{0}=(x_{0},y_{0}) $ 应满足  $ \left.\frac{\partial f}{\partial x}\right|_{P_{0}}=\left.\frac{\partial f}{\partial y}\right|_{P_{0}}=0 $ ，即
+
+ $$ \left\{\begin{array}{l l}{-\frac{x_{0}-x_{1}}{\sqrt{(x_{0}-x_{1})^{2}+(y_{0}-y_{1})^{2}}}=\displaystyle\sum_{i=2}^{3}\frac{x_{0}-x_{i}}{\sqrt{(x_{0}-x_{i})^{2}+(y_{0}-y_{i})^{2}}},}\\ {-\frac{.y_{0}-y_{1}}{\sqrt{(x_{0}-x_{1})^{2}+(y_{0}-y_{1})^{2}}}=\displaystyle\sum_{i=2}^{3}\frac{y_{0}-y_{i}}{\sqrt{(x_{0}-x_{i})^{2}+(y_{0}-y_{i})^{2}}}.}\end{array}\right. $$ 
+
+以上两式两边平方再相加，得
+
+ $$ \cos(\overrightarrow{P_{0}B},\overrightarrow{P_{o}C})=\frac{(x_{0}-x_{2})(x_{0}-x_{3})+(y_{0}-y_{2})(y_{0}-y_{3})}{\sqrt{(x_{0}-x_{2})^{2}+(y_{0}-y_{2})^{2}}\sqrt{(x_{0}-x_{3})^{2}+(y_{0}-y_{3})^{2}}}=-\frac{1}{2}. $$ 
+
+同理  $ \cos(\overrightarrow{P_0A},\overrightarrow{P_0B})=\cos(\overrightarrow{P_0A},\overrightarrow{P_0C})=-\frac{1}{2} $。所以命题成立。
+
+例 20 证明曲线  $ C: x = a e^t \cos t, \ y = a e^t \sin t, \ z = a e^t $（其中  $ a > 0 $ 且为常数， $ t $ 为参数）与锥面  $ x^2 + y^2 - z^2 = 0 $ 的任意一条母线都交成定角.
+
+分析 容易看出 C 就是锥面上的曲线. 只需求出锥面母线的方向向量与曲线 C 的切向量, 证明两向量在曲线 C 上任意一点的夹角都相等.
+
+证明 由C的方程，有
+
+ $$ x^{2}+y^{2}=a^{2}\mathrm{e}^{2t}\cos^{2}t+a^{2}\mathrm{e}^{2t}\sin^{2}t=a^{2}\mathrm{e}^{2t}=z^{2}, $$ 
+
+所以 C 在锥面  $ x^{2} + y^{2} = z^{2} $ 上.
+
+锥面的顶点为坐标原点，C上的任意一点 $ P(x,y,z) $与原点连线都是锥面的母线，其方向向量为
+
+ $$ \boldsymbol{l}=\overrightarrow{OP}=(x,y,z). $$ 
+
+曲线C在P点的切向量为
+
+ $$ \begin{aligned}\boldsymbol{\tau}&=(\dot{x},\dot{y},\dot{z})=\left(a\mathbf{e}^{t}\cos t-a\mathbf{e}^{t}\sin t,a\mathbf{e}^{t}\sin t+a\mathbf{e}^{t}\cos t,a\mathbf{e}^{t}\right)\\&=\left(x-y,x+y,z\right).\end{aligned} $$ 
+
+两向量夹角的余弦为
+
+ $$ \begin{align*}\cos(I,\tau)&=\frac{x(x-y)+y(x+y)+z^{2}}{\sqrt{x^{2}+y^{2}+z^{2}}\cdot\sqrt{(x-y)^{2}+(x+y)^{2}+z^{2}}}\\&=\frac{x^{2}+y^{2}+z^{2}}{\sqrt{x^{2}+y^{2}+z^{2}}\sqrt{2x^{2}+2y^{2}+z^{2}}}=\frac{2z^{2}}{\sqrt{2z^{2}}\sqrt{3z^{2}}}=\frac{1}{3}\sqrt{6}.\end{align*} $$ 
+
+为一常数. 所以曲线 C 与锥面的任意一条母线都交成定角, 得证.
+
+例21 经过定点  $ M_{0}(x_{0},0,0) $ 作椭球面  $ S:\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1 $ 的切平面，其中  $ x_{0}>a>0,\quad b>0,\quad c>0 $。当切点  $ \dot{M}(X,Y,Z) $ 在 S 上运动时，求直线  $ M_{0}M $ （包括它的延长线）的轨迹方程。
+
+分析 由 $S$ 在点 $M$ 处的法向量与 $\overrightarrow{M_0M}$ 垂直可得到关于 $(X,Y,Z)$ 的一个关系式，再由 $M \in S$ 可得一个关系式。又设 $P(x,y,z)$ 为直线 $M_0M$ 上任意一点，便可得 $P$ 的轨迹方程。
+
+解 S 在点  $ M(X,Y,Z) $ 处的法向量  $ \boldsymbol{n}=\left(\frac{2X}{a^{2}},\frac{2Y}{b^{2}},\frac{2Z}{c^{2}}\right) $，因为  $ \overrightarrow{M_{0}M}\perp\boldsymbol{n} $，所以
+
+ $$ \frac{2X}{a^{2}}(X-x_{0})+\frac{2Y}{b^{2}}(Y-0)+\frac{2Z}{c^{2}}(Z-0)=0. $$ 
+
+利用 S 的方程，上式可化简为
+
+ $$ \frac{x_{0}X}{a^{2}}=1. $$ 
+
+又因 $ M\in S $，所以
+
+ $$ \frac{X^{2}}{a^{2}}+\frac{Y^{2}}{b^{2}}+\frac{Z^{2}}{c^{2}}=1. $$ 
+
+设 $ P(x,y,z) $为直线 $ M_{0}M $上任意一点，则
+
+ $$ \frac{X-x_{0}}{x-x_{0}}=\frac{Y}{y}=\frac{Z}{z}. $$ 
+
+将 $ ^{①} $式代入③式，再代入②式，消去X,Y,Z，便得
+
+ $$ (x-x_{0})^{2}-\left(\frac{x_{0}^{2}-a^{2}}{b^{2}}\right)y^{2}-\left(\frac{x_{0}^{2}-a^{2}}{c^{2}}\right)z^{2}=0. $$ 
+
+此为顶点在点 $ (x_{0},0,0) $的一个锥面.
+
+例 22 设光滑闭曲面  $ S: F(x, y, z) = 0 $，证明 S 上任意两个相距最远点处的切平面相互平行，且垂直于这两点的连线.
+
+分析 S 上两个相距最远点是两点间的距离函数满足曲面方程  $ F(x,y,z)=0 $ 的最大值点，因而是对应拉格朗日函数的驻点，由此可推出所证结论.
+
+证明 因为 S 是光滑封闭曲面，故满足：
+
+（1） $ F(x,y,z) $ 在一个包含 S 的开域内有连续一阶偏导数，且  $ F_{x}^{2}+F_{y}^{2}+F_{z}^{2}\neq0 $
+
+（2）S上必有相距最远的点.
+
+设  $ P_{0}(x_{0},y_{0},z_{0}) $， $ Q_{0}(u_{0},v_{0},w_{0}) $ 为 S 上两个相距最远的点，则点  $ R_{0}(x_{0},y_{0},z_{0},u_{0},v_{0},w_{0}) $ 是函数  $ f(x,y,z,u,v,w)=(x-u^{2})+(y-v)^{2}+(z-w)^{2} $ 在约束条件  $ F(x,y,z)=0, F(u,v,w)=0 $ 下的极大值点.
+
+做拉格朗日函数
+
+ $$ L(x,y,z,u,v,w,\lambda,\mu)=f(x,y,z,u,v,w)+\lambda F(x,y,z)+\mu F(u,v,w)~, $$ 
+
+则存在  $ \lambda_{0}, \mu_{0} $，使  $ \nabla L|_{R_{0}} = 0 $，即有
+
+ $$ \left\{\begin{aligned}{}&{{}2(x_{0}-u_{0})+\lambda_{0}F_{x}(x_{0},y_{0},z_{0})=0,}\\ {}&{{}2(y_{0}-v_{0})+\lambda_{0}F_{y}(x_{0},y_{0},z_{0})=0,}\\ {}&{{}2(z_{0}-w_{0})+\lambda_{0}F_{z}(x_{0},y_{0},z_{0})=0,}\\ {}&{{}-2(x_{0}-u_{0})+\mu_{0}F_{u}(u_{0},v_{0},w_{0})=0,}\\ {}&{{}-2(y_{0}-v_{0})+\mu_{0}F_{v}(u_{0},v_{0},w_{0})=0,}\\ {}&{{}-2(z_{0}-w_{0})+\mu_{0}F_{w}(u_{0},v_{0},w_{0})=0.}\\ \end{aligned}\right. $$ 
+
+由以上方程组的前 3 式，知  $ (x_0 - u_0, y_0 - \nu_0, z_0 - w_0) \parallel (F_x, F_y, F_z) \mid_{P_0} $，这说明 S 在点  $ P_0 $ 处的切平面垂直于  $ \overrightarrow{P_0Q_0} $；由以上方程组的后 3 式，知 S 在点  $ Q_0 $ 处的切平面也垂直于  $ \overrightarrow{P_0Q_0} $，故 S 在点  $ P_0, Q_0 $ 处的切平面相互平行，且垂直于这两点之间的连线  $ \overrightarrow{P_0Q_0} $。
+
+例23 设空间曲线 $L$ 的方程为 $\left\{\begin{aligned} F(x,y,z) &= 0 \\ G(x,y,z) &= 0 \end{aligned}\right.$，其中 $F,G$ 具有一阶连续的偏导数；又 $Q(\alpha,\beta,\gamma)$ 为空间一定点，且 $Q \notin L$。若曲线 $L$ 上存在到 $Q$ 最近或最远的点 $P_0(x_0,y_0,z_0)$，则 $L$ 在点 $P_0$ 处的切向量 $\vec{s}$ 与向量 $\overrightarrow{P_0Q}$ 垂直。
+
+分析 记  $ \boldsymbol{n}_{1}=(F_{x},F_{y},F_{z})|_{P_{0}} $， $ \boldsymbol{n}_{2}=(G_{x},G_{y},G_{z})|_{P_{0}} $，则  $ \boldsymbol{s}=\boldsymbol{n}_{1}\times\boldsymbol{n}_{2} $， $ \boldsymbol{s} $ 与  $ \overrightarrow{P_{0}Q} $ 垂直的充要条件是  $ \overrightarrow{P_{0}Q}\cdot\boldsymbol{s}=0 $，故只需证明  $ \overrightarrow{P_{0}Q}\cdot(\boldsymbol{n}_{1}\times\boldsymbol{n}_{2})=0 $。
+
+证明 曲线 L 上任取一点  $ P(x,y,z) $ 到 Q 的距离  $ d=\sqrt{(x-\alpha)^{2}+(y-\beta)^{2}+(z-\gamma)^{2}} $，若曲线 L 上存在到 Q 最近或最远的点  $ P_{0}(x_{0},y_{0},z_{0}) $，则点  $ P_{0} $ 应该是目标函 d（或  $ d^{2} $）满足条件  $ \begin{cases}F(x,y,z)=0\\G(x,y,z)=0\end{cases} $ 的极值点.
+
+做拉格朗日函数
+
+ $$ \begin{aligned}{L(x,y,z,\lambda,\mu)=}&{{}(x-\alpha)^{2}+(y-\beta)^{2}+(z-\gamma)^{2}+\lambda F(x,y,z)+\mu G(x,y,z),}\\ {}&{{}\begin{cases}{L_{x}=2(x-\alpha)+\lambda F_{x}(P)+\mu G_{x}(P)=0,}\\ {L_{y}=2(y-\beta)+\lambda F_{y}(P)+\mu G_{y}(P)=0,}\\ {L_{z}=2(z-\gamma)+\lambda F_{z}(P)+\mu G_{z}(P)=0,}\\ {L_{\lambda}=F(P)=0,}\\ {L_{\mu}=G(P)=0.}\\ \end{cases}}\\ \end{aligned} $$ 
+
+令
+
+将该方程组的前 3 视为以 2,  $ \lambda $,  $ \mu $ 为未知数的齐次线性方程组，显然有非零解，从而其系数行列式等于 0，即有
+
+ $$ \left|\begin{matrix}{x-\alpha}&{F_{x}(P)}&{G_{x}(P)}\\ {y-\beta}&{F_{y}(P)}&{G_{y}(P)}\\ {z-\gamma}&{F_{z}(P)}&{G_{z}(P)}\\ \end{matrix}\right|=0 $$ 
+
+由于  $ P_{0}(x_{0},y_{0},z_{0}) $ 是方程组①的解，故它必满足②式，即有  $ s\cdot\overrightarrow{P_{0}Q}=(\boldsymbol{n}_{1}\times\boldsymbol{n}_{2})\cdot\overrightarrow{P_{0}Q}=0 $。
+
+评注 上面两例均属于几何问题中的“最近（远）距离的垂线原理”问题。它的一般情形可参见习题4.3第27题。
+
+例24 设一礼堂的顶部是一个半椭球面，其方程为  $ z = 4\sqrt{1 - \frac{x^2}{16}} - \frac{y^2}{36} $，求下雨时过房顶上点  $ P(1, 3, \sqrt{11}) $ 处的雨水流下的路线方程（不计摩擦）.
+
+分析 雨水在椭球面上总是沿着 z 值下降最快的方向下流，即沿着 z 的梯  $ \text{grad}z = \left(\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}\right) $ 的反方向向下流，因而雨水从椭球面上流下的路线在坐标面 xOy 上的投影曲线上任意一点处的切线应与  $ \text{grad}z $ 平行. 由此可得到所求问题的解.
+
+解 由椭球方程  $ z=4\sqrt{1-\frac{x^{2}}{16}-\frac{y^{2}}{36}} $ ，得
+
+ $$ \mathrm{g r a d}z=\left(\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}\right)=\left(-\frac{x}{4\sqrt{1-\frac{x^{2}}{16}-\frac{y^{2}}{36}}},-\frac{y}{9\sqrt{1-\frac{x^{2}}{16}-\frac{y^{2}}{36}}}\right). $$ 
+
+设雨水从椭球面上流下的路线在坐标面 xOy 上的投影曲线为  $ C: f(x, y) = 0 $，由于雨水总是沿着 z 下降最快的方向向下流，即沿着 gradz 的反方向向下流，因而 C 上任一点处的切向量  $ (d x, d y) $ 应与 gradz 平行，由此得到
+
+ $$ \frac{\mathrm{d}y}{\mathrm{d}x}=\frac{4y}{9x}, $$ 
+
+解之得  $ y = Cx^{\frac{4}{9}} $ 。以它为准线，母线平行于 z 轴的柱面方程为  $ y = Cx^{\frac{4}{9}} $ 。
+
+令x=1, y=3，知C=3，故过房顶上点 $ P(1,3,\sqrt{11}) $的雨水流下的路线方程为
+
+ $$ \left\{\begin{aligned}z&=4\sqrt{1-\frac{x^{2}}{16}-\frac{y^{2}}{36}},\\ y&=3x^{\frac{4}{9}}.\end{aligned}\right. $$ 
+
+<div style="text-align: center;"><div style="text-align: center;">习题4.3</div> </div>
+
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//2179f44f-66bf-4433-ad91-e2654de99751/markdown_1/imgs/img_in_image_box_1186_1574_1319_1705.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A33Z%2F-1%2F%2F9e859694b2de24f00b5cc235d319962a9b6e620345b7d41c71801115cd333649" alt="Image" width="9%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">习题4.3答案</div> </div>
+
+
+1. 已知  $ f(x,y) $ 在点  $ (0,0) $ 的某邻域内连续，且  $ \lim_{{x \to 0 \atop y \to 0}} \frac{f(x,y) - x \ y}{(x^2 + y^2)^2} = 1 $ ( $ k \in \mathbb{N} $). 试问： $ f(x,y) $ 在点  $ (0,0) $ 处是否取得极值，是极大值还是极小值？
+
+2. 求函数  $  z = (1 + e^{y}) \cos x - ye^{y}  $ 的极值点与极值.
+
+3 $ ^{*} $. 设二次函数  $ y=\varphi(x) $ (其中,  $ x^{2} $ 项的系数为1) 的图形与 x 轴的交点为  $ \left(\frac{1}{2},0\right) $ 及  $ (B,0) $，其中 B=
+
+$$\lim_{x\to0^{+}}\left(\frac{\mathrm{d}}{\mathrm{d}x}\int_{0}^{\sqrt{x}}2\mathrm{e}^{\sin t}\mathrm{d}t-\frac{1}{\sqrt{x}}\right)$$，求使二元函数 $I(\alpha,\beta)=\int_{0}^{1}[\varphi(x)-(\alpha x+\beta)]^{2}\mathrm{d}x$ 取得最小值的实数 $\alpha,\beta$ 的值。
+
+4. 设 $z=z(x,y)$ 是由 $x^{2}-6xy+10y^{2}-2yz-z^{2}+18=0$ 确定的函数，求 $z=z(x,y)$ 的极值点和极值。
+
+$5^{*}$。设 $f(x,y)=Ax^{2}+2Bxy+Cy^{2}+2Dx+2Ey+F$，其中 $AC-B^{2}>0$，$A,B,C,D,E,F$ 均是常数，
+
+证明 $f(x,y)$ 有唯一的极值 $\frac{1}{AC-B^{2}}\begin{vmatrix}A&B&D\\B&C&E\\D&E&F\end{vmatrix}$。
+
+6. 设  $ z = f(x, y) $ 在有界闭区域 D 上有二阶连续偏导数，且  $ \frac{\partial^{2}z}{\partial x^{2}} + \frac{\partial^{2}z}{\partial y^{2}} = 0 $， $ \frac{\partial^{2}z}{\partial x\partial y} \neq 0 $，证明 z 的最值只能在 D 的边界上取到.
+
+7 $ ^{*} $. 设  $ f(x,y) $ 在沿着经过点  $ M_{0}(x_{0},y_{0}) $ 的任意直线上， $ f(x_{0},y_{0}) $ 总是极小值，它是否是  $ f(x_{0},y_{0}) $ 为二元函数  $ f(x,y) $ 的极小值的充分条件？试考察  $ f(x,y)=(x-y^{2})(2x-y^{2}) $ 在点  $ (0,0) $ 处的情形.
+
+8. 求使函数
+
+ $ f(x,y)=\frac{1}{y^{2}}\exp\left\{-\frac{1}{2y^{2}}[(x-a)^{2}+(y-b)^{2}]\right\}(y\neq0,b>0) $ 达到最大值的  $ (x_{0},y_{0}) $ 以及相应的  $ f(x_{0},y_{0}) $.
+
+9 $ ^{*} $. 如图 4.6 所示，ABCD 是等腰梯形，BC//AD， $ AB+BC+CD=8 $，求 AB，BC，AD 的长，使该梯形绕 AD 旋转一周所得旋转体的体积最大.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//2179f44f-66bf-4433-ad91-e2654de99751/markdown_2/imgs/img_in_image_box_1037_770_1350_947.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A34Z%2F-1%2F%2F76d91bf1fe123fc53d752ebfd6b617eddd85b99d42f84f9f01fe68ae57a20fa6" alt="Image" width="21%" /></div>
+
+
+<div style="text-align: center;"><div style="text-align: center;">图4.6</div> </div>
+
+
+ $ 10^{\circ} $. 证明下列不等式：
+
+(1)  $ xy \leq x \ln x - x + e^y $ ( $ x \geq 1, y \geq 0 $); (2)  $ \frac{x^2 + y^2}{4} \leq e^{x + y - 2} $ ( $ x \geq 0, y \geq 0 $).
+
+11. 求二元函数  $ z = f(x, y) = x^{2}y(4 - x - y) $ 在由直线 x + y = 6、x 轴和 y 轴所围成的闭区域 D 上的最大值与最小值.
+
+12. 已知 a, b 满足  $ \int_{a}^{b}|x|dx=\frac{1}{2}(a\leq0\leq b) $，求曲线  $ y=x^{2}+ax $ 与直线 y=bx 所围区域的面积的最大值与最小值.
+
+13. 在椭球面  $ 2x^2 + 2y^2 + z^2 = 1 $ 上求一点，使函数  $ f(x, y, z) = x^2 + y^2 + z^2 $ 在该点沿方向  $ l = i - j $ 的方向导数最大.
+
+14. 设曲面  $ \sum $ 的参数方程为  $ \begin{cases} x = \cos\theta\cos\varphi \\ y = \cos\theta\sin\varphi \\ z = \sin\theta \end{cases} $， $ \theta \in \left[0, \frac{\pi}{2}\right] $， $ \varphi \in [0, 2\pi] $，求曲面  $ \sum $ 上的点到平面  $ x + y + z = 1 $ 的距离的最大值.
+
+15. 某公司可通过电台及报纸两种方式做销售某种商品的广告，根据统计资料，销售收入 R（万元）与电台广告费用  $ x_{1} $ （万元）及报纸广告费用  $ x_{2} $ （万元）之间的关系有如下经验公式：
+
+ $$ R=15+14x_{1}+32x_{2}-8x_{1}x_{2}-2x_{1}^{2}-10x_{2}^{2} $$ 
+
+（1）在广告费用不限的情况下，求最优广告策略；
+
+（2）若提供的广告费用为1.5万元，求相应的最优广告策略.
+
+16. 从 $ \triangle ABC $内部的点P向三条边作三条垂线，求使此三条垂线的乘积为最大的点P的位置.
+
+17. 在第一卦限内作椭球面  $ \frac{x^{-}}{a^{2}} + \frac{y^{-}}{b^{2}} + \frac{z^{-}}{c^{2}} = 1 $ 的切平面，使切平面与三个坐标面所围成的四面体体积最小，求切点坐标.
+
+18. 设四边形各边长一定，分别为 a, b, c, d. 问何时四边形面积最大？
+
+19*. 设正数 x, y, z 满足方程  $ x^{k} + y^{k} + z^{k} = 1 $（常数 k > 0），a, b, c 为正常数，证明：
+
+(1)  $ (x^{a}y^{b}z^{c})^{k} \leqslant \frac{a^{a}b^{b}c^{c}}{(a+b+c)^{a+b+c}} $.
+
+（2）对任意正数u,v,w，均有 $ \left(\frac{u}{a}\right)^{a}\left(\frac{v}{b}\right)^{b}\left(\frac{w}{c}\right)^{c}\leqslant\left(\frac{u+v+w}{a+b+c}\right)^{a+b+c}. $
+
+20. 设 f 为可微函数，证明曲面  $ z = x f\left(\frac{y+1}{x}\right) + 2 $ 上任意一点处的切平面都相交于一点.
+
+21. 证明曲面  $ z + \sqrt{x^{2} + y^{2} + z^{2}} = x^{3} f\left(\frac{y}{x}\right) $ 在任意一点处的切平面在 Oz 轴上的截距与切点到坐标原点的距离之比为常数，并求出此常数.
+
+22. 设  $ F(x,y,z) $ 和  $ G(x,y,z) $ 有连续偏导数， $ \frac{\partial(F,G)}{\partial(x,z)}\neq0 $，曲线  $ \Gamma:\left\{\begin{aligned}F(x,y,z)&=0\\ G(x,y,z)&=0\end{aligned}\right. $ 过点  $ P_{0}(x_{0},y_{0},z_{0}) $.
+
+记  $ \Gamma $ 在 xOy 平面上的投影曲线为 S. 求 S 上过点  $ (x_{0},y_{0}) $ 的切线方程.
+
+23. 设  $ a, b, c > 0 $，曲面 xyz =  $ \mu $ 与  $ \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1 $ 相切，求  $ \mu $ 的值.
+
+24. 试求一平面，使它通过曲线  $ \left\{\begin{aligned}&y^{2}=x\\ &z=3(y-1)\end{aligned}\right. $ 在 y=1 处的切线，且与曲面  $ x^{2}+y^{2}=4z $ 相切.
+
+25. 证明旋转曲面  $  z = f\left(\sqrt{x^2 + y^2}\right) (f' \neq 0)  $ 上任意一点处的法线与旋转轴相交.
+
+26. 设  $ a, b, c, \alpha, \beta, \gamma $ 都是正实数，满足  $ \frac{\alpha}{a} + \frac{\beta}{b} + \frac{\gamma}{c} = 1 $．给定两个曲面：
+
+ $$ \Sigma_{1}:\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1 和 \Sigma_{2}:\frac{\alpha^{2}}{x^{2}}+\frac{\beta^{2}}{y^{2}}+\frac{\gamma^{2}}{z^{2}}=1. $$ 
+
+求此二曲面在第一卦限的切点及相应的切平面方程.
+
+27. （最近（远）距离的垂线原理）在空间（平面）中，设  $ P_{1}, P_{2} $ 分别属于点集  $ T_{1}, T_{2} $，如果距离  $ \left|P_{1}P_{2}\right| $ 是  $ T_{1}, T_{2} $ 中任意两点距离中的最小（大）值，则称  $ P_{1}, P_{2} $ 是点集  $ T_{1}, T_{2} $ 的最近（远）点。证明下列结论成立：
+
+（1）在空间（平面）中，如果  $ \Gamma $ 是光滑闭曲线，点 P 是  $ \Gamma $ 上与点 Q 的最近（远）点，则直线 PQ 在点 P 处与  $ \Gamma $ 垂直（即 PQ 与  $ \Gamma $ 在点 P 处的切线垂直. 如果两点 P 与 Q 重合，则规定 PQ 与任何直线垂直）.
+
+（2）在空间中，如果  $ \Sigma $ 是光滑闭曲面，点  $ P $ 是  $ \Sigma $ 上与点  $ Q $ 的最近（远）点，则直线  $ PQ $ 在点  $ P $ 处与  $ \Sigma $ 垂直（即  $ PQ $ 与  $ \Sigma $ 在点  $ P $ 处的切平面垂直. 如果两点  $ P $ 与  $ Q $ 重合，则规定  $ PQ $ 与任何平面垂直）.
+
+（3）在空间（平面）中，点  $ P_{1}, P_{2} $ 分别是光滑闭曲线  $ \Gamma_{1}, \Gamma_{2} $ 之间的最近（远）点，则直线  $ P_{1}P_{2} $ 是  $ \Gamma_{1}, \Gamma_{2} $ 的公垂线.
+
+（4）在空间中，点  $ P_{1}, P_{2} $ 分别是光滑闭曲面  $ \Sigma_{1}, \Sigma_{2} $ 之间的最近（远）点。则直线  $ P_{1}P_{2} $ 是  $ \Sigma_{1}, \Sigma_{2} $ 的公垂线。
+
+28. 设函数  $ u = F(x, y, z) $ 在条件  $ \varphi(x, y, z) = 0 $ 和  $ \psi(x, y, z) = 0 $ 下，在点  $ (x_0, y_0, z_0) $ 处取得极值  $ m $，证明三曲面  $ F(x, y, z) = m $、 $ \varphi(x, y, z) = 0 $ 和  $ \psi(x, y, z) = 0 $ 在点  $ (x_0, y_0, z_0) $ 处的三条法线共面，其中  $ F, \varphi, \psi $ 均具有一阶连续偏导数，且偏导数不同时为零.
+
+29. 设曲面  $ S: z = 1 + \left( \frac{x}{a^2} + \frac{y}{b^2} \right) $, a > 0, b > 0. 经过点  $ O(0,0,0) $ 作 S 的切平面. 设切点为  $ M(X,Y,Z) $, 当点 M 在 S 上运动时, 求直线  $ OM $ （包括它的延长线）的轨迹方程, 并说明切点 M 的轨迹线为一个平面上的椭圆.
+
+30. 设有一表面光滑的橄榄球，它的表面形状是由长半轴为6，短半轴为3的椭圆绕其长轴旋转所
+
+得的旋转椭球面. 在无风的细雨天，将该球放在室外草坪上，使长轴在水平位置，求雨水从椭球面上流下的路线方程.
+
+#### 综合题4 $ ^{*} $
+
+1. 试求通过三条直线： $ \left\{\begin{aligned}x=0\\ y-z=0\end{aligned}\right. $， $ \left\{\begin{aligned}x=0\\ x+y-z=-2\end{aligned}\right. $， $ \left\{\begin{aligned}x=\sqrt{2}\\ y-z=0\end{aligned}\right. $的圆柱面方程.
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//56d39e41-f1e0-4633-b566-e299743664d8/markdown_0/imgs/img_in_image_box_1212_215_1346_347.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A31Z%2F-1%2F%2Ff9ecfd93a65572caed260f52a43aefedd0022c67a61511283fa15505817a6d7e" alt="Image" width="9%" /></div>
+
+
+综合题4答案
+
+2. 证明若函数  $ f(x,y) $ 在区域 D 内对每一个变量 x 和 y 都是连续的，而且对其中一个是单调的，则  $ f(x,y) $ 是 D 内的二元连续函数.
+
+3. 设  $ F(u,v) $ 可微， $ y = y(x) $ 是由方程  $ F(x\mathrm{e}^{x+y}, f(xy)) = x^2 + y^2 $ 所确定的隐函数，其中  $ f(x) $ 满足  $ \int_{1}^{xy} f(t)dt = x \int_{1}^{y} f(t)dt + y \int_{1}^{x} f(t)dt $， $ f(1) = 1 $ 的连续函数，求  $ \frac{dy}{dx} $.
+
+4. 设有方程  $ \frac{x^{2}}{a^{2}+u}+\frac{y^{2}}{b^{2}+u}+\frac{z^{2}}{c^{2}+u}=1 $，证明  $ \parallel grad u\parallel^{2}=2r\cdot grad u $，其中  $ r=(x,y,z) $.
+
+5. 设  $ F(x_{1}, x_{2}, x_{3}) = \int_{0}^{2\pi} f(x_{1} + x_{3} \cos \varphi, x_{2} + x_{3} \sin \varphi) \, \mathrm{d}\varphi $，其中  $ f(u, v) $ 具有二阶连续偏导数. 已知
+
+ $$ \frac{\partial F}{\partial x_{i}}=\int_{0}^{2\pi}\frac{\partial}{\partial x_{i}}f(x_{1}+x_{3}\operatorname{c o s}\varphi,x_{2}+x_{3}\operatorname{s i n}\varphi)\mathrm{d}\varphi,\ \frac{\partial^{2}F}{\partial x_{i}^{2}}=\int_{0}^{2\pi}\frac{\partial^{2}}{\partial x_{i}^{2}}f(x_{1}+x_{3}\operatorname{c o s}\varphi,x_{2}+x_{3}\operatorname{s i n}\varphi)\mathrm{d}\varphi, $$ 
+
+ $$ \frac{\partial^{2}F}{\partial x_{i}^{2}}=\int_{0}^{2\pi}\frac{\partial^{2}}{\partial x_{i}^{2}}f(x_{1}+x_{3}\cos\varphi,x_{2}+x_{3}\sin\varphi)\mathrm{d}\varphi(i=1,2,3). $$ 
+
+ $$ x_{3}\left(\frac{\partial^{2}F}{\partial x_{1}^{2}}+\frac{\partial^{2}F}{\partial x_{2}^{2}}-\frac{\partial^{2}F}{\partial x_{3}^{2}}\right)-\frac{\partial F}{\partial x_{3}}=0. $$ 
+
+6. 设 $A, B, C$ 为常数，$B^2 - AC > 0$，$A \ne 0$，$u(x, y)$ 具有二阶连续偏导数，试证明必存在非奇异线性变换 $\xi = \lambda_1 x + y$，$\eta = \lambda_2 x + y$（$\lambda_1, \lambda_2$ 为常数），将方程 $A \frac{\partial^2 u}{\partial x^2} + 2B \frac{\partial^2 u}{\partial x \partial y^2} + C \frac{\partial^2 u}{\partial y^2} = 0$ 化成 $\frac{\partial^2 u}{\partial \xi \partial \eta} = 0$。
+
+7. 取 x 作为 y 和 z 的函数，解方程  $ \left(\frac{\partial z}{\partial y}\right)^{2}\frac{\partial^{2}z}{\partial x^{2}}-2\frac{\partial z}{\partial x}\frac{\partial z}{\partial y}\frac{\partial^{2}z}{\partial x\partial y}+\left(\frac{\partial z}{\partial x}\right)^{2}\frac{\partial^{2}z}{\partial y^{2}}=0 $.
+
+8. 设  $ z = z(u, v) $ 具有二阶连续偏导数，且  $ z = z(x - 2y, x + 3y) $ 满足  $ 6\frac{\partial^2 z}{\partial x^2} + \frac{\partial^2 z}{\partial x \partial y} - \frac{\partial^2 z}{\partial y^2} = 2\frac{\partial z}{\partial x} + \frac{\partial z}{\partial y} $，求  $ z = z(u, v) $ 的一般表达式.
+
+9. 设  $ f(x,y) $ 有二阶连续偏导数，且  $ \lim_{{x\to1\atop y\to0}}\frac{f(x,y)+\sin(\pi x-2y)-1}{\sqrt{(x-1)^2+y^2}}=0 $，若  $ g(x,y)=f(e^{xy},x^2+y^2) $，证明  $ g(x,y) $ 在  $ (0,0) $ 处取得极值，判断此极值是极大值还是极小值，并求出此极值.
+
+10. 设 $ a^{2}+b^{2}+c^{2}\neq0 $，求 $ w=(ax+by+cz)e^{-(x^{2}+y^{2}+z^{2})} $在整个空间上的最大值与最小值.
+
+11. 设平面上 3 条直线两两相交于点  $ A(2,4) $,  $ B(3,3) $,  $ C(1,2) $. 求点  $ P(x,y) $ 的位置，使得它到 3 条直线的距离之和最小.
+
+12. 对于 $ \triangle ABC $，求 $ 3\sin A+4\sin B+18\sin C $的最大值.
+
+13. 设  $ a > b > 1 $，证明  $ a^{b^a} > b^{a^b} $
+
+14. 求椭球面  $ \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1 $ 与平面  $ Ax + By + Cz = 0 $ 相交所得椭圆的面积.
+
+15. 设  $ S_{1}:\frac{x^{-}}{a^{2}}+\frac{y^{-}}{b^{2}}+\frac{z^{-}}{c^{2}}=1 $，其中 a>b>2c>0， $ S_{2}:z^{2}=x^{2}+y^{2} $， $ \Gamma $ 为  $ S_{1},S_{2} $ 的交线. 求椭球面  $ S_{1} $ 在  $ \Gamma $ 上各点的切平面到原点的距离的最大值和最小值.
+
+16. 在平面上有  $ \triangle ABC $，三边长分别为 BC=a, CA=b, AB=c，以此三角形为底，h 为高，可作无数个三棱锥，试求其中表面积最小的三棱锥的面积.
+
+17. 设  $ f(x,y,z) $ 在空间区域  $ \Omega $ 上有连续偏导数， $ \Gamma:x=x(t) $， $ y=y(t) $， $ z=z(t) $ ( $ \alpha<t<\beta $) 是  $ \Omega $ 中的一条光滑曲线. 若  $ P_{0} $ 是  $ f(x,y,z) $ 在  $ \Gamma $ 上的极值点，证明：
+
+(1)  $ \frac{\partial f(P_{0})}{\partial\tau}=0 $，其中 $ \tau $是 $ \Gamma $在 $ P_{0} $点的单位切向量.
+
+（2） $ \Gamma $ 在  $ P_{0} $ 点的切线位于等值面  $ f(x,y,z)=f(P_{0}) $ 在  $ P_{0} $ 点的切平面上.
+
+18. 记曲面  $ z = x^2 + y^2 - 2x - y $ 在区域  $ D: x \geq 0, y \geq 0, 2x + y \leq 4 $ 上的最低点  $ P $ 处的切平面为  $ \pi $，曲线  $ \begin{cases} x^2 + y^2 + z^2 = 6 \\ x + y + z = 0 \end{cases} $ 在点  $ Q(1, 1, -2) $ 处的切线为  $ l $，求点  $ P $ 到直线  $ l $ 在平面  $ \pi $ 上的投影  $ l' $ 的距离  $ d $。
+
+19. 设$\triangle ABC$的三个顶点$A,B,C$分别位于曲线$L_1:f(x,y)=0$，$L_2:g(x,y)=0$，$L_3:h(x,y)=0$上，证明若$\triangle ABC$的面积达到最大值，则曲线在$A,B,C$处的法线都与三角形的对边垂直。
+
+20. 过椭球面  $ ax^{2}+by^{2}+cz^{2}=1 $ 外一定点  $ (\alpha,\beta,\gamma) $ 作其切平面，再过原点作切平面的垂线，求垂足的轨迹方程.
+
+21. 在 A, B 两种物质的溶液中，我们想提取出物质 A，可采取这样的方法：在 A, B 的溶液中加入第 3 种物质 C，而 C 与 B 不互溶，利用 A 在 C 中的溶解度较大的特点，将 A 提取出来。这种方法就是化工中的萃取过程。
+
+现有稀水溶液的醋酸，利用苯作为溶剂，设苯的总体积为 m，进行 3 次萃取来回收醋酸。若萃取时苯中的醋酸重量浓度与水溶液中醋酸重量浓度成正比。问每次应取多少苯量，方能使水溶液中取出的醋酸最多？
+

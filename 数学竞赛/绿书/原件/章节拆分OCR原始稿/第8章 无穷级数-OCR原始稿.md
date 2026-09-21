@@ -1,0 +1,2823 @@
+### 第8章 无穷级数
+
+#### 知识结构
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d6ad28ac-235a-4d12-a50d-c3309052209a/markdown_1/imgs/img_in_image_box_280_391_1186_1022.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A34Z%2F-1%2F%2Fab33686e86ed287d1a8521d6861c921cda8c1a2998f99052dfb5688061bcb98b" alt="Image" width="62%" /></div>
+
+
+常数项级数的敛散性与求和是级数研究中的基本问题，使函数项级数中的变量相对固定，就可视为常数项级数。级数是否收敛表现为其部分和数列是否有极限，所以在第1章中有关数列极限的理论与方法对本节内容的学习会很有帮助。本章将常数项级数分为正项级数与任意项级数两个部分讨论。
+
+函数项级数可视为数项级数的一般形式，高等数学只研究两类函数项级数，即幂级数与傅里叶级数. 由于幂级数形式简单、有良好的性质，因此被广泛应用. 傅里叶级数在形式上不如幂级数简洁，但函数展开为傅里叶级数的条件极低，所以用它来表示函数（尤其是周期函数）是更为广泛的，但高等数学涉及傅里叶级数的内容却不多.
+
+## 8.1 正项级数
+
+正项级数的敛散性易于研究，级数有良好的运算性质（加法满足交换律、结合律，乘法满足分配律等）与广泛的应用. 正项级数的显著特点是其部分和数列 $ \{S_{n}\} $单调递增，因此，级数是否收敛就取决于 $ \{S_{n}\} $是否有上界. 基于这个原理就产生了很多审敛法（充分条件）. 读者要熟悉各种审敛法以及它们所适用的级数类型，做到知识的灵活应用.
+
+正项级数  $ \sum_{n=1}^{\infty}u_{n} $ 的敛散性判定，常按以下步骤进行：
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d6ad28ac-235a-4d12-a50d-c3309052209a/markdown_1/imgs/img_in_image_box_496_1657_984_1991.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A35Z%2F-1%2F%2Fb4e4eebb693e6de2f0d2636d53dfe48aaf84826c88548ae1363225a7ca385971" alt="Image" width="33%" /></div>
+
+
+比较法中两个常用的标准：
+
+ $$  几何级数 \sum_{n=1}^{\infty}ar^{n-1}=\left\{\begin{aligned}&\frac{a}{1-r},&|r|&<1,\\ & 发散 ,&|r|&\geqslant1.\end{aligned}\right. $$ 
+
+ $$ p\  级数 \sum_{n=1}^{\infty}\frac{1}{n^{p}}\begin{cases} 收敛 ,&p>1,\\  发散 ,&p\leq1.\end{cases} $$ 
+
+例1 判别下列级数的敛散性：
+
+(1)  $ \sum_{n=1}^{\infty}\frac{n^{n+\frac{1}{n}}}{\left(n+\frac{1}{n}\right)^{n}} $; (2)  $ \sum_{n=1}^{\infty}\left(n\sin\frac{1}{n}\right)^{n^{3}} $; (3)  $ \sum_{n=3}^{\infty}\frac{\ln^{q}n}{n^{p}}\left(p,q>0\right) $.
+
+分析（1）由于 $ n^{\frac{1}{n}}\to1 $，则其通项 $ u_{n}\sim\left(1+\frac{1}{n^{2}}\right)^{-n}\neq0 $，级数是发散的.
+
+（2）通项是n的幂指函数，且趋于0，宜用根值法判断.
+
+（3）通项趋于0，但比值法失效. 由于 $ \frac{m^{n}}{n^{p}} $趋于0的快慢主要由p值的大小来确定，而与q值的关系甚微，所以会想到与p级数进行比较.
+
+解 (1)  $ u_{n}=\frac{n^{n}\cdot n^{\frac{1}{n}}}{\left(n+\frac{1}{n}\right)^{n}}=\frac{n^{\frac{1}{n}}}{\left(1+\frac{1}{n^{2}}\right)^{n}}. $
+
+由于  $ \lim_{n\to\infty}n^{\frac{1}{n}}=1 $， $ \lim_{n\to\infty}\left(1+\frac{1}{n^2}\right)^n=\lim_{n\to\infty}\left[\left(1+\frac{1}{n^2}\right)^{n^2}\right]^{\frac{1}{n}}=e^0=1 $。所以  $ \lim_{n\to\infty}u_n=1\neq0 $，级数发散。
+
+(2）$\sqrt[n]{u_{n}}=\left(n\sin\frac{1}{n}\right)^{n^{2}}=\mathrm{e}^{n^{2}\ln\left(n\sin\frac{1}{n}\right)}$，因为
+
+ $$ \begin{align*}n^{2}\ln\left(n\sin\frac{1}{n}\right)&=n^{2}\ln\left(n\left(\frac{1}{n}-\frac{1}{3!}\frac{1}{n^{3}}+o\left(\frac{1}{n^{3}}\right)\right)\right)=n^{2}\ln\left(1-\frac{1}{6n^{2}}+o\left(\frac{1}{n^{2}}\right)\right)\\&\sim n^{2}\left(-\frac{1}{6n^{2}}+o\left(\frac{1}{n^{2}}\right)\right)=-\frac{1}{6}+o(1),\end{align*} $$ 
+
+所以  $ \lim_{n\to\infty}\sqrt[n]{u_n}=e^{\lim_{n\to\infty}\left(\frac{1}{6}+o(1)\right)}=e^{-\frac{1}{6}}<1 $，级数收敛.
+
+（3）当 p>1 时，取 r:1<r<p，则
+
+ $$ \operatorname*{l i m}_{n\to\infty}\left(\frac{\ln^{q}n}{n^{p}}\bigg/\frac{1}{n^{r}}\right)=\operatorname*{l i m}_{n\to\infty}\frac{\ln^{q}n}{n^{p-r}}=0\:. $$ 
+
+因为级数 $ \sum_{n=1}^{\infty}\frac{1}{n^{r}} $收敛，所以原级数收敛.
+
+当  $ p \leqslant 1 $ 时， $ \lim_{n \to \infty} \left( \frac{\ln^{q} n}{n^{p}} \bigg/ \frac{1}{n} \right) = \lim_{n \to \infty} n^{1-p} \ln^{q} n = +\infty $。因为  $ \sum_{n=1}^{\infty} \frac{1}{n} $ 发散，所以原级数发散。
+
+评注（1）若级数的一般项是n的幂指函数，要特别留意是否极限为0；当极限为0时，宜用根
+
+值法判断敛散性.
+
+（2）若通项是 $ \frac{1}{n^{p}}(p>0) $的同阶或低阶无穷小，则不适宜用比值（根值）法判定（当比值法极限存在时，其极限值总是1，失效），常用比较或其他审敛法。一般来说，如果级数的通项 $ u_{n} $是由n的对数函数、三角函数、幂函数等构成的分式，则级数的敛散性都不适宜用比值（根值）法判定。
+
+例2 判别下列级数的敛散性：
+
+(1)  $ \frac{1}{3} + \frac{1}{3\sqrt{3}} + \frac{1}{3\sqrt{3}\sqrt[3]{3}} + \cdots + \frac{1}{3\sqrt{3}\sqrt[3]{3} \cdots \sqrt[n]{3}} $; (2)  $ \sum_{n=1}^{\infty} \frac{\ln(n!)}{n^{\alpha}} $.
+
+分析 易验证两道题都不宜用比值法或根值法（极限为1），可考虑用比较法.
+
+解 （1） $ u_{n}=\frac{1}{3^{1+\frac{1}{2}+\cdots+\frac{1}{n}}} $
+
+方法1 由 $ \frac{1}{n}>\ln\left(1+\frac{1}{n}\right) $，有
+
+ $$ 1+\frac{1}{2}+\cdots+\frac{1}{n}>\ln(1+1)+\ln\left(1+\frac{1}{2}\right)+\cdots+\ln\left(1+\frac{1}{n}\right)=\ln2+\ln\frac{3}{2}+\cdots+\ln\frac{n+1}{n}=\ln(n+1)~, $$ 
+
+故
+
+ $$ u_{n}<\frac{1}{3^{\ln(1+n)}}<\frac{1}{3^{\ln n}}=\frac{1}{\mathrm{e}^{\ln n\cdot\ln3}}=\frac{1}{n^{\ln3}}. $$ 
+
+由于 $ \ln3>1 $，级数 $ \sum_{n=1}^{\infty}\frac{1}{n^{\ln3}} $收敛，所以 $ \sum_{n=1}^{\infty}u_{n} $收敛.
+
+方法2 由于  $ \lim_{n\to\infty}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n\right)=C $ （C为欧拉常数，见1.2节例30），则
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{u_{n}}{1/3^{\operatorname{l n}n}}=\frac{1}{3^{\operatorname*{l i m}_{n\to\infty}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}-\operatorname{l n}n\right)}}=\frac{1}{3^{C}}. $$ 
+
+由于 $ \sum_{n=1}^{\infty}\frac{1}{3^{\ln n}}=\sum_{n=1}^{\infty}\frac{1}{n^{\ln3}} $收敛，所以 $ \sum_{n=1}^{\infty}u_{n} $收敛.
+
+(2） $ u_{n}=\frac{\ln1+\ln2+\cdots+\ln n}{n^{\alpha}} $，由于
+
+ $$ \frac{n-2}{n^{\alpha}}<u_{n}<\frac{n\ln n}{n^{\alpha}}=\frac{\ln n}{n^{\alpha-1}}. $$ 
+
+当 $ \alpha\leq2 $时，级数 $ \sum_{n=1}^{\infty}\frac{n-2}{n^{\alpha}} $发散，所以 $ \sum_{n=1}^{\infty}u_{n} $发散；
+
+当 $ \alpha>2 $时，由例1中（2）知，级数 $ \sum_{n=1}^{\infty}\frac{\ln n}{n^{\alpha-1}} $收敛，所以 $ \sum_{n=1}^{\infty}u_{n} $收敛.
+
+评注 使用比较法的关键在于选取适当的比较标准，这可通过对级数一般项的适当放缩去寻找，或通过同阶（等价）无穷小（大）去寻找。
+
+例3 研究级数 $ \sqrt{2}+\sqrt{2-\sqrt{2}}+\sqrt{2-\sqrt{2+\sqrt{2}}}+\sqrt{2-\sqrt{2+\sqrt{2+\sqrt{2}}}}+\cdots $的收敛性.
+
+分析 该级数的通项难以表示成 n 的显函数形式，但很容易找到相邻两项之间的关系，所以用比值法是首选.
+
+解 令  $ A_{1}=\sqrt{2} $， $ A_{n}=\sqrt{2+A_{n-1}} $ (n=1,2, $ \cdots $)，则原级数可表示为  $ \sqrt{2}+\sum_{n=1}^{\infty}\sqrt{2-A_{n}} $.
+
+ $ \{A_{n}\} $ 单调递增且有上界 2，则存在极限，设  $ \lim_{n\to\infty}A_{n}=a $ ，在  $ A_{n}=\sqrt{2+A_{n-1}} $ 的两边取极限得  $ a=\sqrt{2+a}\Rightarrow a=2 $
+
+由比值法可知  $ \lim_{n\to\infty}\frac{\sqrt{2-A_{n+1}}}{\sqrt{2-A_n}}=\lim_{n\to\infty}\frac{\sqrt{2-\sqrt{2+A_n}}}{\sqrt{2-A_n}}=\lim_{n\to\infty}\frac{1}{\sqrt{2+\sqrt{2+A_n}}}=\frac{1}{2}<1 $，原级数收敛.
+
+例4 设正项级数 $ \left\{a_{n}\right\} $满足条件 $ \lim_{n\to\infty}\frac{\ln a_{n}}{\ln n}=q $，证明当q<-1时，级数 $ \sum_{n=1}^{\infty}a_{n} $收敛；当q>-1时，级数 $ \sum_{n=1}^{\infty}a_{n} $发散.
+
+分析 对极限  $ \lim_{n\to\infty}\frac{\ln a_n}{\ln n}=q $ 用定义来描述就是一组双边不等式，由此可得到  $ a_n $ 的双边估计，可用比较法判定.
+
+解 由  $ \lim_{n\to\infty}\frac{\ln a_n}{\ln n}=q $，对  $ \forall\varepsilon>0 $， $ \exists N>0 $，当 n>N 时，有
+
+ $$ q-\varepsilon<\frac{\ln a_{n}}{\ln n}<q+\varepsilon\ ,\mathrm{ 即 }\ \frac{1}{n^{-q+\varepsilon}}<a_{n}<\frac{1}{n^{-(q+\varepsilon)}}. $$ 
+
+当 q < -1 时，取  $ \varepsilon > 0 $，且使  $ q + \varepsilon < -1 $，即  $ -(q + \varepsilon) > 1 $，此时级数  $ \sum_{n=1}^{\infty} \frac{1}{n^{-(q+\varepsilon)}} $ 收敛，所以  $ \sum_{n=1}^{\infty} a_{n} $ 收敛.
+
+当 q > -1 时，即 -q < 1，取  $ \varepsilon > 0 $，且使 -q +  $ \varepsilon < 1 $，此时级数  $ \sum_{n=1}^{\infty} \frac{1}{n^{-q+\varepsilon}} $ 发散，所以  $ \sum_{n=1}^{\infty} a_{n} $ 发散.
+
+例5 设有级数 $ \sum_{n=1}^{\infty}\frac{x^{n}}{(1+x)(1+x^{2})\cdots(1+x^{n})}\quad(x>0) $.（1）判别级数的敛散性.（2）求 $ x\geq1 $时级数的和.
+
+分析 （1）这是一个正项级数，将 x 视为参变量，其敛散性可能与 x 有关. 可考虑用比值法或比较法.
+
+（2）级数的和是部分和的极限。将部分和缩项是解决问题的关键。
+
+解 （1）方法1 因为x>0，所以该级数是正项级数. 记 $ a_{n}=\frac{x^{n}}{(1+x)(1+x^{2})\cdots(1+x^{n})} $
+
+ $$ \lim_{n\to\infty}\frac{a_{n+1}}{a_{n}}=\lim_{n\to\infty}\frac{x}{1+x^{n+1}}=\left\{\begin{aligned}&x,&0<x<1,\\ &\frac{1}{2},&x=1,\\ &0,&x>1.\end{aligned}\right. $$ 
+
+即对任意x>0，均有 $ \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\rho $存在，且 $ \rho<1 $。由比值法知级数收敛。
+
+方法2 因为有
+
+ $$ a_{n}=\frac{x^{n}}{(1+x)(1+x^{2})\cdots(1+x^{n})}\leqslant\left\{\begin{aligned}&x^{n},&0<x<1\\ &\frac{1}{2^{n}},&x=1,\quad\triangleq b_{n}.\\ &\left(\frac{x}{1+x}\right)^{n},&x>1.\end{aligned}\right. $$ 
+
+对任意 x > 0，由于级数  $ \sum_{n=1}^{\infty} b_{n} $ 均收敛，由比较法知原级数收敛.
+
+方法3
+
+ $$ a_{n}=\frac{(x^{n}+1)-1}{(1+x)(1+x^{2})\cdots(1+x^{n})}=\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{n-1})}-\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{n})}. $$ 
+
+级数的部分和为
+
+ $$ \begin{aligned}S_{n}=\sum_{k=1}^{n}a_{k}=&\sum_{k=1}^{n}\left[\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{k-1})}-\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{k})}\right]\\=&1-\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{n})}<1.\end{aligned} $$ 
+
+即该级数的部分和有上界，所以级数对一切x>0均收敛.
+
+（2）由 $ S_{n}=\sum_{k=1}^{n}a_{k}=1-\frac{1}{(1+x)(1+x^{2})\cdots(1+x^{n})} $，当 $ x\geqslant1 $时级数的和为 $ S=\lim_{n\to\infty}S_{n}=1 $.
+
+评注（1）由方法3可看出，本题结论可推广为：设 $ x_{n}>0(n=1,2,\cdots) $，则下面级数收敛，
+
+ $$ \sum_{n=1}^{\infty}\frac{x_{n}}{(1+x_{1})(1+x_{2})\cdots(1+x_{n})}. $$ 
+
+(2) 求数项级数的和通常有以下4种方式：
+
+① 利用级数和的定义，即求级数部分和的极限（常用缩项法、夹逼法则等）；
+
+② 转化为定积分计算（见1.2节）；
+
+③ 利用已知的级数和公式（见 8.3 节“几个常用的麦克劳林展开式”）；
+
+④ 利用幂级数的和函数来计算（见 8.3 节例 11、12、13）.
+
+例6 设  $ m \geqslant 1 $ 为正整数， $ a_{n} $ 是  $ (1+x)^{n+m} $ 中  $ x^{n} $ 的系数，证明级数  $ \sum_{n=0}^{\infty}\frac{1}{a_{n}} $ 收敛，并求其和.
+
+分析 写出 a 的表达式 用 “缩顶法” 化简级数的部分和再求极限
+
+分析 写出  $ a_{n} $ 的表达式，用 “缩项法” 化简级数的部分和再求极限.
+
+ $$ a_{n}=C_{n+m}^{n}=\frac{(n+1)\cdots(n+m)}{m!}\ ,\quad\sum_{n=0}^{\infty}\frac{1}{a_{n}}=\sum_{n=0}^{\infty}\frac{m!}{(n+1)(n+2)\cdots(n+m)}; $$ 
+
+级数的部分和为
+
+ $$ \begin{aligned}{S_{n}=}&{{}\sum_{k=0}^{n-1}\frac{m!}{(k+1)(k+2)\cdots(k+m)}=\frac{m!}{m-1}\sum_{k=0}^{n-1}\left[\frac{1}{(k+1)\cdots(k+m-1)}-\frac{1}{(k+2)\cdots(k+m)}\right]}\\ {=}&{{}\frac{m!}{m-1}\Biggl(\frac{1}{1\cdot2\cdots(m-1)}-\frac{1}{(n+1)\cdots(n+m-1)}\Biggr)\to\frac{m!}{(m-1)\cdot(m-1)!}\;{(n\to\infty)}\;.}\\ \end{aligned} $$ 
+
+所以  $ \sum_{n=0}^{\infty}\frac{1}{a_{n}}=\frac{m}{m-1} $.
+
+评注 注意拆分式：
+
+ $$ \frac{1}{(k+1)(k+2)\cdots(k+m)}=\frac{1}{m-1}\left[\frac{1}{(k+1)\cdots(k+m-1)}-\frac{1}{(k+2)\cdots(k+m)}\right]. $$ 
+
+这对某些部分和的缩项是很有用的。
+
+例7 证明级数 $ \sum_{n=1}^{\infty}\ln\left(1+\frac{1}{2n}\right)\ln\left(1+\frac{1}{2n+1}\right) $收敛，并求其和.
+
+分析 利用等价无穷  $ \ln(1+x) \sim x $ ( $ x \to 0 $) 容易判断级数收敛. 记  $ a_n = \ln\left(1 + \frac{1}{n}\right) $，由对数的运算可得  $ a_{2n} + a_{2n+1} = a_n $. 从而  $ 2a_{2n}a_{2n+1} = a_n^2 - (a_{2n}^2 + a_{2n+1}^2) $，这样就可以得到级数通项的拆分，再考察部分和的极限.
+
+解 由于
+
+ $$ \ln\left(1+\frac{1}{2n}\right)\ln\left(1+\frac{1}{2n+1}\right)\sim\frac{1}{2n}\cdot\frac{1}{2n+1}\quad(n\rightarrow\infty), $$ 
+
+级数  $ \sum_{n=1}^{\infty}\frac{1}{2n(2n+1)} $ 是收敛的，所以原级数收敛.
+
+记 $ a_{n}=\ln\left(1+\frac{1}{n}\right) $，则原级数可表示为 $ \sum_{n=1}^{\infty}a_{2n}a_{2n+1} $。由对数的运算可得 $ a_{2n}+a_{2n+1}=a_{n} $，从而
+
+ $$ 2a_{2n}a_{2n+1}=a_{n}^{2}-(a_{2n}^{2}+a_{2n+1}^{2}) $$ 
+
+级数  $ \sum_{n=1}^{\infty}a_{2n}a_{2n+1} $ 的前 n 项和为
+
+ $$ S_{n}=\frac{1}{2}\sum_{k=1}^{n}\Big[a_{k}^{2}-(a_{2k}^{2}+a_{2k+1}^{2})\Big]=\frac{1}{2}\Big[a_{1}^{2}-(a_{n+1}^{2}+\cdots+a_{2n+1}^{2})\Big], $$ 
+
+因为
+
+ $$ 0<a_{n+1}^{2}+\cdots+a_{2n+1}^{2}<n a_{n+1}^{2}=n\ln^{2}\left(1+\frac{1}{n+1}\right)\to0\quad(n\to\infty), $$ 
+
+所以
+
+ $$ \sum_{n=1}^{\infty}a_{2n}a_{2n+1}=\lim_{n\to\infty}S_{n}=\frac{1}{2}a_{1}^{2}=\frac{1}{2}\ln^{2}2. $$ 
+
+评注 发现关系式 $ a_{2n}+a_{2n+1}=a_{n} $使级数通项得以拆分是解决级数求和的关键.
+
+例8 设数列 $ \{a_{n}\} $是单调的，而且 $ \sum_{n=1}^{\infty}a_{n} $收敛，证明 $ \sum_{n=1}^{\infty}n(a_{n}-a_{n+1}) $收敛.
+
+分析 易得所证级数的部分和为  $ S_{n}=\sum_{k=1}^{n}a_{k}-na_{n+1} $，所以只需证明  $ na_{n+1} $ 有极限.
+
+解 因  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，故  $ \lim_{n\to\infty}a_{n}=0 $ 。又因数列  $ \{a_{n}\} $ 单调，所以有
+
+ $$ a_{1}\geqslant a_{2}\geqslant a_{3}\geqslant\cdots\geqslant a_{n}\geqslant\cdots\geqslant0,\  或 \ a_{1}\leqslant a_{2}\leqslant a_{3}\leqslant\cdots\leqslant a_{n}\leqslant\cdots\leqslant0. $$ 
+
+对第2种情形我们可以改变每项的符号，将其转化为第1种. 于是只需考虑第1种情形而不失一般性.
+
+令  $ S_{n}=\sum_{k=1}^{n}k(a_{k}-a_{k+1}) $，则
+
+ $$ S_{n}=a_{1}+a_{2}(2-1)+\cdots+a_{n}(n-(n-1))-na_{n+1}=\sum_{k=1}^{n}a_{k}-na_{n+1}. $$ 
+
+设$\{\sigma_{n}\}$为$\sum_{n=1}^{\infty}a_{n}$的部分和数列，则
+
+ $$ a_{n+1}+a_{n+2}+\cdots+a_{2n}=\sigma_{2n}-\sigma_{n}\to0\quad(n\to\infty)~, $$ 
+
+故
+
+ $$ a_{n+1}+a_{n+2}+\cdots+a_{2n}\geqslant n a_{2n}\to0\ (n\to\infty)\ \Rightarrow\lim_{n\to\infty}(2n a_{2n})=0. $$ 
+
+又因
+
+ $$ 0<(2n+1)a_{2n+1}\leqslant(2n+1)a_{2n}=2n a_{2n}+a_{2n}\to0\Rightarrow\operatorname*{l i m}_{n\to\infty}(2n+1)a_{2n+1}=0, $$ 
+
+②，③式知 $ \lim_{n\to\infty}na_n=0 $。从而 $ \lim_{n\to\infty}na_{n+1}=\lim_{n\to\infty}(n+1)a_{n+1}=0 $。
+
+在①式两边取极限，并注意 $ \sum_{n=1}^{\infty}a_{n} $收敛，所以 $ \lim_{n\to\infty}S_{n} $存在，级数 $ \sum_{n=1}^{\infty}n(a_{n}-a_{n+1}) $收敛.
+
+例9 设 $ \sum_{n=1}^{\infty}\ln\left[n(n+1)^{a}(n+2)^{b}\right] $，问a和b取何值时该级数收敛.
+
+分析 容易想到的方法：（1）利用对数的性质化简部分和，再讨论其收敛性；（2）利用泰勒公式将级数的通项展开，然后讨论其收敛性.
+
+解 方法1 若级数收敛，则  $ a_n = \ln \left[n(n+1)^a (n+2)^b\right] \to 0 $， $ (n \to \infty) $，必有  $ a + b = -1 $。①
+
+从而
+
+ $$ \begin{aligned}&\sum_{n=1}^{\infty}\ln\Big[n(n+1)^{a}(n+2)^{b}\Big]=\sum_{n=1}^{\infty}\ln\frac{n}{n+1}\bigg(\frac{n+2}{n+1}\bigg)^{b}\\=&\lim_{n\rightarrow\infty}\ln\bigg(\frac{1}{2}\cdot\frac{2}{3}\cdot\cdots\cdot\frac{n}{n+1}\bigg)\bigg(\frac{3}{2}\cdot\frac{4}{3}\cdot\cdots\cdot\frac{n+2}{n+1}\bigg)^{b}=\lim_{n\rightarrow\infty}\ln\bigg(\frac{1}{n+1}\bigg)\bigg(\frac{n+2}{2}\bigg)^{b}.\\ \end{aligned} $$ 
+
+上面极限存在的充要条件是 b=1 。代入①式得 a=-2 。
+
+方法2 将级数的通项变形，并由泰勒公式得
+
+ $$ \begin{aligned}u_{n}&=\ln\Big[n(n+1)^{a}(n+2)^{b}\Big]=\ln n+a\ln(n+1)+b\ln(n+2)\\&=(1+a+b)\ln n+a\ln\left(1+\frac{1}{n}\right)+b\ln\left(1+\frac{2}{n}\right)\\&=(1+a+b)\ln n+a\left(\frac{1}{n}-\frac{1}{2n^{2}}+o\left(\frac{1}{n^{2}}\right)\right)+b\left(\frac{2}{n}-\frac{1}{2}\left(\frac{2}{n}\right)^{2}+o\left(\frac{1}{n^{2}}\right)\right)\\&=(1+a+b)\ln n+(a+2b)\frac{1}{n}-\frac{1}{2}(a+4b)\frac{1}{n^{2}}+o\left(\frac{1}{n^{2}}\right).\\ \end{aligned} $$ 
+
+则级数  $ \sum_{n=1}^{\infty}u_{n} $ 收敛的充要条件是  $ 1+a+b=0 $， $ a+2b=0 $。即 a=-2，b=1。
+
+评注 利用泰勒公式展开的目的是找到通项 $ u_{n} $关于无穷小 $ \frac{1}{n} $的阶数p，以便于与 $ \frac{1}{n^{p}} $比较.确定 $ u_{n} $阶的常用方法：一些常用的等价无穷小或泰勒公式.
+
+例 10 设实常数  $ \alpha > 1 $，证明级数  $ \sum_{n=1}^{\infty} \frac{n}{1^{\alpha} + 2^{\alpha} + \cdots + n^{\alpha}} $ 收敛.
+
+分析 利用极限公式  $ \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{n\to\infty}a_n $，可知  $ \frac{n}{1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha}}=\frac{1}{\frac{1}{n}\left(1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha}\right)} $ 与  $ \frac{1}{n^{\alpha}} $ 是同阶无穷小，所以级数收敛.
+
+解 方法1 因为
+
+ $$ \begin{aligned}\lim_{n\rightarrow\infty}\left(\frac{n}{1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha}}\bigg/\frac{1}{n^{\alpha}}\right)&=\lim_{n\rightarrow\infty}\frac{1}{\left[\left(\frac{1}{n}\right)^{\alpha}+\left(\frac{2}{n}\right)^{\alpha}+\cdots+\left(\frac{n}{n}\right)^{\alpha}\right]\frac{1}{n}}\\&=\frac{1}{\lim\limits_{n\rightarrow\infty}\sum_{i=1}^{n}\left(\frac{i}{n}\right)^{\alpha}\cdot\frac{1}{n}}=\frac{1}{\int_{0}^{1}x^{\alpha}\mathrm{d}x}=\frac{1}{\frac{1}{\alpha+1}}=\alpha+1.\end{aligned} $$ 
+
+由于  $ \alpha > 1 $ 时级数  $ \sum_{n=1}^{\infty}\frac{1}{n^{\alpha}} $ 收敛，由比较法知原级数收敛.
+
+方法2
+
+ $$ \begin{aligned}&\lim_{n\to\infty}\left(\frac{n}{1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha}}\bigg/\frac{1}{n^{\alpha}}\right)=\lim_{n\to\infty}\frac{n^{\alpha+1}}{1^{\alpha}+2^{\alpha}+\cdots+n^{\alpha}}\\&\xlongequal{Stolz}\lim_{n\to\infty}\frac{n^{\alpha+1}-(n-1)^{\alpha+1}}{n^{\alpha}}=\lim_{n\to\infty}\left[n-(n-1)(1-\frac{1}{n})^{\alpha}\right]\\&=\lim_{n\to\infty}(n-1)\left[1-(1-\frac{1}{n})^{\alpha}\right]+1=\lim_{n\to\infty}(n-1)\frac{\alpha}{n}+1=\alpha+1.\end{aligned} $$ 
+
+评注 该题的更一般结论：若 $ \{p_{n}\} $是单调递增的正数列，则 $ \sum_{n=1}^{\infty}\frac{1}{p_{n}} $与 $ \sum_{n=1}^{\infty}\frac{n}{p_{1}+p_{2}+\cdots+p_{n}} $同敛散（习题8.1第18题）.
+
+例 11 设级数  $ \sum_{n=1}^{\infty}u_{n} $ 的各项  $ u_{n}>0(n=1,2,\cdots) $， $ \{\nu_{n}\} $ 为一正实数列，记  $ a_{n}=\frac{u_{n}\nu_{n}}{u_{n+1}}-\nu_{n+1} $。证明如果  $ \lim_{n\to\infty}a_{n}=a $，且 a 为有限正数或正无穷，则  $ \sum_{n=1}^{\infty}u_{n} $ 收敛。
+
+分析 由题设易知存在  $ \delta>0 $ ，当 n 较大时有  $ u_{n}v_{n}-u_{n+1}v_{n+1}>\delta u_{n+1} $ ，如果能证明以  $ u_{n}v_{n}-u_{n+1}v_{n+1} $ 为通项的级数收敛，则  $ \sum_{n=1}^{\infty}u_{n} $ 就收敛.
+
+证明　无论 a 为有限正数还是正无穷，都存在  $ \delta > 0 $ 和正整数 N，使当 n > N 时，
+
+ $$ a_{n}=\frac{u_{n}v_{n}}{u_{n+1}}-v_{n+1}>\delta. $$ 
+
+两边乘 $ u_{n+1} $得
+
+ $$ u_{n}\nu_{n}-u_{n+1}\nu_{n+1}>\delta u_{n+1}>0\Longrightarrow u_{n}\nu_{n}>u_{n+1}u_{n+1}. $$ 
+
+即当 $n > N$ 时，数列 $\{u_n v_n\}$ 单调递减，再考虑到 $u_n v_n > 0$，知当 $n \to \infty$ 时，$u_n v_n$ 的极限存在，所以正项级数 $\sum_{n=1}^{\infty} (u_n v_n - u_{n+1} v_{n+1}) = \lim_{n \to \infty} (u_1 v_1 - u_{n+1} v_{n+1})$ 收敛.
+
+由当 $n>N$ 时，$u_{n}v_{n}-u_{n+1}v_{n+1}>\delta u_{n+1}$，根据正项级数的比较法知，$\sum_{n=1}^{\infty}u_{n}$ 收敛。
+
+例 12 设实数列  $ \{a_{n}\} $， $ \{b_{n}\} $ 满足  $ e^{a_{n}} = a_{n} + e^{b_{n}} (n \geqslant 1) $。已知  $ a_{n} > 0 $，且  $ \sum_{n=1}^{\infty} a_{n} $ 收敛。证明  $ \sum_{n=1}^{\infty} \frac{b_{n}}{a_{n}} $ 也收敛。
+
+分析 易判断  $ \sum_{n=1}^{\infty}\frac{b_{n}}{a_{n}} $ 是正项级数，利用比较法只需证明  $ \lim_{n\to\infty}\left(\frac{b_{n}}{a_{n}}\bigg/a_{n}\right) $ 存在，或  $ \frac{b_{n}}{a_{n}}\leq a_{n} $.
+
+证明 令  $ f(x)=\mathrm{e}^{x}-x $ (x>0)，则  $ f(0)=1 $， $ f'(x)=\mathrm{e}^{x}-1>0 $，所以  $ \mathrm{e}^{b_{n}}=\mathrm{e}^{a_{n}}-a_{n}>1 $， $ b_{n}=\ln(\mathrm{e}^{a_{n}}-a_{n})>0 $。 $ \sum_{n=1}^{\infty}\frac{b_{n}}{a_{n}} $ 是正项级数。
+
+方法1 证明  $ \lim_{n\to\infty}\left(\frac{b_n}{a_n}\bigg/a_n\right) $ 存在.  $ \lim_{n\to\infty}\left(\frac{b_n}{a_n}\bigg/a_n\right)=\lim_{n\to\infty}\frac{b_n}{a_n^2}=\lim_{n\to\infty}\frac{\ln(e^{a_n}-a_n)}{a_n^2} $，由  $ \sum_{n=1}^{\infty}a_n $ 收敛知， $ \lim_{n\to\infty}a_n=0 $ 。而
+
+ $$ \lim_{x\to0^{+}}\frac{\ln(e^{x}-x)}{x^{2}}=\lim_{x\to0^{+}}\frac{e^{x}-1}{2x(e^{x}-x)}=\frac{1}{2} $$ 
+
+所以 $ \lim_{n\to\infty}\left(\frac{b_n}{a_n}\bigg/a_n\right)=\frac{1}{2} $。故 $ \sum_{n=1}^{\infty}\frac{b_n}{a_n} $收敛。
+
+方法2 证明 $ \frac{b_{n}}{a_{n}}\leq a_{n} $，即证明 $ b_{n}\leq a_{n}^{2} $
+
+令  $ f(x)=\mathrm{e}^{x}-x $， $ g(x)=\mathrm{e}^{x^{2}}\quad(0\leq x\leq\ln2) $，则
+
+ $$ f^{\prime}(x)=\mathrm{e}^{x}-1\;,\quad g^{\prime}(x)=2x\mathrm{e}^{x^{2}}\;,\quad f^{\prime \prime}(x)=\mathrm{e}^{x}\;,\quad g^{\prime \prime}(x)=(2+4x^{2})\mathrm{e}^{x^{2}}\;. $$ 
+
+由于  $ f(0)=g(0)=1 $， $ f'(0)=g'(0)=0 $， $ f''(x)\leq g''(x) $，所以  $ f(x)\leq g(x) $，从而当 n 较大时有  $ e^{a_{n}^{2}}\geq e^{a_{n}}-a_{n}=e^{b_{n}}\Rightarrow b_{n}\leq a_{n}^{2} $.
+
+评注 要判断通项为抽象形式的正项级数的敛散性，常用方法：
+
+（1）比较法．其比较的标准除了常用的等比级数、p级数，还有就是题设中的已知级数；
+
+(2) 用缩项法确定部分和是否有极限：
+
+(3) 确定部分和是否有（上）界.
+
+例 13 已知某级数的部分和为  $ S_{n}=\frac{1}{2}+\frac{1}{2^{2}}+\frac{2}{2^{3}}+\frac{3}{2^{4}}+\frac{5}{2^{5}}+\frac{8}{2^{6}}+\frac{13}{2^{7}}+\cdots+\frac{a_{n-1}}{2^{n-1}}+\frac{a_{n}}{2^{n}} $，其中  $ a_{n}=a_{n-1}+a_{n-2}(n=3,4,5,\cdots) $.
+
+（1）证明此级数收敛；（2）求此级数的和.
+
+分析（1）级数通项 $ u_{n}=\frac{a_{n}}{2^{n}} $，其分母较分子增长得快，可用比值法，只需判定 $ \lim_{n\to\infty}\frac{a_{n+1}}{2a_{n}}<1 $；
+
+（2）利用通项的关系式得到部分和的关系式，再求部分和的极限；也可用缩项法求部分和的极限.
+
+解 方法1
+
+（1）先证明  $ \lim_{n \to \infty} \frac{a_n}{n} $ 存在. 由题设，显然  $ a_n \geq n (n \geq 5) $.
+
+ $$ \begin{aligned}\left|\frac{a_{n}}{a_{n+1}}-\frac{a_{n-1}}{a_{n}}\right|=&\frac{\left|a_{n}^{2}-a_{n+1}a_{n-1}\right|}{a_{n+1}a_{n}}=\frac{\left|a_{n}^{2}-(a_{n}+a_{n-1})a_{n-1}\right|}{a_{n+1}a_{n}}=\frac{\left|a_{n}^{2}-a_{n}a_{n-1}-a_{n-1}^{2}\right|}{a_{n+1}a_{n}}\\=&\frac{\left|a_{n}(a_{n}-a_{n-1})-a_{n-1}^{2}\right|}{a_{n+1}a_{n}}=\frac{\left|a_{n}a_{n-2}-a_{n-1}^{2}\right|}{a_{n+1}a_{n}}=\frac{\left|a_{n-1}^{2}-a_{n}a_{n-2}\right|}{a_{n+1}a_{n}}\\=&\cdots=\frac{\left|a_{2}^{2}-a_{3}a_{1}\right|}{a_{n+1}a_{n}}=\frac{\left|1-2\cdot1\right|}{a_{n+1}a_{n}}\leqslant\frac{1}{a_{n}^{2}}\leqslant\frac{1}{n^{2}}\left(n\geqslant5\right).\end{aligned} $$ 
+
+故级数 $ \frac{a_{1}}{a_{2}}+\sum_{n=2}^{\infty}\left(\frac{a_{n}}{a_{n+1}}-\frac{a_{n-1}}{a_{n}}\right) $收敛，因此其部分和 $ \sigma_{n}=\frac{a_{n}}{a_{n+1}} $的极限存在.
+
+设  $ \lim_{n \to \infty} \frac{a_n}{a_{n+1}} = R $，由  $ a_n = a_{n-1} + a_{n-2} $，有  $ \frac{a_{n+1}}{a_n} = 1 + \frac{a_{n-1}}{a_n} $，令  $ n \to \infty $，得  $ \frac{1}{R} = 1 + R $，解得  $ R = \frac{\sqrt{5} - 1}{2} $。所给级数的一般项  $ u_n = \frac{a_n}{2^n} > 0 $，且
+
+ $$ \lim_{n\to\infty}\frac{u_{n+1}}{u_{n}}=\lim_{n\to\infty}\left(\frac{a_{n+1}}{2^{n+1}}\bigg/\frac{a_{n}}{2^{n}}\right)=\lim_{n\to\infty}\frac{a_{n+1}}{2a_{n}}=\frac{1}{\sqrt{5}-1}<1, $$ 
+
+故原级数  $ \sum_{n=1}^{\infty} u_{n} $ 收敛.
+
+（2）由 $ u_{n}=\frac{a_{n}}{2^{n}}=\frac{a_{n-1}+a_{n-2}}{2^{n}}=\frac{1}{2}u_{n-1}+\frac{1}{4}u_{n-2} $，得 $ \sum_{k=3}^{n}u_{k}=\frac{1}{2}\sum_{k=3}^{n}u_{k-1}+\frac{1}{4}\sum_{k=3}^{n}u_{k-2} $，即
+
+ $$ S_{n}-\frac{1}{2}-\frac{1}{2^{2}}=\frac{1}{2}\left(S_{n-1}-\frac{1}{2}\right)+\frac{1}{4}S_{n-2}. $$ 
+
+令  $ n \to \infty $，得  $ S - \frac{3}{4} = \frac{1}{2} \left( S - \frac{1}{2} \right) + \frac{1}{4} S $，解得 S = 2，即级数的和为 2.
+
+方法2
+
+(1)
+
+ $$ \begin{aligned}\frac{u_{n+1}}{u_{n}}=&\frac{a_{n+1}}{2^{n+1}}\Bigg/\frac{a_{n}}{2^{n}}=\frac{a_{n+1}}{2a_{n}}=\frac{1}{2}\frac{a_{n}+a_{n-1}}{a_{n}}=\frac{1}{2}\Bigg(1+\frac{a_{n-1}}{a_{n}}\Bigg)=\frac{1}{2}\Bigg(1+\frac{a_{n-1}}{a_{n-1}+a_{n-2}}\Bigg)\\=&\frac{1}{2}\left(1+\frac{1}{1+\frac{a_{n-2}}{a_{n-1}}}\right)<\frac{1}{2}\left(1+\frac{1}{1+\frac{1}{2}}\right)=\frac{5}{6}<1.\end{aligned} $$ 
+
+所以级数收敛，且有 $ \lim_{n\to\infty}\frac{a_n}{2^n}=0 $
+
+(2)
+
+ $$ S_{n}=\frac{1}{2}+\frac{1}{2^{2}}+\frac{2}{2^{3}}+\frac{3}{2^{4}}+\frac{5}{2^{5}}+\frac{8}{2^{6}}+\frac{13}{2^{7}}+\cdots+\frac{a_{n-1}}{2^{n-1}}+\frac{a_{n}}{2^{n}}, $$ 
+
+ $$ \frac{1}{2}S_{n}=\frac{1}{2^{2}}+\frac{1}{2^{3}}+\frac{2}{2^{4}}+\frac{3}{2^{5}}+\frac{5}{2^{6}}+\frac{8}{2^{7}}+\frac{13}{2^{8}}+\cdots+\frac{a_{n-1}}{2^{n}}+\frac{a_{n}}{2^{n+1}}. $$ 
+
+上面两式相减得
+
+ $$ \frac{1}{2}S_{n}=\frac{1}{2}+\left(\frac{1}{2^{3}}+\frac{1}{2^{4}}+\frac{2}{2^{5}}+\frac{3}{2^{6}}+\frac{5}{2^{7}}+\frac{8}{2^{8}}+\cdots+\frac{a_{n-2}}{2^{n}}\right)-\frac{a_{n}}{2^{n+1}}, $$ 
+
+ $$ \begin{aligned}{S_{n}=}&{{}1+\frac{1}{2}\bigg(\frac{1}{2}+\frac{1}{2^{2}}+\frac{2}{2^{3}}+\frac{3}{2^{4}}+\frac{5}{2^{5}}+\frac{8}{2^{6}}+\cdots+\frac{a_{n-2}}{2^{n-2}}\bigg)-\frac{a_{n}}{2^{n}}}\\ {=}&{{}1+\frac{1}{2}S_{n}-\frac{1}{2}\cdot\frac{a_{n-1}}{2^{n-1}}-\frac{3}{2}\cdot\frac{a_{n}}{2^{n}}\;,}\\ \end{aligned} $$ 
+
+ $$ \frac{1}{2}S_{n}=1-\frac{a_{n-1}}{2^{n}}+\frac{3a_{n}}{2^{n+1}}\to1\left(n\to\infty\right),\  所以 \lim_{n\to\infty}S_{n}=2\;. $$ 
+
+方法3  $ a_{n}=a_{n-1}+a_{n-2} $ 所对应的特征方程为  $ r^{2}-r-1=0 $，其特征根为  $ r_{1}=\frac{1+\sqrt{5}}{2} $， $ r_{2}=\frac{1-\sqrt{5}}{2} $，则  $ a_{n}=Ar_{1}^{n}+Br_{2}^{n} $，由  $ a_{1}=a_{2}=1 $，得  $ A=\frac{1}{\sqrt{5}} $， $ B=-\frac{1}{\sqrt{5}} $。所给级数为
+
+ $$ \sum_{n=1}^{\infty}\frac{a_{n}}{2^{n}}=A\sum_{n=1}^{\infty}\left(\frac{r_{1}}{2}\right)^{n}+B\sum_{n=1}^{\infty}\left(\frac{r_{2}}{2}\right)^{n}. $$ 
+
+等式右边两级数均为收敛的等比级数，所以原级数收敛，其和为
+
+ $$ \sum_{n=1}^{\infty}\frac{a_{n}}{2^{n}}=A\cdot\frac{\frac{r_{1}}{2}}{1-\frac{r_{1}}{2}}+B\cdot\frac{\frac{r_{2}}{2}}{1-\frac{r_{2}}{2}}=2\ . $$ 
+
+评注 “方法1” 中求级数和的方法必须要有级数收敛为前提，否则不保证部分和极限存在。“方法3” 中用到了“特征根法”解常系数线性差分方程，这不属于“高等数学”的范畴，但可以借助幂级数和函数的展开来求某些差分方程的解（见8.3节例16方法3，例17方法2）.
+
+例  $ 14^{*} $ 设  $ \sum_{n=1}^{\infty}a_{n} $ 为正项级数， $ a_{n} $ 单调递减，证明  $ \sum_{n=1}^{\infty}a_{n} $ 收敛的充分必要条件是  $ \sum_{n=1}^{\infty}2^{n}a_{2^{n}} $ 收敛.
+
+分析 这里难以判断  $ a_{n} $ 与  $ 2^{n}a_{2^{n}} $ 的大小，直接用比较法有困难，可考察两级数部分和的大小. 证明两级数部分和的大小关系仅取决于不同的正常数因子.
+
+证明 设  $ \sum_{n=1}^{\infty}a_{n} $ 与  $ \sum_{n=1}^{\infty}2^{n}a_{2^{n}} $ 的部分和分别为  $ S_{n} $ 与  $ \sigma_{n} $. 由于  $ a_{n} $ 单调递减且非负，有
+
+ $$ S_{2^{n}}<a_{1}+(a_{2}+a_{3})+\cdots+(a_{2^{n}}+\cdots+a_{2^{n+1}-1})<a_{1}+2a_{2}+\cdots+2^{n}a_{2^{n}}=\sigma_{n}； $$ 
+
+又
+
+ $$ \begin{aligned}S_{2^{n}}&=a_{1}+a_{2}+(a_{3}+a_{4})+\cdots+(a_{2^{n-1}+1}+\cdots+a_{2^{n}})>\frac{1}{2}a_{1}+a_{2}+2a_{4}+\cdots+2^{n-1}a_{2^{n}}\\&=\frac{1}{2}(a_{1}+2a_{2}+2^{2}a_{4}+\cdots+2^{n}a_{2^{n}})=\frac{1}{2}\sigma_{n}.\end{aligned} $$ 
+
+因此，$S_2$有界$\Leftrightarrow \sigma_n$有界，而$S_n$有界$\Leftrightarrow S_{2^n}$有界，故$S_n$有界$\Leftrightarrow \sigma_n$有界．所以$\sum_{n=1}^{\infty} a_n$收敛的充分必要条件是$\sum_{n=1}^{\infty} 2^n a_2$收敛．
+
+评注 证明两正项级数有相同的敛散性最常用的方法是比较法，即证明两级数通项的大小关系仅取决于不同的正常数因子，或两通项之比有非零极限。当两级数通项直接比较有困难时，可考虑其部分和的大小。
+
+例  $ 15^{*} $ 已知  $ \{a_{k}\} $ 和  $ \{b_{k}\} $ 是正项数列，且  $ b_{k+1}-b_{k}\geqslant\delta>0(k=1,2,\cdots) $， $ \delta $ 为一常数. 证明若级数  $ \sum_{k=1}^{\infty}a_{k} $ 收敛，则级数  $ \sum_{k=1}^{\infty}\frac{k\sqrt{(a_{1}a_{2}\cdots a_{k})(b_{1}b_{2}\cdots b_{k})}}{b_{k+1}b_{k}} $ 收敛.
+
+分析　正项级数，可考虑使用比较法或证明其部分和有上界. 要得到 $ \frac{k\sqrt{(a_1a_2\cdots a_k)(b_1b_2\cdots b_k)}}{b_{k+1}b_k} $与 $ a_k $的大小关系很困难，故讨论其部分和有上界.
+
+证明 因为
+
+ $$ k\sqrt[k]{(a_{1}a_{2}\cdots a_{k})(b_{1}b_{2}\cdots b_{k})}=k\sqrt[k]{(a_{1}b_{1})(a_{2}b_{2})\cdots(a_{k}b_{k})}\leqslant a_{1}b_{1}+a_{2}b_{2}+\cdots+a_{k}b_{k}\triangleq S_{k}, $$ 
+
+则对任意正整数N，有
+
+ $$ \begin{aligned}\sum_{k=1}^{N}\frac{k\sqrt{(a_{1}a_{2}\cdots a_{k})(b_{1}b_{2}\cdots b_{k})}}{b_{k+1}b_{k}}\leqslant&\sum_{k=1}^{N}\frac{S_{k}}{b_{k}b_{k+1}}=\sum_{k=1}^{N}\frac{S_{k}}{b_{k+1}-b_{k}}\left(\frac{1}{b_{k}}-\frac{1}{b_{k+1}}\right)\\\leqslant&\frac{1}{\delta}\sum_{k=1}^{N}S_{k}\left(\frac{1}{b_{k}}-\frac{1}{b_{k+1}}\right)=\frac{1}{\delta}\left(\frac{S_{1}}{b_{1}}-\frac{S_{N}}{b_{N+1}}+\sum_{k=1}^{N-1}(S_{k+1}-S_{k})\frac{1}{b_{k+1}}\right)\end{aligned} $$ 
+
+ $$ =\frac{1}{\delta}\Bigg(\frac{S_{1}}{b_{1}}-\frac{S_{N}}{b_{N+1}}+\sum_{k=1}^{N-1}a_{k+1}\Bigg)\leqslant\frac{1}{\delta}\Bigg(\frac{S_{1}}{b_{1}}+\sum_{k=1}^{N-1}a_{k+1}\Bigg). $$ 
+
+因为级数 $ \sum_{k=1}^{\infty}a_{k} $收敛，其部分和有上界，所以 $ \sum_{k=1}^{\infty}\frac{k\sqrt{(a_{1}a_{2}\cdots a_{k})(b_{1}b_{2}\cdots b_{k})}}{b_{k+1}b_{k}} $的部分和有上界，故收敛。
+
+例16 设 $ f(x) $在 $ \{x\mid x\leq1 $上有定义，在 $ x=0 $的某领域内有连续的二阶导数，当 $ x\neq0 $时 $ f(x)\neq0 $，当 $ x\to0 $时 $ f(x) $是 $ x $的高阶无穷小，且 $ \forall n\in\mathbb{N} $，有 $ \left|\frac{b_{n+1}}{b_{n}}\right|\leq\left|\frac{f\left(1/(n+1)\right)}{f\left(1/n\right)}\right| $。证明级数 $ \sum_{n=1}^{\infty}\sqrt{|b_{n}b_{n+1}|} $收敛。
+
+分析 若 $ \sum_{n=1}^{\infty}|b_{n}| $收敛，则问题就容易解决了。由题设条件易知 $ \sum_{n=1}^{\infty}\left|f\left(\frac{1}{n}\right)\right| $是收敛的，故只需由题设中的不等式得到 $ \left|b_{n}\right|\leq M\left|f\left(\frac{1}{n}\right)\right| $（ $ M $为正常数）即可。
+
+证明 因为当  $ x \to 0 $ 时  $ f(x) $ 是 x 的高阶无穷小，且  $ f(x) $ 在 x = 0 附近有连续的二阶导数，所以  $ f(0) = 0 $， $ f'(0) = 0 $，且  $ \exists K > 0 $，使  $ |x| $ 充分小时  $ |f''(x)| \leq K $。应用麦克劳林公式，有
+
+ $ f(x)=f(0)+f'(0)x+\frac{1}{2!}f''(\xi)x^2=\frac{1}{2}f''(\xi)x^2 $（ $ \xi $介于0与x之间）.
+
+当 $ \left|x\right| $充分小时， $ \left|f''(\xi)\right|\leq K $，所以当n充分大时，有
+
+ $$ \left|f\left(\frac{1}{n}\right)\right|=\frac{1}{2}\left|f^{n}(\xi)\right|\frac{1}{n^{2}}\leqslant\frac{K}{2}\frac{1}{n^{2}}. $$ 
+
+由于 $ \sum_{n=1}^{\infty}\frac{K}{2}\frac{1}{n^{2}} $收敛，所以级数 $ \sum_{n=1}^{\infty}\left|f\left(\frac{1}{n}\right)\right| $收敛.
+
+由于
+
+ $$ \begin{align*}|\boldsymbol{b}_{n+1}|\leq&|\boldsymbol{b}_{n}|\left|\frac{f\left(\frac{1}{n+1}\right)}{f\left(\frac{1}{n}\right)}\right|\leq&|\boldsymbol{b}_{n-1}|\left|\frac{f\left(\frac{1}{n}\right)}{f\left(\frac{1}{n-1}\right)}\right|\left|\frac{f\left(\frac{1}{n+1}\right)}{f\left(\frac{1}{n}\right)}\right|\\=&|\boldsymbol{b}_{n-1}|\left|\frac{f\left(\frac{1}{n+1}\right)}{f\left(\frac{1}{n-1}\right)}\right|\leq\cdots\leq|\boldsymbol{b}_{1}|\left|\frac{f\left(\frac{1}{n+1}\right)}{f(1)}\right|=\left|\frac{\boldsymbol{b}_{1}}{f(1)}\right|\left|f\left(\frac{1}{n+1}\right)\right|,\end{align*} $$ 
+
+由 $ \sum_{n=1}^{\infty}\left|f\left(\frac{1}{n}\right)\right| $收敛，知 $ \sum_{n=1}^{\infty}\left|\frac{b_{1}}{f(1)}\right|f\left(\frac{1}{n+1}\right) $也收敛.从而 $ \sum_{n=1}^{\infty}|b_{n}| $收敛.
+
+又  $ \sqrt{|b_{n}b_{n+1}|}\leqslant\frac{1}{2}(|b_{n}|+|b_{n+1}|) $，得级数  $ \sum_{n=1}^{\infty}\sqrt{|b_{n}b_{n+1}|} $ 收敛.
+
+例17 设正项级数 $ \sum_{n=1}^{\infty}a_{n} $收敛，证明级数 $ \sum_{n=1}^{\infty}(a_{n})^{\frac{n}{n+1}} $也收敛.
+
+分析 因为  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，必有  $ a_{n}\to0 $，所以当 n 较大时有  $ (a_{n})^{\frac{n}{n+1}}\geq a_{n} $，这不利于直接使用比较法. 为此，可将  $ \left\{(a_{n})^{\frac{n}{n+1}}\right\} $ 分为两类：一类满足  $ (a_{n})^{\frac{n}{n+1}}<2a_{n} $，余下的为另一类. 若能说明余下类对应的级数收敛，问题就得以解决.
+
+解 设集合  $ T = \{n \in \mathbb{N} \mid (a_n)^{\frac{n}{n+1}} < 2a_n\} $.
+
+当  $ n \notin T $ 时， $ (a_n)^{\frac{n}{n+1}} \geq 2a_n $，则  $ (a_n)^{\frac{1}{n+1}} \geq 2 $，进而  $ \frac{1}{2} \geq (a_n)^{\frac{1}{n+1}} $，于是  $ \frac{1}{2^n} \geq (a_n)^{\frac{n}{n+1}} $.
+
+所给级数
+
+ $$ \sum_{n=1}^{\infty}(a_{n})^{\frac{n}{n+1}}=\sum_{n\in T}(a_{n})^{\frac{n}{n+1}}+\sum_{n\notin T}(a_{n})^{\frac{n}{n+1}}\leqslant\sum_{n=1}^{\infty}2a_{n}+\sum_{n=1}^{\infty}\frac{1}{2^{n}}, $$ 
+
+不等式右边两级数均收敛，从而左边级数 $ \sum_{n=1}^{\infty}(a_{n})^{\frac{n}{n+1}} $的部分和有界，该级数是收敛的.
+
+评注 注意正项级数任意交换各项的顺序，不改变其敛散性与和。但这对条件收敛级数不成立。
+
+例 18 设 a > 1，数列  $ \{p_{n}\} $ 满足  $ p_{n} > 0 $， $ p_{n+1} \geqslant p_{n} $. 证明级数  $ \sum_{n=1}^{\infty} \frac{p_{n} - p_{n-1}}{p_{n} p_{n-1}^{a}} $ 收敛.
+
+分析 若用比较法，当  $ p_{n} \to \infty $ 时，难以找到相比较的标准。将级数的通项视为两项和，则级数成为交错级数，可用莱布尼茨准则判定其收敛性。也可将级数的通项适当放大，使其部分和易于估计（有上界），来得到收敛。
+
+证明 方法1 因为  $ p_{n+1} \geqslant p_n > 0 $，则  $ p_n \to A $（A 为正数），或  $ p_n \to \infty $。
+
+若  $ p_{n} \to A $，则  $ \exists N > 0 $，当 n > N 时，有  $ p_{n} > \frac{A}{2} $，从而有
+
+ $$ 0<\frac{p_{n}-p_{n-1}}{p_{n}p_{n-1}^{a}}<\left(\frac{2}{A}\right)^{a+1}\left(p_{n}-p_{n-1}\right). $$ 
+
+由于级数  $ \sum_{n=1}^{\infty}(p_{n}-p_{n-1})=A-p_{0} $ 收敛，所以原级数  $ \sum_{n=1}^{\infty}\frac{p_{n}-p_{n-1}}{p_{n}p_{n-1}^{a}} $ 收敛.
+
+若 $ p_{n}\to\infty $，将级数变形为
+
+ $$ \sum_{n=1}^{\infty}\frac{p_{n}-p_{n-1}}{p_{n} p_{n-1}^{a}}=\sum_{n=1}^{\infty}\left(\frac{1}{p_{n-1}^{a}}-\frac{p_{n-1}}{p_{n}}\cdot\frac{1}{p_{n-1}^{a}}\right). $$ 
+
+考虑交错级数
+
+ $$ \frac{1}{p_{0}^{a}}-\frac{p_{0}}{p_{1}}\cdot\frac{1}{p_{0}^{a}}+\frac{1}{p_{1}^{a}}-\frac{p_{1}}{p_{2}}\cdot\frac{1}{p_{1}^{a}}+\cdots+\frac{1}{p_{n-1}^{a}}-\frac{p_{n-1}}{p_{n}}\cdot\frac{1}{p_{n-1}^{a}}+\cdots $$ 
+
+因 $ \left(\frac{p_{n-1}}{p_n}\cdot\frac{1}{p_{n-1}^a}\right)/\frac{1}{p_n^a}=\left(\frac{p_{n-1}}{p_n}\right)^{1-a}>1 $，则
+
+ $$ \frac{p_{n-1}}{p_{n}}\cdot\frac{1}{p_{n-1}^{a}}\geqslant\frac{1}{p_{n}^{a}}\;,\; 并  有 \frac{1}{p_{n-1}^{a}}\geqslant\frac{p_{n-1}}{p_{n}}\cdot\frac{1}{p_{n-1}^{a}}. $$ 
+
+这说明级数①的一般项是单调递减的. 又因  $ \lim_{n\to\infty}\frac{1}{p_{n-1}^a}=0,\quad\lim_{n\to\infty}\frac{p_{n-1}}{p_n}\cdot\frac{1}{p_{n-1}^a}=0 $ ，根据莱布尼茨准则知交错级数①收敛，故原级数收敛.
+
+方法2 由  $ p_{n}>0 $， $ p_{n+1}\geqslant p_{n} $ 知原级数是正项级数，且
+
+ $$ \frac{p_{n}-p_{n-1}}{p_{n}p_{n-1}^{a}}=\frac{1}{p_{n-1}^{a}}-\frac{1}{p_{n}p_{n-1}^{a-1}}\leqslant\frac{1}{p_{n-1}^{a}}-\frac{1}{p_{n}^{a}}. $$ 
+
+则
+
+ $$ S_{n}=\sum_{k=1}^{n}\frac{p_{k}-p_{k-1}}{p_{k}p_{k-1}^{a}}\leqslant\sum_{k=1}^{n}\left(\frac{1}{p_{k-1}^{a}}-\frac{1}{p_{k}^{a}}\right)=\frac{1}{p_{0}^{a}}-\frac{1}{p_{n}^{a}}<\frac{1}{p_{0}^{a}}. $$ 
+
+这说明原级数的部分和有上界，所以级数收敛.
+
+评注（1）方法1中用到了“收敛级数任意添加括号也收敛”的性质.
+
+(2) 部分和有上界是正项级数收敛的充分必要条件.
+
+例  $ 19^{*} $ 设  $ u_{n}>0 $，且  $ S_{n}=u_{1}+u_{2}+\cdots+u_{n} $，证明：
+
+（1）当 $ \alpha>1 $时，级数 $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}} $收敛；
+
+（2）当  $ \alpha \leqslant 1 $，且  $ S_{n} \to \infty (n \to \infty) $ 时，级数  $ \sum_{n=1}^{\infty} \frac{u_{n}}{S_{n}^{\alpha}} $ 发散.
+
+分析（1）用比较法或部分和数列有界来证明.为构造收敛的强级数，可利用等式 $ u_{n}=S_{n}-S_{n-1} $来减少通项中的变元个数，以利寻找相等或大小关系.
+
+（2）先考虑  $ \alpha=1 $ 的情况，证明级数发散；再用比较法得到  $ \alpha<1 $ 也发散.
+
+证明 方法1
+
+（1） $ u_{n}>0 $，故 $ \{S_{n}\} $单调递增。则 $ S_{n}\rightarrow A $（有限正数）或 $ S_{n}\rightarrow\infty(n\rightarrow\infty) $
+
+当 $ \alpha>1 $时，对函数 $ x^{1-\alpha} $在区间 $ [S_{n-1},S_n] $上用拉格朗日中值定理，有
+
+ $$ S_{n}^{1-\alpha}-S_{n-1}^{1-\alpha}=(1-\alpha)\xi^{-\alpha}\left(S_{n}-S_{n-1}\right),\quad S_{n-1}<\xi<S_{n}. $$ 
+
+即
+
+ $$ \frac{1}{S_{n-1}^{\alpha-1}}-\frac{1}{S_{n}^{\alpha-1}}=(\alpha-1)\frac{u_{n}}{\xi^{\alpha}}>(\alpha-1)\frac{u_{n}}{S_{n}^{\alpha}}. $$ 
+
+而级数  $ \sum_{n=2}^{\infty}\left(\frac{1}{S_{n-1}^{\alpha-1}}-\frac{1}{S_{n}^{\alpha-1}}\right)=\lim_{n\to\infty}\left(\frac{1}{u_1^{\alpha-1}}-\frac{1}{S_n^{\alpha-1}}\right) $ 收敛，由比较法知，级数  $ \sum_{n=1}^{\infty}\frac{u_n}{S_n^{\alpha}} $ 收敛.
+
+（2）当 $ \alpha=1 $时，有
+
+ $$ \sum_{k=n+1}^{n+p}\frac{u_{k}}{S_{k}}\geqslant\frac{1}{S_{n+p}}\sum_{k=n+1}^{n+p}u_{k}=\frac{S_{n+p}-S_{n}}{S_{n+p}}=1-\frac{S_{n}}{S_{n+p}}. $$ 
+
+因为 $ S_{n}\to\infty(n\to\infty) $，故对任意的n，当p充分大时，有 $ \frac{S_{n}}{S_{n+p}}<\frac{1}{2} $，于是
+
+ $$ \sum_{k=n+1}^{n+p}\frac{u_{k}}{S_{k}}>1-\frac{1}{2}=\frac{1}{2}. $$ 
+
+由柯西收敛准则知，级数 $ \sum_{n=1}^{n}\frac{u_{n}}{S_{n}} $发散.
+
+当 $ \alpha<1 $时， $ \frac{u_{n}}{S_{n}^{\alpha}}\geqslant\frac{u_{n}}{S_{n}} $，由 $ \sum_{n=1}^{n}\frac{u_{n}}{S_{n}} $发散及比较法知，级数 $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}} $发散.
+
+综上，当  $ \alpha \leq 1 $ 且  $ S_{n} \to \infty (n \to \infty) $ 时，级数  $ \sum_{n=1}^{\infty} \frac{u_{n}}{S_{n}^{\alpha}} $ 发散.
+
+方法2 对  $ \forall x\in[S_{n-1},S_n] $，有  $ \frac{1}{S_n^{\alpha}}\leq\frac{1}{x^{\alpha}}\leq\frac{1}{S_{n-1}^{\alpha}} $.
+
+（1）当 $ \alpha>1 $时，由 $ \frac{1}{S_{n}^{\alpha}}\leq\frac{1}{x^{\alpha}} $，得
+
+ $$ \frac{u_{n}}{S_{n}^{\alpha}}=\frac{S_{n}-S_{n-1}}{S_{n}^{\alpha}}=\int_{S_{n-1}}^{S_{n}}\frac{\mathrm{d}x}{S_{n}^{\alpha}}\leqslant\int_{S_{n-1}}^{S_{n}}\frac{\mathrm{d}x}{x^{\alpha}}\Rightarrow\sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}}\leqslant\int_{u_{1}}^{+\infty}\frac{\mathrm{d}x}{x^{\alpha}}. $$ 
+
+由于积分 $ \int_{u_{1}}^{+\infty}\frac{dx}{x^{\alpha}} $收敛，则级数 $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}} $的部分和数列有界，从而收敛.
+
+（2）当 $ \alpha\leq1 $时，由 $ \frac{1}{x^{\alpha}}\leq\frac{1}{S_{n-1}^{\alpha}} $及 $ S_{n}\to\infty(n\to\infty) $，得
+
+ $$ \frac{u_{n}}{S_{n-1}^{\alpha}}=\frac{S_{n}-S_{n-1}}{S_{n-1}^{\alpha}}=\int_{S_{n-1}}^{S_{n}}\frac{\mathrm{d}x}{S_{n-1}^{\alpha}}\geqslant\int_{S_{n-1}}^{S_{n}}\frac{\mathrm{d}x}{x^{\alpha}}\Rightarrow\sum_{n=2}^{\infty}\frac{u_{n}}{S_{n-1}^{\alpha}}\geqslant\int_{u_{1}}^{+\infty}\frac{\mathrm{d}x}{x^{\alpha}}. $$ 
+
+由于积分 $ \int_{u_{1}}^{+\infty}\frac{dx}{x^{\alpha}} $发散到 $ +\infty $，则级数 $ \sum_{n=2}^{\infty}\frac{u_{n}}{S_{n-1}^{\alpha}} $发散.
+
+若  $ \lim_{n\to\infty}\frac{S_{n-1}}{S_n}=1 $ ，则  $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}} $ 与  $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n-1}^{\alpha}} $ 有相同的敛散性，因而级数  $ \sum_{n=1}^{\infty}\frac{u_{n}}{S_{n}^{\alpha}} $ 发散；
+
+若  $ \lim_{n\to\infty}\frac{S_{n-1}}{S_n}\neq1 $，则  $ \lim_{n\to\infty}\frac{u_n}{S_n}=\lim_{n\to\infty}\left(1-\frac{S_{n-1}}{S_n}\right)\neq0\Rightarrow\lim_{n\to\infty}\frac{u_n}{S_n^\alpha}\neq0 $，从而级数  $ \sum_{n=1}^{\infty}\frac{u_n}{S_n^\alpha} $ 也发散.
+
+评注 当一个级数的通项中同时出现 $ u_{n} $与 $ S_{n}=u_{1}+u_{2}+\cdots+u_{n} $时，常利用关系式 $ u_{n}=S_{n}-S_{n-1} $来统一符号，减少变元个数，使运算得以简化.
+
+例  $ 20^{*} $ 证明若正项级数  $ \sum_{n=1}^{\infty}\frac{1}{p_{n}} $ 收敛，则级数  $ \sum_{n=1}^{\infty}\frac{n^{2}}{(p_{1}+p_{2}+\cdots+p_{n})^{2}}p_{n} $ 收敛.
+
+分析 用比较法难以找到有效的比较标准，可考虑其部分和的有界性. 为便于部分和的化简，可令  $ q_{n}=p_{1}+p_{2}+\cdots+p_{n} $，则  $ p_{n}=q_{n}-q_{n-1} $. 部分和的放大要充分利用  $ \sum_{n=1}^{\infty}\frac{1}{p_{n}} $ 的收敛性（有界）.
+
+证明 令  $ q_{n}=p_{1}+p_{2}+\cdots+p_{n} $，由级数  $ \sum_{n=1}^{\infty}\frac{1}{p_{n}} $ 收敛，设  $ \sum_{n=1}^{\infty}\frac{1}{p_{n}}=T $，则所讨论级数的部分和
+
+ $$ \begin{align*}S_{N}=&\sum_{n=1}^{N}\frac{n^{2}}{(p_{1}+p_{2}+\cdots+p_{n})^{2}}p_{n}=\sum_{n=1}^{N}\frac{n^{2}}{q_{n}^{2}}(q_{n}-q_{n-1})\quad(q_{0}=0)\\\leq&\frac{1}{p_{1}}+\sum_{n=2}^{N}\frac{n^{2}}{q_{n} q_{n-1}}(q_{n}-q_{n-1})=\frac{1}{p_{1}}+\sum_{n=2}^{N}\frac{n^{2}}{q_{n-1}}-\sum_{n=2}^{N}\frac{n^{2}}{q_{n}}\\=&\frac{1}{p_{1}}+\sum_{n=1}^{N}\frac{(n+1)^{2}}{q_{n}}-\sum_{n=2}^{N}\frac{n^{2}}{q_{n}}\leq\frac{5}{p_{1}}+\sum_{n=2}^{N}\frac{2n}{q_{n}}+\sum_{n=2}^{N}\frac{1}{q_{n}}.\end{align*} $$ 
+
+利用柯西不等式，有
+
+ $$ \left(\sum_{n=2}^{N}\frac{n}{q_{n}}\right)^{2}\leqslant\left(\sum_{n=2}^{N}\frac{n^{2}}{q_{n}^{2}}p_{n}\right)\left(\sum_{n=2}^{N}\frac{1}{p_{n}}\right), $$ 
+
+①式化为
+
+ $$ S_{N}\leq\frac{5}{p_{1}}+2\sqrt{S_{N}T}+T\quad( 注意 \sum_{n=2}^{N}\frac{1}{q_{n}}<\sum_{n=2}^{N}\frac{1}{p_{n}}<T)\text{．} $$ 
+
+②式是关于 $ \sqrt{S_N} $的2次不等式，解之得 $ 0 < \sqrt{S_N} \leq \sqrt{T} + \sqrt{2T + \frac{5}{p_1}} $。级数部分和 $ S_N $有上界，收敛例 $ 21^* $设 $ \sum_{n=0}^{\infty} a_n $是收敛的正项级数，证明存在正数 $ c_0, c_1, \cdots $，使得 $ \lim_{n \to \infty} c_n = \infty $，并且级数 $ \sum_{n=0}^{\infty} c_n a_n $也是收敛的。
+
+分析 由于  $ \sum_{n=0}^{\infty}a_{n} $ 收敛  $ \Leftrightarrow $ 余项  $ R_{n}=\sum_{k=n}^{\infty}a_{k}\rightarrow0(n\rightarrow\infty) $，所以必存在正整数递增数列  $ \left\{N_{k}\right\} $，满足  $ \sum_{n=N_{k}}^{N_{k+1}}a_{n}<\frac{1}{k^{3}} $，从而取  $ c_{n}=\left\{\begin{aligned}&1,&n<N_{1}\\ &k,&N_{k}\leq n<N_{k+1}\end{aligned}\right. $ 即可.
+
+证明 由于  $ \sum_{n=0}^{\infty}a_{n} $ 收敛，则余项  $ R_{n}=\sum_{k=n}^{\infty}a_{k}\rightarrow0(n\rightarrow\infty) $，所以必存在正整数递增数列  $ \left\{N_{k}\right\} $，满足  $ \sum_{n=N_{k}}^{N_{k+1}}a_{n}<\frac{1}{k^{3}} $。令  $ c_{n}=\left\{\begin{aligned}&1,&n<N_{1}\\ &k,&N_{k}\leq n<N_{k+1}\end{aligned}\right. $，于是  $ \lim_{n\to\infty}c_{n}=\infty $，且
+
+ $$ \sum_{n=0}^{\infty}c_{n}a_{n}\leqslant\sum_{n=0}^{N_{1}-1}a_{n}+\sum_{k=1}^{\infty}k\sum_{n=N_{*}}^{N_{k+1}}a_{n}\leqslant\sum_{n=0}^{N_{1}-1}a_{n}+\sum_{k=1}^{\infty}\frac{k}{k^{3}}\leqslant\sum_{n=0}^{N_{1}-1}a_{n}+\sum_{k=1}^{\infty}\frac{1}{k^{2}}. $$ 
+
+由于级数 $ \sum_{k=1}^{\infty}\frac{1}{k^{2}} $收敛，所以 $ \sum_{n=0}^{\infty}c_{n}a_{n} $的任一部分和均有上界，级数收敛.
+
+例  $ 22^{*} $ 设  $ a_{n}=\sum_{k=1}^{1}\frac{1}{k}-\ln n $。（1）证明极限  $ \lim_{n\to\infty}a_n $ 存在。（2）记  $ \lim_{n\to\infty}a_n=C $ ，讨论级数  $ \sum_{n=1}^{\infty}(a_n-C) $ 的敛散性.
+
+分析（1） $ \lim_{n\to\infty}a_n $ 的存在性，前面已有证明；也可将  $ a_n $ 视为一个级数的部分和，再证明级数收敛.
+
+（2）由于 $ \{a_{n}\} $单调递减，故 $ \sum_{n=1}^{\infty}(a_{n}-C) $是正项级数，可考虑用比较法.若能判断无穷小 $ a_{n}-C $的阶或它与1/n的关系，问题就解决了.
+
+解（1）方法1 见1.2节例30.
+
+方法2
+
+ $$ \begin{align*}a_{n}=a_{1}+\sum_{k=2}^{n}(a_{k}-a_{k-1})=1+\sum_{k=2}^{n}\left[\frac{1}{k}-\ln k+\ln(k-1)\right]\\=1+\sum_{k=2}^{n}\left[\frac{1}{k}+\ln\left(1-\frac{1}{k}\right)\right]=1+\sum_{k=2}^{n}\left[\frac{1}{2k^{2}}+o\left(\frac{1}{k^{2}}\right)\right]\\\left(\because\ln(1+x)=x-\frac{1}{2}x^{2}+o(x^{2})\right).\end{align*} $$ 
+
+因为 $ \sum_{k=2}^{\infty}\frac{1}{2k^{2}} $与 $ \sum_{k=2}^{\infty}o\left(\frac{1}{k^{2}}\right) $均收敛，所以 $ \lim_{n\to\infty}a_n $存在.
+
+（2）方法1以 $ a_{n} $为部分和的级数为
+
+ $$ 1+\sum_{k=2}^{\infty}\left[\frac{1}{k}+\ln\left(1-\frac{1}{k}\right)\right]. $$ 
+
+该级数收敛于 C. 由  $ a_{n} $ 是单调递减的知， $ a_{n}-C>0 $，且
+
+ $$ a_{n}-C\underset{}{=}{=}-\sum_{k=n+1}^{\infty}\left[\frac{1}{k}+\ln\left(1-\frac{1}{k}\right)\right]=\sum_{k=n+1}^{\infty}\left(\ln\left(1+\frac{1}{k-1}\right)-\frac{1}{k}\right). $$ 
+
+初步判断：因为当  $ k \to \infty $ 时， $ \ln\left(1 + \frac{1}{k-1}\right) \sim \frac{1}{k-1} $，则
+
+ $$ a_{n}-C\sim\sum_{k=n+1}^{\infty}\left(\frac{1}{k-1}-\frac{1}{k}\right)=\frac{1}{n}\ ( 不严密 ), $$ 
+
+故级数 $ \sum_{n=1}^{\infty}(a_{n}-C) $发散.
+
+下面给出级数发散的严格证明.
+
+由泰勒公式知，当x>0时， $ \ln(1+x)>x-\frac{x^{2}}{2} $，代入①式有
+
+ $$ \begin{align*}a_{n}-C&>\sum_{k=n+1}^{\infty}\left(\frac{1}{k-1}-\frac{1}{2(k-1)^{2}}-\frac{1}{k}\right)>\sum_{k=n+1}^{\infty}\left(\frac{1}{k-1}-\frac{1}{k}-\frac{1}{2(k-1)(k-2)}\right).\\&=\sum_{k=n+1}^{\infty}\left[\left(\frac{1}{k-1}-\frac{1}{k}\right)-\frac{1}{2}\left(\frac{1}{k-2}-\frac{1}{k-1}\right)\right]=\frac{1}{n}-\frac{1}{2(n-1)}=\frac{n-2}{2n(n-1)}.\end{align*} $$ 
+
+显然级数 $ \sum_{n=2}^{\infty}\frac{n-2}{2n(n-1)} $发散，因此 $ \sum_{n=1}^{\infty}(a_{n}-C) $发散.
+
+方法2 由数列极限的施笃兹定理
+
+ $$ \begin{aligned}\lim_{n\to\infty}\frac{a_{n}-C}{\frac{1}{n}}=&\lim_{n\to\infty}\frac{a_{n}-a_{n-1}}{\frac{1}{n}-\frac{1}{n-1}}=\lim_{n\to\infty}\frac{\frac{1}{n}+\ln\left(1-\frac{1}{n}\right)}{-\frac{1}{n(n-1)}}=-\lim_{n\to\infty}n(n-1)\left[\frac{1}{n}+\ln\left(1-\frac{1}{n}\right)\right]\\=&-\lim_{n\to\infty}n(n-1)\left[-\frac{1}{2n^{2}}+o\left(\frac{1}{n^{2}}\right)\right]=\frac{1}{2},\end{aligned} $$ 
+
+所以级数  $ \sum_{n=1}^{\infty}(a_{n}-C) $ 是发散的.
+
+评注（1）在“初步判断”②中用了等价无穷小替换，这是不严密的，无须在证明过程中书写。但这个“初步判断”对解题却很重要，它确定了在用比较法时，应该将 $ a_{n}-C $缩小来证明级数发散。
+
+(2) 级数敛散性的“方法 2”源于加边极限  $ \lim_{n\to\infty}n^{p}(a_{n}-C) $ 问题(参见 1.2 节例 49 评注). 加边极限的思想在级数的审敛法中很有用，其本质是将级数  $ \sum_{n=1}^{\infty}(a_{n}-C) $ 与  $ \sum_{n=1}^{\infty}\frac{1}{n^{p}} $ 做比较.
+
+例  $ 23^{*} $ 固定一个整数  $ b \geq 2 $ 。令  $ f(1)=1 $ ， $ f(2)=2 $ ，并且对每一个  $ n \geq 3 $ 定义  $ f(n)=nf(d) $ ，其中 d 是 b 进制中 n 的位数。试问对于怎样的 b 值，级数  $ \sum_{n=0}^{\infty}\frac{1}{f(n)} $ 收敛。
+
+分析 这是一个正项级数. 由于无法确定其通项的具体形式, 所以考虑用比较法. 为利用题设条件找到比较标准, 需将级数的通项按 $b$ 进制相邻两位数的间隔区间 $[b^{d-1}, b^d)$ ($d=1,2,\cdots$) 从小到大分段加括号来讨论.
+
+解 注意  $ \sum_{b^{d-1}\leq n<b^{d}}\frac{1}{f(n)}=\frac{1}{f(d)}\sum_{b^{d-1}\leq n<b^{d}}\frac{1}{n} $，由于  $ \sum_{n=A}^{B}\frac{1}{n}>\int_{A}^{B}\frac{dt}{t}=\ln\left(\frac{B}{A}\right) $，则有
+
+ $$ \sum_{b^{d-1}\leqslant n<b^{d}}\frac{1}{f(n)}>\frac{\ln b}{f(d)}. $$ 
+
+对所有 $ d \geq 1 $求和，得到
+
+ $$ \sum_{n\geq1}\frac{1}{f(n)}=\sum_{d\geq1}\sum_{b^{d-1}\leq n<b^{d}}\frac{1}{f(n)}>\ln b\sum_{d\geq1}\frac{1}{f(d)}, $$ 
+
+由于  $ \ln 3 > 1 $，这最后的不等式对于  $ b \geq 3 $ 是无意义的，除非  $ \sum_{n \geq 1} \frac{1}{f(n)} $ 发散.
+
+对于 b=2，注意当  $ d \geq 2 $ 时，
+
+ $$ \sum_{2^{d-1}\leqslant n<2^{d}}\frac{1}{n}=\frac{1}{2^{d-1}}+\frac{1}{2^{d-1}+1}+\cdots+\frac{1}{2^{d}-1}\leqslant\frac{2^{d-2}}{2^{d-1}}+\frac{2^{d-2}}{2^{d-1}+2^{d-2}}=\frac{1}{2}+\frac{1}{3}=\frac{5}{6}, $$ 
+
+因而
+
+ $$ \sum_{2^{d-1}\leqslant n<2^d}\frac{1}{f(n)}=\frac{1}{f(d)}\sum_{2^{d-1}\leqslant n<2^d}\frac{1}{n}\leqslant\frac{5}{6}\cdot\frac{1}{f(n)}. $$ 
+
+令  $ a_{1}=4 $，并且对  $ k=1,2,3,\cdots $，令  $ a_{k+1}=2^{a_{k}-1} $，由归纳法即得
+
+ $$ \sum_{a_{k}\leqslant n<a_{k+1}}\frac{1}{f(n)}\leqslant\left(\frac{5}{6}\right)^{k}\cdot\frac{1}{f(d)}\leqslant\left(\frac{5}{6}\right)^{k}\cdot\frac{1}{f(3)}. $$ 
+
+这导致 $ \sum_{n\geq4}\frac{1}{f(n)}\leq\sum_{n\geq1}\left(\frac{5}{6}\right)^{k}\cdot\frac{1}{f(3)}=\frac{5}{f(3)} $. 所以级数收敛.
+
+评注 证明中用到了对级数添加括号的方法，注意正项级数任意添加（或去掉）括号，不改变其敛散性与和。但这对任意项级数不成立。
+
+例24 $ ^{*} $ 证明当  $ p \geqslant 1 $ 时， $ \sum_{n=1}^{\infty} \frac{1}{(n+1)\sqrt[p]{n}} < p $.
+
+分析 将级数的通项进行适当的放大，得到能求出其和为p的级数即可.
+
+ $$ u_{n}=\frac{1}{(n+1)\sqrt[p]{n}}=n^{\frac{1-\frac{1}{p}}{p}}\frac{1}{n(n+1)}=n^{(p-1)/p}\left(\frac{1}{n}-\frac{1}{n+1}\right)=n^{(p-1)/p}\left(\left(\frac{1}{\sqrt[p]{n}}\right)^{p}-\left(\frac{1}{\sqrt[p]{n+1}}\right)^{p}\right). $$ 
+
+由拉格朗日中值定理  $ b^{p}-a^{p}=p\xi^{p-1}(b-a) $ ( $ \xi $ 在 a 与 b 之间)，有
+
+ $$ \begin{aligned}u_{n}=&n^{(p-1)/p}p\xi^{p-1}\Biggl(\frac{1}{\sqrt[p]{n}}-\frac{1}{\sqrt[p]{n+1}}\Biggr)\quad\Biggl(\xi\in\Biggl(\frac{1}{\sqrt[p]{n+1}},\frac{1}{\sqrt[p]{n}}\Biggr)\Biggr)\\=&n^{(p-1)/p}p\Biggl(\frac{1}{\sqrt[p]{n+\theta}}\Biggr)^{p-1}\Biggl(\frac{1}{\sqrt[p]{n}}-\frac{1}{\sqrt[p]{n+1}}\Biggr)\quad(0<\theta<1)\\=&\Biggl(\frac{n}{n+\theta}\Biggr)^{(p-1)/p}p\Biggl(\frac{1}{\sqrt[p]{n}}-\frac{1}{\sqrt[p]{n+1}}\Biggr)<p\Biggl(\frac{1}{\sqrt[p]{n}}-\frac{1}{\sqrt[p]{n+1}}\Biggr),\end{aligned} $$ 
+
+故
+
+ $$ \sum_{n=1}^{\infty}\frac{1}{(n+1)\sqrt[p]{n}}<p\sum_{n=1}^{\infty}\left(\frac{1}{\sqrt[p]{n}}-\frac{1}{\sqrt[p]{n+1}}\right)=p\lim_{n\to\infty}\left(1-\frac{1}{\sqrt[p]{n+1}}\right)=p. $$ 
+
+例 25 设 $\{a_n\}$ 是实数序列，它满足不等式 $0 \leq a_k \leq 100a_n$，其中 $n \leq k \leq 2n$ ($n=1,2,\cdots$). 又级数 $\sum_{n=0}^{\infty}a_n$ 收敛，试证明 $\lim_{n \to \infty} na_n = 0$.
+
+分析 由级数  $ \sum_{n=0}a_{n} $ 收敛，知  $ \lim_{n\to\infty}(S_{2n-1}-S_{n-1})=\lim_{n\to\infty}(a_{n}+a_{n+1}+\cdots+a_{2n-1})=0 $ ，所以只需证明有适当的  $ k(n\leq k\leq2n) $ 满足  $ ka_{k}\leq A(a_{n}+a_{n+1}+\cdots+a_{2n-1}) $ (A 为某个正常数) 即可.
+
+解 由于  $ 0 \leq a_{k} \leq 100a_{n} (n \leq k \leq 2n, n = 1, 2, \cdots) $，取 k = 2n，有
+
+ $$ 0\leqslant a_{2n}\leqslant100a_{n},0\leqslant a_{2n}\leqslant100a_{n+1},\cdots,0\leqslant a_{2n}\leqslant100a_{2n-1}. $$ 
+
+各不等式相加再乘以2，有
+
+ $$ 0\leqslant2n a_{2n}\leqslant200(a_{n}+a_{n+1}+\cdots+a_{2n-1}). $$ 
+
+由于级数  $ \sum_{n=0}^{\infty}a_{n} $ 收敛，有  $ \lim_{n\to\infty}(S_{2n-1}-S_{n-1})=\lim_{n\to\infty}(a_{n}+a_{n+1}+\cdots+a_{2n-1})=0 $ ，所以  $ \lim_{n\to\infty}(2n)a_{2n}=0 $
+
+另一方面，由于
+
+ $$ 0\leq(2n-1)a_{2n-1}\leq2n a_{2n-1}\leq200(a_{n}+\cdots+a_{2n-1})~, $$ 
+
+这是一系列不等式对 k=2n-1 的应用. 从而有  $ \lim_{n\to\infty}(2n-1)a_{2n-1}=0 $.
+
+这样，对于任何整数 n，有  $ \lim n a_{n}=0 $。从而问题得证。
+
+评注 仅由正项级数  $ \sum_{n=0}^{\infty}a_{n} $ 收敛得不到结论  $ \lim_{n\to\infty}na_{n}=0 $。例如，设  $ a_{n}=\begin{cases}1/n, & n \text{为完全平方数}\\1/2^{n}, & \text{其他}\end{cases} $。显然级数  $ \sum_{n=0}^{\infty}a_{n} $ 收敛，但  $ \lim_{n\to\infty}na_{n}\neq0 $。
+
+例26 设正项级数 $ \sum_{n=1}^{\infty}na_{n} $收敛， $ t_{n}=a_{n+1}+2a_{n+2}+\cdots+ka_{n+k}+\cdots $，证明 $ \lim_{n\to\infty}t_{n}=0 $.
+
+分析 · 注意  $ t_{n}=\sum_{k=1}^{\infty}ka_{n+k} $ 。首先要证明该级数是收敛的，这可用  $ \sum_{n=1}^{\infty}na_{n} $ 做比较。从形态上看， $ t_{n} $ 与级数  $ \sum_{n=1}^{\infty}na_{n} $ 的余项  $ R_{n} $ 有些接近，可考虑用  $ R_{n} $ 去估计  $ t_{n} $，从而得到结论。
+
+证明 首先，注意到
+
+ $$ t_{n}=\sum_{k=1}^{\infty}k a_{n+k}=\sum_{k=1}^{\infty}\frac{k}{n+k}(n+k)a_{n+k}. $$ 
+
+因为
+
+ $$ \frac{k}{n+k}(n+k)a_{n+k}<(n+k)a_{n+k}, $$ 
+
+由 $ \sum_{n=1}^{\infty}na_{n} $收敛，知 $ \sum_{k=1}^{\infty}(n+k)a_{n+k} $收敛，从而 $ \sum_{k=1}^{\infty}\frac{k}{n+k}(n+k)a_{n+k} $收敛，即 $ t_{n} $有意义.
+
+由于 $ \sum_{n=1}^{\infty}na_{n} $收敛，则余项 $ R_{n}=\sum_{k=n+1}^{\infty}ka_{k}\rightarrow0(n\rightarrow\infty) $.而
+
+ $$ 0<t_{n}=\sum_{k=1}^{\infty}k a_{n+k}=\sum_{m=n+1}^{\infty}(m-n)a_{m}<\sum_{m=n+1}^{\infty}m a_{m}\to0\;(n\to\infty)\;, $$ 
+
+所以  $ \lim_{n\to\infty}t_n=0 $.
+
+例  $ 27^{*} $ 设  $ B(n) $ 为正整数 n 的二进制表达式中 1 的数目. 例如,  $ B(6) = B(110_{2}) = 2 $,  $ B(15) = B(1111_{2}) = 4 $. 判定  $ \exp\left(\sum_{n=1}^{\infty}\frac{B(n)}{n(n+1)}\right) $ 是否为一个有理数.
+
+分析 若能算出级数  $ \sum_{n=1}^{\infty}\frac{B(n)}{n(n+1)} $ 的和，则问题自然解决. 要求出级数的和必须要知道  $ B(n) $ 与 n 的关系或者  $ B(n) $ 的递推式.
+
+解 首先证明级数是收敛的.
+
+如果在二进制表示中 n 共有 d 位，那么  $ 2^{d-1} \leq n $，因而  $ B(n) \leq d \leq 1 + \ln_2 n $，由比较法知，级数
+
+ $ \sum_{n=1}^{\infty}\frac{B(n)}{n(n+1)} $ 收敛.
+
+下面用两种方法来计算级数的和.
+
+法1 每个 $n$ 都可以唯一表示为 $n_0 + 2n_1 + 2^2n_2 + \cdots$，其中 $n_i \in \{0,1\}$（除有限多个 $i$ 以外，$n_i = 0$）。由于 $1+2+2^2+\cdots+2^{i-1}=2^i-1$，可知，当且仅当 $n$ 具有 $k+2^i+2^{i+1}j$ 的形式时，$n_i=1$（这里 $k$ 是 $\{0,1,2,\cdots,2^i-1\}$ 中的某个数，而 $j \in \{0,1,2,\cdots\}$）。于是
+
+ $$ \begin{aligned}S&=\sum_{n=1}^{\infty}\frac{1}{n(n+1)}\sum_{i=1}^{\infty}n_{i}=\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\sum_{k=0}^{2^{i}-1}\frac{1}{(k+2^{i}+2^{i+1}j)(1+k+2^{i}+2^{i+1}j)}\\&=\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\left(\frac{1}{2^{i}(1+2j)}-\frac{1}{2^{i}(2+2j)}\right)=\sum_{i=0}^{\infty}\frac{1}{2^{i}}\sum_{j=1}^{\infty}(-1)^{j-1}\frac{1}{j}.\end{aligned} $$ 
+
+由于 $ 1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots=\ln2 $，所以 $ S=\ln2\sum_{i=0}^{\infty}\frac{1}{2^i}=2\ln2=\ln4 $，故 $ e^s=4 $是有理数.
+
+方法2 由于  $ B(2m)=B(m) $， $ B(2m+1)=1+B(2m)=1+B(m) $，于是
+
+ $$ \begin{aligned}S&=\sum_{n=1}^{\infty}\frac{B(n)}{n(n+1)}=\sum_{m=0}^{\infty}\frac{B(2m+1)}{(2m+1)(2m+2)}+\sum_{m=1}^{\infty}\frac{B(2m)}{2m(2m+1)}\\&=\sum_{m=0}^{\infty}\frac{1+B(m)}{(2m+1)(2m+2)}+\sum_{m=1}^{\infty}\frac{B(m)}{2m(2m+1)}\\&=\sum_{m=0}^{\infty}\frac{1}{(2m+1)(2m+2)}+\sum_{m=1}^{\infty}B(m)\Bigg(\frac{1}{2m(2m+1)}+\frac{1}{(2m+1)(2m+2)}\Bigg)\\&=\sum_{m=0}^{\infty}\Bigg(\frac{1}{2m+1}-\frac{1}{2m+2}\Bigg)+\sum_{m=1}^{\infty}B(m)\Bigg(\frac{1}{2m}-\frac{1}{2m+2}\Bigg)\\&=\ln2+\frac{1}{2}\sum_{m=1}^{\infty}\frac{B(m)}{m(m+1)}=\ln2+\frac{1}{2}S.\\ \end{aligned} $$ 
+
+所以  $ S = \ln 4 $， $ e^s = 4 $ 是有理数.
+
+评注 方法2中的计算必须要以级数收敛为前提，所以先证明级数收敛是必要的.
+
+##### 习题8.1
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//48c4766d-b73b-41a0-ad9b-edbef33c03e7/markdown_0/imgs/img_in_image_box_1245_1369_1377_1500.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A36Z%2F-1%2F%2Fd3c8170c771fe6609d6933af85f581b16e65fe64612d4e005f011e445365cd9c" alt="Image" width="9%" /></div>
+
+
+1. 讨论下列级数的敛散性.
+
+习题 8.1 答案
+
+(1)  $ \sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{n^{2}}e^{-n} $; (2)  $ \sum_{n=1}^{\infty}\frac{n^{3}\left[\sqrt{2}+(-1)^{n}\right]^{n}}{3^{n}} $; (3)  $ \sum_{n=1}^{\infty}\frac{1}{\ln(1+n)^{\ln(1+n)}} $;
+
+(4)  $ \sum_{n=1}^{\infty}\int_{0}^{\frac{1}{n}}\frac{\sqrt{x}}{1+x^{4}}dx $; (5)  $ \sum_{n=1}^{\infty}\left[e-\left(1+\frac{1}{1!}+\frac{1}{2!}+\frac{1}{3!}+\cdots+\frac{1}{n!}\right)\right] $.
+
+2. 讨论下列级数的敛散性.
+
+(1)  $ \sum_{n=1}^{\infty}\left[\sqrt[n]{a}-\frac{1}{2}(\sqrt[n]{b}+\sqrt[n]{c})\right](a,b,c>0) $; (2)  $ \sum_{n=1}^{\infty}(n!)^{-\frac{\alpha}{n}}(\alpha>0) $;
+
+(3)  $ \sum_{n=1}^{\infty}\frac{1}{\left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right)n^{p}} $ (p>0); (4)  $ \sum_{n=1}^{\infty}\frac{1}{\left(\sqrt{n+1}+\sqrt{n}\right)^{p}}\ln\frac{n+1}{n-1} $ (p>0).
+
+3. 设  $ \sum_{n=1}^{\infty}a_{n} $ 是收敛的正项级数，求证  $ \sum_{n=1}^{\infty}\sqrt{a_{n}a_{n+1}} $ 也收敛，反之是否正确？
+
+4. 若  $ \lim_{n\to\infty}[n^p(\mathrm{e}^{\frac{1}{n}}-1)a_n]=1(p>1) $，讨论级数  $ \sum_{n=1}^{\infty}a_n $ 的敛散性.
+
+5. 设正项级数  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，证明  $ \lim_{n\to\infty}(1+a_1)(1+a_2)\cdots(1+a_n) $ 存在.
+
+6. 判定级数  $ \sum_{n=1}^{\infty}\frac{1}{x_{n}^{2}} $ 的敛散性. 其中  $ x_{n} $ 是方程  $ x=\tan x $ 的正根按递增顺序的排列.
+
+7. 设  $ B_{n}(x)=1^{x}+2^{x}+3^{x}+\cdots+n^{x} $，证明级数  $ \sum_{n=2}^{\infty}\frac{B_{n}(\log_{n}2)}{(n\log_{2}n)^{2}} $ 收敛.
+
+8. 设  $ a_{n}=\int_{0}^{\frac{\pi}{4}}\cos^{n}t\mathrm{d}t $，判断级数  $ \sum_{n=1}^{\infty}a_{n} $ 的敛散性.
+
+9*. 设正项级数 $ \sum_{n=1}^{\infty}a_{n} $收敛，判断级数 $ \sum_{n=1}^{\infty}\sum_{k=1}^{\infty}\frac{na_{n}}{k^{2}+n^{2}} $的敛散性.
+
+10. 设有方程  $ x^{n} + nx - 1 = 0 $，其中 n 为正整数，证明此方程存在唯一正实根  $ x_{n} $，并证明当  $ \alpha > 1 $ 时，级数  $ \sum_{n=1}^{\infty} x_{n}^{\alpha} $ 收敛.
+
+11. 对于 x > 1，证明级数  $ \frac{x}{x+1} + \frac{x^2}{(x+1)(x^2+1)} + \frac{x^4}{(x+1)(x^2+1)(x^4+1)} + \cdots $ 收敛，并求级数的和.
+
+12. 设  $ a_{0}>1 $，且满足  $ a_{n+1}=\frac{1}{4}(a_{n}^{4}+3) $ ( $ n\geqslant0 $)，证明级数  $ \sum_{n=0}^{\infty}\frac{a_{n}^{2}+2a_{n}+3}{(a_{n}+1)(a_{n}^{2}+1)} $ 收敛，并求其值.
+
+13. 证明级数  $ \sum_{n=1}^{\infty}\int_{0}^{1}x^{2}(1-x)^{n}dx $ 收敛，并求其和.
+
+14*. 求级数  $ \sum_{n=0}^{\infty} \operatorname{arccot}(n^{2}+n+1) $ 的和.
+
+15. 设  $ u_{1}=2 $， $ u_{n+1}=u_{n}^{2}-u_{n}+1 $ ( $ n=1,2,\cdots $)，证明级数  $ \sum_{n=0}^{\infty}\frac{1}{u_{n}}=1 $.
+
+16. 设 p > 0,  $ x_{1} = \frac{1}{4} $,  $ x_{n+1}^{p} = x_{n}^{p} + x_{n}^{2p} $ ( $ n = 1, 2, \cdots $), 证明级数  $ \sum_{n=1}^{\infty} \frac{1}{1 + x_{n}^{p}} $ 收敛, 并求其和.
+
+17. 设 $ \{u_{n}\} $和 $ \{c_{n}\} $为正实数列，证明：
+
+（1）若对所有的正整数 n 满足  $ c_{n}u_{n}-c_{n+1}u_{n+1}\leq0 $，且  $ \sum_{n=1}^{\infty}\frac{1}{c_{n}} $ 发散，则  $ \sum_{n=1}^{\infty}u_{n} $ 也发散.
+
+（2）若对所有的正整数 n 满足  $ c_{n}\frac{u_{n}}{u_{n+1}}-c_{n+1}\geq a $ (常数 a>0)，且  $ \sum_{n=1}^{\infty}\frac{1}{c_{n}} $ 收敛，则  $ \sum_{n=1}^{\infty}u_{n} $ 也收敛.
+
+18 $ ^{*} $. 设  $ \{p_{n}\} $ 是单调递增的正实数列，证明  $ \sum_{n=1}^{\infty}\frac{1}{p_{n}} $ 与  $ \sum_{n=1}^{\infty}\frac{n}{p_{1}+p_{2}+\cdots+p_{n}} $ 同敛散.
+
+19. 证明若级数  $ \sum_{n=1}^{\infty}x_{n}^{2} $ 收敛，则  $ \prod_{n=1}^{\infty}\cos x_{n} $ 收敛.
+
+20. 设数列  $ S_{1}=1, S_{2}, S_{3}, \cdots $ 由公式  $ 2S_{n+1}=S_{n}+\sqrt{S_{n}^{2}+u_{n}}(u_{n}>0) $ 确定，证明级数  $ \sum_{n=1}^{\infty}u_{n} $ 收敛的充分必要条件是数列  $ \{S_{n}\} $ 收敛.
+
+21. 设函数  $ f(x)=\int_{0}^{x}\frac{\ln(1+t)}{1+e^{-t}\sin^{3}t}dt $ (x>0)，证明级数  $ \sum_{n=1}^{\infty}f\left(\frac{1}{n}\right) $ 收敛，且  $ \frac{1}{3}<\sum_{n=1}^{\infty}f\left(\frac{1}{n}\right)<\frac{5}{6} $.
+
+22. 设  $ \{F_{n}\} $ 是斐波拉契数列，即有  $ F_{0}=1 $， $ F_{1}=1 $， $ F_{n}=F_{n-1}+F_{n-2} $ ( $ n=2,3,\cdots $)。判断级数  $ \sum_{n=1}^{\infty}\frac{1}{F_{n}} $ 与  $ \sum_{n=2}^{\infty}\frac{1}{\ln F_{n}} $ 的敛散性.
+
+23 $ ^{*} $. 令  $ A $ 为整数的一个集合，这些数在它们的十进制表示中不包含数字 9，证明  $ \sum_{a \in A} \frac{1}{a} $ 收敛，即  $ A $ 定义了一个调和级数的收敛子列.
+
+24. 设  $ \sum_{n=1}^{\infty}a_{n} $ 与  $ \sum_{n=1}^{\infty}b_{n} $ 为正项级数，证明：
+
+（1）若 $ \lim_{n\to\infty}\left(\frac{a_n}{a_{n+1}b_n}-\frac{1}{b_{n+1}}\right)>0 $，则 $ \sum_{n=1}^{\infty}a_n $收敛；
+
+（2）若 $ \lim_{n\to\infty}\left(\frac{a_n}{a_{n+1}b_n}-\frac{1}{b_{n+1}}\right)<0 $，且 $ \sum_{n=1}^{\infty}b_n $发散，则 $ \sum_{n=1}^{\infty}a_n $发散.
+
+25. 设正项级数  $ \sum_{n=1}^{\infty}a_{n} $ 满足  $ \frac{a_{n}}{a_{n+1}} = 1 + \frac{r}{n} + o\left(\frac{1}{n}\right) $. 证明当 r > 1 时，级数  $ \sum_{n=1}^{\infty}a_{n} $ 收敛.
+
+26 $ ^{*} $. 设 $ \{u_{n}\} $是正数列，满足 $ \frac{u_{n+1}}{u_{n}}=1-\frac{\alpha}{n}+O\left(\frac{1}{n^{\beta}}\right) $，其中常数 $ \alpha>0 $， $ \beta>1 $.
+
+（1）对于 $ v_{n}=n^{\alpha}u_{n} $，判断级数 $ \sum_{n=1}^{\infty}\ln\frac{v_{n+1}}{v_{n}} $的敛散性；
+
+(2) 讨论级数  $ \sum_{n=1}^{\infty} u_{n} $ 的敛散性.
+
+（注：设  $ \lim_{n\to\infty}a_n=0 $， $ \lim_{n\to\infty}b_n=0 $，则  $ a_n=O(b_n)\Leftrightarrow $ 存在常数 M>0 及自然数 N，当 n>N 时，恒有  $ |a_n|\leq M|b_n| $。）
+
+27. 设  $ \sum_{n=1}^{\infty}a_n $ 是收敛的正项级数，令  $ f(x)=\sum_{n=1}^{\infty}a_n\left|\sin nx\right| $，已知  $ f(x) $ 在  $ (-\infty,+\infty) $ 上满足李普希兹条件，即存在常数  $ L>0 $，使对任意实数  $ x,y $，都有  $ \left|f(x)-f(y)\right|\leq L\left|x-y\right| $，证明级数  $ \sum_{n=1}^{\infty}na_n $ 收敛。
+
+28 $ ^{*} $. 设实数列  $ u_0,u_1,u_2,\cdots $ 满足  $ u_n=\sum_{k=1}^{\infty}u_{n+k}^2 $,  $ n=0,1,2,\cdots $，证明若  $ \sum_{n=1}^{\infty}u_n $ 收敛，则对于所有的  $ k $ 都有  $ u_k=0 $.
+
+29. 设正项数列  $ \{a_{n}\} $ 单调递减，且级数  $ \sum_{n=1}^{\infty}a_{n} $ 发散，记  $ x_{n}=\frac{a_{2}+a_{4}+\cdots+a_{2n}}{a_{1}+a_{3}+\cdots+a_{2n-1}}(n=1,2,\cdots) $，证明  $ \lim_{n\to\infty}x_{n}=1 $.
+
+## 8.2 任意项级数
+
+任意项级数  $ \sum_{n=1}^{\infty}u_{n} $ 敛散性的判定，常按以下步骤进行：
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//48c4766d-b73b-41a0-ad9b-edbef33c03e7/markdown_3/imgs/img_in_image_box_445_376_935_688.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A39Z%2F-1%2F%2Fc5cd454239e59cb6e988b6fe7739c9f6ca9031b84e99ca87beea3c57cb49ddf0" alt="Image" width="33%" /></div>
+
+
+例1 讨论级数 $ \sum_{n=1}^{\infty}a^{n}\cos n\theta $的敛散性，并求级数的和.
+
+分析　这是任意项级数，其敛散性可按上面提供的方法判别。本级数求和有两种方法：一是化简部分和求极限；二是用欧拉公式将三角函数转化为指数函数，利用等比级数求和公式。
+
+解 当 $ \left|a\right|\geqslant1 $时，级数的通项不趋于0，级数发散.
+
+当|a|<1时，因为|a^n cos nθ|≤|a|^n，且级数 $ \sum_{n=1}^{\infty}|a|^n $收敛，所以原级数绝对收敛.
+
+下面求级数的和.
+
+方法1 当 $ |a|<1 $时，记部分和为 $ S_{n}=\sum_{k=1}^{n}a^{k}\cos k\theta $，则
+
+ $$ \begin{aligned}{2a\operatorname{c o s}\theta\:S_{n}=}&{{}\sum_{k=1}^{n}2a^{k+1}\operatorname{c o s}\theta\operatorname{c o s}k\theta=\sum_{k=1}^{n}a^{k+1}\left[\operatorname{c o s}(k+1)\theta+\operatorname{c o s}(k-1)\theta\right]}\\ {=}&{{}\left[a^{n+1}\operatorname{c o s}(n+1)\theta+S_{n}-a\operatorname{c o s}\theta\right]+a^{2}\left[1+S_{n}-a^{n}\operatorname{c o s}n\theta\right],}\\ \end{aligned} $$ 
+
+解出
+
+ $$ S_{n}=\frac{a^{n+2}\operatorname{c o s}n\theta-a^{n+1}\operatorname{c o s}(n+1)\theta+a\operatorname{c o s}\theta-a^{2}}{1-2a\operatorname{c o s}\theta+a^{2}}\to\frac{a\operatorname{c o s}\theta-a^{2}}{1-2a\operatorname{c o s}\theta+a^{2}}\left(n\to\infty\right). $$ 
+
+方法2 设  $ S = \sum_{n=1}^{\infty} a^n \cos n\theta $， $ T = \sum_{n=1}^{\infty} a^n \sin n\theta $， $ |a| < 1 $。由欧拉公式得
+
+ $$ \begin{aligned}{S+i T=}&{{}\sum_{n=1}^{\infty}a^{n}\mathbf{e}^{i n\theta}=\frac{a\mathbf{e}^{i\theta}}{1-a\mathbf{e}^{i\theta}}\mathbf{\Omega}(i=\sqrt{-1})}\\ {=}&{{}\frac{a\mathbf{e}^{i\theta}(1-a\mathbf{e}^{-i\theta})}{(1-a\mathbf{e}^{i\theta})(1-a\mathbf{e}^{-i\theta})}=\frac{a\mathbf{e}^{i\theta}-a^{2}}{1-2a\operatorname{c o s}\theta+a^{2}}.}\\ \end{aligned} $$ 
+
+比较等式两边的实部与虚部可得
+
+ $$ S=\frac{a\cos\theta-a^{2}}{1-2a\cos\theta+a^{2}}\left(\mid a\mid<1\right). $$ 
+
+评注 “方法2” 利用欧拉公式将级数转化为等比级数求和，这给问题的解决带来了极大的方便.
+
+例2 判断级数  $ \sum_{n=1}^{\infty}(-1)^{n}\frac{n^{n+1}}{(n+1)!} $ 的敛散性.
+
+分析 交错级数，先考虑绝对收敛性.
+
+解 考察  $ \sum_{n=1}^{\infty}|u_{n}|=\sum_{n=1}^{\infty}\frac{n^{n+1}}{(n+1)!} $.
+
+因为
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{|u_{n+1}|}{|u_{n}|}=\operatorname*{l i m}_{n\to\infty}\frac{(n+1)^{n+2}}{(n+2)!}\cdot\frac{(n+1)!}{n^{n+1}}=\operatorname*{l i m}_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}\frac{(n+1)^{2}}{n(n+2)}=\mathbf{e}>1, $$ 
+
+所以原级数不绝对收敛.
+
+由 $ \lim_{n\to\infty}\frac{|u_{n+1}|}{|u_n|}>1 $知，当n充分大时，有 $ |u_{n+1}|>|u_n|>0 $，故 $ \lim_{n\to\infty}|u_n|\neq0 $，即 $ \lim_{n\to\infty}u_n\neq0 $。所以原级数发散
+
+评注一般来说，若 $ \sum_{n=1}^{\infty}|u_{n}| $发散，则 $ \sum_{n=1}^{\infty}u_{n} $未必发散；但如果是用比值法或根值法判定 $ \sum_{n=1}^{\infty}|u_{n}| $发散，则 $ \sum_{n=1}^{\infty}u_{n} $必发散（因为此时必有 $ u_{n}\neq0 $）.
+
+例3 设数列 $ \{a_{n}\} $单调递减，且 $ \lim_{n\to\infty}a_{n}=0 $，证明 $ \sum_{n=1}^{\infty}(-1)^{n}\frac{a_{1}+a_{2}+\cdots+a_{n}}{n} $收敛.
+
+ $$ \frac{a_{1}+a_{2}+\cdots+a_{n}}{n} $$ 
+
+证明 由于 $ \{a_{n}\} $单调递减，且 $ \lim_{n\to\infty}a_{n}=0 $，故 $ a_{n}\geq0 $。即所证级数是交错级数。
+
+令  $ b_{n}=\frac{a_{1}+a_{2}+\cdots+a_{n}}{n} $，由于  $ \lim_{n\to\infty}a_{n}=0 $，所以  $ \lim_{n\to\infty}b_{n}=0 $。由  $ \{a_{n}\} $ 单调递减知， $ b_{n}\geq a_{n} $，又
+
+ $$ \begin{aligned}{n b_{n}-n b_{n+1}}&{{}=n b_{n}-(n+1)b_{n+1}+b_{n+1}}\\ {}&{{}=(a_{1}+a_{2}+\cdots+a_{n})-(a_{1}+a_{2}+\cdots+a_{n}+a_{n+1})+b_{n+1}=b_{n+1}-a_{n+1},}\\ \end{aligned} $$ 
+
+得到
+
+ $$ b_{n}-b_{n+1}=\frac{b_{n+1}-a_{n+1}}{n}\geq0. $$ 
+
+所以 $ \{b_{n}\} $单调递减. 由莱布尼兹准则知， $ \sum_{n=1}^{\infty}(-1)^{n}b_{n} $收敛，即 $ \sum_{n=1}^{\infty}(-1)^{n}\frac{a_{1}+a_{2}+\cdots+a_{n}}{n} $收敛.
+
+评注 请读者思考：若正项级数  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，则  $ \sum_{n=1}^{\infty}\frac{a_{1}+a_{2}+\cdots+a_{n}}{n} $ 与  $ \sum_{n=1}^{\infty}\sqrt[n]{a_{1}a_{2}\cdots a_{n}} $ 的敛散性如何？（前者答案明显，后者见综合题8*第9题。）
+
+例4 设 $ a_{n}=\int_{n}^{n+1}\frac{\sin\pi x}{1+x^{p}}\mathrm{d}x $ ( $ n=1,2,\cdots $)，p>0，证明：
+
+（1）当p>1时，级数 $ \sum_{n=1}^{\infty}a_{n} $绝对收敛；（2）当 $ 0<p\leq1 $时，级数 $ \sum_{n=1}^{\infty}a_{n} $收敛.
+
+分析 （1） $ a_{n} $ 的积分式难以算出，绝对收敛性只能将  $ \left|a_{n}\right| $ 放大，用正向级数的比较法来做.
+
+（2）易知 $ \sin\pi x $的符号在区间 $ (n,n+1) $  $ (n=1,2,\cdots) $内是交错变化的，故 $ \sum_{n=1}^{\infty}a_{n} $是交错级数，其收敛性可考虑用莱布尼兹准则.
+
+证明 （1）当 p > 1 时，有  $ \left|a_{n}\right| \leqslant \int_{n}^{n+1} \frac{1}{1+x^{p}} \mathrm{d}x \leqslant \frac{1}{n^{p}} $，所以  $ \sum_{n=1}^{\infty} a_{n} $ 绝对收敛.
+
+（2）当 $ 0<p\leq1 $时，由积分第一中值定理知
+
+ $$ a_{n}=\int_{n}^{n+1}\frac{\sin\pi x}{1+x^{p}}\mathrm{d}x=\frac{1}{1+\xi_{n}^{p}}\int_{n}^{n+1}\sin\pi x\mathrm{d}x=\frac{2(-1)^{n}}{\pi(1+\xi_{n}^{p})}\left( 其中 \;n<\xi_{n}<n+1\right). $$ 
+
+因此 $ \sum_{n=1}^{\infty}a_{n} $是交错级数. 记 $ a_{n}=(-1)^{n}b_{n} $，则
+
+ $$ 0<b_{n+1}=\frac{2}{\pi(1+\xi_{n+1}^{p})}<\frac{2}{\pi(1+\xi_{n}^{p})}=b_{n}, $$ 
+
+所以 $ \left\{b_{n}\right\} $单调递减；又因为 $ 0<b_{n}<\frac{2}{\pi(1+n^{p})} $，所以 $ \lim_{n\to\infty}b_{n}=0 $。由莱布尼兹准则知，原级数收敛。
+
+例5 判断下列级数的敛散性：
+
+(1)  $ \sum_{n=2}^{\infty}\frac{(-1)^{n}}{\sqrt{n}+(-1)^{n}} $; (2)  $ \frac{1}{\sqrt{2}-1}-\frac{1}{\sqrt{2}+1}+\frac{1}{\sqrt{3}-1}-\frac{1}{\sqrt{3}+1}+\cdots+\frac{1}{\sqrt{n}-1}-\frac{1}{\sqrt{n}+1}+\cdots $
+
+分析 两个都是交错级数，易看出都不绝对收敛。又因为其通项都不单调，所以也不适用莱布尼兹准则。因此考虑用级数的性质来判断。
+
+解 (1)  $ \sum_{n=2}^{\infty}\frac{(-1)^{n}}{\sqrt{n}+(-1)^{n}}=\sum_{n=2}^{\infty}(-1)^{n}\frac{\sqrt{n}-(-1)^{n}}{n-1}=\sum_{n=2}^{\infty}\left[(-1)^{n}\frac{\sqrt{n}}{n-1}-\frac{1}{n-1}\right] $.
+
+考察级数  $ \sum_{n=2}^{\infty}\frac{(-1)^{n}\sqrt{n}}{n-1} $ :
+
+因为  $ \lim_{n\to\infty}a_n=\lim_{n\to\infty}\frac{\sqrt{n}}{n-1}=0 $ ，而  $ \left(\frac{\sqrt{x}}{x-1}\right)^{\prime}=\frac{-(1+x)}{2\sqrt{x}(x-1)^2}<0 $  $ (x\geq2) $，故函数  $ \frac{\sqrt{x}}{x-1} $ 单调递减，由莱布尼兹准则，级数  $ \sum_{n=2}^{\infty}(-1)^n\frac{\sqrt{n}}{n-1} $ 收敛.
+
+而级数 $ \sum_{n=2}^{\infty}\frac{1}{n-1} $发散. 所以原级数是一个收敛级数与一个发散级数的和，是发散的.
+
+（2）考虑每两项加一括号所成的级数 $ \sum_{n=2}^{\infty}\left(\frac{1}{\sqrt{n}-1}-\frac{1}{\sqrt{n}+1}\right) $，这是正项级数.
+
+由于 $ \frac{1}{\sqrt{n}-1}-\frac{1}{\sqrt{n}+1}=\frac{2}{n-1} $，因为级数 $ \sum_{n=2}^{\infty}\frac{2}{n-1} $发散，所以原级数也发散.
+
+评注（1）关于两级数和的敛散性有以下结论：
+
+① 若两级数均收敛，则其和也收敛；若两个都绝对收敛，则和也绝对收敛；若一个绝对收敛一个条件收敛，则和条件收敛.
+
+② 若两级数仅一个收敛，则其和是发散的.
+
+(2) 级数添加与去掉括号的敛散性有以下结论：
+
+① 收敛级数任意添加括号也收敛.
+
+② 若收敛级数去掉括号后的通项仍以0为极限，则去掉括号后的级数也收敛，且和不变.
+
+设 $ (a_1 + a_2 + \cdots + a_{n_1}) + (a_{n_1 + 1} + \cdots + a_{n_2}) + \cdots + (a_{n_{k-1} + 1} + \cdots + a_{n_k}) + \cdots $收敛于 $ S $，且 $ \lim_{n \to \infty} a_n = 0 $。记该级数的部分和为 $ T_k $， $ \sum_{n=1}^{\infty} a_n $的部分和为 $ S_n $，则 $ T_k = S_{n_k} $， $ \lim_{k \to \infty} S_{n_k} = \lim_{k \to \infty} T_k = S $。
+
+由于  $ \lim_{n\to\infty}a_n=0 $，对  $ \forall i\in\{1,2,\cdots,n_{k+1}-n_k-1\} $，有
+
+ $$ \operatorname*{l i m}_{k\to\infty}S_{n_{k}+i}=\operatorname*{l i m}_{k\to\infty}\left(T_{k}+a_{n_{k}+1}+\cdots+a_{n_{k}+i}\right)=S, $$ 
+
+所以  $ \lim_{n\to\infty}S_n=S $，即  $ \sum_{n=1}^{\infty}a_n $ 也收敛于 S.
+
+例6 讨论级数 $ \sum_{n=2}^{\infty}\frac{(-1)^{n}}{\left\lceil n+(-1)^{n}\right\rceil^{p}} $ (p>0) 的敛散性.
+
+分析 这是交错级数，且通项趋于0，但通项不单调，不适用莱布尼兹准则. 可考虑用添加括号的方式来讨论，也可用交换相邻两项顺序的方式使通项满足单调性.
+
+ $$ |a_{n}|=\left|\frac{(-1)^{n}}{\left[n+(-1)^{n}\right]^{p}}\right|=\frac{1}{n^{p}}\cdot\frac{1}{\left[1+\frac{(-1)^{n}}{n}\right]^{p}}\sim\frac{1}{n^{p}}\left(n\rightarrow\infty\right). $$ 
+
+当p>1时，级数绝对收敛；当 $ 0<p\leq1 $时，级数不绝对收敛.
+
+下面讨论当 $ 0<p\leq1 $时，级数的收敛性.
+
+首先，级数的通项 $ a_{n}\rightarrow0 $
+
+方法1 将原级数按如下方式添加括号：
+
+ $$ \left(\frac{1}{3^{p}}-\frac{1}{2^{p}}\right)+\left(\frac{1}{5^{p}}-\frac{1}{4^{p}}\right)+\cdots+\left(\frac{1}{(2n+1)^{p}}-\frac{1}{(2n)^{p}}\right)+\cdots, $$ 
+
+记 $ b_{n}=\frac{1}{(2n+1)^{p}}-\frac{1}{(2n)^{p}} $，则 $ b_{n}<0 $， $ \sum_{n=2}^{\infty}(-b_{n}) $是正项级数。由于
+
+ $$ -b_{n}=\frac{1}{(2n)^{p}}-\frac{1}{(2n+1)^{p}}=\frac{1}{(2n+1)^{p}}\left[\left(1+\frac{1}{2n}\right)^{p}-1\right]\sim\frac{1}{(2n+1)^{p}}\cdot\frac{p}{2n}\sim\frac{p}{(2n)^{p+1}}, $$ 
+
+而  $ p+1>1 $，所以  $ \sum_{n=2}^{\infty}(-b_{n}) $ 收敛，由上题评注中去括号的讨论知，原级数收敛.
+
+方法2 同样考虑方法1中的级数 $ \sum_{n=2}^{\infty}(-b_{n}) $，其部分和为
+
+ $$ \begin{aligned}{S_{n}=}&{{}\left(\frac{1}{2^{p}}-\frac{1}{3^{p}}\right)+\left(\frac{1}{4^{p}}-\frac{1}{5^{p}}\right)+\cdots+\left(\frac{1}{(2n)^{p}}-\frac{1}{(2n+1)^{p}}\right)}\\ {=}&{{}\frac{1}{2^{p}}-\left(\frac{1}{3^{p}}-\frac{1}{4^{p}}\right)-\left(\frac{1}{5^{p}}-\frac{1}{6^{p}}\right)-\cdots-\left(\frac{1}{(2n-1)^{p}}-\frac{1}{(2n)^{p}}\right)-\frac{1}{(2n+1)^{p}}<\frac{1}{2^{p}}.}\\ \end{aligned} $$ 
+
+正项级数部分和数列有界，级数收敛，从而原级数收敛.
+
+方法3 原级数为
+
+ $$ \frac{1}{3^{p}}-\frac{1}{2^{p}}+\frac{1}{5^{p}}-\frac{1}{4^{p}}+\cdots+\frac{1}{(2n+1)^{p}}-\frac{1}{(2n)^{p}}+\cdots. $$ 
+
+奇偶项互换后的新级数为
+
+ $$ \frac{1}{2^{p}}-\frac{1}{3^{p}}+\frac{1}{4^{p}}-\frac{1}{5^{p}}+\cdots+\frac{1}{(2n)^{p}}-\frac{1}{(2n+1)^{p}}+\cdots. $$ 
+
+记  $ c_{n}=\frac{1}{n^{p}} $，②式为  $ \sum_{n=2}^{\infty}(-1)^{n}c_{n} $，由于  $ c_{n} $ 单调递减趋于 0，由莱布尼兹准则知，该交错级数收敛，从而原级数①式收敛.
+
+评注 方法 3 用到了收敛级数的性质：收敛级数交换相邻两项的位置后的级数仍收敛，且和不变.
+
+证明如下：
+
+设  $ a_{1}+a_{2}+a_{3}+a_{4}+\cdots+a_{2n-1}+a_{2n}+\cdots $ 收敛于 S，其部分和为  $ S_{n} $ 。交换相邻两项的位置后的级数为  $ a_{2}+a_{1}+a_{4}+a_{3}+\cdots+a_{2n}+a_{2n-1}+\cdots $ ，其部分和为  $ T_{n} $ 。则
+
+ $$ T_{2n}=S_{2n}\Rightarrow\lim_{n\to\infty}T_{2n}=\lim_{n\to\infty}S_{2n}=S\ ,\quad\lim_{n\to\infty}T_{2n+1}=\lim_{n\to\infty}T_{2n}+\lim_{n\to\infty}a_{2n+2}=S\ ,\quad 所以 \lim_{n\to\infty}T_{n}=S $$ 
+
+例7 判断级数  $ \sum_{n=1}^{\infty}\frac{(-1)^{n}}{\sqrt{n+(-1)^{n}}} $ 的敛散性，确定是绝对收敛还是条件收敛.
+
+分析这是交错级数。通项趋于0，但不单调，可考虑上题中的方法，也可以考虑其部分和的极限。
+
+因为 $ \left|u_{n}\right|=\frac{1}{\sqrt{n+(-1)^{n}}}>\frac{1}{\sqrt{n+1}} $，所以原级数不绝对收敛.
+
+下面讨论条件收敛性：
+
+用与上题完全类似的3种方法都可证明该级数收敛（请读者自行完成）。下面再介绍两种解法：
+
+方法1  $ S_{2n}=\left(\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{2}}\right)+\left(\frac{1}{\sqrt{5}}-\frac{1}{\sqrt{4}}\right)+\cdots+\left(\frac{1}{\sqrt{2n+1}}-\frac{1}{\sqrt{2n}}\right) $，括号中各项均小于0，所以 $ \{S_{2n}\} $
+
+单调递减；又
+
+ $$ S_{2n}>\left(\frac{1}{\sqrt{4}}-\frac{1}{\sqrt{2}}\right)+\left(\frac{1}{\sqrt{6}}-\frac{1}{\sqrt{4}}\right)+\cdots+\left(\frac{1}{\sqrt{2n+2}}-\frac{1}{\sqrt{2n}}\right)=-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2n+2}}>-\frac{1}{\sqrt{2}}, $$ 
+
+ $ \{S_{2n}\} $有下界，数列 $ \{S_{2n}\} $收敛，记 $ \lim_{n\to\infty}S_{2n}=S $
+
+又  $ \lim_{n\to\infty}S_{2n+1}=\lim_{n\to\infty}(S_{2n}+u_{2n+1})=\lim_{n\to\infty}S_{2n}+\lim_{n\to\infty}\frac{-1}{\sqrt{2n}}=S $．所以  $ \lim_{n\to\infty}S_n=S $ ，原级数条件收敛.
+
+方法2 由泰勒公式 $ (1+x)^{\frac{1}{2}}=1-\frac{1}{2}x+o(x) $，得
+
+ $$ \begin{aligned}u_{n}=&\frac{\left(-1\right)^{n}}{\sqrt{n+\left(-1\right)^{n}}}=\frac{\left(-1\right)^{n}}{\sqrt{n}}\left[1+\frac{\left(-1\right)^{n}}{n}\right]^{-\frac{1}{2}}=\frac{\left(-1\right)^{n}}{\sqrt{n}}\left[1-\frac{\left(-1\right)^{n}}{2n}+o\left(\frac{1}{n}\right)\right]\\ =&\frac{\left(-1\right)^{n}}{\sqrt{n}}-\frac{1}{2n\sqrt{n}}+o\left(\frac{1}{n\sqrt{n}}\right),\end{aligned} $$ 
+
+所以 $ \sum_{n=1}^{\infty}\frac{(-1)^{n}}{\sqrt{n+(-1)^{n}}}=\sum_{n=1}^{\infty}\frac{(-1)^{n}}{\sqrt{n}}-\sum_{n=1}^{\infty}\frac{1}{2n\sqrt{n}}+\sum_{n=1}^{\infty}o\left(\frac{1}{n\sqrt{n}}\right) $为3个收敛级数的和，从而收敛.
+
+评注 方法2中的级数为两个绝对收敛级数与一个条件收敛级数之和，因而是条件收敛的.
+
+例8 设函数  $ f(x) $ 在  $ (-\infty, +\infty) $ 上连续，且满足  $ f(x) = \sin x + \int_{0}^{x} t f(x-t) \, dt $. 试判定级数  $ \sum_{n=1}^{\infty} (-1)^{n} f\left(\frac{1}{n}\right) $ 的收敛性.
+
+分析 有两种思考方式: 一是将题设条件化为微分方程, 解出  $ f(x) $ 的表达式来确定级数的敛散性;
+
+二是利用所给方程去求得  $ f(0) $ 和  $ f'(0) $ 的值，从而得到  $ f\left(\frac{1}{n}\right) $ 的局部表达式，级数的敛散性就知道了.
+
+解 由  $ f(x)=\sin x+\int_{0}^{x}tf(x-t)dt=\sin x+x\int_{0}^{x}f(u)du-\int_{0}^{x}uf(u)du $ 求导得
+
+ $$ f^{\prime}(x)=\cos x+\int_{0}^{x}f(u)\mathrm{d}u. $$ 
+
+且有  $ f(0)=0 $， $ f'(0)=1 $。
+
+方法1 对上面①式再求导，得微分方程  $ f''(x) - f(x) = -\sin x $.
+
+满足初值的特解为  $ f(x)=\frac{1}{4}(e^{x}-e^{-x})+\frac{1}{2}\sin x $，则原级数为
+
+ $$ \sum_{n=1}^{\infty}(-1)^{n}f\biggl(\frac{1}{n}\biggr)=\sum_{n=1}^{\infty}(-1)^{n}\biggl[\frac{1}{4}\biggl(\mathrm{e}^{1/n}-\mathrm{e}^{-1/n}\biggr)+\frac{1}{2}\mathrm{s i n}\frac{1}{n}\biggr]. $$ 
+
+易知  $ e^{1/n} - e^{-1/n} > 0 $， $ \sin\frac{1}{n} > 0 $，级数为交错级数.
+
+因为
+
+ $$ \operatorname*{l i m}_{n\to\infty}\biggl[\biggl(\frac{1}{4}\Bigl(\mathrm{e}^{1/n}-\mathrm{e}^{-1/n}\Bigr)+\frac{1}{2}\mathrm{s i n}\frac{1}{n}\biggr)\biggr/\frac{1}{n}\biggr]=\operatorname*{l i m}_{n\to\infty}\frac{1}{4}\mathrm{e}^{-1/n}\Bigl(\mathrm{e}^{2/n}-1\Bigr)n+\frac{1}{2}=\frac{1}{2}+\frac{1}{2}=1, $$ 
+
+所以级数不绝对收敛.
+
+由莱布尼兹准则易判定级数 $ \sum_{n=1}^{\infty}(-1)^{n}\left(e^{1/n}-e^{-1/n}\right) $与 $ \sum_{n=1}^{\infty}(-1)^{n}\sin\frac{1}{n} $都是收敛的，所以原级数条件收敛.
+
+方法2 显然  $ f(x) $ 在  $ (-∞,+∞) $ 上具有连续导数，由于  $ f(0)=0,\quad f^{\prime}(0)=1 $ ，根据泰勒公式有
+
+ $$ f\left(\frac{1}{n}\right)=\frac{1}{n}+o\left(\frac{1}{n}\right). $$ 
+
+由于  $ f\left(\frac{1}{n}\right)\sim\frac{1}{n}(n\to\infty) $，故级数  $ \sum_{n=1}^{\infty}(-1)^{n}f\left(\frac{1}{n}\right) $ 不绝对收敛.
+
+由于  $ f'(x) $ 为连续函数，且  $ f'(0)=1>0 $，故存在  $ \delta>0 $，当  $ x\in(-\delta,\delta) $ 时， $ f'(x)>0 $，即  $ f(x) $ 在  $ (-\delta,\delta) $ 内单调递增，于是  $ f(x)>f(0)=0(x>0) $。故  $ \exists N>0 $，当  $ n>N $ 时， $ f\left(\frac{1}{n}\right)>0 $，且有
+
+ $$ f\left(\frac{1}{n+1}\right)<f\left(\frac{1}{n}\right),\quad\lim_{n\to\infty}f\left(\frac{1}{n}\right)=f(0)=0. $$ 
+
+所以 $ \sum_{n=1}^{\infty}(-1)^{n}f\left(\frac{1}{n}\right) $是交错级数，且满足莱布尼兹准则，即所给级数是条件收敛的.
+
+评注 由  $ f(0) $ 和  $ f'(0) $ 的值，利用泰勒公式可写出  $ f\left(\frac{1}{n}\right) $ 的局部表达式，级数  $ \sum_{n=1}^{\infty}(-1)^{n}f\left(\frac{1}{n}\right) $ 的敛散性就可以确定了，没必要解微分方程求得 f 的具体表达式。当  $ f(0)=f'(0)=0 $ 时，还需计算  $ f''(0) $，此时级数一定绝对收敛。
+
+例9 设  $ a_{n}=\sum_{k=1}^{n}\sin\left(\frac{1}{n+k}\right) $，判定级数  $ \sum_{n=1}^{\infty}(-1)^{n}\left(\ln2-a_{n}\right) $ 的条件收敛性与绝对收敛性.
+
+分析 交错级数，考察是否满足莱布尼兹准则；绝对收敛性的思考：易得到  $ \lim_{n\to\infty}a_n=\ln2 $，所以级数是否绝对收敛可考察加边极限  $ \lim n^p(\ln2-a_n) $ 的情况（常取 p=1）.
+
+解 记 $ u_{n}=\ln2-a_{n} $，则
+
+ $$ u_{n}-u_{n-1}=a_{n-1}-a_{n}=-\sin\frac{1}{2n}<0, $$ 
+
+ $ \{u_{n}\} $ 是单调递减的.
+
+由泰勒公式 $ \sin x = x + o(x^{2}) $，有
+
+ $$ \lim_{n\to\infty}a_{n}=\lim_{n\to\infty}\sum_{k=1}^{n}\sin\left(\frac{1}{n+k}\right)=\lim_{n\to\infty}\left[\sum_{k=1}^{n}\frac{1}{n+k}+o\left(\frac{1}{n}\right)\right] $$ 
+
+ $$ =\operatorname*{l i m}_{n\to\infty}\left[\sum_{k=1}^{n}\frac{1}{1+k/n}\frac{1}{n}+o\left(\frac{1}{n}\right)\right]=\int_{0}^{1}\frac{1}{1+x}\mathrm{d}x=\ln2, $$ 
+
+所以  $ \lim_{n\to\infty}u_n=0 $ 。由莱布尼兹准则知级数  $ \sum_{n=1}^{\infty}(-1)^n u_n $ 收敛。
+
+下面讨论级数的绝对收敛性.
+
+首先 $ u_{n}>0 $（因为 $ \{u_{n}\} $单调递减且以0为极限），由数列极限的施笃兹定理，
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{u_{n}}{\frac{1}{n}}=\operatorname*{l i m}_{n\to\infty}\frac{u_{n}-u_{n-1}}{\frac{1}{n}-\frac{1}{n-1}}=\operatorname*{l i m}_{n\to\infty}\frac{-\operatorname{s i n}\frac{1}{2n}}{-\frac{1}{n(n-1)}}=\operatorname*{l i m}_{n\to\infty}n(n-1)\cdot\frac{1}{2n}=\infty\;, $$ 
+
+所以级数  $ \sum_{n=1}^{\infty}u_{n} $ 发散. 故原级数条件收敛.
+
+例  $ 10^{*} $ 设  $ x_{n} $ 是方程  $ e^{x}+x^{2n+1}=0 $ 的实数根，记  $ y_{n}=n(x_{n}+1)-\frac{1}{2} $，判定级数  $ \sum_{n=1}^{\infty}\frac{y_{n}}{n} $ 的条件与绝对收敛性.
+
+分析 显然需要知道  $ x_{n} $ 的存在性、唯一性以及极限情况. 若能找到  $ \frac{y_{n}}{n} $ 关于无穷小  $ \frac{1}{n} $ 的阶，级数的敛散性就知道了，所以需要通过已知方程去得到  $ x_{n} $ 的展开式.
+
+解 记  $ f_{n}(x)=\mathrm{e}^{x}+x^{2n+1} $，则  $ f_{n}^{\prime}(x)=\mathrm{e}^{x}+(2n+1)x^{2n}>0 $， $ f_{n}(x) $ 在  $ (-\infty,+\infty) $ 内是严格单调递增的；又  $ f_{n}(-1)=\mathrm{e}^{-1}-1<0 $， $ f_{n}(0)=1>0 $，由连续函数的介值定理知，对每个自然数 n，方程  $ \mathrm{e}^{x}+x^{2n+1}=0 $ 都有唯一的实数根  $ x_{n}\in(-1,0) $。
+
+由于  $ x_{n} = -e^{\frac{x_{n}}{2n+1}} $，则有
+
+ $$ x_{n}+1=1-\mathrm{e}^{\frac{x_{n}}{2n+1}}=-\frac{x_{n}}{2n+1}-\frac{1}{2!}\left(\frac{x_{n}}{2n+1}\right)^{2}+o\left(\frac{1}{n^{2}}\right), $$ 
+
+所以
+
+ $$ \begin{aligned}\frac{y_{n}}{n}=&\frac{1}{n}\Biggl[n(x_{n}+1)-\frac{1}{2}\Biggr]=(x_{n}+1)-\frac{1}{2n}=-\frac{x_{n}}{2n+1}-\frac{1}{2!}\Biggl(\frac{x_{n}}{2n+1}\Biggr)^{2}+o\Biggl(\frac{1}{n^{2}}\Biggr)-\frac{1}{2n}\\=&-\frac{x_{n}+1}{2n+1}-\frac{1}{2n(2n+1)}-\frac{1}{2!}\Biggl(\frac{x_{n}}{2n+1}\Biggr)^{2}+o\Biggl(\frac{1}{n^{2}}\Biggr)\\=&\frac{x_{n}}{(2n+1)^{2}}-\frac{1}{2n(2n+1)}-\frac{1}{2!}\Biggl(\frac{x_{n}}{2n+1}\Biggr)^{2}+o\Biggl(\frac{1}{n^{2}}\Biggr).\end{aligned} $$ 
+
+由于通项分别为 $ \frac{x_{n}}{(2n+1)^{2}} $、 $ \frac{1}{2n(2n+1)} $、 $ \frac{1}{2!}\left(\frac{x_{n}}{2n+1}\right)^{2} $， $ o\left(\frac{1}{n^{2}}\right) $的级数均绝对收敛，所以级数 $ \sum_{n=1}^{\infty}\frac{y_{n}}{n} $是绝对收敛的.
+
+评注 本题也从加边极限的角度去思考，即考察极限  $ \lim_{n\to\infty}n^{p}\frac{y_n}{n}=\lim_{n\to\infty}n^{p-1}\left[n(x_n+1)-\frac{1}{2}\right] $ （是  $ \left\{x_n\right\} $ 的 2 次加边，是  $ \left\{\frac{y_n}{n}\right\} $ 的 1 次加边），这里取  $ p=2 $，极限是存在的，所以级数收敛.
+
+例  $ 11^{*} $ 判定级数  $ \sum_{n=1}^{\infty}\left(\sin(\pi\sqrt{n^{2}-n+1})+(-1)^{n}\right) $ 的敛散性，如果收敛，则判定是绝对收敛还是条件收敛.
+
+分析 由三角函数的诱导公式  $ \sin(n\pi+\alpha)=(-1)^n\sin\alpha $，可发现这是一个交错级数。后续的解题思路与方法就很清晰了。
+
+解
+
+ $$ \begin{aligned}u_{n}&=\sin(\stackrel{\cdot}{\pi}\sqrt{n^{2}-n+1})+(-1)^{n}=\sin(n\pi+\pi(\sqrt{n^{2}-n+1}-n))+(-1)^{n}\\&=(-1)^{n}\sin(\pi(\sqrt{n^{2}-n+1}-n))+(-1)^{n}\\&=(-1)^{n}\bigg[\sin(\pi(\sqrt{n^{2}-n+1}-n))+1\bigg].\\ \end{aligned} $$ 
+
+因为
+
+ $$ \begin{aligned}\sqrt{n^{2}-n+1}-n&=n\left[\left(1-\frac{1}{n}+\frac{1}{n^{2}}\right)^{\frac{1}{2}}-1\right]=n\left[-\frac{1}{2n}+\frac{1}{2n^{2}}-\frac{1}{8}\left(-\frac{1}{n}+\frac{1}{n^{2}}\right)^{2}+o\left(\frac{1}{n^{2}}\right)\right]\\&=-\frac{1}{2}+\frac{3}{8n}+o\left(\frac{1}{n}\right),\end{aligned} $$ 
+
+所以
+
+ $$ \sin[\pi(\sqrt{n^{2}-n+1}-n)]=\sin\left(-\frac{\pi}{2}+\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right)=-\cos\left(\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right), $$ 
+
+ $$ u_{n}=(-1)^{n}\left[1-\cos\left(\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right)\right]. $$ 
+
+这说明 $ \sum_{n=1}^{\infty}u_{n} $是交错级数.
+
+考察其绝对收敛性：当 $ n \to \infty $时，
+
+ $$ |u_{n}|=1-\cos\left(\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right)\sim\frac{1}{2}\left(\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right)^{2}. $$ 
+
+易知，级数 $ \sum_{n=1}^{\infty}\frac{1}{2}\left(\frac{3\pi}{8n}+o\left(\frac{1}{n}\right)\right)^{2} $是收敛的，故原级数绝对收敛.
+
+评注 若  $ \lim_{n\to\infty}\frac{f(n)}{n}=1 $，则当 n 充分大以后， $ \sin\pi f(n) $ 与  $ \cos\pi f(n) $ 的符号通常都具有交错性.
+
+例  $ 12^{*} $ 判别级数  $ \sum_{n=1}^{\infty}(-1)^{[\sqrt{n}]}\cdot\frac{1}{n} $ 的收敛性，其中  $ [.] $ 是取整函数.
+
+分析 这不是交错级数，但如果通过加括号的方式，将 $ [\sqrt{n}] $等于同一自然数 $ k $的项合并，级数就化成了交错级数。再用莱布尼兹准则判定即可。
+
+解 当取  $ n=k^{2}, k^{2}+1, \cdots, k^{2}+2k $ 时， $ \left[\sqrt{n}\right]=k $，加括号得交错级数  $ \sum_{k=1}^{\infty}(-1)^{k}\sum_{j=0}^{2k}\frac{1}{k^{2}+j} $
+
+记 $ u_{k}=\sum_{i=0}^{2k}\frac{1}{k^{2}+j} $，则有 $ 0<u_{k}<\frac{2k+1}{k^{2}}\rightarrow0 $，即 $ \lim_{k\to\infty}u_{k}=0 $。又
+
+ $$ \begin{aligned}&u_{k}-u_{k+1}=\sum_{j=0}^{2k}\frac{1}{k^{2}+j}-\sum_{j=0}^{2k+2}\frac{1}{(k+1)^{2}+j}\\&=\sum_{j=0}^{2k}\left(\frac{1}{k^{2}+j}-\frac{1}{(k+1)^{2}+j}\right)-\frac{1}{(k+1)^{2}+2k+1}-\frac{1}{(k+1)^{2}+2k+2}\\&=\sum_{j=0}^{2k}\frac{2k+1}{(k^{2}+j)(k^{2}+2k+j+1)}-\frac{1}{(k^{2}+4k+2)(k^{2}+4k+3)}\\&\geq\frac{(2k+1)^{2}}{(k^{2}+2k)(k^{2}+4k+1)}-\frac{1}{(k^{2}+4k+2)(k^{2}+4k+3)}>0.\\ \end{aligned} $$ 
+
+所以 $ u_{k} $单调递减，故 $ \sum_{k=1}^{\infty}(-1)^{k}u_{k} $收敛.
+
+由于原级数的通项趋于0，由本节例5“评注（2）”可知，原级数 $ \sum_{n=1}^{\infty}(-1)^{\left[\sqrt{n}\right]}\cdot\frac{1}{n} $收敛.
+
+该级数显然不绝对收敛.
+
+例  $ 13^{*} $ 设收敛级数  $ \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{p}} $ 的和为  $ S(p) $，证明  $ \frac{1}{2}<S(p)<1 $.
+
+分析  $ S(p)<1 $ 是比较显然的；要证明不等式左端，可将级数适当缩小（化为积分形式），以利于求得和函数. 和函数找到了，问题就容易解决了.
+
+证明 因为  $ \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{p}} $ 收敛，所以必有 p>0 。将级数加括号有
+
+ $$ S(p)=1-\left[\left(\frac{1}{2^{p}}-\frac{1}{3^{p}}\right)+\left(\frac{1}{4^{p}}-\frac{1}{5^{p}}\right)+\cdots\right], $$ 
+
+因为正项级数 $ \left(\frac{1}{2^p}-\frac{1}{3^p}\right)+\left(\frac{1}{4^p}-\frac{1}{5^p}\right)+\cdots>0 $，所以 $ S(p)<1 $。
+
+又
+
+ $$ S(p)=\left(1-\frac{1}{2^{p}}\right)+\sum_{n=2}^{\infty}\left(\frac{1}{(2n-1)^{p}}-\frac{1}{(2n)^{p}}\right), $$ 
+
+由拉格朗日中值定理，
+
+ $$ \frac{1}{(2n-1)^{p}}-\frac{1}{(2n)^{p}}=\frac{p}{\xi_{n}^{p+1}}>\frac{p}{(2n)^{p+1}}\left(2n-1<\xi_{n}<2n\right), $$ 
+
+于是
+
+ $$ S(p)>\left(1-\frac{1}{2^{p}}\right)+\sum_{n=2}^{\infty}\frac{p}{(2n)^{p+1}}=\left(1-\frac{1}{2^{p}}\right)+\frac{p}{2^{p+1}}\sum_{n=2}^{\infty}\frac{1}{n^{p+1}}. $$ 
+
+由于 $ \frac{1}{n^{p+1}}>\int_{n}^{n+1}\frac{1}{x^{p+1}}dx $，得 $ \sum_{n=2}^{\infty}\frac{1}{n^{p+1}}>\int_{2}^{+\infty}\frac{1}{x^{p+1}}dx=-\frac{1}{px^{p}}\bigg|_{2}^{+\infty}=\frac{1}{p2^{p}} $，于是
+
+ $$ S(p)>\left(1-\frac{1}{2^{p}}\right)+\frac{p}{2^{p+1}}\cdot\frac{1}{p2^{p}}=1-\frac{1}{2^{p}}+\frac{1}{2^{2p+1}}. $$ 
+
+令  $ f(p)=1-\frac{1}{2^p}+\frac{1}{2^{2p+1}} $，则  $ f'(p)=\frac{\ln 2}{2^p}-\frac{\ln 2}{2^{2p}}>0 $， $ f(p) $ 是严格单调递增函数，当  $ p>0 $ 时，有  $ f(p)>f(0)=\frac{1}{2} $，即  $ S(p)>\frac{1}{2} $。
+
+评注 因为 p 级数  $ \sum_{n=1}^{\infty}\frac{1}{n^{p}} $ 可通过不等式  $ \frac{1}{n^{p}}>\int_{n}^{n+1}\frac{1}{x^{p}}dx $ 去缩小，从而得到下界，所以消去级数中相邻两项的符号差异是解决问题的关键，拉格朗日中值定理刚好起到了这样的作用.
+
+例  $ 14^{*} $ 若对于任何收敛于零的序列  $ \left\{x_{n}\right\} $，级数  $ \sum_{n=1}^{\infty}a_{n}x_{n} $ 都是收敛的，试证明级数  $ \sum_{n=1}^{\infty}|a_{n}| $ 收敛.
+
+分析 由于  $ \{x_{n}\}\to0(n\to\infty) $，所以当 n 大到一定程度以后，总有  $ \left|a_{n}x_{n}\right|<\left|a_{n}\right| $。这就很难用比较法来证明结论。可考虑用反正法，如果结论不成立，那么由  $ \{x_{n}\} $ 的任意性去构造一个使  $ \sum_{n=1}^{\infty}a_{n}x_{n} $ 发散的例子。
+
+证明 用反证法. 若  $ \sum_{n=1}^{\infty}|a_{n}| $ 发散，必有  $ \sum_{n=1}^{\infty}|a_{n}|=\infty $，则存在自然数  $ m_{1}<m_{2}<\cdots<m_{k}<\cdots $，使得
+
+ $$ \sum_{i=1}^{m_{1}}|a_{i}|\geqslant1\;,\quad\sum_{i=m_{k-1}+1}^{m_{k}}|a_{i}|\geqslant k\quad(k=2,3,\cdots) $$ 
+
+取  $ x_{i}=\frac{1}{k} $sgn  $ a_{i} $ ( $ m_{k-1}\leq i\leq m_{k} $)，则
+
+ $$ \sum_{i=m_{k-1}+1}^{m_{k}}a_{i}x_{i}=\sum_{i=m_{k-1}+1}^{m_{k}}\frac{\left|a_{i}\right|}{k}\geqslant1. $$ 
+
+由此可知，存在数列$\{x_n\} \to 0 (n \to \infty)$，使得$\sum_{n=1}^{\infty} a_n x_n$发散，这与已知矛盾，所以$\sum_{n=1}^{\infty} |a_n|$收敛。
+
+例 $15^*$ 证明积分$\int_0^{+\infty} \sin(x^2) \, dx$收敛。
+
+分析 用“高等数学”知识来判断该积分的敛散性有些困难，若将积分区间按被积函数的取值正、负分段，则积分可转化为一个交错级数，利用莱布尼兹准则就可判断级数的敛散性.
+
+解 当  $ n \geqslant 0 $ 时，令  $ u_{n} = \int_{\sqrt{n\pi}}^{\sqrt{(n+1)\pi}} \sin(x^{2}) \, dx $，显然，如果  $ \sum_{n=0}^{\infty} u_{n} $ 收敛，则原积分收敛.
+
+令 $ t=x^{2} $，则 $ u_{n}=\frac{1}{2}\int_{n\pi}^{(n+1)\pi}\frac{\sin t}{\sqrt{t}}dt $，不难看出 $ u_{n} $的符号是交错的。且有
+
+ $$ 2\mid u_{n}\mid=\left|\int_{n\pi_{-}}^{(n+1)\pi}\frac{\operatorname{s i n}t}{\sqrt{t}}\mathrm{d}t\right|>\left|\int_{n\pi}^{(n+1)\pi}\frac{\operatorname{s i n}t}{\sqrt{t+\pi}}\mathrm{d}t\right|=\left|\int_{(n+1)\pi}^{(n+2)\pi}\frac{\operatorname{s i n}t}{\sqrt{t}}\mathrm{d}t\right|=2\mid u_{n+1}\mid, $$ 
+
+即 $ \left|u_{n}\right| $是单调递减的.
+
+又
+
+ $$ 2\mid u_{n}\mid=\left|\int_{n\pi}^{(n+1)\pi}\frac{\sin t}{\sqrt{t}}\mathrm{d}t\right|<\frac{1}{\sqrt{n\pi}}\int_{n\pi}^{(n+1)\pi}\left|\sin t\right|\mathrm{d}t=\frac{1}{\sqrt{n\pi}}\int_{0}^{\pi}\sin t\mathrm{d}t=\frac{2}{\sqrt{n\pi}}, $$ 
+
+得 $ \left|u_{n}\right|\rightarrow0\left(n\rightarrow\infty\right) $. 由莱布尼兹准则知 $ \sum_{n=0}^{\infty}u_{n} $收敛，所以 $ \int_{0}^{+\infty}\sin(x^{2})\mathrm{d}x=\sum_{n=0}^{\infty}u_{n} $收敛.
+
+评注（1）无穷级数与反常积分在基本性质与审敛法上有很多类似之处，请读者注意比较、总结。
+
+同时两者之间又有紧密的联系，常常借助其中一个去研究另一个。正项级数的积分判别法就是一个很好的例证。
+
+（2）该例也可以用积分方法来做，具体做法： $ \int_{0}^{+\infty}\sin(x^{2})\mathrm{d}x\xlongequal{x=\sqrt{t}}\int_{0}^{+\infty}\frac{\sin t}{2\sqrt{t}}\mathrm{d}t $，再用反常积分收敛性的狄利克雷判别法来证明收敛.关于狄利克雷判别法，读者可参看《数学分析》教材.
+
+例16 $ ^{*} $ 令  $ a_{n}=1-\frac{1}{2}+\frac{1}{3}-\cdots+\frac{(-1)^{n-1}}{n}-\ln2 $，证明级数  $ \sum_{n=1}^{\infty}a_{n} $ 是收敛的，并求出它的和.
+
+分析 只需求出部分和的极限，首先需要将通项转化为有限运算形式，这可将 $ a_{n} $中的各项转化为幂函数在[0,1]上的积分来实现. 从另一个角度看，也可利用展开式 $ \ln2=\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k} $来得到 $ a_{n} $的通式，再用积分求和.
+
+解 方法1
+
+ $$ \begin{aligned}a_{n}=&\int_{0}^{1}[1-x+x^{2}-\cdots+(-1)^{n-1}x^{n-1}]\mathrm{d}x-\int_{0}^{1}\frac{\mathrm{d}x}{1+x}\\=&\int_{0}^{1}\frac{1+(-1)^{n-1}x^{n}}{1+x}\mathrm{d}x-\int_{0}^{1}\frac{\mathrm{d}x}{1+x}=\int_{0}^{1}\frac{(-1)^{n-1}x^{n}}{1+x}\mathrm{d}x\;.\end{aligned} $$ 
+
+级数的部分和
+
+ $$ \begin{aligned}S_{n}=&\sum_{k=1}^{n}a_{k}=\sum_{k=1}^{n}\int_{0}^{1}\frac{(-1)^{k-1}x^{k}}{1+x}\mathrm{d}x=\int_{0}^{1}\frac{1}{1+x}\sum_{k=1}^{n}(-1)^{k-1}x^{k}\mathrm{d}x\\ =&\int_{0}^{1}\frac{x+(-1)^{n+1}x^{n+1}}{\left(1+x\right)^{2}}\mathrm{d}x=\left(\ln2-\frac{1}{2}\right)+\int_{0}^{1}\frac{(-1)^{n+1}x^{n+1}}{\left(1+x\right)^{2}}\mathrm{d}x,\end{aligned} $$ 
+
+则
+
+ $$ \left|S_{n}-\left(\ln2-\frac{1}{2}\right)\right|\leqslant\int_{0}^{1}\frac{x^{n+1}}{\left(1+x\right)^{2}}\mathrm{d}x\leqslant\int_{0}^{1}x^{n+1}\mathrm{d}x=\frac{1}{n+2}, $$ 
+
+所以  $ \lim_{n\to\infty}S_n=\ln2-\frac{1}{2} $ 。即级数  $ \sum_{n=1}^{\infty}a_n $ 收敛于  $ \ln2-\frac{1}{2} $
+
+方法2
+
+ $$ \begin{aligned}a_{n}&=1-\frac{1}{2}+\frac{1}{3}-\cdots+\frac{(-1)^{n-1}}{n}-\ln2=\sum_{k=1}^{n}\frac{(-1)^{k-1}}{k}-\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k}\\&=\sum_{k=n+1}^{\infty}\frac{(-1)^{k}}{k}\underline{\underline{_{i=k-n}}}\sum_{i=1}^{\infty}\frac{(-1)^{i+n}}{i+n},\end{aligned} $$ 
+
+则
+
+ $$ \begin{aligned}\sum_{n=1}^{\infty}a_{n}=&\sum_{n=1}^{\infty}\sum_{i=1}^{\infty}\frac{(-1)^{i+n}}{i+n}=\sum_{j=1}^{\infty}\sum_{i=1}^{\infty}(-1)^{i+j}\int_{0}^{+\infty}e^{-(i+j)x}\mathrm{~d}x\\=&\int_{0}^{+\infty}\left[\sum_{i=1}^{\infty}(-1)^{i}\mathrm{e}^{-ix}\cdot\sum_{j=1}^{\infty}(-1)^{j}\mathrm{e}^{-jx}\right]\mathrm{d}x\\=&\int_{0}^{+\infty}\left(\frac{-\mathrm{e}^{-x}}{1+\mathrm{e}^{-x}}\right)^{2}\mathrm{~d}x\xlongequal{\mathrm{e}^{-x}=t}\int_{0}^{1}\frac{t}{(1+t)^{2}}\mathrm{d}t=\ln2-\frac{1}{2}.\end{aligned} $$ 
+
+评注（1）方法1中对 $ a_{n} $的变形是关键，这种方法在前面已多次运用（参见1.2节例55，3.2节例31）.
+
+(2) 因为方法2中的级数 $ \sum_{j=1}^{\infty}(-1)^{i}e^{-ix} $在区间 $ (0,+\infty) $内闭一致收敛，所以可逐项积分.
+
+例  $ 17^{*} $ 证明若  $ \left\{p_{n}\right\} $ 是一个严格递增的自然数列，则  $ \sum_{n=0}^{\infty}\frac{(-1)^{n}}{p_{0}p_{1}\cdots p_{n}} $ 是无理数.
+
+分析 易知级数是收敛的. 要直接证明它是一个无理数不好论述, 可用反证法.
+
+证明 由莱布尼兹准则易知级数收敛.
+
+假设  $ \sum_{n=0}^{\infty}\frac{(-1)^{n}}{p_{0}p_{1}\cdots p_{n}}=\frac{\alpha}{\beta} $ 是一个有理数，由交错级数和的估计知
+
+ $$ \frac{1}{p_{0}}-\frac{1}{p_{0}p_{1}}<\frac{\alpha}{\beta}<\frac{1}{p_{0}}. $$ 
+
+由于 $ \frac{1}{p_{0}}-\frac{1}{p_{0}p_{1}}-\frac{1}{p_{0}+1}=\frac{p_{1}-p_{0}-1}{p_{0}p_{1}(p_{0}+1)}\geq0 $，所以
+
+ $$ \frac{1}{p_{0}+1}<\frac{\alpha}{\beta}<\frac{1}{p_{0}}, $$ 
+
+因而  $ \beta - \alpha p_{0} < \alpha $ 。由于  $ \beta - \alpha p_{0} $ 与  $ \alpha $ 均是自然数，则必有  $ \beta - \alpha p_{0} \leq \alpha - 1 $ 。
+
+注意到
+
+ $$ \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{p_{1}p_{2}\cdots p_{n}}=1-\frac{\alpha p_{0}}{\beta}=\frac{\beta-\alpha p_{0}}{\beta}\Rightarrow\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{p_{1}p_{2}\cdots p_{n}}\leqslant\frac{\alpha-1}{\beta}, $$ 
+
+由此递推下去，可知  $ \sum_{n=\alpha}^{\infty}\frac{(-1)^{n-\alpha}}{p_{\alpha}p_{\alpha+1}\cdots p_{n}}\leq0 $ 。这与结论  $ \frac{1}{p_{\alpha}+1}<\sum_{n=\alpha}^{\infty}\frac{(-1)^{n-\alpha}}{p_{\alpha}p_{\alpha+1}\cdots p_{n}}<\frac{1}{p_{\alpha}} $ 相矛盾。结论得证。
+
+##### 习题8.2
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//ecbe33f4-a87f-44bd-9d05-767138f97189/markdown_2/imgs/img_in_image_box_1243_991_1378_1120.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A54Z%2F-1%2F%2Ff9c739de86afa60fc0be98329ccc8f66d44f45e7ad8cf51ee7897ca8ba10f1d2" alt="Image" width="9%" /></div>
+
+
+习题8.2答案
+
+1. 判断下列级数的敛散性. 如果收敛, 判断是条件收敛还是绝对收敛.
+
+(1)  $ \sum_{n=2}^{\infty}(-1)^{n}\int_{n}^{n+1}\frac{e^{-x}}{x}dx $; (2)  $ \sum_{n=1}^{\infty}\frac{(-3)^{n}}{(3^{n}+2^{n})n} $; (3)  $ \sum_{n=1}^{\infty}(-1)^{n}\frac{(2n)!}{(n!)^{2}}\left(\frac{1}{4}\right)^{n} $.
+
+2. 讨论下列级数的敛散性. 如果收敛, 判断是条件收敛还是绝对收敛.
+
+(1)  $ a - \frac{b}{2} + \frac{a}{3} - \frac{b}{4} + \cdots + \frac{a}{2n-1} - \frac{b}{2n} + \cdots (a^2 + b^2 \neq 0) $; (2)  $ \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^p + (-1)^{n-1}} (p \geq 1) $;
+
+(3)  $ \sum_{n=1}^{\infty}\sin(\pi\sqrt{n^2+1}) $;  $ (4^*) $  $ \sum_{n=2}^{\infty}\ln\left(1+\frac{(-1)^n}{n^p}\right)(p>0) $.
+
+3. 判定级数  $ \sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{2n-1}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right) $ 的敛散性.
+
+4. 设  $ u_{n} \neq 0 (n = 1, 2, \cdots) $ 且  $ \lim_{n \to \infty} \frac{n}{u_{n}} = 1 $，讨论级数  $ \sum_{n=1}^{\infty} (-1)^{n+1} \left( \frac{1}{u_{n}} + \frac{1}{u_{n+1}} \right) $ 的敛散性.
+
+5. 设  $ \left|a_{n}\right|\leqslant1\left(n\in\mathbb{N}_{+}\right) $，且  $ \left|a_{n}-a_{n-1}\right|\leqslant\frac{1}{4}\left|a_{n-1}^{2}-a_{n-2}^{2}\right|(n\geqslant3) $，证明：
+
+(1)  $ \sum_{n=2}^{\infty}(a_{n}-a_{n-1}) $ 绝对收敛；（2）数列  $ \{a_{n}\} $ 收敛.
+
+6. 设  $ f(x) $ 在 x=0 处二阶可导，且  $ \lim_{x\to0}\frac{f(x)}{x}=0 $ 。证明级数  $ \sum_{n=1}^{\infty}f\left(\frac{1}{n}\right) $ 绝对收敛.
+
+7. 设  $ a_{0}=0 $,  $ a_{n+1}=\sqrt{2+a_{n}} $ (n=0,1,2, $ \cdots $)，讨论级数  $ \sum_{n=1}^{\infty}(-1)^{n-1}\sqrt{2-a_{n}} $ 的绝对收敛性与条件收敛性.
+
+8. 设  $ f(x) $ 是在  $ (-\infty, +\infty) $ 内的可微函数，且满足：(1)  $ f(x) > 0 $；(2)  $ \left|f'(x)\right| \leq mf(x) $，其中 0 < m < 1。任取  $ a_0 $，定义  $ a_n = \ln f(a_{n-1}) $ ( $ n = 1, 2, \cdots $)。证明级数  $ \sum_{n=1}^{+\infty} (a_n - a_{n-1}) $ 绝对收敛。
+
+9. 设  $ \{F_{n}\} $ 是斐波拉契数列，即有  $ F_{0}=1, F_{1}=1, F_{n}=F_{n-1}+F_{n-2} $ (n=2,3, $ \cdots $). 判断级数  $ \sum_{n=1}^{\infty}\left(\frac{F_{n+1}}{F_{n+2}}-\frac{F_{n}}{F_{n+1}}\right) $ 的敛散性，证明  $ \lim_{n\to\infty}\frac{F_n}{F_{n+1}} $ 存在并求其值.
+
+10. 设  $ a_{n} = \int_{0}^{\frac{\pi}{4}} \tan^{n} x \, dx $.
+
+（1）求 $ \sum_{n=1}^{\infty}\frac{1}{n}(a_{n}+a_{n+2}) $的值；
+
+（2）证明对任意常数 $ \lambda>0 $，级数 $ \sum_{n=1}^{\infty}\frac{a_{n}}{n^{\lambda}} $收敛；
+
+ $ (3^*) $ 对任意实数  $ p $，讨论级数  $ \sum_{n=1}^{\infty}(-1)^{n}a_{n}^{p} $ 的敛散性.
+
+11. 已知  $ \sum_{k=1}^{\infty}a_{k}x^{k+1} $ 在  $ [0,1] $ 上收敛，其和函数为  $ f(x) $，证明级数  $ \sum_{n=1}^{\infty}f\left(\frac{1}{n}\right) $ 收敛.
+
+12. 已知函数  $ y = y(x) $ 满足  $ y' = x + y $ 及  $ y(0) = 1 $.
+
+（1）证明  $ y\left(-\frac{1}{n}\right)>1-\frac{1}{n} $ ( $ n=1,2,\cdots $);
+
+(2) 判断级数  $ \sum_{n=1}^{\infty}(-1)^{n-1}\left[ny\left(-\frac{1}{n}\right)-n+1\right] $ 的收敛性.
+
+13. 设连续函数  $ f(x) $ 满足方程  $ \int_{0}^{1}f(tx)dt=\frac{1}{x}f(x)-\mathrm{e}^{x^{2}} $，试判断级数  $ \sum_{n=1}^{\infty}(-1)^{n}f\left(\frac{1}{n}\right) $ 的敛散性.
+
+ $$ 14^{\circ} $$ 
+
+ $$ \{a_{n}\} $$ 
+
+ $$ \{b_{n}\} $$ 
+
+ $$ a_{n}>0(n\geqslant1),\sum_{n=1}^{\infty}b_{n} $$ 
+
+ $$ \frac{a_{n}}{a_{n+1}}\leq1+\frac{1}{n}+\frac{1}{n\ln n}+b_{n}(n\geq2) $$ 
+
+(1)  $ \frac{a_{n}}{a_{n+1}} < \frac{n+1}{n} \cdot \frac{\ln(n+1)}{\ln n} + b_{n} (n \geq 2) $; (2)  $ \sum_{n=1}^{\infty} a_{n} $ 发散.
+
+15*. 讨论 $ \sum_{n=1}^{\infty}(-1)^{[\ln n]}\frac{1}{n} $的敛散性. 其中 $ [n] $为不超过 $ n $的最大整数.
+
+16*. 证明 $ \int_{0}^{+\infty}\frac{\sin x}{x}dx<\int_{0}^{\pi}\frac{\sin x}{x}dx $.
+
+## 8.3 函数项级数
+
+函数项级数的收敛域、和函数以及函数的幂级数（三角级数）展开是函数项级数的几个基本问题。而函数项级数的一致收敛性与分析性质（连续性、可积性、可导性）则是研究这些问题的基本工具，也是有别于数项级数的重要标志。函数项级数的主要任务是扩充函数类，用以解决初等函数类无法解
+
+决的一些问题，如数值计算、微分方程求解、函数的表示与性态研究等. 高等数学则以讨论前面提到的几个基本问题为主.
+
+# 1. 收敛域与和函数
+
+函数项级数的敛散性与数项级数的敛散性没有本质的区别，数项级数的审敛法也完全适用于函数项级数. 阿贝尔定理是幂级数收敛性的基本定理，它揭示了幂级数具有收敛半径与收敛区间. 求函数项级数的和函数，除了常用的数项级数求和方法，更多的是利用函数项级数的分析性质（逐项积分、逐项求导）去解决，一般也只涉及幂级数的和函数.
+
+例1 求函数项级数 $ 1-\frac{1}{2^x}+\frac{1}{3}-\frac{1}{4^x}+\cdots+\frac{1}{2n-1}-\frac{1}{(2n)^x}+\cdots $的收敛域.
+
+分析 只需将 x 作为参数，用数项级数的审敛法考察参数在不同取值范围内级数的收敛情况，从而定出收敛域.
+
+解 当 x=1 时，级数为  $ 1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+\frac{1}{2n-1}-\frac{1}{2n}+\cdots $，是收敛的.
+
+当x>1时，级数 $ \sum_{n=1}^{\infty}\frac{1}{(2n)^{x}} $收敛，但 $ \sum_{n=1}^{\infty}\frac{1}{2n-1} $发散，所以原级数发散.
+
+当 x<1 时，级数加括号变为  $ 1-\sum_{n=1}^{\infty}\left(\frac{1}{(2n)^{x}}-\frac{1}{2n-1}\right)\cdot\sum_{n=1}^{\infty}\left(\frac{1}{(2n)^{x}}-\frac{1}{2n-1}\right) $ 是正项级数，由于  $ \lim_{n\to\infty}\left(\frac{1}{(2n)^{x}}-\frac{1}{2n-1}\right)\bigg/\frac{1}{(2n)^{x}}=1 $ ，而  $ \sum_{n=1}^{\infty}\frac{1}{(2n)^{x}} $ 发散，故原级数发散.
+
+综上所述，原级数的收敛域为x=1.
+
+评注 求一般的函数项级数（非幂级数）的收敛域时，通常是将函数的自变量相对固定，从而将它作为数项级数来讨论.
+
+例2 求函数项级数  $ \sum_{n=1}^{\infty}\left(\frac{1}{n}\csc\frac{1}{n}-1\right)^{x} $ 的收敛域.
+
+分析 易见，当且仅当 x>0 时，级数的通项趋于 0. 为比较通项对于  $ \frac{1}{n} $ 的阶，可考虑用等价无穷小或泰勒公式.
+
+解 由于  $ \csc y = \frac{1}{\sin y} = \frac{1}{y - \frac{y^{3}}{3!} + o(y^{3})} $，则
+
+ $$ y\csc y-1=\frac{y}{y-\frac{y^{3}}{3!}+o(y^{3})}-1=\left(1-\frac{y^{2}}{6}+o(y^{2})\right)^{-1}-1\sim\frac{y^{2}}{6}+o(y^{2})\quad(y\rightarrow0) $$ 
+
+从而
+
+ $$ \frac{1}{n}\mathbf{c}\mathbf{s}\mathbf{c}\frac{1}{n}-1\sim\frac{1}{6n^{2}}+o\left(\frac{1}{n^{2}}\right)\ (n\to\infty)\ . $$ 
+
+因为 $ \frac{1}{n}\csc\frac{1}{n}-1>0 $，所以该级数是正项级数。而
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{\left(\frac{1}{n}\mathbf{c s c}\frac{1}{n}-1\right)^{x}}{\left(\frac{1}{n^{2}}\right)^{x}}=\operatorname*{l i m}_{n\to\infty}\left(\frac{1}{6}+o(1)\right)^{x}=\frac{1}{6^{x}}\neq0\;, $$ 
+
+则该级数与正项级数  $ \sum_{n=1}^{\infty}\frac{1}{n^{2x}} $ 同敛散. 而  $ \sum_{n=1}^{\infty}\frac{1}{n^{2x}} $ 只在  $ x>\frac{1}{2} $ 时收敛，故原级数的收敛域是区间  $ \left(\frac{1}{2},+\infty\right) $.
+
+例3 设 $ b_{n}=\ln(1+1^{2})+\ln(1+2^{2})+\cdots+\ln(1+n^{2}) $，求幂级数 $ \sum_{i=1}^{\infty}\frac{x^{n}}{b_{i}} $的收敛域.
+
+分析 求幂级数的收敛域，常用比值法或根值法求收敛半径，再判断端点的敛散性.
+
+解 当n>2时， $ 1<b_{n}<n\ln(1+n^{2})<n^{3} $，则
+
+ $$ 1<\sqrt[n]{b_{n}}<(\sqrt[n]{n})^{3}\to1\left(n\to\infty\right). $$ 
+
+所以  $ \lim_{n\to\infty}\sqrt[n]{b_n}=1 $，级数收敛半径 R=1。
+
+当 x = -1 时，级数为  $ \sum_{n=1}^{\infty}\frac{(-1)^{n}}{b_{n}} $ 。由于  $ \frac{1}{b_{n}} $ 单调递减并趋于 0，因此级数是收敛的交错级数；
+
+当 $x=1$ 时，级数为 $\sum_{n=1}^{\infty}\frac{1}{b_n}$。由于 $b_n < n\ln(1+n^2) < n\ln[(2n)^2] < 2n\ln(2n)$，即有 $\frac{1}{b_n} > \frac{1}{2n\ln(2n)}$。由于 $\int_{2}^{+\infty}\frac{dx}{x\ln x} = \ln(\ln x)\big|_{2}^{+\infty} = +\infty$，积分发散，由积分判别法知级数 $\sum_{n=1}^{\infty}\frac{1}{2n\ln(2n)}$ 发散，所以 $\sum_{n=1}^{\infty}\frac{1}{b_n}$ 发散。
+
+所以，幂级数  $ \sum_{n=1}^{\infty}\frac{x^{n}}{b_{n}} $ 的收敛域为  $ [-1,1) $.
+
+评注（1）对幂级数 $ \sum_{n=1}a_{n}x^{n} $，若 $ a_{n} $是由n的对数函数、幂函数构成的分式，则级数的收敛半径通常为1.
+
+（2）积分判别法：设 $ \sum_{n=1}^{\infty}u_{n} $是一正项级数.若存在 $ f(x)\geq0(1\leq x<+\infty) $，使得 $ f(n)=u_{n} $，则级数 $ \sum_{n=1}^{\infty}u_{n} $与反常积分 $ \int_{1}^{+\infty}f(x)dx $具有相同的敛散性.
+
+例4 求级数  $ \sum_{n=1}^{\infty}\frac{3+2(-1)^{n}}{3^{n}}(x+1)^{n} $ 的收敛域.
+
+分析 先求收敛半径，再确定收敛域.
+
+解 由于  $ \left|\frac{a_n}{a_{n+1}}\right| = \frac{3 + 2(-1)^n}{3^n} \cdot \frac{3^{n+1}}{3 + 2(-1)^{n+1}} = \frac{3[3 + 2(-1)^n]}{3 + 2(-1)^{n+1}} = \begin{cases} \frac{3}{5}, & n \text{为奇数} \\ 15, & n \text{为偶数} \end{cases} $，所以  $ \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| $ 不存在，因此不能用比值法求收敛半径。可将级数拆分为两个级数来考虑：
+
+ $$ \sum_{n=1}^{\infty}\frac{3+2(-1)^{n}}{3^{n}}(x+1)^{n}=\sum_{n=1}^{\infty}\frac{3}{3^{n}}(x+1)^{n}+\sum_{n=1}^{\infty}\frac{2(-1)^{n}}{3^{n}}(x+1)^{n}. $$ 
+
+容易求出 $ \sum_{n=1}^{\infty}\frac{3}{3^{n}}(x+1)^{n} $的收敛半径为3， $ \sum_{n=1}^{\infty}\frac{2(-1)^{n}}{3^{n}}(x+1)^{n} $的收敛半径也为3，所以原级数的收敛半径至少为3.将 $ x+1=\pm3 $代入原级数都是发散的，所以其收敛域为 $ \left|x+1\right|<3 $，即-4<x<2.
+
+评注（1）幂级数做线性运算，其代数和的收敛域是各项收敛域的交集.
+
+(2). 该幂级数的收敛半径虽然不能由比值法确定，却可以由根值法确定，方法如下：
+
+因为  $ \frac{1}{3^{n}} \leqslant \frac{3+2(-1)^{n}}{3^{n}} \leqslant \frac{5}{3^{n}} $，而  $ \lim_{n \to \infty} \sqrt[n]{\frac{1}{3^{n}}} = \frac{1}{3} $， $ \lim_{n \to \infty} \sqrt[n]{\frac{5}{3^{n}}} = \frac{1}{3} $，所以
+
+ $$ \rho=\lim_{n\to\infty}\sqrt[n]{\frac{3+2(-1)^{n}}{3^{n}}}=\frac{1}{3},\quad R=3. $$ 
+
+例5 设正项级数 $ \sum_{n=0}^{\infty}a_{n} $发散， $ A_{n}=a_{0}+a_{1}+\cdots+a_{n} $，若 $ \frac{a_{n}}{A_{n}}\rightarrow0(n\rightarrow\infty) $，求 $ \sum_{n=0}^{\infty}a_{n}x^{n} $的收敛半径.
+
+分析 由于级数的一般项没有具体给出，所以无法用比值法或根值法求收敛半径，可考虑用比较法来确定. 由于 $ \lim_{n\to\infty}\frac{a_n}{A_n}=0 $，则 $ \lim_{n\to\infty}\frac{A_n}{A_{n+1}}=\lim_{n\to\infty}\frac{A_{n+1}-a_n}{A_{n+1}}=1 $，即 $ \sum_{n=0}^{\infty}A_{n}x^{n} $的收敛半径为1. 因此可选 $ \sum_{n=0}^{\infty}A_{n}x^{n} $来做比较.
+
+解 设 r 与 R 分别是级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 与  $ \sum_{n=0}^{\infty}A_{n}x^{n} $ 的收敛半径.
+
+因为正项级数 $ \sum_{n=0}^{\infty}a_{n} $发散，从而级数 $ \sum_{n=0}^{\infty}a_{n}x^{n} $对x=1发散.由此推知 $ r\leq1 $.
+
+另一方面，由题设 $ \lim_{n\to\infty}\frac{a_n}{A_n}=0 $，且 $ a_n,A_n\geq0 $，则必有 $ r\geq R $。由于
+
+ $$ R=\lim_{n\to\infty}\left(\frac{A_{n}}{A_{n+1}}\right)=\lim_{n\to\infty}\left(\frac{A_{n+1}-a_{n}}{A_{n+1}}\right)=1-\lim_{n\to\infty}\frac{a_{n}}{A_{n+1}}=1 $$ 
+
+所以 $ r \geqslant 1 $。从而得到r=1。
+
+例6°（1）设幂级数  $ \sum_{n=1}^{\infty}a_{n}^{2}x^{n} $ 的收敛域为  $ [-1,1] $，证明：
+
+（1）幂级数  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x^{n} $ 的收敛域也为  $ [-1,1] $.
+
+（2）试问命题（1）的逆命题是否正确？若正确，则给出证明；若不正确，则举一反例
+
+分析 （1）只需证明  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x^{n} $ 在  $ x=\pm1 $ 时收敛，而对  $ \forall\left|x_{0}\right|>1 $ ，级数  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x_{0}^{n} $ 发散；
+
+（2）取 $ a_{n}=\frac{1}{\sqrt{n}} $，易见（1）的逆命题不正确.
+
+解 （1）因  $ \sum_{n=1}^{\infty}a_{n}^{2} $ 收敛，  $ \sum_{n=1}^{\infty}\frac{1}{n^{2}} $ 收敛，而  $ \left|\frac{a_{n}}{n}\right|\leq\frac{1}{2}\left(a_{n}^{2}+\frac{1}{n^{2}}\right) $，由比较法得  $ \sum_{n=1}^{\infty}\left|\frac{a_{n}}{n}\right| $ 收敛，故  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x^{n} $ 在  $ x=\pm1 $ 时（绝对）收敛.
+
+下面证明对  $ \forall x_{0}, |x_{0}|>1 $，级数  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x_{0}^{n} $ 发散.
+
+（反证）设 $ \sum_{n=1}^{\infty}\frac{a_n}{n}x_0^n $收敛，则对 $ \forall r $，只要 $ |r|<|x_0| $，则 $ \sum_{n=1}^{\infty}\left|\frac{a_nr}{n}r^n\right| $收敛，取 $ r_1 $使得 $ 1<|r_1|<|r|<|x_0| $。由于 $ \lim_{n\to\infty}a_n^2=0 $， $ \lim_{n\to\infty}n\left|\frac{r_1}{r}\right|^n=0 $，所以当 $ n $充分大时， $ |a_n|<1 $， $ n\left|\frac{r_1}{r}\right|^n<1 $。于是
+
+ $$ \left|a_{n}^{2}r_{1}^{n}\right|=\left|\frac{a_{n}}{n}r^{n}\right|\left|a_{n}\right|n\left|\frac{r_{1}}{r}\right|^{n}\leqslant\left|\frac{a_{n}}{n}r^{n}\right|. $$ 
+
+故 $ \sum_{n=1}^{\infty}a_{n}^{2}r_{1}^{n} $收敛，此与 $ \sum_{n=1}^{\infty}a_{n}^{2}x^{n} $在 $ \left|x\right|>1 $时发散矛盾.所以 $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x^{n} $的收敛域为 $ [-1,1] $.
+
+（2）命题（1）的逆命题不成立.
+
+反例：设  $ a_{n}=\frac{1}{\sqrt{n}} $，则  $ \sum_{n=1}^{\infty}\frac{a_{n}}{n}x^{n}=\sum_{n=1}^{\infty}\frac{1}{n^{3/2}}x^{n} $，其收敛域为  $ [-1,1] $，但  $ \sum_{n=1}^{\infty}a_{n}^{2}x^{n}=\sum_{n=1}^{\infty}\frac{1}{n}x^{n} $ 的收敛域为  $ [-1,1) $。
+
+例7求级数 $ \sum_{n=1}^{\infty}\frac{x^{2n}}{8n^{2}+2n-1} $的收敛域与和函数，并计算级数 $ \sum_{n=1}^{\infty}\frac{1}{8n^{2}+2n-1} $的和.
+
+分析 这是一个缺项的幂级数（无奇次幂项），不能用系数比的极限来计算收敛半径，可用正项级数的比值法讨论其绝对收敛性，再确定收敛域；和函数可用逐项求导与逐项积分的方法来计算.
+
+解 由于  $ \lim_{n\to\infty}\left|\frac{u_{n+1}(x)}{u_n(x)}\right|=\lim_{n\to\infty}\left|\frac{\frac{x^{2(n+1)}}{8(n+1)^2+2(n+1)-1}}{\frac{x^{2n}}{8n^2+2n-1}}\right|=x^2 $，所以当  $ x^2<1 $ 时，级数收敛，当  $ x^2>1 $ 时，数发散.
+
+易知当  $ x = \pm 1 $ 时，级数均收敛，所以收敛域为  $ [-1,1] $.
+
+记  $ S(x)=\sum_{n=1}^{\infty}\frac{x^{2n}}{8n^{2}+2n-1} $，则
+
+ $$ S(x)=\frac{2}{3}\sum_{n=1}^{\infty}\left[\frac{1}{4n-1}-\frac{1}{4n+2}\right]x^{2n}\ ,\quad S(0)=0\ . $$ 
+
+ $ S(x) $ 是偶函数. 下面只讨论 x>0 的情况. 令  $ x=t^{2} $，则
+
+ $$ \begin{aligned}\sum_{n=1}^{\infty}\frac{1}{4n-1}x^{2n}=&\sum_{n=1}^{\infty}\frac{1}{4n-1}t^{4n}=t\int_{0}^{t}\sum_{n=1}^{\infty}u^{4n-2}\mathrm{~d}u=t\int_{0}^{t}\frac{u^{2}}{1-u^{4}}\mathrm{d}u\\=&\frac{t}{2}\int_{0}^{t}\left[\frac{1}{1-u^{2}}-\frac{1}{1+u^{2}}\right]\mathrm{d}u=\frac{t}{2}\left[\frac{1}{2}\ln\frac{1+t}{1-t}-\arctan t\right];\end{aligned} $$ 
+
+ $$ \begin{align*}\sum_{n=1}^{\infty}\frac{1}{2n+1}x^{2n}=&\frac{1}{x}\sum_{n=1}^{\infty}\frac{1}{2n+1}x^{2n+1}=\frac{1}{x}\int_{0}^{x}\sum_{n=1}^{\infty}u^{2n}\mathrm{d}u=\frac{1}{x}\int_{0}^{x}\frac{u^{2}}{1-u^{2}}\mathrm{d}u\\=&\frac{1}{x}\int_{0}^{x}\left[-1+\frac{1}{2}\left(\frac{1}{1-u}+\frac{1}{1+u}\right)\right]\mathrm{d}u=\frac{1}{x}\left[-x+\frac{1}{2}\ln\frac{1+x}{1-x}\right].\end{align*} $$ 
+
+所以
+
+ $$ \begin{aligned}S(x)&=\frac{\sqrt{|x|}}{3}\Biggl[\frac{1}{2}\ln\frac{1+\sqrt{|x|}}{1-\sqrt{|x|}}-\arctan\sqrt{|x|}\Biggr]-\frac{1}{3}\Biggl[-1+\frac{1}{2x}\ln\frac{1+x}{1-x}\Biggr]\\&=\frac{1}{3}\Biggl[1+\frac{\sqrt{|x|}}{2}\ln\frac{1+\sqrt{|x|}}{1-\sqrt{|x|}}-\frac{1}{2x}\ln\frac{1+x}{1-x}-\sqrt{|x|}\arctan\sqrt{|x|}\Biggr]\qquad(x\neq0,\mid x\mid<1).\\ \end{aligned} $$ 
+
+由于幂级数在收敛域内是连续的，所以  $ S(1) = \lim_{x \to 0} S(x) $。为计算极限，我们将  $ S(x) $ 改写为
+
+ $$ S(x)=\frac{1}{3}\Bigg[1-\frac{1}{2}\Bigg(\sqrt{|x|}-\frac{1}{x}\Bigg)\operatorname{l n}\Big(1-\sqrt{|x|}\Big)+\frac{1}{2}\Bigg(\sqrt{|x|}+\frac{1}{x}\Bigg)\operatorname{l n}\Big(1+\sqrt{|x|}\Big)-\frac{1}{2x}\operatorname{l n}(1+x)-\sqrt{|x|}\operatorname{a r c t a n}\sqrt{|x|}\Bigg]. $$ 
+
+注意到其中第2项的极限
+
+ $$ \begin{aligned}&\lim_{x\to1^{-}}\left(\sqrt{|x|}-\frac{1}{x}\right)\ln\left(1-\sqrt{|x|}\right)\xlongequal{\sqrt{|x|}=t}\lim_{x\to1^{-}}\left(t-\frac{1}{t^{2}}\right)\ln\left(1-t\right)\\&=\lim_{x\to1^{-}}\frac{(t-1)(t^{2}+t+1)}{t^{2}}\ln\left(1-t\right)=3\lim_{x\to1^{-}}(t-1)\ln\left(1-t\right)=0.\\ \end{aligned} $$ 
+
+则 $ \lim_{x\to\mathrm{i}^{-}}S(x)=\frac{1}{3}\left(1+\frac{1}{2}\ln2-\frac{\pi}{4}\right) $.所以
+
+ $$ \sum_{n=1}^{\infty}\frac{1}{8n^{2}+2n-1}=S(1)=\frac{1}{3}\left(1+\frac{1}{2}\ln2-\frac{\pi}{4}\right). $$ 
+
+评注（1）若幂级数有缺项，最好用正项级数的比值法或根值法讨论其绝对收敛性来确定收敛区间。当然，也可以做变量代换（本题可令 $ x^{2}=t $）化为不缺项的情况来处理。
+
+（2）用逐项求导或逐项积分的方法求幂级数的和函数时，可不必先确定其收敛区间，只要逐项求导或逐项积分后的幂级数（通常是几何级数）的收敛区间易求得，就可知道原级数的收敛区间（因为它们有相同的收敛区间）。例如，该题中①、②式都用到了几何级数求和，其收敛区间为 $ (-1,1) $，只需确定在 $ x=\pm1 $处原级数的敛散性，就可确定其收敛域。
+
+例8 设  $ y = f(x) $ 由方程组  $ \left\{\begin{aligned} x &= \sum_{n=1}^{\infty} \frac{(t-1)^{n}}{n} \\ y &= \sum_{n=1}^{\infty} \frac{nt^{n-1}}{2^{n}} \end{aligned}\right. $ 所确定，求  $ \left.\frac{dy}{dx}\right|_{t=1} $.
+
+分析 这是参数式函数的求导问题. 如果级数的和函数容易求得, 则求出和函数后再求导; 否则, 应先求导, 再求和函数.
+
+解
+
+ $$ \begin{aligned}\dot{x}&=\sum_{n=1}^{\infty}(t-1)^{n-1}=\frac{1}{1-(t-1)}=\frac{1}{2-t}\quad(0<t<2)\ ,\\y&=\sum_{n=1}^{\infty}\frac{nt^{n-1}}{2^{n}}=\left(\sum_{n=1}^{\infty}\left(\frac{t}{2}\right)^{n}\right)^{\prime}_{t}=\left(\frac{t/2}{1-t/2}\right)^{\prime}_{t}=\frac{2}{(2-t)^{2}}\ (-2<t<2)\ \Rightarrow\ \dot{y}=\frac{4}{(2-t)^{3}}\ .\end{aligned} $$ 
+
+则
+
+ $$ \left.\frac{\mathrm{d}y}{\mathrm{d}x}\right|_{t=1}=\left.\frac{\dot{y}}{\dot{x}}\right|_{t=1}=\left.\frac{4}{\left(2-t\right)^{2}}\right|_{t=1}=4. $$ 
+
+例9 设函数  $ F(x) $ 是函数  $ f(x) $ 的一个原函数，且  $ F(0)=1 $， $ F(x)f(x)=\cos 2x $， $ a_n=\int_0^{n\pi}|f(x)|\,\mathrm{d}x $  $ (n=1,2,\cdots) $。求幂级数  $ \sum_{n=2}^{\infty}\frac{a_n}{n^2-1}x^n $ 的收敛域与和函数。
+
+分析 计算积分得到 $ a_{n} $的表达式，再讨论收敛域与和函数.
+
+解  $ F'(x) = f(x) $， $ F(x)F'(x) = \cos 2x $， $ \int F(x)F'(x)dx = \int \cos 2x dx $， $ F^2(x) = \sin 2x + C $，由  $ F(0) = 1 $ 知  $ C = 1 $， $ F(x) = \sqrt{1 + \sin 2x} = |\cos x + \sin x| $。
+
+ $$ \left|f(x)\right|=\frac{\left|\cos2x\right|}{\left|F(x)\right|}=\frac{\left|\cos^{2}x-\sin^{2}x\right|}{\left|\cos x+\sin x\right|}=\left|\cos x-\sin x\right|, $$ 
+
+ $$ \int_{0}^{\pi}\mid f(x)\mid\mathrm{d}x=\int_{0}^{\frac{\pi}{4}}(\cos x-\sin x)\mathrm{d}x+\int_{\frac{\pi}{4}}^{\pi}(\sin x-\cos x)\mathrm{d}x=2\sqrt{2}. $$ 
+
+因为 $ \left|f(x)\right| $的周期为 $ \pi $，则
+
+ $$ a_{n}=\int_{0}^{n\pi}\mid f(x)\mid\mathrm{d}x=n\int_{0}^{\pi}\mid f(x)\mid\mathrm{d}x=2n\sqrt{2}. $$ 
+
+于是， $ \sum_{n=2}^{\infty}\frac{a_{n}}{n^{2}-1}x^{n}=2\sqrt{2}\sum_{n=2}^{\infty}\frac{n}{n^{2}-1}x^{n} $，其收敛域为 $ [-1,1) $.
+
+当 $ x\neq0 $时，有
+
+ $$ S(x)=\sum_{n=2}^{\infty}\frac{a_{n}}{n^{2}-1}x^{n}=\sqrt{2}\sum_{n=2}^{\infty}\left(\frac{1}{n-1}+\frac{1}{n+1}\right)x^{n}=\sqrt{2}\left(x\sum_{n=1}^{\infty}\frac{x^{n}}{n}+\frac{1}{x}\sum_{n=3}^{\infty}\frac{x^{n}}{n}\right), $$ 
+
+且 $ S(0)=0 $。又因为 $ \sum_{n}^{\infty}\frac{x^{n}}{n}=-\ln(1-x) $， $ -1\leq x<1 $，故当 $ x\neq0 $时，
+
+ $$ S(x)=\sqrt{2}\left[-x\ln(1-x)+\frac{1}{x}\left(-\ln(1-x)-x-\frac{x^{2}}{2}\right)\right]=-\sqrt{2}\left(\frac{1+x^{2}}{x}\ln(1-x)+1+\frac{x}{2}\right). $$ 
+
+所以
+
+ $$ S(x)=\left\{\begin{aligned}&-\sqrt{2}\left(\frac{1+x^{2}}{x}\ln(1-x)+1+\frac{x}{2}\right),&-1\leq x<1,\\ &0,&x=0.\end{aligned}\right. $$ 
+
+例10 求级数  $ \sum_{n=3}^{\infty}\frac{1}{(n-2)n2^{n}} $ 的和.
+
+分析 比较常见的方法是构造适当的幂级数，将所求级数的值作为幂级数和函数的值来计算。构造幂级数的方式可能不止一种，要以和函数容易计算为宜。
+
+解
+
+ $$ \sum_{n=3}^{\infty}\frac{1}{(n-2)n2^{n}}=\sum_{n=3}^{\infty}\left(\frac{1}{n-2}-\frac{1}{n}\right)\frac{1}{2^{n+1}}=\frac{1}{2^{3}}\sum_{n=3}^{\infty}\frac{1}{n-2}\cdot\frac{1}{2^{n-2}}-\frac{1}{2}\sum_{n=3}^{\infty}\frac{1}{n}\cdot\frac{1}{2^{n}}. $$ 
+
+令  $ S(x)=\frac{1}{2^{3}}\sum_{n=3}^{\infty}\frac{1}{n-2}x^{n-2}-\frac{1}{2}\sum_{n=3}^{\infty}\frac{1}{n}x^{n} $，则
+
+ $$ S^{\prime}(x)=\frac{1}{2^{3}}\sum_{n=3}^{\infty}x^{n-3}-\frac{1}{2}\sum_{n=3}^{\infty}x^{n-1}=\frac{1}{2^{3}}\cdot\frac{1}{1-x}-\frac{1}{2}\cdot\frac{x^{2}}{1-x}=\frac{3}{2^{3}}\cdot\frac{1}{1-x}+\frac{1}{2}(1+x),\quad|x|<1. $$ 
+
+积分，并注意 $ S(0)=0 $得
+
+ $$ S(x)=\frac{3}{2^{3}}\int_{0}^{x}\frac{\mathrm{d}t}{1-t}+\frac{1}{2}\int_{0}^{x}(1+t)\mathrm{d}t=-\frac{3}{2^{3}}\ln(1-x)+\frac{1}{2}\left(x+\frac{1}{2}x^{2}\right). $$ 
+
+所以
+
+ $$ \sum_{n=3}^{\infty}\frac{1}{(n-2)n2^{n}}=S\left(\frac{1}{2}\right)=\frac{5}{16}-\frac{3}{8}\ln2\;. $$ 
+
+评注 利用幂级数的和函数来求数项级数的和是很常用的方法。在构造幂级数时要充分利用初等运算、恒等变形等方法将数项级数拆分或化简，使得构造出的幂级数容易求和函数。
+
+例11 求 $ \frac{1+\frac{\pi^{4}}{5!}+\frac{\pi^{8}}{9!}+\frac{\pi^{12}}{13!}+\cdots}{\frac{1}{3!}+\frac{\pi^{4}}{7!}+\frac{\pi^{8}}{11!}+\frac{\pi^{12}}{15!}+\cdots} $之值.
+
+分析 要分别求分子、分母的级数和是较困难的，但将分子与分母做适当的线性组合，使之容易求和，则原分式的值也就容易计算了.
+
+解 易判定其分子、分母所对应的级数均收敛，设 p,q 分别是分子与分母级数的和，则
+
+ $$ \begin{aligned}{p\pi-q\pi^{3}=}&{{}\left(\pi+\frac{\pi^{5}}{5!}+\frac{\pi^{9}}{9!}+\frac{\pi^{13}}{13!}+\cdots\right)-\left(\frac{\pi^{3}}{3!}+\frac{\pi^{7}}{7!}+\frac{\pi^{11}}{11!}+\frac{\pi^{15}}{15!}+\cdots\right)}\\ {=}&{{}\pi-\frac{\pi^{3}}{3!}+\frac{\pi^{5}}{5!}-\frac{\pi^{7}}{7!}+\frac{\pi^{9}}{9!}-\frac{\pi^{11}}{11!}+\frac{\pi^{13}}{13!}-\frac{\pi^{15}}{15!}+\cdots=\operatorname{s i n}\pi=0\;.}\\ \end{aligned} $$ 
+
+故 $ \frac{p}{q}=\pi^{2} $
+
+评注（1）由于 $ ^{①} $式中的交错级数绝对收敛，所以任意换序不改变级数的敛散性与和.
+
+（2）幂级数求和的常用工具是幂级数的分析性质与几个常见函数的麦克劳林展开式（参见本节“2．函数的幂级数展开”）.
+
+例 12 求级数  $ \sum_{n=1}^{\infty}\frac{1}{3}\cdot\frac{2}{5}\cdot\frac{3}{7}\cdots\cdot\frac{n}{2n+1}\cdot\frac{1}{n+1} $ 的和.
+
+分析 显然，求级数部分和的极限是很困难的，可考虑用幂级数的和函数来计算. 为找到适当的幂级数，需要对该级数的一般项做变形.
+
+解 级数通项  $ a_{n}=\frac{1}{3}\cdot\frac{2}{5}\cdot\frac{3}{7}\cdots\cdot\frac{n}{2n+1}\cdot\frac{1}{n+1}=\frac{2(2n)!!}{(2n+1)!!(n+1)}\left(\frac{1}{\sqrt{2}}\right)^{2n+2} $，令
+
+ $$ f(x)=\sum_{n=0}^{\infty}\frac{(2n)!!}{(2n+1)!!(n+1)}x^{2n+2} $$ 
+
+则级数的收敛区间为 $ (-1,1) $， $ \sum_{n=1}^{\infty}a_{n}=2\left[f\left(\frac{1}{\sqrt{2}}\right)-\frac{1}{2}\right] $.
+
+对 $ ^{①} $式求导，得
+
+ $$ f^{\prime}(x)=2\sum_{n=0}^{\infty}\frac{(2n)!!}{(2n+1)!!}x^{2n+1}=2g(x),\mathrm{~ 其中 ~}g(x)=\sum_{n=0}^{\infty}\frac{(2n)!!}{(2n+1)!!}x^{2n+1}. $$ 
+
+因为
+
+ $$ \begin{aligned}{g^{\prime}(x)}&{{}=1+\sum_{n=1}^{\infty}\frac{(2n)!!}{(2n-1)!!}x^{2n}=1+x\sum_{n=1}^{\infty}\frac{(2n-2)!!}{(2n-1)!!}2n x^{2n-1}}\\ {}&{{}=1+x\left[\sum_{n=1}^{\infty}\frac{(2n-2)!!}{(2n-1)!!}x^{2n}\right]^{\prime}=1+x\big[x g(x)\big]^{\prime},}\\ \end{aligned} $$ 
+
+所以 $ g(x) $满足
+
+ $$ g^{\prime}(x)-\frac{x}{1-x^{2}}g(x)=\frac{1}{1-x^{2}}\;,\quad g(0)=0\;. $$ 
+
+解这个一阶线性微分方程，得
+
+ $$ g(x)=\mathrm{e}^{\int_{0}^{x}\frac{t}{1-t^{2}}\mathrm{d}t}\left(\int_{0}^{x}\frac{1}{1-s^{2}}\mathrm{e}^{-\int_{0}^{s}\frac{t}{1-t^{2}}\mathrm{d}t}\mathrm{d}s\right)=\frac{\arcsin x}{\sqrt{1-x^{2}}}, $$ 
+
+所以  $ f(x)=(\arcsin x)^2 $， $ f\left(\frac{1}{\sqrt{2}}\right)=\frac{\pi^2}{16} $， $ \sum_{n=1}^{\infty}a_n=2\left(\frac{\pi^2}{16}-\frac{1}{2}\right)=\frac{\pi^2-8}{8} $。
+
+评注 若幂级数的系数为分式，且分母含有自然数的阶乘，则和函数往往会满足某个微分方程.
+
+例 13 $ ^{*} $ 求证级数  $ \sum_{n=1}^{\infty}\frac{1+\frac{1}{2}+\cdots+\frac{1}{n}}{(n+1)(n+2)} $ 收敛，并求其和.
+
+分析 据 1.2 例 30 知  $ 1+\frac{1}{2}+\cdots+\frac{1}{n} $ 与  $ \ln n $ 是同阶无穷大，所以级数的收敛性由比较法容易判定；级数的和可借助于幂级数的和函数来计算，也可将其一般项拆分，化简部分和（缩项）求极限.
+
+解（1）证明级数收敛.
+
+方法1 记 $ a_{n}=1+\frac{1}{2}+\cdots+\frac{1}{n},\quad u_{n}=\frac{a_{n}}{(n+1)(n+2)} $，则
+
+由于  $ a_{n} = \ln n + C + \varepsilon_{n} $，其中 C 为欧拉常数， $ \lim_{n \to \infty} \varepsilon_{n} = 0 $（见 1.2 节例 30）。则
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{u_{n}}{\frac{1}{n^{3/2}}}=\operatorname*{l i m}_{n\to\infty}\frac{a_{n}}{n^{\frac{1}{2}}\left(1+\frac{1}{n}\right)\left(1+\frac{2}{n}\right)}=\operatorname*{l i m}_{n\to\infty}\frac{\operatorname{l n}n+C+\varepsilon_{n}}{n^{\frac{1}{2}}\left(1+\frac{1}{n}\right)\left(1+\frac{2}{n}\right)}=0, $$ 
+
+而 $ \sum_{n=1}^{\infty}\frac{1}{n^{3/2}} $收敛，故 $ \sum_{n=1}^{\infty}u_{n} $收敛.
+
+方法2 因为当n>1时，
+
+ $$ 0<a_{n}=1+\frac{1}{2}+\cdots+\frac{1}{n}<1+\int_{1}^{n}\frac{1}{x}\mathrm{d}x=1+\ln n<\sqrt{n}~, $$ 
+
+所以 $ u_{n}\leq\frac{\sqrt{n}}{(n+1)(n+2)}<\frac{1}{n^{3/2}} $．而 $ \sum_{n=1}^{\infty}\frac{1}{n^{3/2}} $收敛，所以 $ \sum_{n=1}^{\infty}u_{n} $收敛.
+
+(2) 求级数的和.
+
+方法1 令  $ S(x)=\sum_{n=1}^{\infty}\frac{a_{n}}{(n+1)(n+2)}x^{n+2} $，显然级数在  $ |x|\leq1 $ 时收敛。且有
+
+ $$ \begin{align*}S^{n}(x)=&\sum_{n=1}^{\infty}a_{n}x^{n}=\sum_{n=1}^{\infty}\left(\frac{x}{1}\cdot x^{n-1}+\frac{x^{2}}{2}\cdot x^{n-2}+\cdots+\frac{x^{n}}{n}\cdot1\right)=\left(\sum_{n=1}^{\infty}\frac{x^{n}}{n}\right)\cdot\left(\sum_{n=0}^{\infty}x^{n}\right)\\=&\int_{0}^{x}\left(\sum_{n=1}^{\infty}x^{n-1}\right)\mathrm{d}x\cdot\frac{1}{1-x}=\frac{1}{1-x}\int_{0}^{x}\frac{1}{1-x}\mathrm{d}x=-\frac{\ln(1-x)}{1-x},\quad|x|<1.\end{align*} $$ 
+
+由于  $ S(0)=S'(0)=0 $，则
+
+ $$ S^{\prime}(x)=-\int_{0}^{x}\frac{\ln(1-t)}{1-t}\mathrm{d}t=\frac{1}{2}[\ln(1-x)]^{2}\ , $$ 
+
+ $$ S(x)=\frac{1}{2}\int_{0}^{x}[\ln(1-t)]^{2}\mathrm{~d}t=-\frac{1}{2}(1-x)[\ln(1-x)]^{2}+(1-x)\ln(1-x)+x. $$ 
+
+所求数项级数的和 S = S(1 - 0) = 1.
+
+方法2 对任意自然数 $ n \geq 2 $，级数的部分和
+
+ $$ \begin{aligned}S_{n}&=\sum_{k=1}^{n}\frac{1+\frac{1}{2}+\cdots+\frac{1}{k}}{(k+1)(k+2)}=\sum_{k=1}^{n}\frac{a_{k}}{(k+1)(k+2)}=\sum_{k=1}^{n}\left(\frac{a_{k}}{k+1}-\frac{a_{k}}{k+2}\right)\\&=\sum_{k=1}^{n}\left(\frac{a_{k}}{k+1}-\frac{a_{k-1}}{k+1}\right)-\frac{a_{n}}{n+2}=\sum_{k=1}^{n}\frac{1}{k(k+1)}-\frac{a_{n}}{n+2}\quad(a_{0}=0)\\&=\sum_{k=1}^{n}\left(\frac{1}{k}-\frac{1}{k+1}\right)-\frac{a_{n}}{n+2}=1-\frac{1}{n+1}-\frac{a_{n}}{n+2}.\\ \end{aligned} $$ 
+
+因为  $ 0 < a_n < 1 + \ln n $，所以  $ 0 < \frac{a_n}{n+2} < \frac{1 + \ln n}{n+2} \to 0 (n \to \infty) $。所以  $ \lim_{n \to \infty} \frac{a_n}{n+2} = 0 $。于是
+
+ $$ S=\operatorname*{l i m}_{n\to\infty}S_{n}=1-0-0=1. $$ 
+
+评注 上面的 $ ^{①} $式应用了两绝对收敛级数乘积的柯西法则：
+
+ $$ \left(\sum_{n=1}^{\infty}a_{n}\right)\left(\sum_{n=1}^{\infty}b_{n}\right)=\sum_{n=1}^{\infty}\left(a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n}b_{1}\right). $$ 
+
+例 14 求级数  $ 1 + \frac{x^{3}}{3!} + \frac{x^{6}}{6!} + \frac{x^{9}}{9!} + \cdots + \frac{x^{3n}}{(3n)!} + \cdots $ 的和函数.
+
+分析 级数通项的分母为阶乘形式，和函数可能会满足某个微分方程. 在级数的收敛区间内逐项求导（一阶乃至高阶）并寻找级数与其导数的关系，建立微分方程再求解.
+
+解 易求得级数的收敛区间为 $ (-∞,+∞) $
+
+记  $ y(x)=1+\frac{x^{3}}{3!}+\frac{x^{6}}{6!}+\frac{x^{9}}{9!}+\cdots+\frac{x^{3n}}{(3n)!}+\cdots $，则
+
+ $$ y^{\prime}(x)=\frac{x^{2}}{2!}+\frac{x^{5}}{5!}+\frac{x^{8}}{8!}+\cdots+\frac{x^{3n-1}}{(3n-1)!}+\cdots,\quad y^{\prime \prime}(x)=x+\frac{x^{4}}{4!}+\frac{x^{7}}{7!}+\cdots+\frac{x^{3n-2}}{(3n-2)!}+\cdots. $$ 
+
+有
+
+ $$ y^{n}+y^{\prime}+y=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=\mathrm{e}^{x}\;. $$ 
+
+解初值问题 $ \left\{\begin{aligned}&y^{\prime\prime}+y^{\prime}+y=\mathrm{e}^{x}\\ &y(0)=1,y^{\prime}(0)=0\end{aligned}\right. $，得
+
+ $$ y=\frac{2}{3}\mathrm{e}^{-\frac{1}{2}x}\cos\frac{\sqrt{3}}{2}x+\frac{1}{3}\mathrm{e}^{x},\quad x\in(-\infty,+\infty). $$ 
+
+评注 对  $ y(x) $ 求三阶导数可得微分方程  $ y''(x)=y(x) $，对应的初值条件为  $ y(0)=1, y'(0)=0, y''(0)=0 $。读者可验证该初值问题的解与上面的求解结果是一致的。但三阶微分方程更容易建立。
+
+例 15 设  $ a_{1}=1 $,  $ a_{2}=1 $,  $ a_{n+2}=2a_{n+1}+3a_{n} $ ( $ n\geqslant1 $)，求  $ \sum_{n=1}^{\infty}a_{n}x^{n} $ 的收敛半径及和函数.
+
+分析 一种方法是由  $ a_{n} $ 所满足的递推式求出  $ a_{n} $ 的表达式，再求级数的收敛半径与和函数；另一种方法是直接求极限  $ \lim_{n\to\infty}\frac{a_{n+1}}{a} $ 来得到收敛半径，由  $ a_{n} $ 的递推式来建立和函数所满足的方程.
+
+解 方法1 把 $ a_{n+2}=2a_{n+1}+3a_n $化为 $ a_{n+2}-3a_{n+1}=-1(a_{n+1}-3a_n) $，则 $ (a_{n+2}-3a_{n+1}) $是以-2为首项，-1为公比的等比数列，所以 $ a_{n+2}-3a_{n+1}=-2(-1)^n $。此时又可化为
+
+ $$ a_{n+2}+\frac{1}{2}(-1)^{n+2}=3\left[a_{n+1}+\frac{1}{2}(-1)^{n+1}\right], $$ 
+
+则 $ \left\{a_{n}+\frac{1}{2}(-1)^{n}\right\} $是以 $ \frac{1}{2} $为首项，3为公比的等比级数，所以
+
+ $$ a_{n}=-\frac{1}{2}(-1)^{n}+\frac{1}{2}\times3^{n-1}. $$ 
+
+由于 $ \lim_{n\to\infty}\sqrt[n]{a_n}=3 $，所以 $ \sum_{a=1}^{\infty}a_nx^n $的收敛半径是 $ \frac{1}{3} $。和函数
+
+ $$ \sum_{n=1}^{\infty}a_{n}x^{n}=-\frac{1}{2}\sum_{n=1}^{\infty}(-x)^{n}+\frac{1}{6}\sum_{n=1}^{\infty}(3x)^{n}=-\frac{1}{2}\cdot\frac{-x}{1+x}+\frac{1}{6}\cdot\frac{3x}{1-3x}=\frac{x(1-x)}{(1+x)(1-3x)}. $$ 
+
+方法2 记 $ b_{n}=\frac{a_{n+1}}{a_{n}} $，由于 $ a_{n+2}=2a_{n+1}+3a_{n} $，则 $ b_{n+1}=2+\frac{3}{b_{n}} $，且 $ b_{n}\geqslant2(n\geqslant2) $，则
+
+ $$ |b_{n+1}-3|=\frac{|b_{n}-3|}{b_{n}}\leqslant\frac{1}{2}|b_{n}-3|\leqslant\cdots\leqslant\left(\frac{1}{2}\right)^{n-1}|b_{2}-3| $$ 
+
+所以  $ \lim_{n\to\infty}b_n=3 $ ，级数收敛半径为  $ \frac{1}{3} $
+
+和函数
+
+ $$ \begin{aligned}S(x)&=\sum_{n=1}^{\infty}a_{n}x^{n}=x+x^{2}+2\sum_{n=3}^{\infty}a_{n-1}x^{n}+3\sum_{n=3}^{\infty}a_{n-2}x^{n}\\&=x+x^{2}+2x\sum_{n=2}^{\infty}a_{n}x^{n}+3x^{2}\sum_{n=1}^{\infty}a_{n}x^{n}\\&=x+x^{2}+2x(S(x)-x)+3x^{2}S(x),\\ \end{aligned} $$ 
+
+解出  $  S(x) = \frac{x(1-x)}{(1+x)(1-3x)}  $.
+
+方法3 设  $ S(x)=\sum_{n=1}^{\infty}a_{n}x^{n} $ 的收敛半径为 R，则当 |x|<R 时，由 “方法2” 知
+
+ $$ \begin{align*}S(x)=&\frac{x(1-x)}{(1+x)(1-3x)}=\frac{x}{2}\bigg(\frac{1}{1+x}+\frac{1}{1-3x}\bigg)\\=&\frac{x}{2}\Bigg(\sum_{n=0}^{\infty}(-1)^{n}x^{n}+\sum_{n=0}^{\infty}3^{n}x^{n}\Bigg)=\sum_{n=1}^{\infty}\frac{1}{2}\Big[(-1)^{n-1}+3^{n-1}\Big]x^{n}\ ,\end{align*} $$ 
+
+所以  $ a_{n}=\frac{1}{2}\left[(-1)^{n-1}+3^{n-1}\right] $， $ R=\lim_{n\to\infty}\frac{a_{n}}{a_{n+1}}=\frac{1}{3} $.
+
+评注（1） $ a_{n} $ 的通项公式也可由特征根法解差分方程  $ a_{n+2}=2a_{n+1}+3a_{n} $ 而得到．具体方法如下：
+
+解对应的特征方程  $ r^{2}-2r-3=0 $ ，得特征根  $ r_{1}=-1 $ ， $ r_{2}=3 $ 。由特征根写出差分方程的通解
+
+ $$ a_{n}=c_{1}(-1)^{n}+c_{2}3^{n} $$ 
+
+代入  $ a_1 = 1 $， $ a_2 = 1 $，解得  $ c_1 = -\frac{1}{2} $， $ c_2 = \frac{1}{6} $。所以  $ a_n = -\frac{1}{2}(-1)^n + \frac{1}{2} \times 3^{n-1} $。
+
+（2）若  $ f(x)=\sum_{n=0}^{\infty}a_{n}x^{n} $ 的系数  $ a_{n} $ 满足某个常系数线性差分方程（递推式），将  $ a_{n} $ 的递推式代入级数，经运算或变形可得到一个关于  $ f(x) $ 的代数方程，解代数方程可得  $ f(x) $ 的表达式.
+
+（3）若 $ a_{n} $满足某个差分方程，而该差分方程又不便求解，则可通过幂级数 $ \sum_{n=0}^{\infty}a_{n}x^{n} $的和函数的展开式来得到 $ a_{n} $的表达式（如本题“方法3”）.
+
+例 16 设  $ a_{0}=1 $， $ a_{n+1}=-\left(2-\frac{1}{n+1}\right)a_{n} $ (n=0,1,2, $ \cdots $). 求  $ a_{n}(n\geq1) $ 的表达式与级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 敛域与和函数.
+
+分析 题设给出  $ a_{n} $ 的差分方程虽是变系数的，但却是一阶线性齐次的，容易递推求解. 常规解法是先求出  $ a_{n} $ 的表达式，再求级数的收敛域与和函数；也可以逆向思维，先利用  $ a_{n} $ 的差分方程求得级数的和函数与收敛域，再确定  $ a_{n} $ 的表达式，这种方法尤其在  $ a_{n} $ 的表达式不易求得时更为有效.
+
+解 方法1
+
+ $$ \begin{align*}a_{_{n+1}}=&-\frac{2n+1}{n+1}a_{_{n}}=\left(-\frac{2n+1}{n+1}\right)\left(-\frac{2(n-1)+1}{n}\right)a_{_{n-1}}\\=&\left(-\frac{2n+1}{n+1}\right)\left(-\frac{2n-1}{n}\right)a_{_{n-1}}=\cdots=\left(-\frac{2n+1}{n+1}\right)\left(-\frac{2n-1}{n}\right)\cdots\left(-\frac{3}{2}\right)a_{_{1}}\\=&\left(-1\right)^{n+1}\frac{\left(2n+1\right)!!}{\left(n+1\right)!}.\end{align*} $$ 
+
+所以  $ a_{n}=(-1)^{n}\frac{(2n-1)!!}{n!} $ ( $ n\geqslant1 $)，且
+
+ $$ S(x)=1+\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{n!}x^{n}~. $$ 
+
+因为 $ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=2 $，所以级数的收敛半径 $ R=\frac{1}{2} $.
+
+当  $ x=\frac{1}{2} $ 时，级数为  $ 1+\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{n!2^{n}} $，该级数是收敛的.
+
+因为 $ u_{n}=\frac{(2n-1)!!}{n!2^{n}}=\frac{(2n-1)!!}{(2n)!!}=\frac{1}{2}\cdot\frac{3}{4}\cdot\frac{5}{6}\cdot\cdots\cdot\frac{2n-1}{2n} $是单调递减的，令
+
+ $$ b_{n}=\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{4}{5}\cdots\cdot\frac{2n-2}{2n-1},\quad c_{n}=\frac{2}{3}\cdot\frac{4}{5}\cdot\frac{6}{7}\cdots\cdot\frac{2n}{2n+1}, $$ 
+
+则
+
+ $$ b_{n}<u_{n}<c_{n}\;,\quad b_{n}u_{n}=\frac{1}{4n}\;,\quad u_{n}c_{n}=\frac{1}{2n+1}\Rightarrow\frac{1}{2\sqrt{n}}<u_{n}<\frac{1}{\sqrt{2n+1}}\;, $$ 
+
+得  $ \lim_{n\to\infty}u_n=0 $ 。由莱布尼兹准则知级数  $ \sum_{n=1}^{\infty}(-1)^n u_n $ 收敛.
+
+当  $ x = -\frac{1}{2} $ 时，级数为  $ 1 + \sum_{n=1}^{\infty} \frac{(2n-1)!!}{n!2^n} = \sum_{n=1}^{\infty} u_n $，该级数是发散的.
+
+综上知，级数 $ ^{①} $的收敛域是 $ \left(-\frac{1}{2},\frac{1}{2}\right] $.
+
+下面求级数的和函数：①式两边求导得
+
+ $$ S^{\prime}(x)=\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(n-1)!}x^{n-1}~, $$ 
+
+ $$ 2x S^{\prime}(x)=2\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(n-1)!}x^{n}~, $$ 
+
+②式+③式得
+
+ $$ \begin{align*}(1+2x)S^{\prime}(x)&=-1+\sum_{n=2}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(n-1)!}x^{n-1}+2\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(n-1)!}x^{n}\\&=-1+\sum_{n=1}^{\infty}(-1)^{n+1}\frac{(2n+1)!!}{n!}x^{n}+2\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(n-1)!}x^{n}\\&=-1-\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{n!}x^{n}=-S(x),\end{align*} $$ 
+
+即
+
+ $$ \frac{S^{\prime}(x)}{S(x)}=-\frac{1}{1+2x}\Rightarrow S(x)=\frac{1}{\sqrt{1+2x}}+C. $$ 
+
+由  $ S(0)=1 $，得 C=0。所以  $ S(x)=\frac{1}{\sqrt{1+2x}}\left(-\frac{1}{2}<x\leq\frac{1}{2}\right) $。
+
+方法2 记 $ S(x)=\sum_{n=0}^{\infty}a_{n}x^{n} $，因为 $ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=2 $，所以级数的收敛半径 $ R=\frac{1}{2} $，且有
+
+ $$ \begin{aligned}S(x)&=1+\sum_{n=1}^{\infty}a_{n}x^{n}=1-\sum_{n=0}^{\infty}\left(2-\frac{1}{n+1}\right)a_{n}x^{n+1}\\&=1-2xS(x)+\sum_{n=0}^{\infty}\frac{1}{n+1}a_{n}x^{n+1}.\end{aligned} $$ 
+
+两边求导得
+
+ $$ S^{\prime}(x)=-2S(x)-2x S^{\prime}(x)+\sum_{n=0}^{\infty}a_{n}x^{n}=-S(x)-2x S^{\prime}(x)~, $$ 
+
+即
+
+ $$ \frac{S^{\prime}(x)}{S(x)}=-\frac{1}{1+2x}\Rightarrow S(x)=\frac{1}{\sqrt{1+2x}}+C\;. $$ 
+
+由  $ S(0)=1 $，得 C=0。所以  $ S(x)=\frac{1}{\sqrt{1+2x}}\left(-\frac{1}{2}<x\leq\frac{1}{2}\right) $。
+
+将 $ S(x) $做幂级数展开，有
+
+ $$ \begin{aligned}S(x)&=(1+2x)^{\frac{1}{2}}=1+\sum_{n=1}^{\infty}\frac{-\frac{1}{2}\left(-\frac{1}{2}-1\right)\cdots\left(-\frac{1}{2}-n+1\right)}{n!}(2x)^{n}\\&=1+\sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{n!}x^{n}.\end{aligned} $$ 
+
+所以  $ a_{n}=(-1)^{n}\frac{(2n-1)!!}{n!} $ ( $ n \geqslant 1 $).
+
+评注（1）若  $ f(x)=\sum_{n=0}a_{n}x^{n} $ 的系数  $ a_{n} $ 满足某个变系数（n 的简单有理式）的线性差分方程，将  $ a_{n} $ 的递推式代入级数，再利用幂级数的逐项求导或积分性质通常可得到一个关于  $ f(x) $ 的微分方程.
+
+（2）该题解法1的困难之处在于找到和函数所满足的微分方程，因此解法2更可取.
+
+例 17 $ ^{*} $ 定义  $ S_{0} $ 为 1，设  $ S_{n} $ 为某一类  $ n \times n $ 对称矩阵  $ (a_{ij}) $ 的总数 (n ≥ 1)，这类矩阵的元素为非负整数，且  $ \sum_{i=1}^{n} a_{ij} = 1 (j=1,2,\cdots,n) $，求级数  $ \sum_{n=0}^{\infty} S_{n} \frac{x^{n}}{n!} $ 的和函数.
+
+分析 须求得  $ S_{n} $ 的表达式或递推公式，则级数的和函数才便于找到方法计算.
+
+解 由于对称矩阵 $ (a_{ij})_{n\times n} $的元素为非负整数，且有 $ \sum_{i=1}^{n}a_{ij}=1(j=1,2,\cdots,n) $，所以矩阵的每行和每列只有一个元素，且为1，其余元素全为0. 我们称该类矩阵为“对称置换矩阵”. 下面讨论 $ S_{n} $的递推关系式：
+
+设 $ (a_{ij})_{n\times n} $中的 $ a_{1k}=1 $。若k=1，则有 $ S_{n-1} $个方法去构成这n阶矩阵；
+
+若  $ k \neq 1 $，则  $ a_{1k} = a_{k1} = 1 $，从而删去第1行第k行及第1列第k列，剩下一个  $ (n-2) \times (n-2) $ 对称的置换矩阵，可见
+
+ $$ S_{n}=S_{n-1}+(n-1)S_{n-2}. $$ 
+
+令  $ F(x)=\sum_{n=0}^{\infty}S_{n}\frac{x^{n}}{n!} $， $ a_{n}=\frac{S_{n}}{n!} $。先求幂级数的收敛区间。
+
+由于
+
+ $$ \operatorname*{l i m}_{n\to\infty}\frac{a_{n+1}}{a_{n}}=\operatorname*{l i m}_{n\to\infty}\frac{S_{n+1}}{(n+1)!}\cdot\frac{n!}{S_{n}}=\operatorname*{l i m}_{n\to\infty}\frac{S_{n+1}}{S_{n}}\cdot\frac{1}{n+1}, $$ 
+
+若 $ \frac{S_{n+1}}{S_n} $有界，则 $ \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=0 $；若 $ \frac{S_{n+1}}{S_n} $无界，则必有 $ \lim_{n\to\infty}\frac{S_{n+1}}{S_n}=\infty $（原因后叙），从而
+
+ $$ \lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{nS_{n-1}}{(n+1)S_n}\right)=0 $$ 
+
+所以幂级数的收敛区间为 $ (-∞,+∞) $
+
+下面求级数的和函数：
+
+ $$ \begin{align*}F^{\prime}(x)&=\sum_{n=1}^{\infty}S_{n}\frac{x^{n-1}}{(n-1)!}=\sum_{n=1}^{\infty}\left(S_{n-1}\frac{x^{n-1}}{(n-1)!}+(n-1)S_{n-2}\frac{x^{n-1}}{(n-1)!}\right)\\&=\sum_{n=0}^{\infty}S_{n}\frac{x^{n}}{n!}+\sum_{n=2}^{\infty}S_{n-2}\frac{x^{n-1}}{(n-2)!}=F(x)+xF(x),\end{align*} $$ 
+
+即 $ \frac{F'(x)}{F(x)}=1+x $。积分并由 $ F(0)=S_0=1 $，得 $ F(x)=\mathrm{e}^{x+\frac{x^2}{2}} $， $ x\in(-\infty,+\infty) $。
+
+最后证明若 $ \frac{S_{n+1}}{S_n} $无界，则必有 $ \lim_{n\to\infty}\frac{S_{n+1}}{S_n}=\infty $。因为
+
+ $$ \begin{aligned}{\frac{S_{n+1}}{S_{n}}-\frac{S_{n}}{S_{n-1}}}&{{}=\frac{S_{n+1}S_{n-1}-S_{n}^{2}}{S_{n}S_{n-1}}=\frac{S_{n}S_{n-1}+n S_{n-1}^{2}-S_{n}^{2}}{S_{n}S_{n-1}}}\\ {}&{{}=\frac{S_{n}}{S_{n-1}}\Bigg[\frac{S_{n-1}}{S_{n}}+n\Bigg(\frac{S_{n-1}}{S_{n}}\Bigg)^{2}-1\Bigg],}\\ \end{aligned} $$ 
+
+注意到方程  $ nx^{2}+x-1=0(x>0) $ 的根为  $ x_{1}=\frac{1}{\sqrt{4n+1}+1} $，所以当  $ 0<\frac{S_{n-1}}{S_{n}}\leq\frac{1}{\sqrt{4n+1}+1} $ 时，有  $ \lim_{n\to\infty}\frac{S_{n}}{S_{n-1}}=\infty $；当  $ \frac{S_{n-1}}{S_{n}}>\frac{1}{\sqrt{4n+1}+1} $ 时，由①式知  $ \frac{S_{n+1}}{S_{n}}-\frac{S_{n}}{S_{n-1}}>0 $，即  $ \left\{\frac{S_{n+1}}{S_{n}}\right\} $ 是单调递增数列。该数列若无界，则必趋于无穷大。
+
+例18 $ ^{*} $ 设函数  $ z(k)=\sum_{n=0}^{\infty}\frac{n^{k}}{n!}e^{-1} $.
+
+（1）求  $ z(0) $、 $ z(1) $ 和  $ z(2) $ 的值；（2）试证明当 k 取正整数时， $ z(k) $ 也为正整数.
+
+分析 利用展开式  $ e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!} $，容易求得  $ z(0) $、 $ z(1) $ 和  $ z(2) $ 的值；由（1）中的结果利用归纳法容易证明（2）.
+
+ $$ \begin{aligned} 解 \quad(1)\quad&z(0)=\mathbf{e}^{-1}\sum_{n=0}^{\infty}\frac{x^{n}}{n!}\bigg|_{x=1}=\mathbf{e}^{-1}\mathbf{e}^{x}\bigg|_{x=1}=1,\quad z(1)=\mathbf{e}^{-1}\sum_{n=0}^{\infty}\frac{nx^{n}}{n!}\bigg|_{x=1}=\mathbf{e}^{-1}x(\mathbf{e}^{x})^{\prime}\bigg|_{x=1}=1,\\&z(2)=\mathbf{e}^{-1}\sum_{n=0}^{\infty}\frac{n^{2}x^{n}}{n!}\bigg|_{x=1}=\mathbf{e}^{-1}x\Big[x(\mathbf{e}^{x})^{\prime}\Big]^{\prime}\bigg|_{x=1}=\mathbf{e}^{-1}x(x+1)\mathbf{e}^{x}\bigg|_{x=1}=2.\end{aligned} $$ 
+
+（2）方法1 找规律.
+
+当 k=1 时， $ x(\mathrm{e}^{x})' = \sum_{n=0}^{\infty} \frac{nx^{n}}{n!} = P_{1}(x) \mathrm{e}^{x} $；当 k=2 时， $ x(P_{1}(x) \mathrm{e}^{x})' = \sum_{n=0}^{\infty} \frac{n^{2}x^{n}}{n!} = P_{2}(x) \mathrm{e}^{x} $；……；当 k=k 时， $ x\left[P_{k-1}(x) \mathrm{e}^{x}\right]' = \sum_{n=0}^{\infty} \frac{n^{k}x^{n}}{n!} = P_{k}(x) \mathrm{e}^{x} $。
+
+其中 $ P_{0}(x)\equiv1 $， $ P_{1}(x)\equiv x $， $ P_{k}(x)\equiv x[P_{k-1}^{\prime}(x)+P_{k-1}(x)] $。 $ P_{k}(x) $是系数为正整数的多项式，故 $ P_{k}(1) $是正整数。
+
+而由  $ P_{k}(1)e=\sum_{n=0}^{\infty}\frac{n^{k}}{n!} $，得  $ z(k)=P_{k}(1) $ 是正整数.
+
+方法2
+
+ $$ \begin{align*}z(k+1)&=\sum_{n=0}^{\infty}\frac{n^{k+1}}{n!}\mathbf{e}^{-1}=\sum_{n=1}^{\infty}\frac{n^{k}}{(n-1)!}\mathbf{e}^{-1}=\sum_{n=0}^{\infty}\frac{(n+1)^{k}}{n!}\mathbf{e}^{-1}\\&=\sum_{n=0}^{\infty}\frac{1}{n!}\sum_{i=0}^{k}C_{k}^{i} n^{i}\mathbf{e}^{-1}=\sum_{i=0}^{k}C_{k}^{i}\sum_{n=0}^{\infty}\frac{n^{i}}{n!}\mathbf{e}^{-1}=\sum_{i=0}^{k}C_{k}^{i} z(i)\quad(k=0,1,2,\cdots).\end{align*} $$ 
+
+由归纳法可知 $ z(k) $为正整数.
+
+例19 设x>2，证明 $ \ln(x+2)=2\ln(1+x)-2\ln(x-1)+\ln(x-2)+2\sum_{n=1}^{\infty}\frac{1}{2n-1}\left(\frac{2}{x^{3}-3x}\right)^{2n-1} $
+
+分析 将所证等式改写为  $ \sum_{n=1}^{\infty}\frac{1}{2n-1}\left(\frac{2}{x^{3}-3x}\right)^{2n-1}=\frac{1}{2}\ln\frac{(x+2)(x-1)^{2}}{(x+1)^{2}(x-2)} $，这是级数求和问题.
+
+证明 记  $ y=\frac{2}{x^{3}-3x} $， $ S(y)=\sum_{n=1}^{\infty}\frac{1}{2n-1}y^{2n-1} $，则
+
+ $$ S(y)=\sum_{n=1}^{\infty}\int_{0}^{y}t^{2n-2}\mathrm{d}t=\int_{0}^{y}\left(\sum_{n=1}^{\infty}t^{2n-2}\right)\mathrm{d}t=\int_{0}^{y}\frac{1}{1-t^{2}}\mathrm{d}t=\frac{1}{2}\ln\frac{1+y}{1-y},\quad|y|<1. $$ 
+
+代入  $ y=\frac{2}{x^{3}-3x} $，即得
+
+ $$ \sum_{n=1}^{\infty}\frac{1}{2n-1}\left(\frac{2}{x^{3}-3x}\right)^{2n-1}=\frac{1}{2}\ln\frac{(x+2)(x-1)^{2}}{(x+1)^{2}(x-2)},\quad x>2. $$ 
+
+原等式得证.
+
+例  $ 20^{*} $ 设函数项级数  $ f(x)=\sum_{k=1}^{\infty}\frac{\sin kx}{k} $
+
+（1）求函数项级数 $ f(x) $收敛域：
+
+（2）证明对于  $ x \in [0, \pi] $， $ f(x) $ 非负.
+
+分析（1）将 x 作为参数，这是一个任意项级数。显然该级数不是绝对收敛的，无法用正项级数的判敛法；只能将该级数的部分和做恒等变形，找到其极限存在的范围，即级数的收敛域。
+
+（2）只需证明对任意自然数  $ n $，当  $ x \in [0, \pi] $ 时，有  $ g(x) = \sum_{k=1}^{\infty} \frac{\sin kx}{k} \geq 0 $。为此，若  $ g(x) $ 在  $ [0, \pi] $ 上的最小值非负就行了。
+
+解（1）当 $ x=2k\pi $时， $ f(x)=0 $.
+
+当 $ x\neq2k\pi $时，记 $ S_{n}=\sum_{k=1}^{n}\sin kx $，由于
+
+ $$ \begin{aligned}{S_{n}=}&{{}\frac{1}{\operatorname{s i n}\frac{x}{2}}{\sum_{k=1}^{n}\operatorname{s i n}\frac{x}{2}\operatorname{s i n}k x}=\frac{1}{2\operatorname{s i n}\frac{x}{2}}{\sum_{k=1}^{n}\left(\operatorname{c o s}\frac{2k-1}{2}x-\operatorname{c o s}\frac{2k+1}{2}x\right)}}\\ {=}&{{}\frac{1}{2\operatorname{s i n}\frac{x}{2}}{\left(\operatorname{c o s}\frac{1}{2}x-\operatorname{c o s}\frac{2n+1}{2}x\right)},}\\ \end{aligned} $$ 
+
+则
+
+ $$ \left|S_{n}\right|\leqslant\frac{1}{\left|\sin\frac{x}{2}\right|}\triangleq M\quad( 即 \sum_{n=1}^{\infty}\sin nx 的部分和有界 ). $$ 
+
+又
+
+ $$ \sum_{k=1}^{n}\frac{\sin kx}{k}=\sum_{k=1}^{n}\frac{S_{k}-S_{k-1}}{k}=\sum_{k=1}^{n-1}\left(\frac{1}{k}-\frac{1}{k+1}\right)S_{k}+\frac{S_{n}}{n}, $$ 
+
+由于
+
+ $$ \sum_{k=1}^{n-1}\left|\left(\frac{1}{k}-\frac{1}{k+1}\right)S_{k}\right|\leqslant M\sum_{k=1}^{n-1}\left(\frac{1}{k}-\frac{1}{k+1}\right)=M\left(1-\frac{1}{n}\right)\leqslant M, $$ 
+
+级数 $ \sum_{k=1}^{\infty}\left(\frac{1}{k}-\frac{1}{k+1}\right)S_{k} $绝对收敛，而 $ \lim_{n\to\infty}\frac{S_{n}}{n}=0 $．由①式知，级数 $ \sum_{k=1}^{\infty}\frac{\sin kx}{k} $对 $ \forall x\in(-\infty,+\infty) $均收敛， $ f(x) $的收敛域为 $ (-\infty,+\infty) $．
+
+（2）记 $ g(x)=\sum_{k=1}^{n}\frac{\sin kx}{k} $，显然 $ g(0)=g(\pi)=0 $。下面证明对 $ \forall x\in[0,\pi] $，有 $ g(x)\geqslant0 $。
+
+当n=1时，命题显然成立；若当n-1时成立，则 $ \sum_{k=1}^{n-1}\frac{\sin kx}{k}\geq0 $。
+
+当$n$时，不妨设$c\in(0,\pi)$是$g(x)$的最小值点，则$g'(c)=0$。由于
+
+ $$ \begin{aligned}{g^{\prime}(c)}&{{}=\sum_{k=1}^{n}\operatorname{c o s}k c=\frac{1}{\operatorname{s i n}\frac{c}{2}}\sum_{k=1}^{n}\operatorname{c o s}k c\cdot\operatorname{s i n}\frac{c}{2}}\\ {}&{{}=\frac{1}{2\operatorname{s i n}\frac{c}{2}}\sum_{k=1}^{n}\Biggl(\operatorname{s i n}\frac{2k+1}{2}c-\operatorname{s i n}\frac{2k-1}{2}c\Biggr)=\frac{1}{2\operatorname{s i n}\frac{c}{2}}\Biggl(\operatorname{s i n}\frac{2n+1}{2}c-\operatorname{s i n}\frac{1}{2}c\Biggr),}\\ \end{aligned} $$ 
+
+所以
+
+ $$ \sin\frac{2n+1}{2}c=\sin\frac{1}{2}c\Rightarrow\frac{2n+1}{2}c=\frac{1}{2}c+2m\pi\Rightarrow c=\frac{2m\pi}{n},\quad m\in\mathbb{Z}. $$ 
+
+ $$ g(c)=\sum_{k=1}^{n}\frac{\sin kc}{k}=\sum_{k=1}^{n-1}\frac{\sin kc}{k}+\frac{\sin2m\pi}{n}=\sum_{k=1}^{n-1}\frac{\sin kc}{k}\geqslant0. $$ 
+
+故 $ g(x)=\sum_{k=1}^{n}\frac{\sin kx}{k}\geqslant0 $，所以 $ f(x)=\lim_{n\to\infty}\sum_{k=1}^{n}\frac{\sin kx}{k}\geqslant0 $.
+
+评注 类似于问题（1）. 的证明，可得到任意项级数敛散性的“狄利克雷判别法”
+
+定理（狄利克雷判别法）若数列$\{a_n\}$单调递减，且$\lim_{n\to\infty}a_n=0$，又级数$\sum_{n=1}^{\infty}b_n$的部分和数列有界，则级数$\sum_{n=1}^{\infty}a_nb_n$收敛。
+
+若本题的问题（1）用狄利克雷判别法来证明  $ (a_{n}=\frac{1}{n},\quad b_{n}=\sin nx) $，则会比较容易.
+
+例  $ 21^{*} $ 设  $ f(x)=\sum_{n=1}^{\infty}\frac{\cos nx}{\sqrt{n^{3}+n}} $， $ F(x) $ 是  $ f(x) $ 的一个原函数， $ F(0)=0 $，证明：
+
+ $$ \frac{\sqrt{2}}{2}-\frac{1}{15}<F\left(\frac{\pi}{2}\right)<\frac{\sqrt{2}}{2}. $$ 
+
+分析 要求得  $ F(x) $ 的表达式，需对  $ f(x) $ 积分，积分号与级数和号可交换的一个充分条件是级数在积分区间上一致收敛. 易发现  $ F\left(\frac{\pi}{2}\right) $ 的表达式是一个交错级数，可用莱布尼兹收敛定理估计其大小.
+
+解 因为  $ \left|\frac{\cos nx}{\sqrt{n^{3}+n}}\right|\leq\frac{1}{\sqrt{n^{3}+n}} $，而  $ \sum_{n=1}^{\infty}\frac{1}{\sqrt{n^{3}+n}} $ 收敛，所以  $ \sum_{n=1}^{\infty}\frac{\cos nx}{\sqrt{n^{3}+n}} $ 在  $ (-∞,+∞) $ 内一致收敛.逐项积分得
+
+ $$ F(x)=\int_{0}^{x}f(t)\mathrm{d}t=\sum_{n=1}^{\infty}\frac{\sin nx}{n\sqrt{n^{3}+n}}\ , $$ 
+
+由交错级数的莱布尼兹准则知
+
+ $ F\left(\frac{\pi}{2}\right)<a_{1}=\frac{1}{\sqrt{2}} $，余项 $ \left|R_{2}\right|<a_{2}=\frac{1}{3\sqrt{30}} $，即 $ \left|\dot{F}\left(\frac{\pi}{2}\right)-\frac{1}{\sqrt{2}}\right|<\frac{1}{3\sqrt{30}} $
+
+所以
+
+ $$ \frac{1}{\sqrt{2}}>F\left(\frac{\pi}{2}\right)>\frac{1}{\sqrt{2}}-\frac{1}{3\sqrt{30}}>\frac{\sqrt{2}}{2}-\frac{1}{15}. $$ 
+
+评注（1）函数项级数一致收敛的M判别法（Weierstrass准则）：
+
+设 $ \sum_{n=1}^{\infty}M_{n} $是一个收敛的正项级数，若在区间I上恒有 $ \left|u_{n}(x)\right|\leqslant M_{n}\left(n=1,2,\cdots\right) $，则级数 $ \sum_{n=1}^{\infty}u_{n}(x) $在I上一致收敛.
+
+(2) 一致收敛级数的分析性质.
+
+① 连续性：设  $ u_n(x) \in C(I) (n \in \mathbb{N}_+) $，若  $ S(x) = \sum_{n=1}^{\infty} u_n(x) $ 在  $ I $ 上一致收敛，则  $ S(x) \in C(I) $.
+
+② 可积性：设  $ u_n(x) \in C(I) $ ( $ n \in \mathbb{N}_+ $)，若  $ S(x) = \sum_{n=1} u_n(x) $ 在  $ I $ 上一致收敛，则  $ S(x) $ 在  $ I $ 上逐项可积。即有  $ \int_{x_0}^{x} S(t) \, dt = \sum_{n=1}^{\infty} \int_{x_0}^{x} u_n(t) \, dt \quad (x_0, x \in I) $。
+
+③ 可导性：设  $ u_n(x) \in C^{(1)}(I) $ ( $ n \in \mathbb{N}_+ $)，若  $ S(x) = \sum_{n=1}^{\infty} u_n(x) $ 在  $ I $ 上收敛， $ \sum_{n=1}^{\infty} u_n'(x) $ 在  $ I $ 上一致收敛，则  $ S(x) $ 逐项可导。即有  $ S'(x) = \sum_{n=1}^{\infty} u_n'(x) $。
+
+（3）由于幂级数在其收敛域内的任一闭子区间上均一致收敛（称为内闭一致收敛），所以（2）中的3条性质对幂级数都成立。
+
+例22* 设 $ f(x)=\sum_{n=0}^{\infty}a_nx^n $（ $ |x|<\infty $， $ a_n>0 $）， $ \sum_{n=0}^{\infty}a_n n! $收敛。证明 $ \int_0^{+\infty}e^{-x}f(x)dx=\sum_{n=0}^{\infty}a_n n! $。
+
+分析 由于 $ e^{-x}f(x)=\sum_{n=0}^{\infty}a_nx^n e^{-x} $，等式两边积分就可得到所需的等式。要使积分号与级数和号交
+
+换，只需要证明级数 $ \sum_{n=0}^{\infty}a_{n}x^{n}e^{-x} $在 $ (0,+\infty) $上一致收敛.
+
+证明 因为  $ e^{x}=1+x+\frac{1}{2!}x^{2}+\cdots+\frac{1}{n!}x^{n}+\cdots $.
+
+当x>0时，有
+
+ $$ \mathrm{e}^{x}>\frac{1}{n!}x^{n}\Longrightarrow x^{n}\mathrm{e}^{-x}<n!\Longrightarrow a_{n}x^{n}\mathrm{e}^{-x}<a_{n}n!. $$ 
+
+由于 $ \sum_{n=0}^{\infty}a_{n}n! $收敛，由M判别法知， $ \sum_{n=0}^{\infty}a_{n}x^{n}e^{-x} $在 $ (0,+\infty) $上一致收敛.所以对 $ \forall A>0 $，有
+
+ $$ \int_{0}^{A}\sum_{n=0}^{\infty}a_{n}x^{n}\mathrm{e}^{-x}\mathrm{d}x=\sum_{n=0}^{\infty}\int_{0}^{A}a_{n}x^{n}\mathrm{e}^{-x}\mathrm{d}x. $$ 
+
+取 $ A\to+\infty $，有
+
+ $$ \int_{0}^{+\infty}\sum_{n=0}^{\infty}a_{n}x^{n}\mathrm{e}^{-x}\mathrm{d}x=\sum_{n=0}^{\infty}a_{n}\int_{0}^{+\infty}x^{n}\mathrm{e}^{-x}\mathrm{d}x. $$ 
+
+由于 $ \int_{0}^{+\infty}x^{n}e^{-x}dx=\Gamma(n+1)=n! $.上式即为 $ \int_{0}^{+\infty}e^{-x}f(x)dx=\sum_{n=0}^{\infty}a_{n}n! $.得证.
+
+评注 这里用了  $ \Gamma $ 函数：  $ \Gamma(\alpha)=\int_{0}^{+\infty}x^{\alpha-1}e^{-x}dx $ ( $ \alpha>0 $).
+
+ $ \Gamma $ 函数具有递推公式： $ \Gamma(\alpha+1)=\alpha\Gamma(\alpha) $. 特别  $ \Gamma(n+1)=n! $.
+
+# 2. 函数的幂级数展开
+
+函数展开为幂级数的常用方法有“直接法”与“间接法”。由于“直接法”需计算函数的任意阶导数，并判断其泰勒公式余项在级数的收敛区间内是否趋于零，所以做直接展开是较困难的。更多的情况是做间接展开，以下是几个常用的麦克劳林展开式：
+
+ $$ \mathbf{e}^{x}=1+x+\frac{x^{2}}{2!}+\cdots+\frac{x^{n}}{n!}+\cdots=\sum_{n=0}^{\infty}\frac{x^{n}}{n!},\quad x\in(-\infty,+\infty)\text{；} $$ 
+
+ $$ \sin x=x-{\frac{x^{2}}{3!}}+\cdots+(-1)^{n}{\frac{x^{2n+1}}{(2n+1)!}}+\cdots=\sum_{n=0}^{\infty}(-1)^{n}{\frac{x^{2n+1}}{(2n+1)!}},\quad x\in(-\infty,+\infty)\ ; $$ 
+
+ $$ \cos x=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\cdots+(-1)^{n}\frac{x^{2n}}{(2n)!}+\cdots=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{2n}}{(2n)!},\quad x\in(-\infty,+\infty)\text{；} $$ 
+
+ $$ \ln(1+x)=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\cdots+(-1)^{n}\frac{x^{n+1}}{n+1}+\cdots=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{n+1}}{n+1},\quad x\in(-1,1]; $$ 
+
+ $$ \left(1+x\right)^{a}=1+ax+\frac{a(a-1)}{2!}x^{2}+\cdots+\frac{a(a-1)\cdots(a-n+1)}{n!}x^{n}+\cdots,\ x\in\left(-1,1\right). $$ 
+
+特别地， $ \frac{1}{1-x}=1+x+x^{2}+\cdots+x^{n}+\cdots=\sum_{n=0}^{\infty}x^{n},\quad x\in(-1,1) $.
+
+例23 求级数 $ \left(\sum_{n=1}^{\infty}x^{n}\right)^{3} $中 $ x^{20} $的系数.
+
+分析 先求出级数 $ \left(\sum_{n=1}^{\infty}x^{n}\right)^{3} $的和函数，再将和函数展开为x的幂级数，就可写出 $ x^{20} $的系数.
+
+解
+
+ $$ \left(\sum_{n=1}^{\infty}x^{n}\right)^{3}=\left(\frac{x}{1-x}\right)^{3}=\left(\frac{1}{1-x}\right)^{3}x^{3},\quad|x|<1. $$ 
+
+而
+
+ $$ \frac{1}{1-x}=\sum_{n=0}^{\infty}x^{n}\ ,\quad\frac{1}{\left(1-x\right)^{3}}=\frac{1}{2}\left(\frac{1}{1-x}\right)^{n}=\sum_{n=0}^{\infty}\frac{(n+1)(n+2)}{2}x^{n}\ . $$ 
+
+所以
+
+ $$ \left(\sum_{n=1}^{\infty}x^{n}\right)^{3}=\sum_{n=0}^{\infty}\frac{(n+1)(n+2)}{2}x^{n+3}. $$ 
+
+因此  $ x^{20} $ 的系数为  $ \frac{18 \times 19}{2} = 171 $.
+
+例24 求函数  $ f(x)=\frac{x}{x^{2}-5x+4} $ 在 x=5 处的幂级数.
+
+分析 将分母做因式分解，分式拆分为两个部分分式之和再展开.
+
+解
+
+ $$ \begin{aligned}\frac{x}{x^{2}-5x+4}=&\frac{x}{(x-4)(x-1)}=\frac{x}{3}\bigg(\frac{1}{x-4}-\frac{1}{x-1}\bigg)\\=&\frac{(x-5)+5}{3}\Bigg[\frac{1}{1+(x-5)}-\frac{1}{4+(x-5)}\Bigg]\\=&\frac{5+(x-5)}{3}\Bigg[\sum_{n=0}^{\infty}(-1)^{n}(x-5)^{n}-\frac{1}{4}\sum_{n=0}^{\infty}(-1)^{n}\Bigg(\frac{x-5}{4}\Bigg)^{n}\Bigg]\\=&\frac{5+(x-5)}{3}\sum_{n=0}^{\infty}(-1)^{n}\Bigg(1-\frac{1}{4^{n+1}}\Bigg)(x-5)^{n}\\=&\frac{5}{4}+\frac{1}{3}\sum_{n=1}^{\infty}(-1)^{n}\Bigg(4-\frac{1}{4^{n+1}}\Bigg)(x-5)^{n}.\end{aligned} $$ 
+
+上式成立的范围为 $ \left\{\begin{aligned}&|x-5|<1\\ &\underline{\frac{|x-5|}{4}}<1\end{aligned}\right.\Rightarrow|x-5|<1 $，收敛区间为 $ 4<x<6 $。
+
+当 x=4,6 时，级数均发散，所以
+
+ $$ f(x)=\frac{5}{4}+\frac{1}{3}\sum_{n=1}^{\infty}(-1)^{n}\left(4-\frac{1}{4^{n+1}}\right)(x-5)^{n},\quad4<x<6. $$ 
+
+例  $ 25^{*} $ 设  $ f(x)=\mathrm{e}^{x^{2}} $，求  $ f^{(n)}(x) $.
+
+分析 通常的方法是对  $ f(x) $ 逐次求导，由归纳法求得  $ f^{(n)}(x) $ 的表达式（经计算发现这样做较为困难）。另一种方法是将  $ f(x+h) $ 展开为 h 的幂级数，再由幂级数展开式的唯一性得到  $ f^{(n)}(x) $。
+
+解 由于
+
+ $$ f(x+h)=\mathrm{e}^{(x+h)^{2}}=\mathrm{e}^{x^{2}}\mathrm{e}^{2x h}\mathrm{e}^{h^{2}}=\mathrm{e}^{x^{2}}\sum_{k=0}^{\infty}\frac{(2x h)^{k}}{k!}\sum_{m=0}^{\infty}\frac{h^{2m}}{m!}=\mathrm{e}^{x^{2}}\sum_{n=0}^{\infty}\left(\sum_{2m+k=n}\frac{(2x)^{k}}{k!m!}\right)h^{n}. $$ 
+
+由幂级数展开式的唯一性，得
+
+ $$ f^{(n)}(x)=n!e^{x^{2}}\sum_{2m+k=n}\frac{(2x)^{k}}{k!m!}\quad(n=1,2,\cdots). $$ 
+
+例26 将级数  $ \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2^{n-1}}\cdot\frac{x^{2n-1}}{(2n-1)!} $ 的和函数展开成  $ (x-1) $ 的幂级数.
+
+分析 需先求级数的和函数，再将和函数展开为 $ (x-1) $的幂级数.
+
+解 由于  $ \sin x = \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n-1}}{(2n-1)!} $， $ x \in (-\infty, +\infty) $。则
+
+ $$ \begin{aligned}&\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2^{n-1}}\cdot\frac{x^{2n-1}}{(2n-1)!}=\sqrt{2}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{(2n-1)!}\bigg(\frac{x}{\sqrt{2}}\bigg)^{2n-1}=\sqrt{2}\sin\frac{x}{\sqrt{2}}\\ &=\sqrt{2}\sin\frac{x-1+1}{\sqrt{2}}=\sqrt{2}\sin\frac{1}{\sqrt{2}}\cos\frac{x-1}{\sqrt{2}}+\sqrt{2}\cos\frac{1}{\sqrt{2}}\sin\frac{x-1}{\sqrt{2}}\\ &=\sqrt{2}\sin\frac{1}{\sqrt{2}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}\bigg(\frac{x-1}{\sqrt{2}}\bigg)^{2n}+\sqrt{2}\cos\frac{1}{\sqrt{2}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n+1)!}\bigg(\frac{x-1}{\sqrt{2}}\bigg)^{2n+1}\\ &=\sqrt{2}\sin\frac{1}{\sqrt{2}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2^{n}(2n)!}(x-1)^{2n}+\cos\frac{1}{\sqrt{2}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2^{n}(2n+1)!}(x-1)^{2n+1}.\\ \end{aligned} $$ 
+
+例  $ 27^{*} $ 已知  $ f_{n}(x) $ 满足  $ f_{n}^{\prime}(x)=f_{n}(x)+x^{n-1}e^{x} $，且  $ f_{n}(1)=\frac{e}{n}\quad(n=1,2,\cdots) $. 求
+
+（1）级数 $ \sum_{n=1}^{\infty}f_{n}(x) $的和函数 $ f(x) $;
+
+(2)  $ f(x) $ 的麦克劳林展开式.
+
+分析 需先解微分方程求得  $ f_{n}(x) $，再求和函数及其展开式.
+
+解 （1）解方程  $ f_{n}^{\prime}(x)-f_{n}(x)=x^{n-1}e^{x} $，得
+
+ $$ f_{n}(x)=\mathrm{e}^{\int\mathrm{d}x}\left(C_{n}+\int x^{n-1}\mathrm{e}^{x}\mathrm{e}^{-\int\mathrm{d}x}\mathrm{d}x\right)=C_{n}\mathrm{e}^{x}+\frac{1}{n}x^{n}\mathrm{e}^{n}. $$ 
+
+利用  $ f_{n}(1)=\frac{e}{n} $ 得  $ C_{n}=0 $，所以  $ f_{n}(x)=\frac{1}{n}x^{n}e^{x} $ (n=1,2,\cdots). 从而
+
+ $$ f(x)=\sum_{n=1}^{\infty}f_{n}(x)=\sum_{n=1}^{\infty}\frac{1}{n}x^{n}\mathrm{e}^{x}=\mathrm{e}^{x}\sum_{n=1}^{\infty}\frac{1}{n}x^{n}=-\mathrm{e}^{x}\ln(1-x),\ x\in[-1,1). $$ 
+
+（2）对 $ x\in[-1,1) $，有
+
+ $$ f(x)=\mathrm{e}^{x}\sum_{n=1}^{\infty}\frac{1}{n}x^{n}=\left(\sum_{n=0}^{\infty}\frac{1}{n!}x^{n}\right)\left(\sum_{n=1}^{\infty}\frac{1}{n}x^{n}\right)=\sum_{n=1}^{\infty}\left[\sum_{k=0}^{n-1}\frac{1}{k!(n-k)}\right]x^{n}\;. $$ 
+
+评注 本题（2）若用以下方法求解，则不能完全确定函数  $ f(x) $.
+
+由  $ f_{n}^{\prime}(x)=f_{n}(x)+x^{n-1}e^{x} $ 得  $ \sum_{n=1}^{\infty}f_{n}^{\prime}(x)=\sum_{n=1}^{\infty}f_{n}(x)+\sum_{n=1}^{\infty}x^{n-1}e^{x} $，所以
+
+ $$ f^{\prime}(x)-f(x)=\frac{\mathrm{e}^{x}}{1-x}\left( 这需要 \sum_{n=1}^{\infty}f_{n}^{\prime}(x) 一致收敛 \right). $$ 
+
+解此一阶线性微分方程得通解
+
+ $$ f(x)=\mathrm{e}^{\int\mathrm{d}x}\left(C+\int\frac{\mathrm{e}^{x}}{1-x}\mathrm{e}^{-\int\mathrm{d}x}\mathrm{d}x\right)=\mathrm{e}^{x}[C-\ln(1-x)]\;. $$ 
+
+但无法利用  $ f_{n}(1)=\frac{\mathrm{e}}{n}(n=1,2,\cdots) $ 确定上式中的常数  $ C\left(\because\sum_{n=1}^{\infty}f_{n}(1)=+\infty\right) $.
+
+例  $ 28^{*} $ 设  $ f(x)=\frac{1}{1-x-x^{2}} $， $ a_{n}=\frac{1}{n!}f^{(n)}(0) $，证明级数  $ \sum_{n=0}^{\infty}\frac{a_{n+1}}{a_{n}a_{n+2}} $ 收敛，并求其和.
+
+分析 要求级数的和需计算其部分和数列  $ S_{n} $ 的极限. 将所给函数  $ f(x) $ 按幂级数形式展开, 可得到  $ a_{n} $ 的表达式或递推公式, 进一步将  $ S_{n} $ 化简（有限和形式）, 才便于其极限的计算.
+
+解 因为  $ f(x)=\frac{1}{1-x-x^{2}} $，所以  $ 1=(1-x-x^{2})f(x) $。将  $ f(x) $ 按麦克劳林级数展开，有
+
+ $$ f(x)=\sum_{k=0}^{\infty}a_{k}x^{k}\ , 其中 a_{k}=\frac{1}{k!}f^{(k)}(0). $$ 
+
+则
+
+ $$ \begin{aligned}&1=(1-x-x^{2})\left(a_{0}+a_{1}x+\sum_{k=2}^{\infty}a_{k}x^{k}\right)\ ,\\&=a_{0}+(a_{1}-a_{0})x+\left(-a_{0}x^{2}-a_{1}x^{2}-a_{1}x^{3}+\sum_{k=2}^{\infty}a_{k}x^{k}-\sum_{k=2}^{\infty}a_{k}x^{k+1}-\sum_{k=2}^{\infty}a_{k}x^{k+2}\right),\\ \end{aligned} $$ 
+
+即有
+
+ $$ 1=a_{0}+(a_{1}-a_{0})x+\sum_{m=0}^{\infty}(a_{m+2}-a_{m+1}-a_{m})x^{m+2}. $$ 
+
+比较两边系数，可得
+
+ $$ a_{0}=a_{1}=1,\ a_{m+2}-a_{m+1}-a_{m}=0\Longrightarrow a_{m+1}=a_{m+2}-a_{m}. $$ 
+
+由于  $ a_2 = a_1 + a_0 \geq 2 $,  $ a_3 = a_2 + a_1 \geq 3 $,  $ \cdots $, 由归纳法知,  $ a_n \geq n $. 故当  $ n \to \infty $ 时,  $ a_n \to \infty $.
+
+于是级数  $ \sum_{n=0}^{\infty} \frac{a_{n+1}}{a_n a_{n+2}} $ 的部分和
+
+ $$ \begin{aligned}S_{n}=&\sum_{k=0}^{n}\frac{a_{k+1}}{a_{k} a_{k+2}}=\sum_{k=0}^{n}\frac{a_{k+2}-a_{k}}{a_{k} a_{k+2}}=\sum_{k=0}^{n}\left(\frac{1}{a_{k}}-\frac{1}{a_{k+2}}\right)\\=&\sum_{k=0}^{n}\left(\frac{1}{a_{k}}-\frac{1}{a_{k+1}}\right)+\sum_{k=0}^{n}\left(\frac{1}{a_{k+1}}-\frac{1}{a_{k+2}}\right)\\=&\frac{1}{a_{0}}-\frac{1}{a_{n+1}}+\frac{1}{a_{1}}-\frac{1}{a_{n+2}}.\end{aligned} $$ 
+
+因为 $ \frac{1}{a_{n+1}} \to 0 $， $ \frac{1}{a_{n+2}} \to 0 $（ $ n \to \infty $），故 $ S_n \to \frac{1}{a_0} + \frac{1}{a_1} = 2 $（ $ n \to \infty $）。即所给级数收敛，其和为2。
+
+例  $ 29^* $ 将 $ f(x)=\frac{\arcsin x}{\sqrt{1-x^2}} $展开为麦克劳林级数。
+
+分析 有两种展开方式：一是做间接展开，即由 $ \frac{1}{\sqrt{1-x^2}} $与 $ \arcsin x $的展开式做乘积；二是做直接展开，即先计算 $ f^{(n)}(0) $( $ n=1,2,\cdots $)，再写出展开式。由于间接展开中两级数乘积的系数很难化简，因此这里做直接展开。
+
+解 做直接展开.
+
+由于
+
+ $$ f^{\prime}(x)=\frac{1}{1-x^{2}}+\frac{x\arcsin x}{(1-x^{2})\sqrt{1-x^{2}}}=\frac{1}{1-x^{2}}+\frac{x}{1-x^{2}}f(x) $$ 
+
+因此有
+
+ $$ (1-x^{2})f^{\prime}(x)-x f(x)=1. $$ 
+
+等式两边求n阶导数，得
+
+ $$ \Bigl[(1-x^{2})f^{(n+1)}(x)-2n x f^{(n)}(x)-n(n-1)f^{(n-1)}(x)\Bigr]-\Bigl[x f^{(n)}(x)+n f^{(n-1)}(x)\Bigr]=0\;. $$ 
+
+令x=0，得到 $ f^{(n+1)}(0)=n^{2}f^{(n-1)}(0) $.其奇数阶导数
+
+ $$ f^{(2n+1)}(0)=(2n)^{2}\;f^{(2n-1)}(0)=\cdots=[(2n)!!]^{2}\;f^{\prime}(0)=4^{n}(n!)^{2}. $$ 
+
+由于  $ f(x) $ 是奇函数，则其偶数阶导数  $ f^{(2n)}(0)=0 $.
+
+由于  $ f(x)=\frac{1}{\sqrt{1-x^2}}\cdot\arcsin x $ 能够表示为两个幂级数的乘积，因此它可以展开为幂级数。由幂级数展开式的唯一性得
+
+ $$ f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^{n}=\sum_{n=0}^{\infty}\frac{4^{n}(n!)^{2}}{(2n+1)!}x^{2n+1},\quad x\in(-1,1) $$ 
+
+ $ x=\pm1 $ 是  $ f(x) $ 的间断点，故该幂级数的收敛域为区间  $ (-1,1) $.
+
+评注 在最后写出  $ f(x) $ 的展开式时，利用了 “  $ f(x) $ 能够表示为两个幂级数的乘积，因此它可以展开为幂级数” 这样一个间接的手段. 否则，需要证明  $ f(x) $ 的泰勒公式的余项在区间  $ (-1,1) $ 上趋于 0，这是很困难的.
+
+例 30 将  $ f(x)=\frac{1-x^{2}}{(1-x)^{4}}+x\ln(\sqrt{x^{2}+1}-x) $ 展开为 x 的幂级数.
+
+分析 只需将  $ f(x) $ 中的两项分别展开. 为利用已有的展开式, 需要将函数做恒等变形（包括微分与积分的手段）.
+
+解
+
+ $$ \begin{align*}f(x)=&\frac{1+x}{\left(1-x\right)^{3}}-x\ln\left(\sqrt{x^{2}+1}+x\right)=\left[\frac{x}{\left(1-x\right)^{2}}\right]^{\prime}-x\int_{0}^{x}\frac{\mathrm{d}t}{\sqrt{t^{2}+1}}\\=&\left[x\left(\frac{1}{1-x}\right)^{\prime}\right]^{\prime}-x\int_{0}^{x}\left[1+\sum_{n=1}^{\infty}\frac{(-1/2)(-1/2-1)\cdots(-1/2-n+1)}{n!}t^{2n}\right]\mathrm{d}t\\=&\left(x\sum_{n=1}^{\infty}nx^{n-1}\right)^{\prime}-x\int_{0}^{x}\left[1+\sum_{n=1}^{\infty}\left(-1\right)^{n}\frac{(2n-1)!!}{(2n)!!}t^{2n}\right]\mathrm{d}t\\=&\sum_{n=1}^{\infty}n^{2}x^{n-1}-x^{2}-\sum_{n=1}^{\infty}\left(-1\right)^{n}\frac{(2n-1)!!}{(2n)!!(2n+1)}x^{2(n+1)}\ (|x|<1).\end{align*} $$ 
+
+例  $ 31^{\circ} $ 将  $ f(x)=\ln(1-2x\cos\alpha+x^{2}) $ 展开为 x 的幂级数.
+
+分析  $ f'(x) $ 是一个有理函数，有理函数更利于展开.
+
+解  $ f'(x)=\frac{-2\cos\alpha+2x}{1-2x\cos\alpha+x^{2}} $，下面用两种方法展开.
+
+方法1 待定系数法. 设  $ f'(x)=\sum_{n=0}^{\infty}a_{n}x^{n} $，则
+
+ $$ \begin{aligned}{-2\operatorname{c o s}\alpha+2x}&{{}=(1{-}2x\mathop{\operatorname{c o s}\alpha}+x^{2})\sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}x^{n}-2\operatorname{c o s}\alpha\sum_{n=0}^{\infty}a_{n}x^{n+1}+\sum_{n=0}^{\infty}a_{n}x^{n+2}}\\ {}&{{}=\sum_{n=0}^{\infty}a_{n}x^{n}-2\operatorname{c o s}\alpha\sum_{n=1}^{\infty}a_{n-1}x^{n}+\sum_{n=2}^{\infty}a_{n-2}x^{n}}\\ {}&{{}=a_{0}+(a_{1}{-}2a_{0}\operatorname{c o s}\alpha)x+\sum_{n=2}^{\infty}(a_{n}-2a_{n-1}\operatorname{c o s}\alpha+a_{n-2})x^{n}.}\\ \end{aligned} $$ 
+
+比较等式两边 x 同次幂的系数，得
+
+ $$ a_{0}=-2\cos\alpha, $$ 
+
+ $$ a_{1}-2a_{0}\cos\alpha=2, $$ 
+
+ $$ a_{n}-2a_{n-1}\cos\alpha+a_{n-2}=0\quad(n\geqslant2). $$ 
+
+归纳可得
+
+ $$ a_{n}=-2\cos(n+1)\alpha. $$ 
+
+对级数 $ -\sum_{n=0}^{\infty}2x^{n}\cos(n+1)\alpha $，因为 $ \left|x^{n}\cos(n+1)\alpha\right|\leq\left|x\right|^{n} $，当 $ |x|<1 $时，级数绝对收敛；又当 $ x=\pm1 $时， $ a_{n}\neq0 $，所以级数的收敛半径R=1，收敛域为 $ (-1,1) $.
+
+这就证明了： $ (1-2x\cos\alpha+x^2)\sum_{n=0}^{\infty}a_nx^n=-2\cos\alpha+2x $， $ a_n=-2\cos(n+1)\alpha $。
+
+所以
+
+ $$ -\sum_{n=0}^{\infty}2x^{n}\cos(n+1)\alpha=\frac{-2\cos\alpha+2x}{1-2x\cos\alpha+x^{2}}=f^{\prime}(x)\quad(|x|<1) $$ 
+
+从而
+
+ $$ f(x)=-\sum_{n=1}^{\infty}\frac{2\cos n\alpha}{n}x^{n}\quad\left(\mid x\mid<1\right). $$ 
+
+方法2 将  $ f'(x) $ 拆分为分母为一次的部分分式之和再展开. 利用欧拉公式  $ \cos\alpha=\frac{1}{2}(e^{i\alpha}+e^{-i\alpha}) $，有
+
+ $$ \begin{aligned}{f^{\prime}(x)=}&{{}\frac{-2\operatorname{c o s}\alpha+2x}{1-2x\operatorname{c o s}\alpha+x^{2}}=\frac{2x-(\mathbf{e}^{i\alpha}+\mathbf{e}^{-i\alpha})}{1-(\mathbf{e}^{i\alpha}+\mathbf{e}^{-i\alpha})x+x^{2}}=\frac{(x-\mathbf{e}^{i\alpha})+(x-\mathbf{e}^{-i\alpha})}{(x-\mathbf{e}^{i\alpha})(x-\mathbf{e}^{-i\alpha})}}\\ {=}&{{}\frac{1}{x-\mathbf{e}^{i\alpha}}+\frac{1}{x-\mathbf{e}^{-i\alpha}}=-\mathbf{e}^{-i\alpha}\frac{1}{1-x\mathbf{e}^{-i\alpha}}-\mathbf{e}^{i\alpha}\frac{1}{1-x\mathbf{e}^{i\alpha}}}\\ {=}&{{}-\mathbf{e}^{-i\alpha}\sum_{n=0}^{\infty}\mathbf{e}^{-i n\alpha}x^{n}-\mathbf{e}^{i\alpha}\sum_{n=0}^{\infty}\mathbf{e}^{i n\alpha}x^{n}\quad(|x|<1)}\\ {=}&{{}-\sum_{n=0}^{\infty}[\mathbf{e}^{-i(n+1)\alpha}+\mathbf{e}^{i(n+1)\alpha}]x^{n}=-\sum_{n=0}^{\infty}2x^{n}\operatorname{c o s}(n+1)\alpha~.}\\ \end{aligned} $$ 
+
+评注 （1）在方法 1 中，刚开始时，并不知道  $ f'(x) $ 是否可展开为幂级数，我们先从形式上设出级数，并用待定系数法求得  $ a_n $ 。只有证明了  $ \sum_{n=0}^{\infty} a_nx^n $ 收敛，并求得收敛区间之后，上述运算才是合理的，并证明了该幂级数就是  $ f'(x) $ 的展开式。
+
+(2) 注意幂级数  $ \sum_{n=0}a_{n}x^{n} $ 与其导函数有相同的收敛半径，但在区间端点的收敛性不一定相同。不难证明，本题中  $ f(x) $ 的展开式在  $ x=\pm1 $ 处也是收敛的（用狄利克雷判别法，见例 20 评注）。
+
+（3）①式是一个常系数二阶线性齐次差分方程，②式是满足初值的特解，该特解也可通过求解差分方程得到.
+
+例 32 设  $ f(x)=\frac{\sin x}{x} $ ( $ x>0 $)，记  $ f^{(n)}(x)=(-1)^{n}\frac{n!}{x^{n+1}}[p_{n}(x)\cos x+q_{n}(x)\sin x] $，其中  $ p_{n}(x) $ 和  $ q_{n}(x) $ 是 x 的多项式，求  $ \lim_{n\to\infty}p_n(x) $ 和  $ \lim_{n\to\infty}q_n(x) $.
+
+分析 求出  $ f^{(n)}(x) $ 可得到  $ p_{n}(x) $ 和  $ q_{n}(x) $ 的表达式，问题就容易解决了.
+
+解
+
+ $$ \begin{align*}f^{(n)}(x)=&\sum_{i=0}^{n}C_{n}^{i}\Biggl(\frac{1}{x}\Biggr)^{(i)}(\sin x)^{(n-i)}=\sum_{i=0}^{n}C_{n}^{i}\left(-1\right)^{i}\frac{i!}{x^{i+1}}\mathrm{s i n}\Biggl[x+(n-i)\frac{\pi}{2}\Biggr]\\=&\sum_{i=0}^{n}C_{n}^{i}\left(-1\right)^{i}\frac{i!}{x^{i+1}}\Biggl[\cos\frac{(n-i)\pi}{2}\cdot\sin x+\sin\frac{(n-i)\pi}{2}\cdot\cos x\Biggr]\\=&(-1)^{n}\frac{n!}{x^{n+1}}\Biggl\{\Biggl[\sum_{i=0}^{n}\left(-1\right)^{n-i}\frac{1}{(n-i)!}\mathrm{s i n}\frac{(n-i)\pi}{2}\cdot x^{n-i}\Biggr]\cos x\\&+\Biggl[\sum_{i=0}^{n}\left(-1\right)^{n-i}\frac{1}{(n-i)!}\mathrm{c o s}\frac{(n-i)\pi}{2}\cdot x^{n-i}\Biggr]\mathrm{s i n}x\Biggr\}.\end{align*} $$ 
+
+则
+
+ $$ p_{n}(x)=\sum_{i=0}^{n}\left(-1\right)^{n-i}\frac{1}{(n-i)!}\sin\frac{(n-i)\pi}{2}\cdot x^{n-i}=\sum_{k=0}^{n}\left(-1\right)^{k}\frac{1}{k!}\sin\frac{k\pi}{2}\cdot x^{k}, $$ 
+
+ $$ q_{n}(x)=\sum_{i=0}^{n}\left(-1\right)^{n-i}\frac{1}{(n-i)!}\mathrm{c o s}\frac{(n-i)\pi}{2}\cdot x^{n-i}=\sum_{k=0}^{n}\left(-1\right)^{k}\frac{1}{k!}\mathrm{c o s}\frac{k\pi}{2}\cdot x^{k}. $$ 
+
+从而
+
+ $$ \lim_{n\to\infty}p_{n}(x)=\sum_{k=0}^{\infty}(-1)^{k}\frac{1}{k!}\sin\frac{k\pi}{2}\cdot x^{k}=-\sum_{n=0}^{\infty}(-1)^{n}\frac{1}{(2n+1)!}\cdot x^{2n+1}=-\sin x $$ 
+
+ $$ \lim_{n\to\infty}q_{n}(x)=\sum_{k=0}^{\infty}\left(-1\right)^{k}\frac{1}{k!}\cos\frac{k\pi}{2}\cdot x^{k}=\sum_{n=0}^{\infty}\left(-1\right)^{n}\frac{1}{(2n)!}x^{2n}=\cos x $$ 
+
+例33 已知  $ \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6} $.
+
+（1）设  $ f(x)=\sum_{n=1}^{\infty}\frac{1}{n^{2}}x^{n} $，证明  $ f(x)+f(1-x)+\ln x\ln(1-x)=\frac{\pi^{2}}{6} $， $ x\in(0,1) $；
+
+(2) 计算积分  $ I = \int_{0}^{1} \frac{1}{2-x} \ln \frac{1}{x} dx $.
+
+分析（1）记 $ F(x)=f(x)+f(1-x)+\ln x\ln(1-x) $，只需验证 $ F'(x)=0 $， $ F(+0)=\frac{\pi^{2}}{6} $
+
+（2）将被积函数做幂级数展开，再逐项积分.
+
+解 （1）记  $ F(x)=f(x)+f(1-x)+\ln x\ln(1-x) $，则
+
+ $$ \begin{aligned}F^{\prime}(x)&=f^{\prime}(x)-f^{\prime}(1-x)-\frac{\ln x}{1-x}+\frac{\ln(1-x)}{x}\\&=\frac{1}{x}\sum_{n=1}^{\infty}\frac{x^{n}}{n}-\frac{1}{1-x}\sum_{n=1}^{\infty}\frac{(1-x)^{n}}{n}-\frac{\ln x}{1-x}+\frac{\ln(1-x)}{x}\\&=-\frac{\ln(1-x)}{x}+\frac{\ln x}{1-x}-\frac{\ln x}{1-x}+\frac{\ln(1-x)}{x}=0,\end{aligned} $$ 
+
+故
+
+ $ F(x)=f(x)+f(1-x)+\ln x\ln(1-x)\equiv C $ （C为常数）.
+
+又  $ f(0)=0,\ f(1)=\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6},\quad\lim_{x\to0^{+}}\ln x\ln(1-x)=\lim_{x\to0^{+}}(-x)\ln x=0 $ ，所以
+
+ $$ f(x)+f(1-x)+\ln x\ln(1-x)=\frac{\pi^{2}}{6}. $$ 
+
+（2）方法1 由于
+
+ $$ f^{\prime}(x)=\sum_{n=1}^{\infty}\frac{x^{n-1}}{n}=-\frac{1}{x}\ln(1-x)\ ,\quad f^{\prime}\left(\frac{x}{2}\right)=-\frac{2}{x}\ln\left(1-\frac{x}{2}\right)=\frac{2}{x}\ln2-\frac{2}{x}\ln(2-x)\ , $$ 
+
+则
+
+ $$ I=\int_{0}^{1}\frac{1}{2-x}\ln\frac{1}{x}\mathrm{d}x\xlongequal{2-x=y}-\int_{1}^{2}\frac{1}{y}\ln(2-y)\mathrm{d}y=\int_{1}^{2}\left[\frac{1}{2}f^{\prime}\left(\frac{y}{2}\right)-\frac{1}{y}\ln2\right]\mathrm{d}y=f(1)-\ln^{2}2-f\left(\frac{1}{2}\right). $$ 
+
+在 $ ^{①} $式中取 $ x=\frac{1}{2} $，得
+
+ $$ f\left(\frac{1}{2}\right)+f\left(\frac{1}{2}\right)+\left(\ln\frac{1}{2}\right)^{2}=\frac{\pi^{2}}{6},\quad f\left(\frac{1}{2}\right)=\frac{\pi^{2}}{12}-\frac{\ln^{2}2}{2}, $$ 
+
+所以
+
+ $$ I=\int_{0}^{1}\frac{1}{2-x}\ln\frac{1}{x}\mathrm{d}x=\frac{\pi^{2}}{12}-\frac{\ln^{2}2}{2}. $$ 
+
+方法2
+
+ $$ \begin{aligned}&I=\int_{0}^{1}\frac{1}{2-x}\ln\frac{1}{x}\mathrm{d}x\xlongequal{2-x=y}\int_{2}^{1}\frac{1}{y}\ln(2-y)\mathrm{d}y=-\int_{1}^{2}\frac{\ln2}{y}\mathrm{d}y-\int_{1}^{2}\frac{\ln\left(1-\frac{y}{2}\right)}{y}\mathrm{d}y\\&=-\ln^{2}2+\int_{1}^{2}\sum_{n=1}^{\infty}\frac{y^{n-1}}{2^{n}n}\mathrm{d}y=-\ln^{2}2+\sum_{n=1}^{\infty}\frac{y^{n}}{2^{n}n^{2}}\Bigg|_{1}^{2}\\&=-\ln^{2}2+\sum_{n=1}^{\infty}\frac{1}{n^{2}}-\sum_{n=1}^{\infty}\frac{(1/2)^{n}}{n^{2}}=-\ln^{2}2+f(1)-f\left(\frac{1}{2}\right)=\frac{\pi^{2}}{12}-\frac{\ln^{2}2}{2}.\\ \end{aligned} $$ 
+
+评注 问题（2）中的两种解法没有本质上的差异，只是第2种方法更容易理解。
+
+例 34 $ ^{*} $ 证明：当且仅当存在常数  $ c_{0}, c_{1}, \cdots, c_{n} $，使对于所有大于某个 N 的 k，都有
+
+ $$ c_{0}a_{k}+c_{1}a_{k-1}+\cdots+c_{n}a_{k-n}=0 $$ 
+
+时，函数  $ f(x)=\sum_{k=0}^{\infty}a_{k}x^{k} $ 才是有理函数.
+
+分析  $ f(x) $ 是有理函数，即
+
+ $$ \sum_{k=0}^{\infty}a_{k}x^{k}=\frac{b_{0}+b_{1}x+\cdots+b_{m}x^{m}}{c_{0}+c_{1}x+\cdots+c_{n}x^{n}}\Longleftrightarrow(c_{0}+c_{1}x+\cdots+c_{n}x^{n})\sum_{k=0}^{\infty}a_{k}x^{k}=b_{0}+b_{1}x+\cdots+b_{m}x^{m}. $$ 
+
+由此可得到系数  $ a_{k} $ 所满足的关系式，反之亦然.
+
+证明 当  $ f(x)=\sum_{k=0}^{\infty}a_{k}x^{k}=\frac{b_{0}+b_{1}x+\ldots+b_{m}x^{m}}{c_{0}+c_{1}x+\ldots+c_{n}x^{n}} $ 是有理函数时，则有
+
+ $$ (a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{k}x^{k}+\cdots)(c_{0}+c_{1}x+\cdots+c_{n}x^{n})=b_{0}+b_{1}x+\cdots+b_{m}x^{m}. $$ 
+
+则由幂级数的乘法，比较等式两边幂级数的系数可知，当  $ k > N = \max\{m, n\} $ 时，有
+
+ $$ b_{k}=0=c_{0}a_{k}+c_{1}a_{k-1}+\cdots+c_{n}a_{k-n}. $$ 
+
+反之，构造多项式 $ c_{0}+c_{1}x+\cdots+c_{n}x^{n} $，将它视为幂级数，其中 $ c_{k}=0(k>n) $。考虑幂级数乘法
+
+ $$ g(x)=(c_{0}+c_{1}x+\cdots+c_{n}x^{n})\left(\sum_{k=0}^{\infty}a_{k}x^{k}\right)=\sum_{k=0}^{\infty}b_{k}x^{k}~. $$ 
+
+当k>N时，
+
+ $$ \begin{align*}b_{k}&=c_{0}a_{k}+c_{1}a_{k-1}+\cdots+c_{n}a_{k-n}+c_{n+1}a_{k-n-1}+\cdots+c_{k}a_{0}\\&=c_{0}a_{k}+c_{1}a_{k-1}+\cdots+c_{n}a_{k-n}=0.\end{align*} $$ 
+
+因此 $ g(x) $的次数有限，即它是一个多项式，从而 $ f(x)=\frac{g(x)}{c_0+c_1x+\cdots+c_nx^n} $是有理函数.
+
+例  $ 35^{\star} $ 证明  $ \frac{5\pi}{2}<\int_{0}^{2\pi}e^{\sin x}\,dx<2\pi e^{\frac{1}{4}} $.
+
+分析 对  $ e^{\sin x} $ 利用泰勒展开式或泰勒公式. 若用泰勒展开式, 则需逐项积分后再估计; 若用泰勒公式, 则可先对  $ e^{\sin x} $ 进行估计后再积分.
+
+证明 方法1 由泰勒展开式
+
+ $$ \mathbf{e}^{\sin x}=1+\sin x+\frac{1}{2!}\sin^{2}x+\cdots+\frac{1}{n!}\sin^{n} x+\cdots, $$ 
+
+知该级数在任一区间上均一致收敛( $ \because \left| \frac{1}{n!} \sin^n x \right| \leq \frac{1}{n!} $)，故可逐项积分.
+
+注意当n为奇数时， $ \int_{0}^{2\pi}\sin^{n}x\,dx=0 $，而
+
+ $$ \int_{0}^{2\pi}\sin^{2n}x\mathrm{d}x=4\int_{0}^{\frac{\pi}{2}}\sin^{2n}x\mathrm{d}x=\frac{4(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}\quad(n=1,2,\cdots). $$ 
+
+故
+
+ $$ \begin{align*}\int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{~d}x&=2\pi+\sum_{n=1}^{\infty}\frac{1}{(2n)!}\int_{0}^{2\pi}\sin^{2n}x\mathrm{d}x\\&=2\pi\left[1+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!(2n)!!}\right]=2\pi\left[1+\sum_{n=1}^{\infty}\frac{\frac{1}{4^{n}}}{(n!)^{2}}\right].\end{align*} $$ 
+
+从而有
+
+ $$ \frac{5\pi}{2}=2\pi\left(1+\frac{1}{4}\right)<\int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{d}x<2\pi\left[1+\sum_{n=1}^{\infty}\frac{1}{\frac{4^{n}}{n!}}\right]=2\pi\mathrm{e}^{\frac{1}{4}}. $$ 
+
+方法2（避免用一致收敛性和逐项积分.）
+
+由泰勒公式，对任意实数  $ t $ 及自然数  $ n $，存在  $ \theta \in (0,1) $，使
+
+ $$ \mathrm{e}^{t}=1+t+\frac{t^{2}}{2!}+\cdots+\frac{t^{n}}{n!}+\frac{\mathrm{e}^{\theta t}}{(n+1)!}t^{n+1}. $$ 
+
+在①式中取  $ n=3 $,  $ t=\sin x $, 得  $ \mathrm{e}^{\sin x}>1+\sin x+\frac{1}{2!}\sin^{2}x+\frac{1}{3!}\sin^{3}x $, 因此
+
+ $$ \int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{d}x>\int_{0}^{2\pi}\left(1+\sin x+\frac{1}{2!}\sin^{2}x+\frac{1}{3!}\sin^{3}x\right)\mathrm{d}x=\frac{5\pi}{2}. $$ 
+
+在 $ ^{①} $式中取n=2m， $ t=\sin x $，得
+
+ $$ \mathrm{e}^{\sin x}\leqslant1+\sin x+\frac{1}{2!}\sin^{2}x+\cdots+\frac{1}{(2m)!}\sin^{2m}x+\frac{\mathrm{e}^{2m}}{(2m+1)!} $$ 
+
+两边积分，并注意 $ \int_{0}^{2\pi}\sin^{k}x\mathrm{d}x=0 $（k为奇数），得
+
+ $$ \int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{d}x\leqslant2\pi+\sum_{k=1}^{m}\frac{1}{(2k)!}\int_{0}^{2\pi}\sin^{2k}x\mathrm{d}x+\frac{\mathrm{e}}{(2m+1)!}\cdot2\pi $$ 
+
+ $$ =2\pi+\sum_{k=1}^{m}\frac{(2k-1)!!}{(2k)!(2k)!!}\cdot2\pi+\frac{\mathsf{e}}{(2m+1)!}\cdot2\pi. $$ 
+
+令 $ m \to +\infty $，得
+
+ $$ \int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{d}x\leqslant2\pi\left[1+\sum_{k=1}^{\infty}\frac{(2k-1)!!}{(2k)!(2k)!!}\right]<2\pi\mathrm{e}^{\frac{1}{4}}. $$ 
+
+故证得
+
+ $$ \frac{5\pi}{2}<\int_{0}^{2\pi}\mathrm{e}^{\sin x}\mathrm{d}x<2\pi\mathrm{e}^{\frac{1}{4}}. $$ 
+
+评注 对于一些积分不等式的证明，当被积函数的放大或缩小有困难时，常常是将被积函数做幂级数展开后再放大或缩小（见习题3.2第50(3)题，6.1节例12）.
+
+例36 设  $ A_{n}(x,y)=\sum_{k=0}^{n}x^{n-k}y^{k} $，其中 0<x,y<1，证明  $ \frac{2}{2-x-y}\leq\sum_{n=0}^{\infty}\frac{A_{n}(x,y)}{n+1}\leq\frac{1}{2}\left(\frac{1}{1-x}+\frac{1}{1-y}\right) $.
+
+分析 有两种解决问题的方法：一是求出级数  $ \sum_{n=0}^{\infty}\frac{A_{n}(x,y)}{n+1} $ 的和函数，再证明函数不等式；二是将不等式两边的函数展开为幂级数，再比较幂级数的大小.
+
+证明 方法1 当x=y时， $ \sum_{n=0}^{\infty}\frac{A_{n}(x,x)}{n+1}=\sum_{n=0}^{\infty}x^{n}=\frac{1}{1-x} $，等式成立.
+
+当 $ x\neq y $时，注意到 $ A_{n}(x,y)=A_{n}(y,x) $，故可设0<x<y<1。因为
+
+ $$ \begin{aligned}\sum_{n=0}^{\infty}\frac{A_{n}(x,y)}{n+1}&=\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}\sum_{k=0}^{n}\left(\frac{y}{x}\right)^{k}=\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}\frac{1-(y/x)^{n+1}}{1-(y/x)}\\&=\frac{1}{y-x}\sum_{n=1}^{\infty}\frac{y^{n}-x^{n}}{n}=\frac{1}{y-x}\ln\frac{1-x}{1-y}，\end{aligned} $$ 
+
+所以不等式化为
+
+ $$ \frac{2}{2-x-y}\leq\frac{1}{y-x}\ln\frac{1-x}{1-y}\leq\frac{1}{2}\left(\frac{1}{1-x}+\frac{1}{1-y}\right). $$ 
+
+对于 $ 0 \leq t < 1 $，有
+
+ $$ \frac{1}{2}\ln\frac{1+t}{1-t}=\sum_{n=0}^{\infty}\frac{t^{2n+1}}{2n+1}\;,\quad\frac{1}{2}\biggl(\frac{1}{1-t}+\frac{1}{1+t}\biggr)=\frac{1}{1-t^{2}}=\sum_{n=0}^{\infty}t^{2n}\;. $$ 
+
+所以
+
+ $$ t\leqslant\frac{1}{2}\ln\frac{1+t}{1-t}\leqslant\frac{t}{2}\left(\frac{1}{1-t}+\frac{1}{1+t}\right). $$ 
+
+取 $ t=\frac{y-x}{2-x-y} $，则0<t<1，代入上式即得所证不等式①.
+
+方法2 因为  $ \frac{2}{2-x-y}=\sum_{n=0}^{\infty}\left(\frac{x+y}{2}\right)^{n} $， $ \frac{1}{1-x}=\sum_{n=0}^{\infty}x^{n} $，所以问题转化为
+
+ $$ \sum_{n=0}^{\infty}\left(\frac{x+y}{2}\right)^{n}\leqslant\sum_{n=0}^{\infty}\frac{A_{n}(x,y)}{n+1}\leqslant\frac{1}{2}\sum_{n=0}^{\infty}\left(x^{n}+y^{n}\right). $$ 
+
+这只需证明：对任意 $ n\geq0 $，都有
+
+ $$ \left(\frac{x+y}{2}\right)^{n}\leqslant\frac{A_{n}(x,y)}{n+1}\leqslant\frac{1}{2}(x^{n}+y^{n})\quad(0<x,y<1). $$ 
+
+用数学归纳法. 当n=0,1时，②式显然成立. 假设当n=m时，②式成立；当n=m+1时，
+
+ $$ A_{m+1}(x,y)=\sum_{k=0}^{m+1}x^{m+1-k}y^{k}=x^{m+1}+y A_{m}(x,y)~, $$ 
+
+ $$ A_{m+1}(x,y)=\sum_{k=0}^{m+1}x^{m+1-k}y^{k}=y^{m+1}+xA_{m}(x,y)\;. $$ 
+
+两式相加除以2，得
+
+ $$ A_{m+1}(x,y)=\frac{1}{2}(x^{m+1}+y^{m+1})+\frac{1}{2}(x+y)A_{m}(x,y). $$ 
+
+利用归纳假设，有
+
+ $$ \begin{align*}A_{m+1}(x,y)\leqslant&\frac{1}{2}(x^{m+1}+y^{m+1})+\frac{1}{2}(x+y)\frac{m+1}{2}(x^{m}+y^{m})\\ \leqslant&\frac{1}{2}(x^{m+1}+y^{m+1})+\frac{m+1}{2}(x^{m+1}+y^{m+1})=\frac{m+2}{2}(x^{m+1}+y^{m+1}).\end{align*} $$ 
+
+即
+
+ $$ \frac{A_{m+1}(x,y)}{m+2}\leq\frac{1}{2}(x^{m+1}+y^{m+1}). $$ 
+
+另一方面，利用③式及归纳假设②式，有
+
+ $$ A_{m+1}(x,y)\geqslant\left(\frac{x+y}{2}\right)^{m+1}+\frac{m+1}{2}(x+y)\left(\frac{x+y}{2}\right)^{m}=(m+2)\left(\frac{x+y}{2}\right)^{m+1}. $$ 
+
+因此，所证不等式对任意 $ n \geqslant 0 $及0<x，y<1都成立.
+
+评注 在不等式④的证明中用到了不等式 $ \frac{1}{2}(x+y)(x^{m}+y^{m})\leq x^{m+1}+y^{m+1} $，它等价于
+
+ $$ yx^{m}+xy^{m}\leqslant x^{m+1}+y^{m+1} $$ 
+
+ $$ (x-y)(x^{m}-y^{m})\geq0 $$ 
+
+这是显然的。
+
+例37 $ ^{*} $ 设  $ f(x)=\sum_{n=0}^{\infty}a_{n}x^{n} $ ( $ a_{0}=1 $)， $ \frac{f'(x)}{f(x)} $ 展开成 x 的幂级数的所有系数的绝对值均不大于 2. 证明  $ \left|a_{n}\right|\leqslant n+1 $.
+
+分析　首先要建立  $ f(x) $ 或  $ f'(x) $ 与  $ \frac{f(x)}{f(x)} $ 的联系，才能找到其展开式系数之间的关系。有了这种关系才能由已知条件来完成结论证明。函数之间的关系是显然的： $ f'(x) = f(x)\frac{f'(x)}{f(x)} $。
+
+证明 记  $ \frac{f'(x)}{f(x)} = \sum_{n=0}^{\infty} b_n x^n $， $ |b_n| \leq 2 $。由于  $ f'(x) = f(x) \frac{f'(x)}{f(x)} $，即
+
+ $$ \sum_{n=1}^{\infty}na_{n}x^{n-1}=\sum_{n=0}^{\infty}a_{n}x^{n}\cdot\sum_{n=0}^{\infty}b_{n}x^{n}=\sum_{n=0}^{\infty}(a_{0}b_{n}+a_{1}b_{n-1}+\cdots+a_{n}b_{0})x^{n}~, $$ 
+
+则有
+
+ $$ n a_{n}=a_{0}b_{n}+a_{1}b_{n-1}+\cdots+a_{n}b_{0}\quad(n=1,2,\cdots). $$ 
+
+假定 $ \left|a_{n}\right|\leq n+1 $不是对所有n成立，而k是使得 $ \left|a_{k}\right|>k+1 $的最小自然数，由于
+
+ $$ k a_{k}=a_{0}b_{k-1}+a_{1}b_{k-2}+\cdots+a_{k-1}b_{0}, $$ 
+
+而 $ \left|b_{n}\right|\leq2,\quad a_{0}=1 $，则
+
+ $$ \mid k a_{k}\mid\leqslant2\left(1+\mid a_{1}\mid+\cdots+\mid a_{k-1}\mid\right)\leqslant2\left(1+2+\cdots+k\right)=k(k+1). $$ 
+
+由此得到  $ \left|a_{k}\right|\leqslant k+1 $ 。这与  $ \left|a_{k}\right|>k+1 $ 矛盾。所以对一切自然 n 都有  $ \left|a_{n}\right|\leqslant n+1 $ 。
+
+# 3. 傅里叶级数
+
+狄利克雷收敛定理是傅里叶级数部分的基本定理，它揭示了怎样的函数能展开为傅里叶级数，以及傅里叶级数的收敛情况. 学习这部分内容，应掌握任意周期（特别是以 $ 2\pi $为周期）函数的傅里叶展开，以及定义在有限区间上函数的傅里叶展开与正、余弦级数展开.
+
+函数  $ f(x) $ 的傅里叶级数逐项可积的条件是： $ f(x) $ 在一个周期区间上分段连续；逐项可微的条件是：在一个周期区间上  $ f(x) $ 连续，端点值相等， $ f'(x) $ 分段连续.
+
+例 38 设  $ f(x)=\left\{\begin{aligned}&x,&0\leqslant x\leqslant\frac{1}{2}\\ &2-2x,&\frac{1}{2}<x\leqslant1\end{aligned}\right. $，且  $ f(x) $ 是以 2 为周期的偶函数.  $ S(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}\cos n\pi x $ 是  $ f(x) $ 的傅里叶级数，分别求  $ S(x) $ 在区间  $ [0,1] $， $ [-1,0] $， $ [-3,-5/2] $ 上的表达式.
+
+分析 只需根据狄利克雷收敛定理写出和函数  $ S(x) $ 的表达式.
+
+解  $ f(x) $ 在  $ [-1,1] $ 上分段单调，除  $ x = \pm \frac{1}{2} $ 外均连续，且  $ f(-1) = f(1) $。由狄利克雷收敛定理，当  $ x \in [-1,1] $ 且  $ x \neq \pm \frac{1}{2} $ 时， $ S(x) = f(x) $，且  $ S(x) $ 是偶函数。
+
+ $$ S\left(-\frac{1}{2}\right)=S\left(\frac{1}{2}\right)=\frac{1}{2}\left[f\left(\frac{1}{2}-0\right)+f\left(\frac{1}{2}+0\right)\right]=\frac{1}{2}\left(\frac{1}{2}+1\right)=\frac{3}{4}. $$ 
+
+（1）当  $ x \in [0,1] $ 时， $ S(x) = \begin{cases} f(x), & x \in (0,1), \quad x \neq \frac{1}{2} \\ \frac{3}{4}, & x = \frac{1}{2} \end{cases} = \begin{cases} x, & 0 \leq x < \frac{1}{2} \\ \frac{3}{4}, & x = \frac{1}{2} \\ 2 - 2x, & \frac{1}{2} < x \leq 1 \end{cases} $.
+
+（2）当 $ x\in[-1,0] $时， $ -x\in[0,1] $，
+
+ $$ S(x)=S(-x)=\left\{\begin{aligned}{}&{{}-x,}&{0\leqslant-x<\frac{1}{2}}\\ {}&{{}\frac{3}{4},}&{-x=\frac{1}{2}}\\ {}&{{}2-2(-x),}&{\frac{1}{2}<-x\leqslant1}\\ \end{aligned}\right.=\left\{\begin{aligned}{}&{{}2+2x,}&{-1\leqslant x<-\frac{1}{2}}\\ {}&{{}\frac{3}{4},}&{x=-\frac{1}{2}}\\ {}&{{}-x,}&{-\frac{1}{2}<x\leqslant0}\\ \end{aligned}\right.. $$ 
+
+（3）当 $ x\in[-3,-5/2] $时， $ x+2\in[-1,-1/2] $，
+
+ $$ \begin{aligned}S(x)=S(x+2)&=2+2(x+2)=6+2x\quad\left(x\neq-\frac{5}{2}\right).\\S\left(-\frac{5}{2}\right)&=S\left(-\frac{1}{2}\right)=\frac{3}{4}.\end{aligned} $$ 
+
+评注 求和函数在不同区间的表达式时，要充分利用函数的奇偶性与周期性.
+
+例 39 将  $ f(x)=\left\{\begin{aligned}&x,&0\leq x\leq2\\ &4-x,&2<x\leq4\end{aligned}\right. $ 分别在以下情况展开为以 8 为周期的傅里叶级数.
+
+（1） $ f(x) $做奇延拓；（2） $ f(x) $做偶延拓；（3） $ f(x) $做零延拓.
+
+解  $ f(x) $ 经题设条件下的3种延拓后均为连续函数，其傅里叶级数均处处收敛于  $ f(x) $.
+
+（1）做奇延拓：
+
+ $$ a_{n}=0\quad(n=0,1,2,\cdots), $$ 
+
+ $$ b_{n}=\frac{2}{4}\int_{0}^{4}f(x)\sin\frac{n\pi x}{4}\mathrm{d}x=\frac{1}{2}\left[\int_{0}^{2}x\sin\frac{n\pi x}{4}\mathrm{d}x+\int_{2}^{4}(4-x)\sin\frac{n\pi x}{4}\mathrm{d}x\right], $$ 
+
+其中
+
+ $$ \int_{2}^{4}(4-x)\sin\frac{n\pi x}{4}\mathrm{d}x\xlongequal{4-x=t}\int_{0}^{2}t\sin\frac{n\pi(4-t)}{4}\mathrm{d}t=(-1)^{n-1}\int_{0}^{2}t\sin\frac{n\pi t}{4}\mathrm{d}t, $$ 
+
+所以
+
+ $$ b_{2n}=0\quad\left(n=1,2,\cdots\right). $$ 
+
+ $$ \begin{aligned}b_{2n-1}=&\int_{0}^{2}t\sin\frac{(2n-1)\pi t}{4}\mathrm{d}t=\frac{-4}{(2n-1)\pi}\int_{0}^{2}t\mathrm{d}\cos\frac{(2n-1)\pi t}{4}\\ =&\frac{4}{(2n-1)\pi}\int_{0}^{2}\cos\frac{(2n-1)\pi t}{4}\mathrm{d}t=(-1)^{n-1}\left(\frac{4}{(2n-1)\pi}\right)^{2}\quad(n=1,2,\cdots).\end{aligned} $$ 
+
+因此
+
+ $$ f(x)=\sum_{k=1}^{n}(-1)^{n-1}\left(\frac{4}{(2n-1)\pi}\right)^{2}\sin\frac{(2\dot{n}-1)\pi x}{4}\quad\left(0\leq x\leq4\right). $$ 
+
+（2）做偶延拓：
+
+ $$ b_{n}=0\quad(n=1,2,\cdots), $$ 
+
+ $$ \begin{aligned}&v_{n}=0\quad(n=1,2,\cdots)\text{；}\\ &a_{0}=\frac{2}{4}\int_{0}^{4}f(x)\mathrm{d}x=\frac{1}{2}\Biggl[\int_{0}^{2}x\mathrm{d}x+\int_{2}^{4}(4-x)\mathrm{d}x\Biggr]=2\text{，}\\ &a_{n}=\frac{2}{4}\int_{0}^{4}f(x)\cos\frac{n\pi x}{4}\mathrm{d}x=\frac{1}{2}\Biggl[\int_{0}^{2}x\cos\frac{n\pi x}{4}\mathrm{d}x+\int_{2}^{4}(4-x)\cos\frac{n\pi x}{4}\mathrm{d}x\Biggr]\text{，}\\ &\Rightarrow a_{2n-1}=0\text{，}\ a_{2n}=\biggl[\left(-1\right)^{n}-1\biggr]\biggl(\frac{2}{n\pi}\biggr)^{2}\quad(n=1,2,\cdots)\text{．}\\ &f(x)=1-2\sum_{k=1}^{n}\biggl(\frac{2}{(2n-1)\pi}\biggr)^{2}\cos\frac{(2n-1)\pi x}{2}\quad(0\leq x\leq4)\text{．}\\ \end{aligned} $$ 
+
+（3）做零延拓：
+
+ $$ f(x)=\left\{\begin{aligned}&0,&-4\leq x\leq0,\\ &x,&0<x\leq2,\\ &4-x,&2<x\leq4.\end{aligned}\right. $$ 
+
+可按（1）和（2）中的方法直接展开，也可利用（1）和（2）的结果由如下方法写出展开式：记做奇延拓后的函数为  $ f_{1}(x) $，做偶延拓后的函数为  $ f_{2}(x) $，则做零延拓后的函数为
+
+ $$ \begin{align*}f(x)=&\frac{1}{2}\Big[f_{1}(x)+f_{2}(x)\Big]\\=&\frac{1}{2}-4\sum_{k=1}^{n}\left(\frac{1}{(2n-1)\pi}\right)^{2}\left(\cos\frac{(2n-1)\pi x}{2}+(-1)^{n}2\sin\frac{(2n-1)\pi x}{4}\right)\quad(0\leq x\leq4).\end{align*} $$ 
+
+例40 证明当  $ 0 \leq x \leq \pi $ 时， $ \sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}=\frac{x^{2}}{4}-\frac{\pi x}{2}+\frac{\pi^{2}}{6} $。并求  $ \sum_{n=1}^{\infty}\frac{1}{n^{2}} $ 与  $ \sum_{n=1}^{\infty}\frac{1}{n^{4}} $ 的值.
+
+分析 由函数展开式的唯一性可知，只需将函数  $ f(x)=\frac{x^2}{4}-\frac{\pi x}{2} $ ( $ 0\leq x\leq\pi $) 做偶延拓，展开为余弦函数.
+
+证明．设  $ f(x)=\frac{x^{2}}{4}-\frac{\pi x}{2} $ (0≤x≤π)，将  $ f(x) $ 做偶延拓．由于延拓后的函数处处连续，所以在区
+
+间 $ [0,\pi] $上，其傅里叶级数处处收敛于 $ f(x) $
+
+由于  $ b_{n}=0 $  $ (n=1,2,\cdots) $,
+
+ $$ a_{0}=\frac{2}{\pi}\int_{0}^{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\mathrm{d}x=-\frac{\pi^{2}}{3}, $$ 
+
+ $$ \begin{aligned}a_{n}=&\frac{2}{\pi}\int_{0}^{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\cos nx\mathrm{d}x=\frac{2}{n\pi}\left[\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\sin nx\Big|_{0}^{\pi}-\int_{0}^{\pi}\left(\frac{x}{2}-\frac{\pi}{2}\right)\sin nx\mathrm{d}x\right]\\=&\frac{2}{n^{2}\pi}\int_{0}^{\pi}\left(\frac{x}{2}-\frac{\pi}{2}\right)\mathrm{d}\cos nx=\frac{1}{n^{2}}\quad(n=1,2,\cdots),\end{aligned} $$ 
+
+所以
+
+ $$ \frac{x^{2}}{4}-\frac{\pi x}{2}=-\frac{\pi^{2}}{6}+\sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}\quad(0\leqslant x\leqslant\pi), $$ 
+
+即有
+
+ $$ \sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}=\frac{x^{2}}{4}-\frac{\pi x}{2}+\frac{\pi^{2}}{6}\quad\left(0\leqslant x\leqslant\pi\right). $$ 
+
+取x=0，得 $ \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6} $.
+
+①式两边在区间 $ [0,x] $上积分得
+
+ $$ \sum_{n=1}^{\infty}\frac{\sin nx}{n^{3}}=\frac{x^{3}}{12}-\frac{\pi x^{2}}{4}+\frac{\pi^{2}}{6}x $$ 
+
+再一次积分得
+
+ $$ -\sum_{n=1}^{\infty}\frac{\cos nx}{n^{4}}+\sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{x^{4}}{48}-\frac{\pi x^{3}}{12}+\frac{\pi^{2}}{12}x^{2}. $$ 
+
+取 $ x=\pi $，得
+
+ $$ -\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{4}}+\sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{\pi^{4}}{48}-\frac{\pi^{4}}{12}+\frac{\pi^{4}}{12}\Rightarrow\sum_{n=1}^{\infty}\frac{1}{(2n-1)^{4}}=\frac{\pi^{4}}{96}, $$ 
+
+所以
+
+ $$ \sum_{n=1}^{\infty}\frac{1}{n^{4}}=\sum_{n=1}^{\infty}\frac{1}{\left(2n\right)^{4}}+\sum_{n=1}^{\infty}\frac{1}{\left(2n-1\right)^{4}}=\frac{1}{16}\sum_{n=1}^{\infty}\frac{1}{n^{4}}+\frac{\pi^{4}}{96}, $$ 
+
+解得  $ \sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{\pi^{4}}{90} $.
+
+评注 该题在形式上是证明题，但改变问题的描述方式，将证明化为计算，问题就容易解决了。类似的情形见8.3节例20，综合题8 $ ^{*} $第38题。
+
+例41 设  $ f(x) $ 在  $ [-π,π] $ 上可积， $ f(x) $ 的傅里叶级数为  $ \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos nx + b_{n} \sin nx $，证明：
+
+（1）若  $ f(x) $ 在  $ [-π,π] $ 上有连续导数，则  $ \lim_{n\to\infty}a_n=\lim_{n\to\infty}b_n=0 $；
+
+（2）若  $ f(x) $ 在  $ [-π,π] $ 上有二阶连续导数，则  $ \sum_{n=1}^{\infty}a_{n} $ 绝对收敛.
+
+分析 由于  $ a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx\,dx $， $ b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx\,dx $，要建立  $ f'(x) $ 与  $ a_{n} $ 与  $ b_{n} $ 的联系，只需做分部积分.
+
+解（1）做分部积分，有
+
+ $$ a_{n}=\frac{1}{n\pi}\int_{-\pi}^{\pi}f(x)\mathrm{d}\sin nx=-\frac{1}{n\pi}\int_{-\pi}^{\pi}f^{\prime}(x)\sin nx\mathrm{d}x. $$ 
+
+因为  $ |\sin nx| \leqslant 1 $，又  $ f'(x) $ 在  $ [-π, π] $ 上连续，则必有界，从而存在  $ M_1 > 0 $，使对  $ \forall n > 0 $，有
+
+ $$ |a_{n}|\leqslant\frac{M_{1}}{n\pi}\int_{-\pi}^{\pi}\mathrm{d}x=\frac{2M_{1}}{n}\Rightarrow\lim_{n\to\infty}a_{n}=0. $$ 
+
+同理可证  $ \lim_{n\to\infty}b_n=0 $.
+
+（2）再做一次分部积分，有
+
+ $$ a_{n}=\frac{1}{n^{2}\pi}\int_{-\pi}^{\pi}f^{\prime}(x)\mathrm{d}\cos nx=\frac{(-1)^{n}}{n^{2}\pi}[f^{\prime}(\pi)-f^{\prime}(-\pi)]-\frac{1}{n^{2}\pi}\int_{-\pi}^{\pi}f^{\prime \prime}(x)\cos nx\mathrm{d}x. $$ 
+
+因为  $ f''(x) \in C[-\pi, \pi] $，知  $ f'(x) $ 和  $ f''(x) $ 在  $ [-\pi, \pi] $ 上均有界，从而存在  $ M_2 > 0 $，使对  $ \forall n > 0 $，有  $ |a_n| \leq \frac{M_2}{n^2} $。所以  $ \sum_{n=1}^{\infty} |a_n| $ 收敛。即  $ \sum_{n=1}^{\infty} a_n $ 绝对收敛。
+
+评注 需要指出的是该题（1）的条件是比较强的，其目的是便于结论的证明. 事实上只要  $ f(x) $ 在  $ [-\pi, \pi] $ 上可积或绝对可积，其结论就成立. 读者可参见陈纪修等编写的《数学分析（下册）》.
+
+例  $ 42^{*} $ 设  $ f(x) $ 在  $ (-\infty, \infty) $ 上连续，且  $ f(x) = f(x + 2) = f(x + \sqrt{3}) $，证明  $ f(x) $ 为常数.
+
+分析 由题设知  $ f(x) $ 是周期函数，若用傅里叶级数来表示，只需证明系数  $ a_{n}=b_{n}=0(n=1,2,\cdots) $.
+
+证明 由  $ f(x)=f(x+2) $ 知  $ f(x) $ 以 2 为周期，则  $ f(x) $ 的傅里叶系数为
+
+ $$ a_{n}=\int_{-1}^{1}f(x)\cos n\pi x\mathrm{d}x,\ b_{n}=\int_{-1}^{1}f(x)\sin n\pi x\mathrm{d}x. $$ 
+
+又  $ f(x)=f(x+\sqrt{3}) $，有
+
+ $$ \begin{aligned}a_{n}&=\int_{-1}^{1}f(x+\sqrt{3})\cos n\pi x\mathrm{d}x=\int_{-1+\sqrt{3}}^{1+\sqrt{3}}f(t)\cos n\pi(t-\sqrt{3})\mathrm{d}t\\&=\int_{-1+\sqrt{3}}^{1+\sqrt{3}}f(t)(\cos n\pi t\cos\sqrt{3}n\pi+\sin n\pi t\sin\sqrt{3}n\pi)\mathrm{d}t\\&=\cos\sqrt{3}n\pi\int_{-1+\sqrt{3}}^{1+\sqrt{3}}f(t)\cos n\pi t\mathrm{d}t+\sin\sqrt{3}n\pi\int_{-1+\sqrt{3}}^{1+\sqrt{3}}f(t)\sin n\pi t\mathrm{d}t\\&=\cos\sqrt{3}n\pi\int_{-1}^{1}f(t)\cos n\pi t\mathrm{d}t+\sin\sqrt{3}n\pi\int_{-1}^{1}f(t)\sin n\pi t\mathrm{d}t,\\ \end{aligned} $$ 
+
+即有
+
+ $$ a_{n}=a_{n}\cos\sqrt{3}n\pi+b_{n}\sin\sqrt{3}n\pi. $$ 
+
+同理可得
+
+ $$ b_{n}=b_{n}\cos\sqrt{3}n\pi-a_{n}\sin\sqrt{3}n\pi. $$ 
+
+①，②式联立解得  $ a_{n}=b_{n}=0(n=1,2,\cdots) $. 因为  $ f(x) $ 连续，其傅里叶级数处处收敛于  $ f(x) $，所以
+
+ $$ f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}\cos n\pi x+b_{n}\sin n\pi x=\frac{a_{0}}{2}. $$ 
+
+评注 该题表明，若连续函数有两个不可公度的周期（两个周期的比为无理数），则该函数一定是常数.
+
+例  $ 43^{*} $ 求  $ I_{n}=\int_{0}^{\pi}\frac{\sin x\sin nx}{1-2a\cos x+a^{2}}\mathrm{d}x\left(|a|<1\right) $.
+
+分析 直接计算积分很困难，如果将函数  $ f(x)=\frac{\sin x}{1-2a\cos x+a^{2}} $ 展开为正弦级数，由欧拉和傅里叶公式知  $ b_{n}=\frac{2}{\pi}I_{n} $.
+
+解 令  $ f(x)=\frac{\sin x}{1-2a\cos x+a^{2}} $，将  $ f(x) $ 展开为正弦级数  $ f(x)=\sum_{n=1}^{\infty}b_{n}\sin nx $，则  $ b_{n}=\frac{2}{\pi}I_{n} $.
+
+由欧拉公式
+
+ $$ \begin{aligned}f(x)=&\frac{1}{2i}\cdot\frac{\mathrm{e}^{ix}-\mathrm{e}^{-ix}}{1-a(\mathrm{e}^{ix}+\mathrm{e}^{-ix})+a^{2}}=\frac{1}{2i}\left(\frac{\mathrm{e}^{ix}}{1-a\mathrm{e}^{ix}}-\frac{\mathrm{e}^{-ix}}{1-a\mathrm{e}^{-ix}}\right)\\=&\frac{1}{2i}\sum_{n=0}^{\infty}a^{n}\left[\mathrm{e}^{i(n+1)x}-\mathrm{e}^{-i(n+1)x}\right]=\sum_{n=1}^{\infty}a^{n-1}\sin nx.\end{aligned} $$ 
+
+所以 $ b_{n}=a^{n-1} $， $ I_{n}=\frac{\pi}{2}b_{n}=\frac{\pi}{2}a^{n-1} $
+
+评注 对形如 $ \int_{0}^{\pi}f(x)\sin nx dx $或 $ \int_{0}^{\pi}f(x)\cos nx dx $的积分，若 $ f(x) $可间接展开为傅里叶级数（通常利用欧拉公式），则积分就可通过展开式的系数而求得.
+
+例  $ 44^* $ 设  $ f(x) $ 在  $ [0,2\pi] $ 上连续且分段光滑，且有  $ \int_0^{\varepsilon\pi} f(x) \, \mathrm{d}x = 0 $，证明维尔丁格（Wirtinger）不等式  $ \int_0^{2\pi} [f(x)]^2 \, \mathrm{d}x \leqslant \int_0^{2\pi} [f'(x)]^2 \, \mathrm{d}x $，当且仅当  $ f(x) = a\cos x + b\sin x $ 时等式成立.
+
+分析 这里涉及平方积分的大小，而傅里叶级数中的巴塞瓦（Parseval）恒等式就是建立了函数的平方积分与级数的关系，因此积分的大小关系就转化为对应级数和的大小关系.
+
+证明 考虑  $ f(x) $ 在区间  $ [0,2\pi] $ 上的傅里叶级数
+
+ $$ f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right), $$ 
+
+由于 $ \int_{0}^{2\pi}f(x)dx=0 $，则有 $ a_{0}=0 $。对上式求导得
+
+ $$ f^{\prime}(x)=\sum_{n=1}^{\infty}(-na_{n}\sin nx+\dot{n}b_{n}\cos nx) $$ 
+
+由 Parseval 恒等式可得
+
+ $$ \int_{0}^{2\pi}\left[f(x)\right]^{2}\mathrm{d}x=\pi\sum_{n=1}^{\infty}\left(a_{n}^{~2}+b_{n}^{~2}\right),\quad\int_{0}^{2\pi}\left[f^{\prime}(x)\right]^{2}\mathrm{d}x=\pi\sum_{n=1}^{\infty}\left(n^{2}a_{n}^{~2}+n^{2}b_{n}^{~2}\right). $$ 
+
+所以
+
+ $$ \int_{0}^{2\pi}\left[f(x)\right]^{2}\mathrm{d}x\leqslant\int_{0}^{2\pi}\left[f^{\prime}(x)\right]^{2}\mathrm{d}x. $$ 
+
+当且仅当  $ a_{n}=b_{n}=0(n>1) $，即  $ f(x)=a\cos x+b\sin x $ 时等式成立.
+
+评注（1）傅里叶级数的逐项可积、逐项可微性：
+
+定理 若  $ f(x) $ 在区间  $ [-π,π] $ 上分段连续，则  $ f(x) $ 的傅里叶级数在该区间上可以数逐项积分；若  $ f(x) $ 在区间  $ [-π,π] $ 上连续且分段光滑，且  $ f(-\pi)=f(\pi) $，则  $ f'(x) $ 的傅里叶级数可以由  $ f(x) $ 的傅里叶级数逐项求导而得到.
+
+(2) Parseval 恒等式:
+
+设  $ f(x) $ 是  $ [0,2\pi] $ 上的分段连续函数，且  $ f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos nx+b_n\sin nx) $，则有
+
+ $ \frac{1}{\pi}\int_{0}^{2\pi}\left[f(x)\right]^{2}\mathrm{d}x=\frac{a_{0}^{2}}{2}+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2}) $.
+
+##### 习题8.3
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//25c2ab0d-a978-491c-aace-534dff2ce784/markdown_0/imgs/img_in_image_box_1239_538_1374_668.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A40%3A45Z%2F-1%2F%2F65577d72ea9c23e32262cb71fb27ab744b917632aee03745590036d5903d6707" alt="Image" width="9%" /></div>
+
+
+1. 求下列级数的收敛域.
+
+(1)  $ \sum_{n=0}^{\infty}\frac{(n+x)^{n}}{n^{n+x}} $;
+
+(2)  $ \sum_{n=1}^{\infty}\frac{2^{n}\sin^{n}x}{n^{2}} $;
+
+(3)  $ \sum_{n=1}^{\infty}\frac{1^{n}+2^{n}+\cdots+50^{n}}{n^{2}}\left(\frac{1-x}{1+x}\right)^{n} $;
+
+(4)  $ \sum_{n=1}^{\infty}\ln\frac{\left[1+(n-1)x\right](1+2nx)}{(1+nx)\left[1+2(n-1)x\right]} $.
+
+习题8.3答案
+
+2. 求下列幂级数的收敛半径与收敛域.
+
+(1)  $ \sum_{n=1}^{\infty}\left[1-n\ln\left(1+\frac{1}{n}\right)\right]x^{n} $; (2)  $ \sum_{n=1}^{\infty}\frac{3^{n}+(-2)^{n}}{n}(x-1)^{n} $;
+
+(3)  $ \sum_{n=1}^{\infty}\left[\frac{1}{\ln(n!)}+(-1)^{n}+\sin n\right]x^{n} $; (4)  $ \sum_{n=1}^{\infty}\frac{x^{n}}{b_{n}} $，其中 $ b_{n}=\ln\left(1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{n}\right) $.
+
+3. 设  $ p \in \mathbb{R} $，讨论幂级数  $ \sum_{n=2}^{\infty} \frac{x^n}{n^p \ln(n^2 + n)} $ 的收敛域.
+
+4. 求下列级数的收敛域与和函数.
+
+(1)  $ \sum_{n=0}^{\infty}\frac{(-1)^{n}n^{3}}{(n+1)!}x^{n} $; (2)  $ \sum_{n=1}^{\infty}\frac{(-1)^{n-1}x^{2n+1}}{n(2n-1)} $;
+
+(3)  $ \sum_{n=1}^{\infty}\frac{(-1)^{n}nx^{2n}}{(2n+1)!} $;  $ (4^{*})\sum_{n=1}^{\infty}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right)x^{n} $
+
+5*. 求级数 $ \sum_{n=1}^{\infty}\frac{x^{2n}}{16n^{2}-1} $的和函数，并计算 $ \sum_{n=1}^{\infty}\frac{1}{16n^{2}-1} $的值.
+
+6. 设函数  $ F(x) $ 是  $ f(x) $ 的一个原函数，且  $ F(0)=1 $， $ F(x)f(x)=\cos 2x $， $ a_n=\int_0^{n\pi}|f(x)|\,\mathrm{d}x $， $ n=1,2,\cdots $，求幂级数  $ \sum_{n=2}^{\infty}\frac{a_n}{n^2-1}x^n $ 的收敛域与和函数.
+
+7. 求下列级数的和.
+
+(1)  $ \sum_{n=0}^{\infty}\frac{(-1)^{n}(n^{2}-n+1)}{2^{n}} $; (2)  $ \sum_{n=1}^{\infty}\frac{(n+2)2^{n}}{n!(n+1)!+(n+2)!} $;
+
+(3)  $ \sum_{n=0}^{\infty}I_{n} $，其中 $ I_{n}=\int_{0}^{\frac{\pi}{4}}\sin^{n}x\cos xdx\quad(n=0,1,2,\cdots) $; (4)  $ \sum_{n=k}^{\infty}C_{n}^{k}q^{n-k}\quad(0<q<1) $.
+
+8*. 求  $ \frac{1+\frac{\pi^{4}}{2^{4}\cdot4!}+\frac{\pi^{8}}{2^{8}\cdot8!}+\frac{\pi^{12}}{2^{12}\cdot12!}+\cdots}{\frac{1}{2!}+\frac{\pi^{4}}{2^{4}\cdot6!}+\frac{\pi^{8}}{2^{8}\cdot10!}+\frac{\pi^{12}}{2^{12}\cdot14!}} $ 的值.
+
+9. 设  $ a_{0}=1 $,  $ a_{1}=-2 $,  $ a_{2}=\frac{7}{2} $,  $ a_{n+1}=-\left(1+\frac{1}{n+1}\right)a_{n}(n=2,3,\cdots) $, 求极限  $ \lim_{x\to-1^+}(1+x)^{2}\sum_{n=0}^{\infty}a_nx^n $
+
+10. 已知  $ a_{1}=1 $,  $ a_{2}=1 $,  $ a_{n+1}=a_{n}+a_{n-1}(n=2,3,\cdots) $，试求级数  $ \sum_{n=1}^{\infty}a_{n}x^{n} $ 的收敛半径与和函数.
+
+11. 给定 3 个幂级数  $ u=1+\frac{x^3}{3!}+\frac{x^6}{6!}+\cdots $， $ \nu=x+\frac{x^4}{4!}+\frac{x^7}{7!}+\cdots $， $ w=\frac{x^2}{2!}+\frac{x^5}{5!}+\frac{x^8}{8!}+\cdots $。证明  $ u^3+\nu^3+w^3-3uvw=1 $。
+
+12*. 设  $ f_0(x)=\mathrm{e}^x $，对于  $ k=0,1,2,\cdots $，定义  $ f_{k+1}(x)=xf'_k(x) $。证明  $ \sum_{k=0}^{\infty}\frac{f_k(x)}{k!}=\mathrm{e}^{\mathrm{e}x} $。
+
+13*. 设  $ S(x)=\sum_{n=1}^{\infty}\frac{1\cdot4\cdot\cdots\cdot(3n-2)}{3\cdot6\cdot\cdots\cdot(3n)}\left(\frac{x}{2}\right)^n(-2 \leq x < 2) $， $ F(x)=\left(1-\frac{x}{2}\right)S'(x) $。
+
+(1) 求  $ F(x) $ 与  $ S(x) $ 的关系式； (2) 求和函数  $ S(x) $.
+
+ $ 14^* $. 求积分  $ I = \int_0^{+\infty} \frac{u}{1 + e^u} \, du $ 的值.
+
+15. 试证幂级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 逐项求导后所得的级数与原级数有相同的收敛半径.
+
+16 $ ^{*} $. 幂级数 $ \sum_{n=0}^{\infty}a_{n}x^{n} $的系数从某项起具有周期性，证明此级数的和函数是有理函数.
+
+17. 将  $ f(x)=\frac{1}{x^{2}} $ 展开成  $ (x-3) $ 的幂级数.
+
+18. 将函数  $ f(x)=\frac{1}{4}\ln\frac{1+x}{1-x}+\frac{1}{2}\arctan x-x $ 展开成 x 的幂级数.
+
+19. 将函数  $ f(x)=\arctan\frac{1-2x}{1+2x} $ 展开成 x 的幂级数，并求级数  $ \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1} $ 的和.
+
+ $ 20^{*} $. 将函数  $ e^{x}\sin x $ 展开为 x 的幂级数.
+
+ $ 21^{*} $. 设函数  $ f(x)=\begin{cases}\frac{x^{2}+1}{x}\arctan x, & x\neq0 \\ 1, & x=0\end{cases} $，求:
+
+f(x)的麦克劳林展开式 $ \sum_{n=0}^{\infty}a_{n}x^{n}(-1<x<1) $;
+
+(2) 幂级数  $ \sum_{n=0}^{\infty}|a_{2n}|x^{2n} $ 的和函数  $ S(x)(-1<x<1) $.
+
+22*. 证明 $ \sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{2x^{2}}{1+x^{2}}\right)^{n}=2\sum_{n=1}^{\infty}\frac{x^{4n-2}}{2n-1}(|x|<1) $.
+
+23. 将  $ f(x)=\frac{\pi}{2}\cdot\frac{e^{x}+e^{-x}}{e^{\pi}-e^{-\pi}} $ 在  $ [-π,π] $ 上展开为傅里叶级数，并求级数  $ \sum_{n=1}^{\infty}\frac{(-1)^{n}}{1+(2n)^{2}} $ 的和.
+
+24. 设  $ f(x) $ 在  $ [-π, π] $ 上有二阶连续导数， $ f(x) $ 的傅里叶级数为  $ \frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos nx + b_n \sin nx $。若  $ f(π) ≠ f(-\pi) $，则证明  $ \sum_{n=1}^{\infty} b_n $ 条件收敛。
+
+25*. 设  $ f(x) $ 是以  $ 2\pi $ 为周期的连续函数，其傅里叶系数为  $ a_{0}, a_{n}, b_{n} $
+
+（1）求函数  $ G(x)=\frac{1}{\pi}\int_{-\pi}^{\pi}f(t)f(x+t)dt $ 的傅里叶系数  $ A_{0}, A_{n}, B_{n} $;
+
+（2）利用（1）的结果证明 Parseval 恒等式： $ \frac{1}{\pi}\int_{0}^{2\pi}(f(x))^{2}dx=\frac{a_{0}^{2}}{2}+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2}) $.
+
+26.（1）将函数  $ f(x)=\sin^{3}x $ 展开成以  $ 2\pi $ 为周期的傅里叶级数，证明初等数学中的公式
+
+ $$ \sin3x=3\sin x-4\sin^{3}x\;(-\infty<x<+\infty). $$ 
+
+(2) 求  $ f(x) = \sin^{3} x $ 的麦克劳林级数并写出其成立范围.
+
+#### 综合题8 $ ^{*} $
+
+<div style="text-align: center;"><img src="https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//25c2ab0d-a978-491c-aace-534dff2ce784/markdown_2/imgs/img_in_image_box_1240_854_1374_985.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-07-04T18%3A41%3A05Z%2F-1%2F%2F283ee138020f9a0aca71db081303c28f213673ad7e426745b73cc949a8c2e38c" alt="Image" width="9%" /></div>
+
+
+1. 设  $ a_{n}=\int_{0}^{\frac{\pi}{2}}t\left|\frac{\sin nt}{\sin t}\right|^{3}dt $，判断级数  $ \sum_{n=1}^{\infty}\frac{1}{a_{n}} $ 的敛散性.
+
+综合题8答案
+
+2. 求级数  $  S = \sum_{n=1}^{\infty} \arctan \frac{2}{n^{2}}  $ 的值.
+
+3. 设有级数  $ \sum_{n=1}^{\infty}a_{n}=1+\frac{1}{3}+\frac{1}{5}-\frac{1}{2}+\frac{1}{7}+\frac{1}{9}+\frac{1}{11}-\frac{1}{4}+\cdots $，讨论级数的敛散性，若收敛，则求其和.
+
+4. 讨论级数  $ \sum_{n=1}^{\infty}\frac{1}{n^{p}}\left(1-\frac{x\ln n}{n}\right)^{n} $ 的敛散性与参数 p, x 的关系.
+
+5. 证明弗林克（Frink）判别法：设  $ \sum_{n=1}^{\infty}a_{n} $ 为正项级数， $ \lim_{n\to\infty}\left(\frac{a_{n}}{a_{n-1}}\right)^{n}=k $ 存在，则当  $ k<\frac{1}{e} $ 时，级数收敛；当  $ k>\frac{1}{e} $ 时，级数发散.
+
+6. 证明若正项级数  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，则级数  $ \sum_{n=1}^{\infty}\frac{a_{n}}{a_{n}+a_{n+1}+\cdots} $ 发散.
+
+7. 设  $ a_1 = a > 0 $,  $ a_{n+1} = \frac{1}{2} \left( a_n + \frac{a}{a_n} \right) (n=1,2,\cdots) $, 证明 级数  $ \sum_{n=1}^{\infty} \left[ \left( \frac{a_{n+1}}{a_{n+2}} \right)^2 - 1 \right] $ 收敛.
+
+8. 设有一严格递增的正整数序列（如1,2,3,4,5,6,10,12, $ \cdots $）， $ u_{n} $表示此序列前n项的最小公倍数，证明级数 $ \sum_{n=1}^{\infty}\frac{1}{u_{n}} $收敛.
+
+9. 已知正项级数  $ \sum_{n=1}^{\infty}a_{n} $ 收敛，试证明级数  $ \sum_{n=1}^{\infty}\sqrt[n]{a_{1}a_{2}\cdots a_{n}} $ 收敛.
+
+10. 设  $ \{a_{n}\} $ 与  $ \{b_{n}\} $ 均为正实数列，满足  $ a_{1}=b_{1}=1 $ 且  $ b_{n}=a_{n}b_{n-1}-2(n=2,3,\cdots) $，又设  $ \{b_{n}\} $ 为有界数列，证明级数  $ \sum_{n=1}^{\infty}\frac{1}{a_{1}a_{2}\cdots a_{n}} $ 收敛，并求该级数的和.
+
+11. 设  $ \varphi(x) $ 是  $ (-\infty,+\infty) $ 上连续的周期函数，周期为 1，且  $ \int_{0}^{x}\varphi(x)dx=0 $，函数  $ f(x) $ 在  $ [0,1] $ 上有连续的导数， $ a_{n}=\int_{0}^{1}f(x)\varphi(nx)dx $，证明级数  $ \sum_{n=1}^{\infty}a_{n}^{2} $ 收敛.
+
+12. 设  $ f_{n}(x)=x^{\frac{1}{n}}+x-r $ ，其中 r>0 。（1）证明  $ f_{n}(x) $ 在  $ (0,+\infty) $ 内有唯一的零点  $ x_{n} $ ；（2）求 r 为何值时级数  $ \sum_{n=1}^{\infty}x_{n} $ 收敛，为何值时级数  $ \sum_{n=1}^{\infty}x_{n} $ 发散.
+
+13. 证明若函数  $ f(x) $ 单调递减且大于 0, a > 1, 极限  $ \lim_{x \to +\infty} \frac{e^x f(e^x)}{f(x)} = \lambda $, 则级数  $ \sum_{n=1}^{\infty} f(n) $ 在  $ 0 < \lambda < 1 $ 时收敛, 在  $ \lambda > 1 $ 时发散.
+
+14. 求  $ \sum_{n=1}^{\infty}\frac{1}{(2n+1)(3n+1)} $ 的值.
+
+15. 设  $ E(n) $ 表示能使  $ 5^k $ 整除乘积  $ 1^1 2^2 3^3 \cdots n^n $ 的最大的整数  $ k $，计算  $ \lim_{n \to \infty} \frac{E(n)}{n^2} $
+
+16. 讨论级数的敛散性： $ 1 - \frac{1}{2^p} + \frac{1}{3^q} - \frac{1}{4^p} + \cdots - \frac{1}{(2n)^p} + \frac{1}{(2n+1)^q} + \cdots $.
+
+17. 设  $ \lambda \in [0,1] $，讨论级数  $ \sum_{n=2}^{\infty} (-1)^n \left( \sqrt{n^2+1} - \sqrt{n^2-1} \right) n^{\lambda} \ln n $ 的敛散性.
+
+18. 判定级数  $ \sum_{n=1}^{\infty}\sin\pi(3+\sqrt{5})^{n} $ 的敛散性.
+
+19. 判定级数  $ \sum_{n=1}^{\infty}\frac{\cos nx-\cos(n+1)x}{n} $ 的敛散性.
+
+20. 设  $ \sum_{n=1}^{\infty}a_{n} $ 收敛于A，证明  $ \sum_{n=1}^{\infty}\frac{a_{1}+2a_{2}+\cdots+na_{n}}{n(n+1)}=A $.
+
+21. 求级数  $ \sum_{k=1}^{\infty}\left(\frac{1^{2}}{1!}+\frac{2^{2}}{2!}+\frac{3^{2}}{3!}+\cdots+\frac{k^{2}}{k!}\right)\frac{1}{3^{k}} $ 的值.
+
+22. 设  $ S_{n} = \sum_{k=1}^{n} \frac{(-1)^{k+1}}{k} $， $ S = \lim_{n \to \infty} S_{n} $，求  $ \sum_{n=1}^{\infty} (S_{n} - S) $.
+
+23. 设  $ u_{n} = \int_{0}^{1} \frac{dt}{(1 + t^{4})^{n}} $ ( $ n \geq 1 $).
+
+（1）证明数列 $ \left\{u_{n}\right\} $收敛，并求极限 $ \lim_{n\to\infty}u_{n} $
+
+(2) 证明级数  $ \sum_{n=1}^{\infty}(-1)^{n}u_{n} $ 条件收敛；
+
+（3）证明当  $ p \geqslant 1 $ 时级数  $ \sum_{n=1}^{\infty} \frac{u_{n}}{n^{p}} $ 收敛，并求级数  $ \sum_{n=1}^{\infty} \frac{u_{n}}{n} $ 的和.
+
+24. 证明任意正有理数必为调和级数中有限项之和.
+
+25. 判定下列反常积分的敛散性.
+
+(1)  $ \int_{0}^{+\infty}(-1)^{[x^{2}]}dx $，[ $ \cdot $]为取整函数； (2)  $ \int_{0}^{+\infty}\frac{dx}{1+x^{a}\sin^{2}x} $.
+
+26. 设正数列  $ \{a_{n}\} $ 单调递减且趋于 0， $ f(x)=1+\sum_{n=1}^{\infty}a_{n}^{n}x^{n} $，证明若级数  $ \sum_{n=1}^{\infty}a_{n} $ 发散，则积分  $ \int_{1}^{+\infty}\frac{\ln f(x)}{x^{2}}dx $ 也发散.
+
+27. 令  $ A=\{(x,y)\mid0\leq x,y<1\} $，对任何  $ (x,y)\in A $，令  $ S(x,y)=\sum_{\frac{1}{2}\leq\frac{m}{n}\leq2}x^m y^n $。这里的求和对一切满足所列不等式的正整数 m,n 进行。试计算  $ \lim_{(x,y)\to(1,1)} (1-xy^2)(1-x^2y)S(x,y) $。
+
+28. 求当 r 取何值时，级数  $ \frac{1}{2} + r\cos x + r^{2}\cos2x + r^{3}\cos4x + r^{4}\cos8x + \cdots $ 的所有部分和对一切 x 都非负.
+
+即作贝.
+
+29. 设  $ u_{0}=0 $,  $ u_{1}=1 $,  $ u_{n+1}=au_{n}+bu_{n-1}(n=1,2,3,\cdots) $，其中 a, b 是满足  $ a+b<1 $ 的正的常数，求  $ \sum_{n=0}^{\infty}\frac{u_{n}}{n!}x^{n} $ 的和函数.
+
+30. 设  $ a_{0}=3 $,  $ a_{1}=5 $, 且对任何自然数 n>1, 有  $ na_{n}=\frac{2}{3}a_{n-1}-(n-1)a_{n-1} $, 证明当  $ |x|<1 $ 时级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 收敛, 并求其和函数.
+
+31. 设数列  $ \{a_{n}\} $ 满足关系式  $ a_{n+2}-3a_{n+1}+2a_{n}=n $， $ a_{0}=a_{1}=1 $，求  $ a_{n}(n>1) $ 的表达式与级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 的收敛区间与和函数.
+
+32. 设  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 的收敛半径为 1， $ \lim_{n\to\infty}na_{n}=0 $ 且  $ \lim_{x\to\sqrt{1}}\sum_{n=0}^{\infty}a_{n}x^{n}=A $，证明  $ \sum_{n=0}^{\infty}a_{n} $ 收敛且  $ \sum_{n=0}^{\infty}a_{n}=A $
+
+33. 对于每一个正整数 n，用  $ a(n) $ 表示 n 的 3 进位数中 0 的个数. 试求  $ \sum_{n=1}^{\infty}\frac{x^{a(n)}}{n^{3}} $ 的收敛域.
+
+34. 设  $ f(x)=\frac{1}{4}\left(1+x-\sqrt{1-6x+x^{2}}\right) $，其幂级数展开式为  $ f(x)=\sum_{n=1}^{\infty}a_{n}x^{n} $，证明  $ a_{n} $ 都是正整数.
+
+35. 幂级数  $ f(x)=\sum_{n=0}a_nx^n $ 的每一个系数  $ a_n $ 只取值 0 或 1，证明  $ f(x) $ 是有理函数的充要条件为  $ f\left(\frac{1}{2}\right) $ 是有理数.
+
+36. 设  $ f(x)=\frac{1}{1-x-x^{2}} $. (1). 请用直接法求出  $ f(x) $ 的麦克荣林级数  $ \sum_{n=0}^{\infty}a_{n}x^{n} $ 并给出收敛域，证明此级数在收敛域内的确收敛于  $ f(x) $; (2) 证明级数  $ \sum_{n=0}^{\infty}\frac{a_{n+1}}{a_{n}a_{n+2}} $ 收敛，并求其和.
+
+37. 将函数  $  y = \frac{\ln(x + \sqrt{1 + x^2})}{\sqrt{1 + x^2}}  $ 展开为  $  x  $ 的幂级数.
+
+38. 如果函数  $ f(x)=\frac{1}{(1-ax)(1-bx)} $ 能展开为 x 的幂级数  $ \sum_{n=0}^{\infty}c_{n}x^{n-1} $，证明：
+
+函数  $ g(x)=\frac{1+abx}{(1-abx)(1-a^{2}x)(1-b^{2}x)} $ 可展开为 x 的幂级数  $ \sum_{n=0}^{\infty}c_{n}^{2}x^{n} $
+
+39. 证明  $ \int_{0}^{1} x^{-x} \, dx = \sum_{n=1}^{\infty} \left( \frac{1}{n} \right)^{n} $.
+
+40. 设  $ f(x) $ 是仅有正实根的多项式函数，满足  $ \frac{f'(x)}{f(x)} = -\sum_{n=0}^{\infty} c_nx^n $，证明：（1） $ c_n > 0 (n = 0,1,\cdots) $；
+
+(2) 极限  $ \lim_{n \to \infty} \frac{1}{\sqrt[n]{c_n}} $ 存在，且等于  $ f(x) $ 的最小根.
+
+41. 将函数  $ f(x)=\sec x $ 在区间  $ \left[-\frac{\pi}{4}, \frac{\pi}{4}\right] $ 上展开为傅里叶级数.
+
+42. 设  $ f(x) $ 是  $ (-\infty,+\infty) $ 上以  $ 2\pi $ 为周期的具有二阶连续导数的函数. 记  $ b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \sin nx \, dx $， $ b_n'' = \frac{1}{\pi}\int_{-\pi}^{\pi} f''(x) \sin nx \, dx $. 证明若  $ \sum_{n=1}^{\infty} b_n'' $ 绝对收敛，则  $ \sum_{n=1}^{\infty} \sqrt{|b_n|} < \frac{1}{2} \left(2 + \sum_{n=1}^{\infty} |b_n''| \right) $.
+
+43. 设  $ f(x) $ 与  $ f^{2}(x) $ 在  $ [-π,π] $ 上可积， $ a_{n}, b_{n} $ 是  $ f(x) $ 在  $ [-π,π] $ 上的傅里叶系数.
+
+（1）记 $ S_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}(a_{k}\cos kx+b_{k}\sin kx) $，证明 $ \max_{x\in[-\pi,\pi]}\left|S_{n}^{\prime}(x)\right|\leq n\sqrt{2n}\max_{x\in[-\pi,\pi]}\left|S_{n}(x)\right| $;
+
+（2）证明贝塞尔（Bessel）不等式： $ \frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)dx\geqslant\frac{a_{0}^{2}}{2}+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2}) $.
+
+44. 设  $ f(x) $ 是以  $ 2\pi $ 为周期的可积函数，其傅里叶系数为  $ a_0, a_n, b_n $，记  $ S_0(x) = \frac{a_0}{2} $， $ S_n(x) = \frac{a_0}{2} + \sum_{k=1}^{n} (a_k \cos kx + b_k \sin kx) $， $ \sigma_n(x) = \frac{1}{n} \sum_{k=0}^{n-1} S_k(x) $。证明：
+
+(1)  $ S_{n}(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x+t)\frac{\sin(n+1/2)t}{\sin(t/2)}\mathrm{d}t; $ (2)  $ \sigma_{n}(x)=\frac{1}{2n\pi}\int_{-\pi}^{\pi}f(x+t)\left[\frac{\sin(nt/2)}{\sin(t/2)}\right]^{2}\mathrm{d}t $.
+
