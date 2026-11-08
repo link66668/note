@@ -11,11 +11,7 @@ source:
   - "数学竞赛/CMC视频题目+答案.pdf_by_PaddleOCR-VL-1.6.md"
 ---
 
-> 本文依据 PaddleOCR-VL-1.6 转写稿，结合原 PDF 整理《CMC 复习专题（非数学 A 类）》，保留基础篇与强化篇的题目顺序、原编号、子题及难度星级，将附录答案逐题合并到对应题目下方。答案默认折叠，点击“原书参考答案”即可展开完整解答。
-
-> [!note] AI 补充：整理范围与阅读说明
-> 原 PDF 与 OCR 文件均保留。目录以 PDF 的印刷目录及原书页码为准（PDF 文件页序比正文页码多 8 页），不采用存在重复跳转的 PDF 书签；书籍类 OCR 的 5 处原图链接原样保留。
-> 下文答案均为原书参考答案，未逐题独立验算；已发现的来源矛盾与缺失在相应位置注明。原前言中的“资料仅收录题目”照录，但本版本 PDF 实际已经附有答案。
+> 本文依据 PaddleOCR-VL-1.6 转写稿，结合原 PDF 整理《CMC 复习专题（非数学 A 类）》，保留基础篇与强化篇的题目顺序、原编号、子题及难度星级，将附录答案逐题合并到对应题目下方。答案默认折叠，点击“原书参考答案”或“核对后解答”即可展开。
 
 # 主要内容
 
@@ -1228,7 +1224,7 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 
 (4) (难度: ★★★) $\int \frac{\cos x + x \sin x}{(x + \cos x)^2} \, dx$
 
-> [!answer]- 原书参考答案（A.3.1 第 4 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.3.1 第 4 题；含 AI 更正或核对提示）
 > **4.** (1) 第一步: 认出分子里的「导数结构」。记 $P = 1 + x \tan x$，则 $P' = \tan x + x \sec^2 x$，恰是分子中的括号，于是所给积分为 $\int \frac{x^2 P'}{p^2} dx$。
 >
 > 第二步: 用 $\left(\frac{x^{2}}{P}\right)^{\prime}$ 拆开. 由 $\left(\frac{x^{2}}{P}\right)^{\prime}=\frac{2xP-x^{2}P^{\prime}}{P^{2}}=\frac{2x}{P}-\frac{x^{2}P^{\prime}}{P^{2}}$ 得
@@ -1239,31 +1235,17 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 >
 > $$\int\frac{x^{2}\left(x\sec^{2}x+\tan x\right)}{\left(x\tan x+1\right)^{2}}\mathrm{d}x=2\ln|\cos x+x\sin x|-\frac{x^{2}}{1+x\tan x}+C.$$
 >
-> (2) 分母是 $\sin^{3}x + \cos^{3}x$，而分子 $\sin x - \cos x$ 恰好是 $s = \sin x + \cos x$ 的导数的相反数。于是整个积分可以只用 s 表示，不必再做「自相关」那一手。令
+> (2) **AI 补充：按题干更正。** 原书此处解答为 $\int(\sin x-\cos x)/(\sin^{3}x+\cos^{3}x)\,\mathrm{d}x$，与本题不符。
 >
-> $$s=\sin x+\cos x,\qquad p=\sin x\cos x,$$
+> 令 $N=\sin x-x\cos x$，$D=x\sin x+\cos x$，则 $N'=x\sin x$、$D'=x\cos x$，所以
 >
-> 则 $s' = \cos x - \sin x$，故 $(\sin x - \cos x)dx = -ds$，且 $p = \frac{s^2 - 1}{2}$。由立方和公式
+> $$\left(\frac ND\right)'=\frac{x\sin x(x\sin x+\cos x)-x\cos x(\sin x-x\cos x)}{D^{2}}=\frac{x^{2}}{(x\sin x+\cos x)^{2}}.$$
 >
-> $$\sin^{3}x+\cos^{3}x=s(1-p)=s\left(1-\frac{s^{2}-1}{2}\right)=\frac{s\left(3-s^{2}\right)}{2},$$
+> 因此在分母不为零的区间上，
 >
-> 于是
+> $$\int\frac{x^{2}}{(x\sin x+\cos x)^{2}}\,\mathrm{d}x=\frac{\sin x-x\cos x}{x\sin x+\cos x}+C.$$
 >
-> $$\int\frac{\sin x-\cos x}{\sin^{3}x+\cos^{3}x}\mathrm{d}x=-2\int\frac{\mathrm{d}s}{s\left(3-s^{2}\right)}.$$
->
-> 部分分式分解
->
-> $$\frac{1}{s\left(3-s^{2}\right)}=\frac{1}{3}\left(\frac{1}{s}+\frac{s}{3-s^{2}}\right),$$
->
-> 故
->
-> $$-2\cdot\frac{1}{3}\int\left(\frac{1}{s}+\frac{s}{3-s^{2}}\right)\mathrm{d}s=-\frac{2}{3}\ln\left|s\right|+\frac{1}{3}\ln\left|3-s^{2}\right|+C.$$
->
-> 由 $3 - s^{2} = 2 (1 - \sin x \cos x)$，回代即得
->
-> $$\int\frac{\sin x-\cos x}{\sin^{3}x+\cos^{3}x}\mathrm{d}x=\frac{1}{3}\ln\left|1-\sin x\cos x\right|-\frac{2}{3}\ln\left|\sin x+\cos x\right|+C.$$
->
-> 本题与正文例题 $\int \frac{dx}{\sin^3 x + \cos^3 x}$ 同族: 分母完全相同, 差别只在分子. 因为分子恰好是 s 的导数, 本题不需要解「关于 $f(x)$ 的方程」, 只要一路换元即可——值得对比体会两者的区别. (3) 第一步: 分母已是平方, 去试形如 $\frac{a \sin x + bx \cos x}{x \sin x + 5 \cos x}$ 的导数. 记 $P = x \sin x + 5 \cos x$, 则 $P' = \sin x + x \cos x - 5 \sin x = x \cos x - 4 \sin x$.
+> (3) 第一步: 分母已是平方, 去试形如 $\frac{a \sin x + bx \cos x}{x \sin x + 5 \cos x}$ 的导数. 记 $P = x \sin x + 5 \cos x$, 则 $P' = \sin x + x \cos x - 5 \sin x = x \cos x - 4 \sin x$.
 >
 > 第二步: 把 $\frac{5 \sin x - x \cos x}{P}$ 求导. 由商的求导法则,
 >
@@ -1277,13 +1259,42 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 >
 > $$\int\frac{x^{2}+20}{\left(x\sin x+5\cos x\right)^{2}}\mathrm{d}x=\frac{5\sin x-x\cos x}{x\sin x+5\cos x}+C.$$
 >
-> (4)(8) 注意分子恰是 $\left(\frac{x}{\cos x}\right)^{\prime}$ 的配套:
+> (4) 注意分子恰是 $\left(\frac{x}{\cos x}\right)^{\prime}$ 的配套:
 >
 > $$\left(\frac{x}{\cos x}\right)^{\prime}=\frac{\cos x+x\sin x}{\cos^{2}x}.$$
 >
 > 令 $u = \frac{x}{\cos x}$，则 $\cos x + x \sin x = \cos^2 x \cdot u'$，而 $x + \cos x = \cos x (1 + u)$，于是
 >
 > $$\int\frac{\cos x+x\sin x}{(x+\cos x)^{2}}\mathrm{d}x=\int\frac{\cos^{2}x u^{\prime}}{\cos^{2}x(1+u)^{2}}\mathrm{d}x=\int\frac{\mathrm{d}u}{(1+u)^{2}}=-\frac{\cos x}{x+\cos x}+C.$$
+>
+> **编号说明：** 原解第 (4) 小题开头的 `(4)(8)` 含遗留编号，现统一为 `(4)`。
+>
+> > [!note]- 原书第 (2) 小题错配解答存档（不适用于本题）
+> > (2) 分母是 $\sin^{3}x + \cos^{3}x$，而分子 $\sin x - \cos x$ 恰好是 $s = \sin x + \cos x$ 的导数的相反数。于是整个积分可以只用 s 表示，不必再做「自相关」那一手。令
+> >
+> > $$s=\sin x+\cos x,\qquad p=\sin x\cos x,$$
+> >
+> > 则 $s' = \cos x - \sin x$，故 $(\sin x - \cos x)dx = -ds$，且 $p = \frac{s^2 - 1}{2}$。由立方和公式
+> >
+> > $$\sin^{3}x+\cos^{3}x=s(1-p)=s\left(1-\frac{s^{2}-1}{2}\right)=\frac{s\left(3-s^{2}\right)}{2},$$
+> >
+> > 于是
+> >
+> > $$\int\frac{\sin x-\cos x}{\sin^{3}x+\cos^{3}x}\mathrm{d}x=-2\int\frac{\mathrm{d}s}{s\left(3-s^{2}\right)}.$$
+> >
+> > 部分分式分解
+> >
+> > $$\frac{1}{s\left(3-s^{2}\right)}=\frac{1}{3}\left(\frac{1}{s}+\frac{s}{3-s^{2}}\right),$$
+> >
+> > 故
+> >
+> > $$-2\cdot\frac{1}{3}\int\left(\frac{1}{s}+\frac{s}{3-s^{2}}\right)\mathrm{d}s=-\frac{2}{3}\ln\left|s\right|+\frac{1}{3}\ln\left|3-s^{2}\right|+C.$$
+> >
+> > 由 $3 - s^{2} = 2 (1 - \sin x \cos x)$，回代即得
+> >
+> > $$\int\frac{\sin x-\cos x}{\sin^{3}x+\cos^{3}x}\mathrm{d}x=\frac{1}{3}\ln\left|1-\sin x\cos x\right|-\frac{2}{3}\ln\left|\sin x+\cos x\right|+C.$$
+> >
+> > 本题与正文例题 $\int \frac{dx}{\sin^3 x + \cos^3 x}$ 同族: 分母完全相同, 差别只在分子. 因为分子恰好是 s 的导数, 本题不需要解「关于 $f(x)$ 的方程」, 只要一路换元即可——值得对比体会两者的区别.
 
 **5.** 齐次三角积分
 
@@ -1341,7 +1352,7 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 
 (3) (难度: ★★★) $\int \frac{1}{\sqrt{(x^{2}+5)^{3}}} dx$
 
-> [!answer]- 原书参考答案（A.3.2 第 2 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.3.2 第 2 题；含 AI 更正或核对提示）
 > **2.** (1) 根号里是二次式, 先配方化为 $\sqrt{R^{2}-u^{2}}$ 的形状, 再套 $\int\frac{du}{\sqrt{R^{2}-u^{2}}}=\arcsin\frac{u}{R}$. 配方:
 >
 > $$(x-a)(b-x)=-x^{2}+(a+b)x-ab=\frac{(b-a)^{2}}{4}-\left(x-\frac{a+b}{2}\right)^{2}.$$
@@ -1350,33 +1361,19 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 >
 > $$\begin{aligned}\int\frac{\mathrm{d}x}{\sqrt{(x-a)(b-x)}}&=\int\frac{\mathrm{d}\left(x-\frac{a+b}{2}\right)}{\sqrt{\left(\frac{b-a}{2}\right)^{2}-\left(x-\frac{a+b}{2}\right)^{2}}}\\&=\arcsin\frac{2x-a-b}{b-a}+C.\end{aligned}$$
 >
-> 本题只在 a < x < b 上有意义（根号内为正），此时 $\left|\frac{2x - a - b}{b - a}\right| < 1$，反正弦取主值即可。若题目要求在更大的区间上讨论，就需要分段处理。（2）令 $t = \tan \frac{x}{2}$，则
+> 本题只在 a < x < b 上有意义（根号内为正），此时 $\left|\frac{2x - a - b}{b - a}\right| < 1$，反正弦取主值即可。若题目要求在更大的区间上讨论，就需要分段处理。
 >
-> $$\sin x=\frac{2t}{1+t^{2}},\qquad\cos x=\frac{1-t^{2}}{1+t^{2}},\qquad\mathrm{d}x=\frac{2\mathrm{d}t}{1+t^{2}}.$$
+> (2) **AI 补充：换元计算更正。** 原解在约分时多出 $1+t^{2}$ 因子。
 >
-> 关键的一步是先算分母：
+> 令 $t=\tan(x/2)$，有 $\sin x=2t/(1+t^{2})$、$\cos x=(1-t^{2})/(1+t^{2})$、$\mathrm{d}x=2\,\mathrm{d}t/(1+t^{2})$，于是
 >
-> $$\sin x-\cos x-1=\frac{2t-\left(1-t^{2}\right)-\left(1+t^{2}\right)}{1+t^{2}}=\frac{2(t-1)}{1+t^{2}}.$$
+> $$\sin x-\cos x-1=\frac{2(t-1)}{1+t^{2}},\qquad\frac{\sin^{2}x}{(\sin x-\cos x-1)^{3}}\,\mathrm{d}x=\frac{t^{2}}{(t-1)^{3}}\,\mathrm{d}t.$$
 >
-> 于是
+> 由于 $t^{2}=(t-1)^{2}+2(t-1)+1$，积分得
 >
-> $$\frac{\sin^{2}x\mathrm{d}x}{\left(\sin x-\cos x-1\right)^{3}}=\frac{\frac{4t^{2}}{\left(1+t^{2}\right)^{2}}\cdot\frac{2\mathrm{d}t}{1+t^{2}}}{\frac{8(t-1)^{3}}{\left(1+t^{2}\right)^{3}}}=\frac{t^{2}\left(1+t^{2}\right)}{(t-1)^{3}}\mathrm{d}t.$$
+> $$\int\frac{\sin^{2}x}{(\sin x-\cos x-1)^{3}}\,\mathrm{d}x=\ln|t-1|-\frac{2}{t-1}-\frac{1}{2(t-1)^{2}}+C,\qquad t=\tan\frac x2.$$
 >
-> 接下来做多项式除法与部分分式分解：
->
-> $$\frac{t^{2}\left(1+t^{2}\right)}{(t-1)^{3}}=\frac{t^{4}+t^{2}}{(t-1)^{3}}=t+3+\frac{7t^{2}-8t+3}{(t-1)^{3}},$$
->
-> 而令 w = t - 1，由 $7t^{2} - 8t + 3 = 7w^{2} + 6w + 2$ 得
->
-> $$\frac{7t^{2}-8t+3}{(t-1)^{3}}=\frac{7}{t-1}+\frac{6}{(t-1)^{2}}+\frac{2}{(t-1)^{3}}.$$
->
-> 逐项积分：
->
-> $$\begin{aligned}\int\left(t+3+\frac{7}{t-1}+\frac{6}{(t-1)^{2}}+\frac{2}{(t-1)^{3}}\right)\mathrm{d}t\\=\frac{t^{2}}{2}+3t+7\ln|t-1|-\frac{6}{t-1}-\frac{1}{(t-1)^{2}}+C.\end{aligned}$$
->
-> 最后把 $t = \tan \frac{x}{2}$ 回代，即得
->
-> $$\begin{aligned}\int\frac{\sin^{2}x}{\left(\sin x-\cos x-1\right)^{3}}\mathrm{d}x&=\frac{1}{2}\tan^{2}\frac{x}{2}+3\tan\frac{x}{2}+7\ln\left|\tan\frac{x}{2}-1\right|\\&\quad-\frac{6}{\tan\frac{x}{2}-1}-\frac{1}{\left(\tan\frac{x}{2}-1\right)^{2}}+C.\end{aligned}$$
+> 此表达式先用于半角代换有定义且原分母非零的区间；跨半角坐标奇点时按原函数连续延拓或另取局部坐标。
 >
 > (3) 令 $x = \sqrt{5} \tan t \left( -\frac{\pi}{2} < t < \frac{\pi}{2} \right)$，则 $\mathrm{d}x = \sqrt{5} \sec^2 t \, \mathrm{d}t$，且
 >
@@ -1389,6 +1386,35 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 > 由 $\tan t = \frac{x}{\sqrt{5}}$ 得 $\sin t = \frac{x}{\sqrt{x^{2} + 5}}$，所以
 >
 > $$\int\frac{\mathrm{d}x}{\sqrt{\left(x^{2}+5\right)^{3}}}=\frac{x}{5\sqrt{x^{2}+5}}+C.$$
+>
+> > [!note]- 原书第 (2) 小题计算存档（含错误因子）
+> > （2）令 $t = \tan \frac{x}{2}$，则
+> >
+> > $$\sin x=\frac{2t}{1+t^{2}},\qquad\cos x=\frac{1-t^{2}}{1+t^{2}},\qquad\mathrm{d}x=\frac{2\mathrm{d}t}{1+t^{2}}.$$
+> >
+> > 关键的一步是先算分母：
+> >
+> > $$\sin x-\cos x-1=\frac{2t-\left(1-t^{2}\right)-\left(1+t^{2}\right)}{1+t^{2}}=\frac{2(t-1)}{1+t^{2}}.$$
+> >
+> > 于是
+> >
+> > $$\frac{\sin^{2}x\mathrm{d}x}{\left(\sin x-\cos x-1\right)^{3}}=\frac{\frac{4t^{2}}{\left(1+t^{2}\right)^{2}}\cdot\frac{2\mathrm{d}t}{1+t^{2}}}{\frac{8(t-1)^{3}}{\left(1+t^{2}\right)^{3}}}=\frac{t^{2}\left(1+t^{2}\right)}{(t-1)^{3}}\mathrm{d}t.$$
+> >
+> > 接下来做多项式除法与部分分式分解：
+> >
+> > $$\frac{t^{2}\left(1+t^{2}\right)}{(t-1)^{3}}=\frac{t^{4}+t^{2}}{(t-1)^{3}}=t+3+\frac{7t^{2}-8t+3}{(t-1)^{3}},$$
+> >
+> > 而令 w = t - 1，由 $7t^{2} - 8t + 3 = 7w^{2} + 6w + 2$ 得
+> >
+> > $$\frac{7t^{2}-8t+3}{(t-1)^{3}}=\frac{7}{t-1}+\frac{6}{(t-1)^{2}}+\frac{2}{(t-1)^{3}}.$$
+> >
+> > 逐项积分：
+> >
+> > $$\begin{aligned}\int\left(t+3+\frac{7}{t-1}+\frac{6}{(t-1)^{2}}+\frac{2}{(t-1)^{3}}\right)\mathrm{d}t\\=\frac{t^{2}}{2}+3t+7\ln|t-1|-\frac{6}{t-1}-\frac{1}{(t-1)^{2}}+C.\end{aligned}$$
+> >
+> > 最后把 $t = \tan \frac{x}{2}$ 回代，即得
+> >
+> > $$\begin{aligned}\int\frac{\sin^{2}x}{\left(\sin x-\cos x-1\right)^{3}}\mathrm{d}x&=\frac{1}{2}\tan^{2}\frac{x}{2}+3\tan\frac{x}{2}+7\ln\left|\tan\frac{x}{2}-1\right|\\&\quad-\frac{6}{\tan\frac{x}{2}-1}-\frac{1}{\left(\tan\frac{x}{2}-1\right)^{2}}+C.\end{aligned}$$
 
 **3.** 根式代换
 
@@ -1641,7 +1667,9 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 >
 > $$\int_{0}^{+\infty}\frac{\ln t}{1+t^{2}}\mathrm{d}t=\int_{0}^{+\infty}\frac{-\ln t}{1+t^{2}}\mathrm{d}t=0.$$
 >
-> 第三步: 写出结果. $\int_{0}^{+\infty}\frac{\ln x}{x^{2}+a^{2}}dx=\frac{\pi\ln a}{2a}$ (a>0). (4) 把被积函数记作 $f(x)$. 它既非奇函数也非偶函数, 但区间关于原点对称, 于是先算 $f(x)+f(-x)$:
+> 第三步: 写出结果. $\int_{0}^{+\infty}\frac{\ln x}{x^{2}+a^{2}}dx=\frac{\pi\ln a}{2a}$ (a>0). 
+> 
+> (4) 把被积函数记作 $f(x)$. 它既非奇函数也非偶函数, 但区间关于原点对称, 于是先算 $f(x)+f(-x)$:
 >
 > $$f(x)+f(-x)=\frac{x\sin x}{1+\cos^{2}x}\left(\arctan e^{x}+\arctan e^{-x}\right).$$
 >
@@ -2099,32 +2127,51 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 
 **2.** (难度:★★) $\frac{dy}{dx} = \frac{x + 2y - 1}{3x + 5y - 2}$
 
-> [!answer]- 原书参考答案（A.4.2 第 2 题，未逐题独立验算）
-> **2.** 系数行列式 $\begin{vmatrix}1&2\\ 3&5\end{vmatrix} = -1 \neq 0$，故可作平移。令
+> [!answer]- 核对后解答（A.4.2 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$X=x+A,\qquad Y=y+B,$$
+> 原解平移变量的符号不符合题干：分子分母同时为零的交点为 $(-1,1)$。
 >
-> 要求常数项消掉：
->
-> $$\begin{aligned}A+2B-1&=0,&3A+5B-2&=0&\Longrightarrow&A&=-1,&B&=1.\end{aligned}$$
->
-> 于是 X = x - 1, Y = y + 1, 方程化为齐次方程
+> 应令 $X=x+1,Y=y-1$，则方程化为
 >
 > $$\frac{\mathrm{d}Y}{\mathrm{d}X}=\frac{X+2Y}{3X+5Y}.$$
 >
-> 再令 $t = \frac{Y}{X}$，得
+> 在 $X\ne0$ 的局部区间上令 $u=Y/X$，得到
 >
-> $$X\frac{\mathrm{d}t}{\mathrm{d}X}=\frac{1+2t}{3+5t}-t=\frac{1-t-5t^{2}}{3+5t},$$
+> $$u+X\frac{\mathrm{d}u}{\mathrm{d}X}=\frac{1+2u}{3+5u},\qquad X\frac{\mathrm{d}u}{\mathrm{d}X}=\frac{1-u-5u^{2}}{3+5u}.$$
 >
-> 分离变量并积分：
+> 非恒定 $u$ 的隐式通解可写为
 >
-> $$\int\frac{3+5t}{1-t-5t^{2}}\mathrm{d}t=\ln\left|X\right|+C.$$
+> $$\int\frac{3+5u}{1-u-5u^{2}}\,\mathrm{d}u=\ln|X|+C,\qquad u=\frac{y-1}{x+1}.$$
 >
-> 由 $1 - t - 5t^{2} = -5 (t - r_{1}) (t - r_{2})$，其中 $r_{1,2} = \frac{-1 \pm \sqrt{21}}{10}$，可算得
+> 另须补上分离变量时排除的两条直线解 $y-1=r(x+1)$，其中 $r=(-1\pm\sqrt{21})/10$。所有解均须限制在原分母 $3x+5y-2\ne0$ 的区间；$X=0$ 只是本次换元的坐标限制，原方程允许的点可按解的延拓处理。
 >
-> $$-\frac{1}{2}\ln\left|1-t-5t^{2}\right|-\frac{5}{2\sqrt{21}}\ln\left|\frac{t-r_{1}}{t-r_{2}}\right|=\ln|X|+C.$$
->
-> 把 $t = \frac{y+1}{x-1}$、X = x - 1 代回即得隐式通解.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **2.** 系数行列式 $\begin{vmatrix}1&2\\ 3&5\end{vmatrix} = -1 \neq 0$，故可作平移。令
+> >
+> > $$X=x+A,\qquad Y=y+B,$$
+> >
+> > 要求常数项消掉：
+> >
+> > $$\begin{aligned}A+2B-1&=0,&3A+5B-2&=0&\Longrightarrow&A&=-1,&B&=1.\end{aligned}$$
+> >
+> > 于是 X = x - 1, Y = y + 1, 方程化为齐次方程
+> >
+> > $$\frac{\mathrm{d}Y}{\mathrm{d}X}=\frac{X+2Y}{3X+5Y}.$$
+> >
+> > 再令 $t = \frac{Y}{X}$，得
+> >
+> > $$X\frac{\mathrm{d}t}{\mathrm{d}X}=\frac{1+2t}{3+5t}-t=\frac{1-t-5t^{2}}{3+5t},$$
+> >
+> > 分离变量并积分：
+> >
+> > $$\int\frac{3+5t}{1-t-5t^{2}}\mathrm{d}t=\ln\left|X\right|+C.$$
+> >
+> > 由 $1 - t - 5t^{2} = -5 (t - r_{1}) (t - r_{2})$，其中 $r_{1,2} = \frac{-1 \pm \sqrt{21}}{10}$，可算得
+> >
+> > $$-\frac{1}{2}\ln\left|1-t-5t^{2}\right|-\frac{5}{2\sqrt{21}}\ln\left|\frac{t-r_{1}}{t-r_{2}}\right|=\ln|X|+C.$$
+> >
+> > 把 $t = \frac{y+1}{x-1}$、X = x - 1 代回即得隐式通解.
 
 **3.** (难度:★★★) $(2x^{3}+3xy^{2}-7x)\mathrm{d}x+(3x^{2}y-2y^{3}+8y)\mathrm{d}y=0$
 
@@ -2170,22 +2217,37 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 
 **2.** (难度: ★★★) $x\frac{dy}{dx} - y = x^{2} + y^{2}$
 
-> [!answer]- 原书参考答案（A.4.3 第 2 题，未逐题独立验算）
-> **2.** 两边同乘2y:
+> [!answer]- 核对后解答（A.4.3 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$2yy^{\prime}=\frac{2y^{2}}{x}+4x.$$
+> 原书 A.4.3 第 2 题解答使用了另一微分方程，不能用于本题。
 >
-> 令$u=y^{2}$, 则 $u^{\prime}=2yy^{\prime}$，方程化为
+> 在 $x\ne0$ 的区间上令 $y=xu$，则 $y'=u+xu'$，故
 >
-> $$u^{\prime}-\frac{2}{x}u=4x,$$
+> $$xy'-y=x^{2}u'=x^{2}(1+u^{2}).$$
 >
-> 这是关于 u 的一阶线性方程. 积分因子为 $e^{-2\ln x} = x^{-2}$, 两边同乘 $x^{-2}$:
+> 于是 $u'=1+u^{2}$，积分得 $\arctan u=x+C$，从而
 >
-> $$\left(u x^{-2}\right)^{\prime}=\frac{4}{x}\quad\Longrightarrow\quad u x^{-2}=4\ln x+C.$$
+> $$y=x\tan(x+C).$$
 >
-> 所以 $u = x^{2}(4 \ln x + C)$，即
+> 取正切有定义的区间；直接代入可验证该式满足原方程。原式在 $x=0$ 处要求 $y(0)=0$，若解在该点附近有定义且可导，可按上述表达式的可导延拓处理。
 >
-> $$y^{2}=x^{2}\left(4\ln x+C\right)\qquad(x>0).$$
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **2.** 两边同乘2y:
+> >
+> > $$2yy^{\prime}=\frac{2y^{2}}{x}+4x.$$
+> >
+> > 令$u=y^{2}$, 则 $u^{\prime}=2yy^{\prime}$，方程化为
+> >
+> > $$u^{\prime}-\frac{2}{x}u=4x,$$
+> >
+> > 这是关于 u 的一阶线性方程. 积分因子为 $e^{-2\ln x} = x^{-2}$, 两边同乘 $x^{-2}$:
+> >
+> > $$\left(u x^{-2}\right)^{\prime}=\frac{4}{x}\quad\Longrightarrow\quad u x^{-2}=4\ln x+C.$$
+> >
+> > 所以 $u = x^{2}(4 \ln x + C)$，即
+> >
+> > $$y^{2}=x^{2}\left(4\ln x+C\right)\qquad(x>0).$$
 
 **3.** (难度: ★★★) $\frac{dy}{dx} = \frac{\sec y}{x + 2\sin y}$
 
@@ -2318,43 +2380,73 @@ $$\left\{\begin{aligned}x&=\cos t^{2},\\ y&=2t\cos t^{2}-\int_{1}^{t^{2}}\frac{\
 
 **1.** (难度：★) $y'' + 2x(y')^2 = 0$
 
-> [!answer]- 原书参考答案（A.4.5 第 1 题，未逐题独立验算）
-> **1.** 方程不显含 y，令 p = y，则 $y'' = p'$，方程化为
+> [!answer]- 核对后解答（A.4.5 第 1 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$xp^{\prime}=p+xp^{2}\quad\Longrightarrow\quad p^{\prime}-\frac{1}{x}p=p^{2}.$$
+> 原书 A.4.5 第 1 题解答从 $xy^{\prime\prime}=y^{\prime}+x(y^{\prime})^{2}$ 出发，与题干不同。
 >
-> 这是关于 $p$ 的伯努利方程 $(n=2)$。$p \equiv 0$ 给出一族解 $y \equiv C$。当 $p \neq 0$ 时两边同乘 $p^{-2}$：
+> 令 $p=y'$，则 $p'=-2xp^{2}$。先保留 $p\equiv0$ 对应的常数解 $y\equiv C$。
 >
-> $$p^{-2}p^{\prime}-\frac{1}{x}p^{-1}=1.$$
+> 当 $p\ne0$ 时，$(1/p)'=2x$，所以 $p=1/(x^{2}+C_{1})$。非恒定解为
 >
-> 令 $u = p^{-1}$，则 $u' = -p^{-2}p'$，得
+> $$y=C_{2}+\int\frac{\mathrm{d}x}{x^{2}+C_{1}}.$$
 >
-> $$u^{\prime}+\frac{1}{x}u=-1\quad\Longrightarrow\quad(x u)^{\prime}=-x,$$
+> 具体地，在相应分母不为零的区间上：
 >
-> 故 $xu = -\frac{x^{2}}{2} + C_{1}$，即
+> $$y=\begin{cases}C_{2}+\dfrac{1}{a}\arctan\dfrac{x}{a},&C_{1}=a^{2}>0,\\C_{2}-\dfrac{1}{x},&C_{1}=0,\\C_{2}+\dfrac{1}{2a}\ln\left|\dfrac{x-a}{x+a}\right|,&C_{1}=-a^{2}<0.\end{cases}$$
 >
-> $$p=\frac{1}{u}=\frac{2x}{2C_{1}-x^{2}}.$$
->
-> 再积分一次：
->
-> $$y=\int\frac{2x}{2C_{1}-x^{2}}\mathrm{d}x=-\ln\left|2C_{1}-x^{2}\right|+C_{2}.$$
->
-> 连同 $y \equiv C$ 一并写出，即为通解.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **1.** 方程不显含 y，令 p = y，则 $y'' = p'$，方程化为
+> >
+> > $$xp^{\prime}=p+xp^{2}\quad\Longrightarrow\quad p^{\prime}-\frac{1}{x}p=p^{2}.$$
+> >
+> > 这是关于 $p$ 的伯努利方程 $(n=2)$。$p \equiv 0$ 给出一族解 $y \equiv C$。当 $p \neq 0$ 时两边同乘 $p^{-2}$：
+> >
+> > $$p^{-2}p^{\prime}-\frac{1}{x}p^{-1}=1.$$
+> >
+> > 令 $u = p^{-1}$，则 $u' = -p^{-2}p'$，得
+> >
+> > $$u^{\prime}+\frac{1}{x}u=-1\quad\Longrightarrow\quad(x u)^{\prime}=-x,$$
+> >
+> > 故 $xu = -\frac{x^{2}}{2} + C_{1}$，即
+> >
+> > $$p=\frac{1}{u}=\frac{2x}{2C_{1}-x^{2}}.$$
+> >
+> > 再积分一次：
+> >
+> > $$y=\int\frac{2x}{2C_{1}-x^{2}}\mathrm{d}x=-\ln\left|2C_{1}-x^{2}\right|+C_{2}.$$
+> >
+> > 连同 $y \equiv C$ 一并写出，即为通解.
 
 **2.** (难度：★) $y'' + y(y')^{2} = 0$
 
-> [!answer]- 原书参考答案（A.4.5 第 2 题，未逐题独立验算）
-> **2.** 方程不显含 x, 令 $p = y'$, 用 $y'' = p \frac{dp}{dy}$ 代入:
+> [!answer]- 核对后解答（A.4.5 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$y p\frac{\mathrm{d}p}{\mathrm{d}y}=p^{2}\quad\Longrightarrow\quad p\left(y\frac{\mathrm{d}p}{\mathrm{d}y}-p\right)=0.$$
+> 原书 A.4.5 第 2 题解答求的是 $yy^{\prime\prime}=(y^{\prime})^{2}$，不是当前题干。
 >
-> 若 $p \equiv 0$，得 $y \equiv C$。若 $p \neq 0$，则
+> 由乘积与链式求导法则，
 >
-> $$\frac{\mathrm{d}p}{p}=\frac{\mathrm{d}y}{y}\quad\Longrightarrow\quad p=C_{1}y,$$
+> $$\frac{\mathrm{d}}{\mathrm{d}x}\left(e^{y^{2}/2}y'\right)=e^{y^{2}/2}\left[y''+y(y')^{2}\right]=0.$$
 >
-> 即 $\frac{dy}{dx}=C_{1}y$，故 $y=C_{2}e^{C_{1}x}$。因此通解为
+> 所以 $e^{y^{2}/2}y'=C_{1}$。再次积分得隐式通解
 >
-> $$y=C_{2}e^{C_{1}x}\qquad\left( 含 y\equiv C 这一族 \right).$$
+> $$\int_{0}^{y(x)}e^{t^{2}/2}\,\mathrm{d}t=C_{1}x+C_{2}.$$
+>
+> 左端关于 $y$ 严格递增，其值域为 $\mathbb R$，因此该式确定解；$C_{1}=0$ 时包括所有常数解。两次求导即可验证原方程。
+>
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **2.** 方程不显含 x, 令 $p = y'$, 用 $y'' = p \frac{dp}{dy}$ 代入:
+> >
+> > $$y p\frac{\mathrm{d}p}{\mathrm{d}y}=p^{2}\quad\Longrightarrow\quad p\left(y\frac{\mathrm{d}p}{\mathrm{d}y}-p\right)=0.$$
+> >
+> > 若 $p \equiv 0$，得 $y \equiv C$。若 $p \neq 0$，则
+> >
+> > $$\frac{\mathrm{d}p}{p}=\frac{\mathrm{d}y}{y}\quad\Longrightarrow\quad p=C_{1}y,$$
+> >
+> > 即 $\frac{dy}{dx}=C_{1}y$，故 $y=C_{2}e^{C_{1}x}$。因此通解为
+> >
+> > $$y=C_{2}e^{C_{1}x}\qquad\left( 含 y\equiv C 这一族 \right).$$
 
 ### 4.2.2 二阶线性微分方程
 
@@ -2874,91 +2966,125 @@ $$\left\|\overrightarrow{OA}\right\|=1,\quad\left\|\overrightarrow{OB}\right\|=2
 
 **1.** (难度:★) 求直线 $l_{1}:\left\{\begin{aligned}&x-y=0,\\ &z=0,\end{aligned}\right.$ 与直线 $l_{2}:\frac{x-2}{4}=\frac{y-1}{-2}=\frac{z-3}{-1}$ 的距离.
 
-> [!answer]- 原书参考答案（A.5.2 第 1 题，未逐题独立验算）
-> > [!warning] AI 补充：原题与原书答案条件不一致
-> > 第 1 题题干给出 $l_1:x-y=0,\ z=0$，但原书答案使用的方向向量及点 $P_1=(1,-1,2)$ 与该直线不符；第 2 题题干指定经过 $(4,-3,1)$，原书答案却代入 $P=(1,2,3)$。已对照原书第 19、139～140 页确认，以下保留原答案，不将其视为这两道原题的已核验解答。
+> [!answer]- 核对后解答（A.5.2 第 1 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> **1.** 两条直线的方向向量分别是
+> 原书 A.5.2 第 1 题采用的直线方向向量与题干不一致，现按题干两条直线计算。
 >
-> $$\vec{s}_{1}=(1,2,-1),\qquad\vec{s}_{2}=(2,-1,1).$$
+> 取 $P_{1}=(0,0,0)\in l_{1}$、$P_{2}=(2,1,3)\in l_{2}$，方向向量分别为 $\boldsymbol s_{1}=(1,1,0)$、$\boldsymbol s_{2}=(4,-2,-1)$。
 >
-> 在 $l_{1}$ 上取点 $P_{1}=(1,-1,2)$，在 $l_{2}$ 上取点 $P_{2}=(2,1,3)$，则
+> $$\boldsymbol s_{1}\times\boldsymbol s_{2}=(-1,1,-6),\qquad\left\|\boldsymbol s_{1}\times\boldsymbol s_{2}\right\|=\sqrt{38}.$$
 >
-> $$\overrightarrow{P_{1}P_{2}}=(1,2,1).$$
+> 由异面直线距离公式，
 >
-> 先求与 $\overrightarrow{s}_{1}, \overrightarrow{s}_{2}$ 都垂直的向量：
+> $$d=\frac{|(P_{2}-P_{1})\cdot(\boldsymbol s_{1}\times\boldsymbol s_{2})|}{\|\boldsymbol s_{1}\times\boldsymbol s_{2}\|}=\frac{|-2+1-18|}{\sqrt{38}}=\frac{\sqrt{38}}{2}.$$
 >
-> $$\vec{s}_{1}\times\vec{s}_{2}=(2\cdot1-(-1)(-1),(-1)\cdot2-1\cdot1,1\cdot(-1)-2\cdot2)=(1,-3,-5).$$
->
-> 它的模为
->
-> $$|\vec{s}_{1}\times\vec{s}_{2}|=\sqrt{1+9+25}=\sqrt{35}.$$
->
-> 两条异面直线的距离, 等于 $\overrightarrow{P_{1}P_{2}}$ 在公垂线方向上的投影长度:
->
-> $$d=\frac{|\overrightarrow{P_{1}P_{2}}\cdot(\overrightarrow{s}_{1}\times\overrightarrow{s}_{2})|}{|\overrightarrow{s}_{1}\times\overrightarrow{s}_{2}|}=\frac{|1-6-5|}{\sqrt{35}}=\frac{10}{\sqrt{35}}=\frac{2\sqrt{35}}{7}.$$
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > > [!warning] AI 补充：原题与原书答案条件不一致
+> > > 第 1 题题干给出 $l_1:x-y=0,\ z=0$，但原书答案使用的方向向量及点 $P_1=(1,-1,2)$ 与该直线不符；第 2 题题干指定经过 $(4,-3,1)$，原书答案却代入 $P=(1,2,3)$。已对照原书第 19、139～140 页确认，以下保留原答案，不将其视为这两道原题的已核验解答。
+> >
+> > **1.** 两条直线的方向向量分别是
+> >
+> > $$\vec{s}_{1}=(1,2,-1),\qquad\vec{s}_{2}=(2,-1,1).$$
+> >
+> > 在 $l_{1}$ 上取点 $P_{1}=(1,-1,2)$，在 $l_{2}$ 上取点 $P_{2}=(2,1,3)$，则
+> >
+> > $$\overrightarrow{P_{1}P_{2}}=(1,2,1).$$
+> >
+> > 先求与 $\overrightarrow{s}_{1}, \overrightarrow{s}_{2}$ 都垂直的向量：
+> >
+> > $$\vec{s}_{1}\times\vec{s}_{2}=(2\cdot1-(-1)(-1),(-1)\cdot2-1\cdot1,1\cdot(-1)-2\cdot2)=(1,-3,-5).$$
+> >
+> > 它的模为
+> >
+> > $$|\vec{s}_{1}\times\vec{s}_{2}|=\sqrt{1+9+25}=\sqrt{35}.$$
+> >
+> > 两条异面直线的距离, 等于 $\overrightarrow{P_{1}P_{2}}$ 在公垂线方向上的投影长度:
+> >
+> > $$d=\frac{|\overrightarrow{P_{1}P_{2}}\cdot(\overrightarrow{s}_{1}\times\overrightarrow{s}_{2})|}{|\overrightarrow{s}_{1}\times\overrightarrow{s}_{2}|}=\frac{|1-6-5|}{\sqrt{35}}=\frac{10}{\sqrt{35}}=\frac{2\sqrt{35}}{7}.$$
 
 **2.** (难度: ★) 求通过直线 $L : \left\{ \begin{aligned} 2x + y - 3z + 2 &= 0, \\ 5x + 5y - 4z + 3 &= 0, \end{aligned} \right.$ 的两个互相垂直的平面 $\pi_{1}, \pi_{2}$，其中一个平面过点 $(4, -3, 1)$.
 
-> [!answer]- 原书参考答案（A.5.2 第 2 题，未逐题独立验算）
-> > [!warning] AI 补充：原题与原书答案条件不一致
-> > 本题的原书答案代入点与题干指定点不一致，详细对照说明见本节第 1 题折叠答案内的警告；以下仍保留原答案，尚未核验。
+> [!answer]- 核对后解答（A.5.2 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> **2.** 通过直线 l 的平面束为
+> 原书 A.5.2 第 2 题把指定点用成 $(1,2,3)$；本题指定点为 $(4,-3,1)$。
 >
-> $$\lambda(2x+y-3z+2)+\mu(5x+5y-4z+3)=0.$$
+> 记 $F_{1}=2x+y-3z+2$、$F_{2}=5x+5y-4z+3$，过交线的平面为 $\lambda F_{1}+\mu F_{2}=0$，其中 $(\lambda,\mu)\ne(0,0)$。
 >
-> 先找过点 P(1,2,3) 的那个平面. 把 P 代入两个平面式子:
+> 在 $P=(4,-3,1)$ 处，$F_{1}(P)=F_{2}(P)=4$，故 $\lambda+\mu=0$，得到
 >
-> $$2+2-9+2=-3,\qquad5+10-12+3=6.$$
+> $$\pi_{1}:3x+4y-z+1=0.$$
 >
-> 因为 P 要在束中的平面上，所以
+> 另一个平面的法向量为 $(2\lambda+5\mu,\lambda+5\mu,-3\lambda-4\mu)$。与 $(3,4,-1)$ 垂直要求
 >
-> $$-3\lambda+6\mu=0\quad\Longrightarrow\quad\lambda=2\mu.$$
+> $$3(2\lambda+5\mu)+4(\lambda+5\mu)+3\lambda+4\mu=13\lambda+39\mu=0.$$
 >
-> 取 $\lambda = 2, \mu = 1$，得过 P 的平面
+> 取 $\lambda=-3,\mu=1$，由 $F_{2}-3F_{1}=0$ 得
 >
-> $$2(2x+y-3z+2)+(5x+5y-4z+3)=0,$$
+> $$\pi_{2}:x-2y-5z+3=0.$$
 >
-> 化简为
+> 两法向量点积为 $3-8+5=0$，满足垂直条件。
 >
-> $$\Pi_{1}:9x+7y-10z+7=0.$$
->
-> 它的法向量是
->
-> $$\vec{n}_{1}=(9,7,-10).$$
->
-> 再找束中与 $\Pi_{1}$ 垂直的平面. 原两个平面的法向量为
->
-> $$\vec{n}_{A}=(2,1,-3),\qquad\vec{n}_{B}=(5,5,-4).$$
->
-> 束中任意平面的法向量是
->
-> $$\vec{n}=\lambda\vec{n}_{A}+\mu\vec{n}_{B}.$$
->
-> 要求 $\vec{n} \perp \vec{n}_1$，即 $\vec{n} \cdot \vec{n}_1 = 0$:
->
-> $$\lambda(55)+\mu(120)=0.$$
->
-> 取 $\lambda = -24, \mu = 11$，得到
->
-> $$\vec{n}_{2}=-24(2,1,-3)+11(5,5,-4)=(7,31,28).$$
->
-> 再在 l 上取一点. 令 z = 0, 解
->
-> $$\begin{cases}2x+y=-2,\\5x+5y=-3,\end{cases}$$
->
-> 得 $x = -\frac{7}{5}$, $y = \frac{4}{5}$，所以点为
->
-> $$\left(-\frac{7}{5},\frac{4}{5},0\right).$$
->
-> 把该点代入 7x + 31y + 28z + D = 0，得
->
-> $$7\cdot\left(-\frac{7}{5}\right)+31\cdot\frac{4}{5}+D=0\quad\Longrightarrow\quad D=-15.$$
->
-> 所以另一个平面为
->
-> $$\Pi_{2}:~7x+31y+28z-15=0.$$
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > > [!warning] AI 补充：原题与原书答案条件不一致
+> > > 本题的原书答案代入点与题干指定点不一致，详细对照说明见本节第 1 题折叠答案内的警告；以下仍保留原答案，尚未核验。
+> >
+> > **2.** 通过直线 l 的平面束为
+> >
+> > $$\lambda(2x+y-3z+2)+\mu(5x+5y-4z+3)=0.$$
+> >
+> > 先找过点 P(1,2,3) 的那个平面. 把 P 代入两个平面式子:
+> >
+> > $$2+2-9+2=-3,\qquad5+10-12+3=6.$$
+> >
+> > 因为 P 要在束中的平面上，所以
+> >
+> > $$-3\lambda+6\mu=0\quad\Longrightarrow\quad\lambda=2\mu.$$
+> >
+> > 取 $\lambda = 2, \mu = 1$，得过 P 的平面
+> >
+> > $$2(2x+y-3z+2)+(5x+5y-4z+3)=0,$$
+> >
+> > 化简为
+> >
+> > $$\Pi_{1}:9x+7y-10z+7=0.$$
+> >
+> > 它的法向量是
+> >
+> > $$\vec{n}_{1}=(9,7,-10).$$
+> >
+> > 再找束中与 $\Pi_{1}$ 垂直的平面. 原两个平面的法向量为
+> >
+> > $$\vec{n}_{A}=(2,1,-3),\qquad\vec{n}_{B}=(5,5,-4).$$
+> >
+> > 束中任意平面的法向量是
+> >
+> > $$\vec{n}=\lambda\vec{n}_{A}+\mu\vec{n}_{B}.$$
+> >
+> > 要求 $\vec{n} \perp \vec{n}_1$，即 $\vec{n} \cdot \vec{n}_1 = 0$:
+> >
+> > $$\lambda(55)+\mu(120)=0.$$
+> >
+> > 取 $\lambda = -24, \mu = 11$，得到
+> >
+> > $$\vec{n}_{2}=-24(2,1,-3)+11(5,5,-4)=(7,31,28).$$
+> >
+> > 再在 l 上取一点. 令 z = 0, 解
+> >
+> > $$\begin{cases}2x+y=-2,\\5x+5y=-3,\end{cases}$$
+> >
+> > 得 $x = -\frac{7}{5}$, $y = \frac{4}{5}$，所以点为
+> >
+> > $$\left(-\frac{7}{5},\frac{4}{5},0\right).$$
+> >
+> > 把该点代入 7x + 31y + 28z + D = 0，得
+> >
+> > $$7\cdot\left(-\frac{7}{5}\right)+31\cdot\frac{4}{5}+D=0\quad\Longrightarrow\quad D=-15.$$
+> >
+> > 所以另一个平面为
+> >
+> > $$\Pi_{2}:~7x+31y+28z-15=0.$$
 
 **3.** (难度:★) 求一过原点和点 $(6, -3, 2)$，且与平面 $4x - y + 2z = 8$ 垂直的平面方程.
 
@@ -3562,38 +3688,53 @@ $$\frac{1}{r_{1}^{2}}+\frac{1}{r_{2}^{2}}+\frac{1}{r_{3}^{2}}=\frac{1}{a^{2}}+\f
 
 **1.** (难度:★★) 证明: 极限 $\lim_{{x \to 0 \atop y \to 0}} \frac{xy}{\sqrt{x + y + 1} - 1}$ 不存在.
 
-> [!answer]- 原书参考答案（A.6.1 第 1 题，未逐题独立验算）
-> **1.** 先对分子作根式有理化：
+> [!answer]- 核对后解答（A.6.1 第 1 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\sqrt{x^{2}+y^{2}}-\sqrt{x^{2}-xy+y^{2}}=\frac{xy}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-xy+y^{2}}}.$$
+> 原书 A.6.1 第 1 题讨论的是另一个含两个根式的极限。
 >
-> 所以原式为
+> 在原式有定义处有
 >
-> $$F(x,y)=\frac{xy}{x+y}\cdot\frac{1}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-xy+y^{2}}}.$$
+> $$\frac{xy}{\sqrt{1+x+y}-1}=\frac{xy(\sqrt{1+x+y}+1)}{x+y}.$$
 >
-> 这里最容易犯的错误是：因为
+> 沿 $y=0$、$x\ne0$ 趋近原点，函数值为 $0$。沿 $y=-x+x^{2}$、$x\ne0$ 趋近原点，$x+y=x^{2}>0$，并且
 >
-> $$\left|\frac{x}{x+y}\right|\leq1$$
+> $$\frac{xy(\sqrt{1+x+y}+1)}{x+y}=(-1+x)(\sqrt{1+x^{2}}+1)\longrightarrow-2.$$
 >
-> 而把 $\frac{xy}{x+y}$直接放大成 $|y|$.这个不等号在 $x+y<0$时根本不成立.因此不能这样夹逼.
+> 两条路径均在原式定义域内，极限值不同，所以二元极限不存在。
 >
-> 取路径 y = x. 当 x > 0 时，
->
-> $$\sqrt{x^{2}+y^{2}}=\sqrt{2}x,\qquad\sqrt{x^{2}-xy+y^{2}}=x,$$
->
-> 代入(1)得
->
-> $$F(x,x)=\frac{x^{2}}{2x}\cdot\frac{1}{(\sqrt{2}+1)x}=\frac{1}{2(\sqrt{2}+1)}.$$
->
-> 再取路径 $y=-x+x^2$，即 $x+y=x^2$。当 $x\to0$ 时,
->
-> $$xy=x(-x+x^{2})=-x^{2}+x^{3},$$
->
-> 且两个根式都趋于0，它们之和与 $|x|$同阶.于是
->
-> $$F(x,-x+x^{2})=\frac{-x^{2}+x^{3}}{x^{2}}\cdot\frac{1}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-x y+y^{2}}}\to-\infty.$$
->
-> 两条路径的极限不同，所以原极限不存在.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **1.** 先对分子作根式有理化：
+> >
+> > $$\sqrt{x^{2}+y^{2}}-\sqrt{x^{2}-xy+y^{2}}=\frac{xy}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-xy+y^{2}}}.$$
+> >
+> > 所以原式为
+> >
+> > $$F(x,y)=\frac{xy}{x+y}\cdot\frac{1}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-xy+y^{2}}}.$$
+> >
+> > 这里最容易犯的错误是：因为
+> >
+> > $$\left|\frac{x}{x+y}\right|\leq1$$
+> >
+> > 而把 $\frac{xy}{x+y}$直接放大成 $|y|$.这个不等号在 $x+y<0$时根本不成立.因此不能这样夹逼.
+> >
+> > 取路径 y = x. 当 x > 0 时，
+> >
+> > $$\sqrt{x^{2}+y^{2}}=\sqrt{2}x,\qquad\sqrt{x^{2}-xy+y^{2}}=x,$$
+> >
+> > 代入(1)得
+> >
+> > $$F(x,x)=\frac{x^{2}}{2x}\cdot\frac{1}{(\sqrt{2}+1)x}=\frac{1}{2(\sqrt{2}+1)}.$$
+> >
+> > 再取路径 $y=-x+x^2$，即 $x+y=x^2$。当 $x\to0$ 时,
+> >
+> > $$xy=x(-x+x^{2})=-x^{2}+x^{3},$$
+> >
+> > 且两个根式都趋于0，它们之和与 $|x|$同阶.于是
+> >
+> > $$F(x,-x+x^{2})=\frac{-x^{2}+x^{3}}{x^{2}}\cdot\frac{1}{\sqrt{x^{2}+y^{2}}+\sqrt{x^{2}-x y+y^{2}}}\to-\infty.$$
+> >
+> > 两条路径的极限不同，所以原极限不存在.
 
 **2.** (难度:★) 求极限: $\lim_{{x \to 0 \atop y \to 0}} \frac{(y - x)x}{\sqrt{x^2 + y^2}}$.
 
@@ -4014,7 +4155,10 @@ $$\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\partial f}{\partial x}\frac{\part
 
 **4.** (难度:★★) 设 $u = u(x, y)$ 是由方程 $u + e^{u} = xy$ 所确定的二元函数, 求 $\frac{\partial^{2}u}{\partial x\partial y}$.
 
-> [!answer]- 原书参考答案（A.6.3 第 4 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.6.3 第 4 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 末句 $1+e^{u}=xy/u$ 不由题设推出，应为 $e^{u}=xy-u$（因而 $1+e^{u}=1+xy-u$）。上面的偏导数结果不受这句错误化简影响。
+>
 > **4.** 这里 $F = F(x, y, u)$，而 $u = u(x, y)$。令 $F(x, y, u) = u + e^{u} - xy$，则
 >
 > $$\frac{\partial F}{\partial x}=-y,\qquad\frac{\partial F}{\partial y}=-x,\qquad\frac{\partial F}{\partial u}=1+e^{u}.$$
@@ -4078,53 +4222,91 @@ $$\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{\frac{\partial f}{\partial x}\frac{\part
 
 **2.** (难度:★★★) 证明: 函数 $z = (1 + e^{y}) \cos x - ye^{y}$ 有无穷多个极大值而无一极小值.
 
-> [!answer]- 原书参考答案（A.6.4 第 2 题，未逐题独立验算）
-> **2.** 先解全部驻点，再用 $A = \frac{\partial^{2}f}{\partial x^{2}}$、 $B = \frac{\partial^{2}f}{\partial x\partial y}$、 $C = \frac{\partial^{2}f}{\partial y^{2}}$ 和判别式 $AC-B^2$ 分类. 解
+> [!answer]- 核对后解答（A.6.4 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\frac{\partial f}{\partial x}=\cos x=0,\qquad\frac{\partial f}{\partial y}=-2y=0,$$
+> 原书 A.6.4 第 2 题解答分析的是 $z=\sin x-y^{2}$，与本题不同。
 >
-> 得
+> 计算一阶偏导：
 >
-> $$x=\frac{\pi}{2}+k\pi,\qquad y=0,\quad k\in\mathbb{Z}.$$
+> $$z_{x}=-(1+e^{y})\sin x,\qquad z_{y}=e^{y}(\cos x-y-1).$$
+>
+> 驻点满足 $\sin x=0$、$y=\cos x-1$，故只有 $(2k\pi,0)$ 与 $((2k+1)\pi,-2)$，$k\in\mathbb Z$。
 >
 > 二阶偏导为
 >
-> $$A=\frac{\partial^{2}f}{\partial x^{2}}=-\sin x,\qquad B=\frac{\partial^{2}f}{\partial x\partial y}=0,\qquad C=\frac{\partial^{2}f}{\partial y^{2}}=-2.$$
+> $$z_{xx}=-(1+e^{y})\cos x,\quad z_{xy}=-e^{y}\sin x,\quad z_{yy}=e^{y}(\cos x-y-2).$$
 >
-> 判别式为
+> 在 $(2k\pi,0)$ 处，$z_{xx}=-2,z_{yy}=-1,z_{xy}=0$，Hessian 负定，因此每一点都是严格极大值点，函数值均为 $2$。
 >
-> $$AC-B^{2}=(-\sin x)(-2)-0^{2}=2\sin x.$$
+> 在 $((2k+1)\pi,-2)$ 处，$z_{xx}=1+e^{-2}>0,z_{yy}=-e^{-2}<0,z_{xy}=0$，Hessian 行列式为负，均为鞍点。
 >
-> 当 $x = \frac{\pi}{2} + 2k\pi$ 时, $\sin x = 1$, 所以 $AC - B^{2} = 2 > 0$, 且 A = -1 < 0, 这些点是极大值点:
+> 函数在全平面光滑，极小值点必须是驻点，而所有驻点已排除极小值。因此有无穷多个极大值点，没有极小值点。
 >
-> $$f\left(\frac{\pi}{2}+2k\pi,0\right)=1.$$
->
-> 这样的 k 有无穷多个，所以函数有无穷多个极大值.
->
-> 当 $x = \frac{3\pi}{2} + 2k\pi$ 时, $\sin x = -1$, 所以 $AC - B^{2} = -2 < 0$, 这些点是鞍点, 不是极值.
->
-> 由于驻点只有这两类, 而第二类全是鞍点, 所以函数没有极小值. 判定极值后要把 k 分奇偶: 两类驻点的 $AC-B^2$ 符号相反.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **2.** 先解全部驻点，再用 $A = \frac{\partial^{2}f}{\partial x^{2}}$、 $B = \frac{\partial^{2}f}{\partial x\partial y}$、 $C = \frac{\partial^{2}f}{\partial y^{2}}$ 和判别式 $AC-B^2$ 分类. 解
+> >
+> > $$\frac{\partial f}{\partial x}=\cos x=0,\qquad\frac{\partial f}{\partial y}=-2y=0,$$
+> >
+> > 得
+> >
+> > $$x=\frac{\pi}{2}+k\pi,\qquad y=0,\quad k\in\mathbb{Z}.$$
+> >
+> > 二阶偏导为
+> >
+> > $$A=\frac{\partial^{2}f}{\partial x^{2}}=-\sin x,\qquad B=\frac{\partial^{2}f}{\partial x\partial y}=0,\qquad C=\frac{\partial^{2}f}{\partial y^{2}}=-2.$$
+> >
+> > 判别式为
+> >
+> > $$AC-B^{2}=(-\sin x)(-2)-0^{2}=2\sin x.$$
+> >
+> > 当 $x = \frac{\pi}{2} + 2k\pi$ 时, $\sin x = 1$, 所以 $AC - B^{2} = 2 > 0$, 且 A = -1 < 0, 这些点是极大值点:
+> >
+> > $$f\left(\frac{\pi}{2}+2k\pi,0\right)=1.$$
+> >
+> > 这样的 k 有无穷多个，所以函数有无穷多个极大值.
+> >
+> > 当 $x = \frac{3\pi}{2} + 2k\pi$ 时, $\sin x = -1$, 所以 $AC - B^{2} = -2 < 0$, 这些点是鞍点, 不是极值.
+> >
+> > 由于驻点只有这两类, 而第二类全是鞍点, 所以函数没有极小值. 判定极值后要把 k 分奇偶: 两类驻点的 $AC-B^2$ 符号相反.
 
 **3.** (难度:★★) 求函数 $f(x,y) = 3x^{2} + 3y^{2} - 2x^{3}$ 在区域 D: $x^{2} + y^{2} \leq 2$ 上的最大值与最小值.
 
-> [!answer]- 原书参考答案（A.6.4 第 3 题，未逐题独立验算）
-> **3.** 配方把函数写成到定点距离的平方，再比较该定点到圆盘中心和边界的位置。配方：
+> [!answer]- 核对后解答（A.6.4 第 3 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$f(x,y)=x^{2}+y^{2}-2x-4y=(x-1)^{2}+(y-2)^{2}-5.$$
+> 原书 A.6.4 第 3 题用了另一目标函数与半径为 3 的圆盘，不能用于本题。
 >
-> 点(1,2)到原点距离为 $\sqrt{5}<3$，所以(1,2)在区域内部，内部最小值为
+> 函数连续且 $D$ 紧，最大、最小值必存在。内部驻点由
 >
-> $$f(1,2)=-5.$$
+> $$f_{x}=6x-6x^{2}=0,\qquad f_{y}=6y=0$$
 >
-> 区域边界为 $x^{2}+y^{2}=9$. 设 $x=3\cos t, y=3\sin t$, 则
+> 得到 $(0,0)$ 与 $(1,0)$，函数值分别为 $0$ 与 $1$。
 >
-> $$f(3\cos t,3\sin t)=9-6\cos t-12\sin t=9-6\sqrt{5}\sin(t+\varphi),$$
+> 边界 $x^{2}+y^{2}=2$ 上，$f=6-2x^{3}$，其中 $-\sqrt2\le x\le\sqrt2$。该函数关于 $x$ 单调递减，边界最大值为 $6+4\sqrt2$，最小值为 $6-4\sqrt2>0$。
 >
-> 其中 $\varphi$ 为某个辅助角。所以边界上最大值为 $9 + 6\sqrt{5}$，最小值为 $9 - 6\sqrt{5}$。比较内部点与边界点：最小值为内部点 -5；最大值为边界点 $9 + 6\sqrt{5}$。故
+> 比较内部与边界候选值，得
 >
-> $$\max_{D}f(x,y)=9+6\sqrt{5},\qquad\min_{D}f(x,y)=-5.$$
+> $$\max_{D}f=6+4\sqrt2\quad\text{在 }(-\sqrt2,0)\text{ 处取得},\qquad\min_{D}f=0\quad\text{在 }(0,0)\text{ 处取得}.$$
 >
-> 圆盘上的二次函数配方后，“到定点距离”就是全部信息：定点在圆内则最小值取在内部，最大值取在离定点最远的边界点.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **3.** 配方把函数写成到定点距离的平方，再比较该定点到圆盘中心和边界的位置。配方：
+> >
+> > $$f(x,y)=x^{2}+y^{2}-2x-4y=(x-1)^{2}+(y-2)^{2}-5.$$
+> >
+> > 点(1,2)到原点距离为 $\sqrt{5}<3$，所以(1,2)在区域内部，内部最小值为
+> >
+> > $$f(1,2)=-5.$$
+> >
+> > 区域边界为 $x^{2}+y^{2}=9$. 设 $x=3\cos t, y=3\sin t$, 则
+> >
+> > $$f(3\cos t,3\sin t)=9-6\cos t-12\sin t=9-6\sqrt{5}\sin(t+\varphi),$$
+> >
+> > 其中 $\varphi$ 为某个辅助角。所以边界上最大值为 $9 + 6\sqrt{5}$，最小值为 $9 - 6\sqrt{5}$。比较内部点与边界点：最小值为内部点 -5；最大值为边界点 $9 + 6\sqrt{5}$。故
+> >
+> > $$\max_{D}f(x,y)=9+6\sqrt{5},\qquad\min_{D}f(x,y)=-5.$$
+> >
+> > 圆盘上的二次函数配方后，“到定点距离”就是全部信息：定点在圆内则最小值取在内部，最大值取在离定点最远的边界点.
 
 **4.** (难度: ★★★★) 求函数 $f(x, y, z) = \ln x + 2 \ln y + 4 \ln z$ 在球面 $x^{2} + y^{2} + z^{2} = 7R^{2}$ 上的最大值 (x > 0, y > 0, z > 0), 其中 R > 0 为常数，并由此证明: 当 a > 0, b > 0, c > 0 时，恒有
 
@@ -4229,7 +4411,10 @@ $$a b^{2}c^{4}\leqslant1024\left(\frac{a+b+c}{7}\right)^{7}.$$
 
 **2.** (难度:★★) 设 f 为可微函数. 试证: 曲面 $z = xf\left(\frac{y}{x}\right)$ 上任一点 $(x, y, z)$ ( $x \neq 0$) 处的切平面都过某一固定点.
 
-> [!answer]- 原书参考答案（A.6.5 第 2 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.6.5 第 2 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 展开切平面方程时，常数项末尾应为 $-f^{\prime}(u_{0})y_{0}$，不是加号；下一行同样应为 $-f^{\prime}(u_{0})x_{0}u_{0}$。纠正后常数项确为零，最终切平面结论成立。
+>
 > **2.** 记 $u = \frac{y}{x}$，则
 >
 > $$z=xf(u).$$
@@ -5042,7 +5227,10 @@ $$\int_{L}(x^{2}+2xy)\mathrm{d}s.$$
 
 $$\oint_{\Gamma}\left[(x+y)^{2}+(y+z)^{2}+(x+z)^{2}\right]\mathrm{d}s.$$
 
-> [!answer]- 原书参考答案（A.7.2·第一类曲线积分 第 3 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.7.2·第一类曲线积分 第 3 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 末尾括号中的“另一条路”错误使用坐标轮换对称性：平面 $x+2y+3z=0$ 不具有该对称性，不能据此断言 $\oint x^{2}\,\mathrm{d}s=2\pi/3$。应使用前面正交投影的解法，其结果 $17\pi/7$ 不受影响。
+>
 > **3.** **第一步：先化简被积式.** 展开得
 >
 > $$\begin{aligned}(x+y)^2+(y+z)^2+(z+x)^2&=2(x^2+y^2+z^2)+2(xy+yz+zx)\\&=(x^2+y^2+z^2)+(x+y+z)^2.\end{aligned}$$
@@ -5426,50 +5614,65 @@ $$\oint_{L}x e^{\sin y}\mathrm{d}y-y e^{-\sin x}\mathrm{d}x=\oint_{L}x e^{-\sin 
 
 $$\oint_{L}xe^{\sin y}\mathrm{d}y-ye^{-\sin x}\mathrm{d}x\leqslant\frac{5}{2}\pi^{2}.$$
 
-> [!answer]- 原书参考答案（A.7.3·第二类曲线积分 第 2 题，未逐题独立验算）
-> **2.** 两个环路积分都用格林公式化成同一个二重积分；(2) 的关键是把 $e^{\sin y} + e^{-\sin y}$ 与 $2 + \sin^{2} y$ 作比较. (1) 对第一个积分
+> [!answer]- 核对后解答（A.7.3·第二类曲线积分 第 2 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$I_{1}=\oint_{L}x\mathbf{e}^{\sin y}\mathrm{d}y-y\mathbf{e}^{-\sin x}\mathrm{d}x,$$
+> 原 PDF 第 34 页第 (2) 问写作 $\leqslant$，但该命题不成立；原书答案实际证明相反方向。题干保留原文，不把错误命题当作已证明。
 >
-> 取 $P = -ye^{-\sin x}$， $Q = xe^{\sin y}$。则
+> 由格林公式及正方形区域关于 $x=y$ 的对称性，两条环路积分都等于
 >
-> $$\frac{\partial Q}{\partial x}=\mathrm{e}^{\sin y},\qquad\frac{\partial P}{\partial y}=-\mathrm{e}^{-\sin x},$$
+> $$I=\pi\int_{0}^{\pi}\left(e^{\sin t}+e^{-\sin t}\right)\,\mathrm{d}t.$$
 >
-> 由格林公式
+> 所以第 (1) 问成立。对于第 (2) 问，$e^{u}+e^{-u}=2+u^{2}+2\sum_{k=2}^{\infty}u^{2k}/(2k)!$，当 $u\ne0$ 时严格大于 $2+u^{2}$。由于 $0<t<\pi$ 时 $\sin t>0$，故
 >
-> $$I_{1}=\iint_{D}\left(\mathbf{e}^{\sin y}+\mathbf{e}^{-\sin x}\right)\mathrm{d}\sigma.$$
+> $$I>\pi\int_{0}^{\pi}(2+\sin^{2}t)\,\mathrm{d}t=\frac52\pi^{2}.$$
 >
-> 对第二个积分, 取 $P = -ye^{\sin x}$, $Q = xe^{-\sin y}$, 则
+> **勘误建议：第 (2) 问的不等号应改为 $\geqslant$（事实上可加强为 $>$）。这是依据计算提出的更正，原 PDF 仍为 $\leqslant$。**
 >
-> $$\frac{\partial Q}{\partial x}=\mathbf{e}^{-\sin y},\qquad\frac{\partial P}{\partial y}=-\mathbf{e}^{\sin x},$$
->
-> 于是
->
-> $$I_{2}=\iint_{D}\left(\mathbf{e}^{-\sin y}+\mathbf{e}^{\sin x}\right)\mathrm{d}\sigma.$$
->
-> 正方形 $D = \{0 \leqslant x \leqslant \pi, 0 \leqslant y \leqslant \pi\}$ 关于直线 y = x 对称，把 x 与 y 互换得
->
-> $$\iint_{D}\mathrm{e}^{\sin y}\mathrm{d}\sigma=\iint_{D}\mathrm{e}^{\sin x}\mathrm{d}\sigma,\qquad\iint_{D}\mathrm{e}^{-\sin x}\mathrm{d}\sigma=\iint_{D}\mathrm{e}^{-\sin y}\mathrm{d}\sigma,$$
->
-> 所以 $I_{1}=I_{2}$，即(1)成立.
->
-> (2) 由上面的对称性，
->
-> $$I_{1}=\iint_{D}\left(\mathrm{e}^{\sin y}+\mathrm{e}^{-\sin y}\right)\mathrm{d}\sigma=\pi\int_{0}^{\pi}\left(\mathrm{e}^{\sin y}+\mathrm{e}^{-\sin y}\right)\mathrm{d}y.$$
->
-> 对任意实数t，
->
-> $$\mathbf{e}^{t}+\mathbf{e}^{-t}=2\left(1+\frac{t^{2}}{2!}+\frac{t^{4}}{4!}+\cdots\right)\geqslant2+t^{2},$$
->
-> 取 $t = \sin y$ 得
->
-> $$\begin{aligned}e^{\sin y}+e^{-\sin y}\geqslant2+\sin^{2}y.\end{aligned}$$
->
-> 于是
->
-> $$I_{1}\geqslant\pi\int_{0}^{\pi}\left(2+\sin^{2}y\right)\mathrm{d}y=\pi\left(2\pi+\frac{\pi}{2}\right)=\frac{5}{2}\pi^{2}.$$
->
-> (1) 是把两条曲线上的积分都化到同一个二重积分；(2) 的估计只用了一个初等不等式 $\mathrm{e}^{t} + \mathrm{e}^{-t} \geqslant 2 + t^{2}$，最后 $\int_{0}^{\pi} \sin^{2} y \, \mathrm{d}y = \frac{\pi}{2}$ 刚好凑出 $\frac{5}{2}\pi$.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **2.** 两个环路积分都用格林公式化成同一个二重积分；(2) 的关键是把 $e^{\sin y} + e^{-\sin y}$ 与 $2 + \sin^{2} y$ 作比较. (1) 对第一个积分
+> >
+> > $$I_{1}=\oint_{L}x\mathbf{e}^{\sin y}\mathrm{d}y-y\mathbf{e}^{-\sin x}\mathrm{d}x,$$
+> >
+> > 取 $P = -ye^{-\sin x}$， $Q = xe^{\sin y}$。则
+> >
+> > $$\frac{\partial Q}{\partial x}=\mathrm{e}^{\sin y},\qquad\frac{\partial P}{\partial y}=-\mathrm{e}^{-\sin x},$$
+> >
+> > 由格林公式
+> >
+> > $$I_{1}=\iint_{D}\left(\mathbf{e}^{\sin y}+\mathbf{e}^{-\sin x}\right)\mathrm{d}\sigma.$$
+> >
+> > 对第二个积分, 取 $P = -ye^{\sin x}$, $Q = xe^{-\sin y}$, 则
+> >
+> > $$\frac{\partial Q}{\partial x}=\mathbf{e}^{-\sin y},\qquad\frac{\partial P}{\partial y}=-\mathbf{e}^{\sin x},$$
+> >
+> > 于是
+> >
+> > $$I_{2}=\iint_{D}\left(\mathbf{e}^{-\sin y}+\mathbf{e}^{\sin x}\right)\mathrm{d}\sigma.$$
+> >
+> > 正方形 $D = \{0 \leqslant x \leqslant \pi, 0 \leqslant y \leqslant \pi\}$ 关于直线 y = x 对称，把 x 与 y 互换得
+> >
+> > $$\iint_{D}\mathrm{e}^{\sin y}\mathrm{d}\sigma=\iint_{D}\mathrm{e}^{\sin x}\mathrm{d}\sigma,\qquad\iint_{D}\mathrm{e}^{-\sin x}\mathrm{d}\sigma=\iint_{D}\mathrm{e}^{-\sin y}\mathrm{d}\sigma,$$
+> >
+> > 所以 $I_{1}=I_{2}$，即(1)成立.
+> >
+> > (2) 由上面的对称性，
+> >
+> > $$I_{1}=\iint_{D}\left(\mathrm{e}^{\sin y}+\mathrm{e}^{-\sin y}\right)\mathrm{d}\sigma=\pi\int_{0}^{\pi}\left(\mathrm{e}^{\sin y}+\mathrm{e}^{-\sin y}\right)\mathrm{d}y.$$
+> >
+> > 对任意实数t，
+> >
+> > $$\mathbf{e}^{t}+\mathbf{e}^{-t}=2\left(1+\frac{t^{2}}{2!}+\frac{t^{4}}{4!}+\cdots\right)\geqslant2+t^{2},$$
+> >
+> > 取 $t = \sin y$ 得
+> >
+> > $$\begin{aligned}e^{\sin y}+e^{-\sin y}\geqslant2+\sin^{2}y.\end{aligned}$$
+> >
+> > 于是
+> >
+> > $$I_{1}\geqslant\pi\int_{0}^{\pi}\left(2+\sin^{2}y\right)\mathrm{d}y=\pi\left(2\pi+\frac{\pi}{2}\right)=\frac{5}{2}\pi^{2}.$$
+> >
+> > (1) 是把两条曲线上的积分都化到同一个二重积分；(2) 的估计只用了一个初等不等式 $\mathrm{e}^{t} + \mathrm{e}^{-t} \geqslant 2 + t^{2}$，最后 $\int_{0}^{\pi} \sin^{2} y \, \mathrm{d}y = \frac{\pi}{2}$ 刚好凑出 $\frac{5}{2}\pi$.
 
 **3.** (难度:★★★) 计算 $I = \int_{L} (2x + \sin y) \, \mathrm{d}x + x \cos y \, \mathrm{d}y$, L 为从 $(0,0)$ 到 $\left(2, \frac{\pi}{2}\right)$ 的曲线 $y = \frac{\pi}{8}x^{2}$.
 
@@ -5498,34 +5701,47 @@ $$\oint_{L}xe^{\sin y}\mathrm{d}y-ye^{-\sin x}\mathrm{d}x\leqslant\frac{5}{2}\pi
 
 **4.** (难度:★★★★) 计算 $I = \int_{L} \frac{x \, \mathrm{d}y - y \, \mathrm{d}x}{4x^{2} + y^{2}}$，其中 L 取点 A(-1,0) 沿 $y = -\sqrt{1 - x^{2}}$ 至点 B(1,0) 再沿 $y^{2} = 2(1 - x)$ 至点 C(-1,2) 的路径.
 
-> [!answer]- 原书参考答案（A.7.3·第二类曲线积分 第 4 题，未逐题独立验算）
-> **4.** 被积函数在原点不可导，不能直接补线用格林，要「补线 + 挖洞」，把绕原点的闭路换成一个小椭圆。记
+> [!answer]- 核对后解答（A.7.3·第二类曲线积分 第 4 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$P=\frac{-y}{4x^{2}+y^{2}},\qquad Q=\frac{x}{4x^{2}+y^{2}}.$$
+> 原书求出补成闭路后的积分为 $\pi$，却漏扣从 $C$ 到 $A$ 的补线积分。
 >
-> 在原点以外的点，
+> 沿补线 $CA$ 有 $x=-1$、$y:2\to0$，故
 >
-> $$\frac{\partial P}{\partial y}=\frac{y^{2}-4x^{2}}{(4x^{2}+y^{2})^{2}}=\frac{\partial Q}{\partial x},$$
+> $$\int_{CA}\frac{x\,\mathrm{d}y-y\,\mathrm{d}x}{4x^{2}+y^{2}}=\int_{2}^{0}\frac{-\mathrm{d}y}{4+y^{2}}=\frac12\arctan1=\frac\pi8.$$
 >
-> 但它只在 $(x,y)\neq(0,0)$有意义.
+> 原书通过挖去原点附近小椭圆计算得到的闭路积分 $\oint_{L+CA}=\pi$ 正确，因此
 >
-> 把 L 与两条直线段补成闭曲线 Γ: L 从 A(-1,0) 沿下半单位圆到 B(1,0)，再沿 $y^{2}=2(1-x)$ 到 C(-1,2)，最后沿 x=-1 回到 A. 这条闭曲线内部包含原点. 在原点外挖去一个小椭圆 $l_{\varepsilon}$: $4x^{2}+y^{2}=\varepsilon^{2}$ (取逆时针)，由格林公式
+> $$I=\oint_{L+CA}-\int_{CA}=\pi-\frac\pi8=\frac{7\pi}{8}.$$
 >
-> $$\oint_{\Gamma}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}=\oint_{l_{\varepsilon}}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}.$$
->
-> 在小椭圆上参数化
->
-> $$x=\frac{\varepsilon}{2}\cos t,\qquad y=\varepsilon\sin t,\qquad0\leqslant t\leqslant2\pi,$$
->
-> 则 $4x^{2}+y^{2}=\varepsilon^{2}$，且
->
-> $$x\mathrm{d}y-y\mathrm{d}x=\frac{\varepsilon^{2}}{2}\cos^{2}t\mathrm{d}t+\frac{\varepsilon^{2}}{2}\sin^{2}t\mathrm{d}t=\frac{\varepsilon^{2}}{2}\mathrm{d}t.$$
->
-> 所以
->
-> $$\oint_{l_{\varepsilon}}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}=\int_{0}^{2\pi}\frac{1}{2}\mathrm{d}t=\pi,$$
->
-> 即 $I=\pi$ 。原点处的奇点必须用「挖洞」处理：把小椭圆按逆时针取，方向对了结果就是 $+π$ 。
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **4.** 被积函数在原点不可导，不能直接补线用格林，要「补线 + 挖洞」，把绕原点的闭路换成一个小椭圆。记
+> >
+> > $$P=\frac{-y}{4x^{2}+y^{2}},\qquad Q=\frac{x}{4x^{2}+y^{2}}.$$
+> >
+> > 在原点以外的点，
+> >
+> > $$\frac{\partial P}{\partial y}=\frac{y^{2}-4x^{2}}{(4x^{2}+y^{2})^{2}}=\frac{\partial Q}{\partial x},$$
+> >
+> > 但它只在 $(x,y)\neq(0,0)$有意义.
+> >
+> > 把 L 与两条直线段补成闭曲线 Γ: L 从 A(-1,0) 沿下半单位圆到 B(1,0)，再沿 $y^{2}=2(1-x)$ 到 C(-1,2)，最后沿 x=-1 回到 A. 这条闭曲线内部包含原点. 在原点外挖去一个小椭圆 $l_{\varepsilon}$: $4x^{2}+y^{2}=\varepsilon^{2}$ (取逆时针)，由格林公式
+> >
+> > $$\oint_{\Gamma}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}=\oint_{l_{\varepsilon}}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}.$$
+> >
+> > 在小椭圆上参数化
+> >
+> > $$x=\frac{\varepsilon}{2}\cos t,\qquad y=\varepsilon\sin t,\qquad0\leqslant t\leqslant2\pi,$$
+> >
+> > 则 $4x^{2}+y^{2}=\varepsilon^{2}$，且
+> >
+> > $$x\mathrm{d}y-y\mathrm{d}x=\frac{\varepsilon^{2}}{2}\cos^{2}t\mathrm{d}t+\frac{\varepsilon^{2}}{2}\sin^{2}t\mathrm{d}t=\frac{\varepsilon^{2}}{2}\mathrm{d}t.$$
+> >
+> > 所以
+> >
+> > $$\oint_{l_{\varepsilon}}\frac{x\mathrm{d}y-y\mathrm{d}x}{4x^{2}+y^{2}}=\int_{0}^{2\pi}\frac{1}{2}\mathrm{d}t=\pi,$$
+> >
+> > 即 $I=\pi$ 。原点处的奇点必须用「挖洞」处理：把小椭圆按逆时针取，方向对了结果就是 $+π$ 。
 
 **5.** (难度:★★★) 计算积分 $I = \oint_{\Gamma} (\sqrt{3}y - x) \, dx - 5z \, dz$，其中曲线 $\Gamma: \begin{cases} x^2 + y^2 + z^2 = 8, \\ x^2 + y^2 = 2z, \end{cases}$
 
@@ -5831,38 +6047,53 @@ $$I=\iint_{\Sigma}(x^{3}-x)\mathrm{d}y\mathrm{d}z+(2y^{3}-y)\mathrm{d}z\mathrm{d
 
 试确定曲面 $\Sigma$，使得积分 I 的值最小，并求该最小值.
 
-> [!answer]- 原书参考答案（A.7.3·第二类曲面积分 第 6 题，未逐题独立验算）
-> **6.** 先用高斯定理把 I 写成三重积分，被积函数是 $3(x^{2}+2y^{2}+z^{2}-1)$; 要让积分最小，区域就取成被积函数为负的那部分，即椭圆 $x^{2}+2y^{2}+z^{2}\leq1$. 设 $\Sigma$ 围成的区域为 $\Omega$，由高斯定理
+> [!answer]- 核对后解答（A.7.3·第二类曲面积分 第 6 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\begin{aligned}I&=\iiint_{\Omega}\left[\frac{\partial}{\partial x}(x^{3}-x)+\frac{\partial}{\partial y}(2y^{3}-y)+\frac{\partial}{\partial z}(3z^{3}-z)\right]\mathrm{d}V\\=\iiint_{\Omega}\left(3x^{2}-1+6y^{2}-1+3z^{2}-1\right)\mathrm{d}V&=3\iiint_{\Omega}\left(x^{2}+2y^{2}+z^{2}-1\right)\mathrm{d}V.\end{aligned}$$
+> 原书解答计算散度时漏掉 $3z^{3}$ 求导后对应的系数，所得曲面与最小值不适用于原题。
 >
-> 被积函数 $3(x^{2}+2y^{2}+z^{2}-1)$ 在椭球 $x^{2}+2y^{2}+z^{2}\leqslant1$ 内为负、在外为正.要让 $\Omega$ 上的积分最小，就取
+> 由高斯公式，若 $\Omega$ 为 $\Sigma$ 围成的区域，则
 >
-> $$\Omega:\ x^{2}+2y^{2}+z^{2}\leqslant1,$$
+> $$I=\iiint_{\Omega}3(x^{2}+2y^{2}+3z^{2}-1)\,\mathrm{d}V.$$
 >
-> 即 $\Sigma$ 为椭球面 $x^{2}+2y^{2}+z^{2}=1$ 的外侧.
+> 记 $E=\{x^{2}+2y^{2}+3z^{2}\le1\}$。被积函数在 $E$ 内非正、在外非负。对任意 $\Omega$，删掉 $E$ 内的部分会增加积分，加入 $E$ 外的部分也会增加积分，故积分在 $\Omega=E$ 时最小。
 >
-> 此时由椭球公式 (半轴 $a=1$, $b=\frac{1}{\sqrt{2}}$, $c=1$):
+> 因此取 $\Sigma:x^{2}+2y^{2}+3z^{2}=1$，方向朝外。作变换 $u=x,v=\sqrt2y,w=\sqrt3z$，Jacobian 为 $1/\sqrt6$，得
 >
-> $$\iiint_{\Omega}x^{2}\mathrm{d}V=\frac{4\pi}{15}a^{3}bc=\frac{4\pi}{15\sqrt{2}},$$
+> $$I_{\min}=\frac{3}{\sqrt6}\iiint_{u^{2}+v^{2}+w^{2}\le1}(u^{2}+v^{2}+w^{2}-1)\,\mathrm{d}u\mathrm{d}v\mathrm{d}w=\frac{12\pi}{\sqrt6}\int_{0}^{1}(r^{2}-1)r^{2}\,\mathrm{d}r=-\frac{8\pi}{5\sqrt6}.$$
 >
-> $$\iiint_{\Omega}y^{2}\mathrm{d}V=\frac{4\pi}{15}ab^{3}c=\frac{4\pi}{30\sqrt{2}},$$
->
-> $$\iiint_{\Omega}^{}z^{2}\mathrm{d}V=\frac{4\pi}{15}abc^{3}=\frac{4\pi}{15\sqrt{2}},$$
->
-> 故
->
-> $$\iiint_{\Omega}\left(x^{2}+2y^{2}+z^{2}\right)\mathrm{d}V=\frac{4\pi}{15\sqrt{2}}+\frac{4\pi}{15\sqrt{2}}+\frac{4\pi}{15\sqrt{2}}=\frac{4\pi}{5\sqrt{2}}.$$
->
-> 又
->
-> $$V(\Omega)=\frac{4}{3}\pi a b c=\frac{4\pi}{3\sqrt{2}},$$
->
-> 所以
->
-> $$I_{\min}=3\left(\frac{4\pi}{5\sqrt{2}}-\frac{4\pi}{3\sqrt{2}}\right)=3\cdot\frac{4\pi}{\sqrt{2}}\cdot\left(\frac{1}{5}-\frac{1}{3}\right)=-\frac{4\sqrt{2}\pi}{5}.$$
->
-> 「使积分最小」的曲面，就是让三重积分的被积函数在区域内尽量为负：这里正好是 $x^{2}+2y^{2}+z^{2}\leq1$。
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **6.** 先用高斯定理把 I 写成三重积分，被积函数是 $3(x^{2}+2y^{2}+z^{2}-1)$; 要让积分最小，区域就取成被积函数为负的那部分，即椭圆 $x^{2}+2y^{2}+z^{2}\leq1$. 设 $\Sigma$ 围成的区域为 $\Omega$，由高斯定理
+> >
+> > $$\begin{aligned}I&=\iiint_{\Omega}\left[\frac{\partial}{\partial x}(x^{3}-x)+\frac{\partial}{\partial y}(2y^{3}-y)+\frac{\partial}{\partial z}(3z^{3}-z)\right]\mathrm{d}V\\=\iiint_{\Omega}\left(3x^{2}-1+6y^{2}-1+3z^{2}-1\right)\mathrm{d}V&=3\iiint_{\Omega}\left(x^{2}+2y^{2}+z^{2}-1\right)\mathrm{d}V.\end{aligned}$$
+> >
+> > 被积函数 $3(x^{2}+2y^{2}+z^{2}-1)$ 在椭球 $x^{2}+2y^{2}+z^{2}\leqslant1$ 内为负、在外为正.要让 $\Omega$ 上的积分最小，就取
+> >
+> > $$\Omega:\ x^{2}+2y^{2}+z^{2}\leqslant1,$$
+> >
+> > 即 $\Sigma$ 为椭球面 $x^{2}+2y^{2}+z^{2}=1$ 的外侧.
+> >
+> > 此时由椭球公式 (半轴 $a=1$, $b=\frac{1}{\sqrt{2}}$, $c=1$):
+> >
+> > $$\iiint_{\Omega}x^{2}\mathrm{d}V=\frac{4\pi}{15}a^{3}bc=\frac{4\pi}{15\sqrt{2}},$$
+> >
+> > $$\iiint_{\Omega}y^{2}\mathrm{d}V=\frac{4\pi}{15}ab^{3}c=\frac{4\pi}{30\sqrt{2}},$$
+> >
+> > $$\iiint_{\Omega}^{}z^{2}\mathrm{d}V=\frac{4\pi}{15}abc^{3}=\frac{4\pi}{15\sqrt{2}},$$
+> >
+> > 故
+> >
+> > $$\iiint_{\Omega}\left(x^{2}+2y^{2}+z^{2}\right)\mathrm{d}V=\frac{4\pi}{15\sqrt{2}}+\frac{4\pi}{15\sqrt{2}}+\frac{4\pi}{15\sqrt{2}}=\frac{4\pi}{5\sqrt{2}}.$$
+> >
+> > 又
+> >
+> > $$V(\Omega)=\frac{4}{3}\pi a b c=\frac{4\pi}{3\sqrt{2}},$$
+> >
+> > 所以
+> >
+> > $$I_{\min}=3\left(\frac{4\pi}{5\sqrt{2}}-\frac{4\pi}{3\sqrt{2}}\right)=3\cdot\frac{4\pi}{\sqrt{2}}\cdot\left(\frac{1}{5}-\frac{1}{3}\right)=-\frac{4\sqrt{2}\pi}{5}.$$
+> >
+> > 「使积分最小」的曲面，就是让三重积分的被积函数在区域内尽量为负：这里正好是 $x^{2}+2y^{2}+z^{2}\leq1$。
 
 **7.** (难度:★★★) 设球体 $(x-1)^2 + (y-1)^2 + (z-1)^2 \leq 12$ 被平面 $P: x + y + z = 6$ 所截的小球缺为 $\Omega$，对应于小球缺的球冠记为 $\Sigma$，方向指向球外，求第二型曲面积分
 
@@ -6168,36 +6399,55 @@ $$\sum_{n=1}^{\infty}\frac{1-\frac{1}{2}+\frac{1}{3}-\cdots+\frac{(-1)^{n-1}}{n}
 
 收敛，并求其和.
 
-> [!answer]- 原书参考答案（A.8.1 第 6 题，未逐题独立验算）
-> **6.** 关键是发现对 $a_{n}=\ln\left(1+\frac{1}{n}\right)$ 有恒等式 $a_{2n}+a_{2n+1}=a_{n}$，两边平方后就能把乘积 $a_{2n}a_{2n+1}$ 拆成三个平方项之差. 记
+> [!answer]- 核对后解答（A.8.1 第 6 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$a_{n}=\ln\left(1+\frac{1}{n}\right)=\ln\frac{n+1}{n}\qquad(n\geqslant1).$$
+> 原书 A.8.1 第 6 题解答讨论两个对数的乘积，内容对应基础篇 8.2 第 9 题，不适用于本题交错调和部分和。
 >
-> 则
+> 记 $H_{n}^{*}=\sum_{k=1}^{n}(-1)^{k-1}/k$。由交错和估计，$0<H_{n}^{*}\le1$，所以
 >
-> $$a_{2n}+a_{2n+1}=\ln\frac{2n+1}{2n}+\ln\frac{2n+2}{2n+1}=\ln\frac{2n+2}{2n}=\ln\frac{n+1}{n}=a_{n}.$$
+> $$\sum_{n=1}^{\infty}\frac{|H_{n}^{*}|}{n(n+1)}\le\sum_{n=1}^{\infty}\frac1{n(n+1)}=1.$$
 >
-> 两边平方：
+> 求和时注意绝对双重和有限：
 >
-> $$a_{2n}^{2}+2a_{2n}a_{2n+1}+a_{2n+1}^{2}=a_{n}^{2},$$
+> $$\sum_{k=1}^{\infty}\frac1k\sum_{n=k}^{\infty}\frac1{n(n+1)}=\sum_{k=1}^{\infty}\frac1{k^{2}}<\infty.$$
 >
-> 即原级数的通项满足
+> 因此允许交换求和次序，利用 $1/[n(n+1)]=1/n-1/(n+1)$ 得
 >
-> $$u_{n}=a_{2n}a_{2n+1}=\frac{1}{2}\left(a_{n}^{2}-a_{2n}^{2}-a_{2n+1}^{2}\right).$$
+> $$\sum_{n=1}^{\infty}\frac{H_{n}^{*}}{n(n+1)}=\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}k\sum_{n=k}^{\infty}\frac1{n(n+1)}=\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k^{2}}=\left(1-\frac{2}{4}\right)\frac{\pi^{2}}6=\frac{\pi^{2}}{12}.$$
 >
-> 于是前 N 项和
+> 最后用到 $\sum_{k\ge1}1/k^{2}=\pi^{2}/6$（基础篇 8.4 第 3 题）。
 >
-> $$\sum_{n=1}^{N}u_{n}=\frac{1}{2}\left[\sum_{n=1}^{N}a_{n}^{2}-\sum_{n=1}^{N}\left(a_{2n}^{2}+a_{2n+1}^{2}\right)\right]=\frac{1}{2}\left[\sum_{n=1}^{N}a_{n}^{2}-\sum_{k=2}^{2N+1}a_{k}^{2}\right].$$
->
-> 把第一个和式中的 $a_{2}^{2}, \ldots, a_{N}^{2}$ 与第二个和式中的对应项抵消，得
->
-> $$\sum_{n=1}^{N}u_{n}=\frac{1}{2}\left[a_{1}^{2}-\sum_{k=N+1}^{2N+1}a_{k}^{2}\right].$$
->
-> 由 $a_k^2 \leqslant \frac{1}{k^2}$ 及 $\sum \frac{1}{k^2}$ 收敛知 $\sum_{k=N+1}^{2N+1} a_k^2 \to 0$，所以原级数收敛，且
->
-> $$\sum_{n=1}^{\infty}u_{n}=\frac{1}{2}a_{1}^{2}=\frac{1}{2}\ln^{2}2.$$
->
-> 本题没有用「放缩」去估计收敛速度, 而是靠一个精确的代数恒等式把部分和写成有限的项; 最后判断尾部趋于 0 时才用到最简单的放缩 $a_{k}^{2} \leqslant \frac{1}{k^{2}}$.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **6.** 关键是发现对 $a_{n}=\ln\left(1+\frac{1}{n}\right)$ 有恒等式 $a_{2n}+a_{2n+1}=a_{n}$，两边平方后就能把乘积 $a_{2n}a_{2n+1}$ 拆成三个平方项之差. 记
+> >
+> > $$a_{n}=\ln\left(1+\frac{1}{n}\right)=\ln\frac{n+1}{n}\qquad(n\geqslant1).$$
+> >
+> > 则
+> >
+> > $$a_{2n}+a_{2n+1}=\ln\frac{2n+1}{2n}+\ln\frac{2n+2}{2n+1}=\ln\frac{2n+2}{2n}=\ln\frac{n+1}{n}=a_{n}.$$
+> >
+> > 两边平方：
+> >
+> > $$a_{2n}^{2}+2a_{2n}a_{2n+1}+a_{2n+1}^{2}=a_{n}^{2},$$
+> >
+> > 即原级数的通项满足
+> >
+> > $$u_{n}=a_{2n}a_{2n+1}=\frac{1}{2}\left(a_{n}^{2}-a_{2n}^{2}-a_{2n+1}^{2}\right).$$
+> >
+> > 于是前 N 项和
+> >
+> > $$\sum_{n=1}^{N}u_{n}=\frac{1}{2}\left[\sum_{n=1}^{N}a_{n}^{2}-\sum_{n=1}^{N}\left(a_{2n}^{2}+a_{2n+1}^{2}\right)\right]=\frac{1}{2}\left[\sum_{n=1}^{N}a_{n}^{2}-\sum_{k=2}^{2N+1}a_{k}^{2}\right].$$
+> >
+> > 把第一个和式中的 $a_{2}^{2}, \ldots, a_{N}^{2}$ 与第二个和式中的对应项抵消，得
+> >
+> > $$\sum_{n=1}^{N}u_{n}=\frac{1}{2}\left[a_{1}^{2}-\sum_{k=N+1}^{2N+1}a_{k}^{2}\right].$$
+> >
+> > 由 $a_k^2 \leqslant \frac{1}{k^2}$ 及 $\sum \frac{1}{k^2}$ 收敛知 $\sum_{k=N+1}^{2N+1} a_k^2 \to 0$，所以原级数收敛，且
+> >
+> > $$\sum_{n=1}^{\infty}u_{n}=\frac{1}{2}a_{1}^{2}=\frac{1}{2}\ln^{2}2.$$
+> >
+> > 本题没有用「放缩」去估计收敛速度, 而是靠一个精确的代数恒等式把部分和写成有限的项; 最后判断尾部趋于 0 时才用到最简单的放缩 $a_{k}^{2} \leqslant \frac{1}{k^{2}}$.
 
 ## 8.2 求和函数
 
@@ -6335,30 +6585,47 @@ $$f(x)=\left\{\begin{aligned}&\frac{x^{2}+1}{x}\arctan x,&x\neq0,\\ &1,&x=0\end{
 
 的麦克劳林展开式 $f(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$，求幂级数 $\sum_{n=1}^{\infty}|a_{2n}|x^{n}\quad(0<x<1)$ 的和函数.
 
-> [!answer]- 原书参考答案（A.8.2 第 5 题，未逐题独立验算）
-> **5.** 分母 $16n^{2}-1=(4n-1)(4n+1)$，先裂项成 $\frac{1}{2}\left(\frac{1}{4n-1}-\frac{1}{4n+1}\right)$，再用 $\operatorname{artanh}$ 与 $\arctan$ 的展开分别求和. 裂项：
+> [!answer]- 核对后解答（A.8.2 第 5 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\frac{x^{2n}}{16n^{2}-1}=\frac{x^{2n}}{(4n-1)(4n+1)}=\frac{1}{2}\left(\frac{x^{2n}}{4n-1}-\frac{x^{2n}}{4n+1}\right).$$
+> 原书 A.8.2 第 5 题解答使用 $\sum x^{2n}/(16n^{2}-1)$，与本题的麦克劳林系数不一致。
 >
-> 记 $s = \sqrt{x}$，则 $x^{2n} = s^{4n}$.
+> 当 $|t|<1$ 时，$\arctan t=\sum_{j=0}^{\infty}(-1)^{j}t^{2j+1}/(2j+1)$。乘以 $(1+t^{2})/t$，得到 $a_{0}=1$，奇数次系数为零，且对 $n\ge1$，
 >
-> 第一部分：
+> $$a_{2n}=\frac{(-1)^{n}}{2n+1}+\frac{(-1)^{n-1}}{2n-1}=(-1)^{n-1}\left(\frac1{2n-1}-\frac1{2n+1}\right).$$
 >
-> $$\sum_{n=1}^{\infty}\frac{s^{4n}}{4n-1}=s\int_{0}^{s}\frac{u^{2}}{1-u^{4}}\mathrm{d}u=\frac{s}{2}\left(\operatorname{artanh} s-\arctan s\right).$$
+> 设 $r=\sqrt{x}\in(0,1)$，由几何级数积分得
 >
-> 第二部分：
+> $$\sum_{j=0}^{\infty}\frac{r^{2j+1}}{2j+1}=\int_{0}^{r}\frac{\mathrm{d}t}{1-t^{2}}=\frac12\ln\frac{1+r}{1-r}=:L(r).$$
 >
-> $$\sum_{n=1}^{\infty}\frac{s^{4n}}{4n+1}=\frac{1}{s}\int_{0}^{s}\frac{u^{4}}{1-u^{4}}\mathrm{d}u=\frac{1}{s}\left[\frac{1}{2}\left(\operatorname{artanh} s+\arctan s\right)-s\right].$$
+> 于是
 >
-> 两部分相减再乘 $\frac{1}{2}$，并代回 $s=\sqrt{x}$:
+> $$\begin{aligned}\sum_{n=1}^{\infty}|a_{2n}|x^{n}&=\sum_{n=1}^{\infty}\frac{r^{2n}}{2n-1}-\sum_{n=1}^{\infty}\frac{r^{2n}}{2n+1}\\&=rL(r)-\left(\frac{L(r)}r-1\right)\\&=1-\frac{1-x}{2\sqrt{x}}\ln\frac{1+\sqrt{x}}{1-\sqrt{x}}.\end{aligned}$$
 >
-> $$\begin{aligned}\sum_{n=1}^{\infty}\frac{x^{2n}}{16n^{2}-1}=\frac{1}{2}+\frac{1}{4}\Big[&\left(\sqrt{x}-\frac{1}{\sqrt{x}}\right)\operatorname{artanh}\sqrt{x}\\&-\left(\sqrt{x}+\frac{1}{\sqrt{x}}\right)\arctan\sqrt{x}\Big]\quad(0<|x|<1).\end{aligned}$$
->
-> 令 x=1，注意 $\arctan1=\frac{\pi}{4}$、第一项中 $\sqrt{x}-\frac{1}{\sqrt{x}}=0$，得
->
-> $$\sum_{n=1}^{\infty}\frac{1}{16n^{2}-1}=\frac{1}{2}-\frac{\pi}{8}.$$
->
-> x = 1 处虽然超出了幂级数内部的范围, 但 $\sum\frac{1}{16n^{2}-1}$ 本身收敛, 且和函数在 x = 1 处连续, 所以可以把 $x \to 1^{-}$ 的极限直接读成端点值.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **5.** 分母 $16n^{2}-1=(4n-1)(4n+1)$，先裂项成 $\frac{1}{2}\left(\frac{1}{4n-1}-\frac{1}{4n+1}\right)$，再用 $\operatorname{artanh}$ 与 $\arctan$ 的展开分别求和. 裂项：
+> >
+> > $$\frac{x^{2n}}{16n^{2}-1}=\frac{x^{2n}}{(4n-1)(4n+1)}=\frac{1}{2}\left(\frac{x^{2n}}{4n-1}-\frac{x^{2n}}{4n+1}\right).$$
+> >
+> > 记 $s = \sqrt{x}$，则 $x^{2n} = s^{4n}$.
+> >
+> > 第一部分：
+> >
+> > $$\sum_{n=1}^{\infty}\frac{s^{4n}}{4n-1}=s\int_{0}^{s}\frac{u^{2}}{1-u^{4}}\mathrm{d}u=\frac{s}{2}\left(\operatorname{artanh} s-\arctan s\right).$$
+> >
+> > 第二部分：
+> >
+> > $$\sum_{n=1}^{\infty}\frac{s^{4n}}{4n+1}=\frac{1}{s}\int_{0}^{s}\frac{u^{4}}{1-u^{4}}\mathrm{d}u=\frac{1}{s}\left[\frac{1}{2}\left(\operatorname{artanh} s+\arctan s\right)-s\right].$$
+> >
+> > 两部分相减再乘 $\frac{1}{2}$，并代回 $s=\sqrt{x}$:
+> >
+> > $$\begin{aligned}\sum_{n=1}^{\infty}\frac{x^{2n}}{16n^{2}-1}=\frac{1}{2}+\frac{1}{4}\Big[&\left(\sqrt{x}-\frac{1}{\sqrt{x}}\right)\operatorname{artanh}\sqrt{x}\\&-\left(\sqrt{x}+\frac{1}{\sqrt{x}}\right)\arctan\sqrt{x}\Big]\quad(0<|x|<1).\end{aligned}$$
+> >
+> > 令 x=1，注意 $\arctan1=\frac{\pi}{4}$、第一项中 $\sqrt{x}-\frac{1}{\sqrt{x}}=0$，得
+> >
+> > $$\sum_{n=1}^{\infty}\frac{1}{16n^{2}-1}=\frac{1}{2}-\frac{\pi}{8}.$$
+> >
+> > x = 1 处虽然超出了幂级数内部的范围, 但 $\sum\frac{1}{16n^{2}-1}$ 本身收敛, 且和函数在 x = 1 处连续, 所以可以把 $x \to 1^{-}$ 的极限直接读成端点值.
 
 **6.** (难度:★★★★) 设数列 $\{a_{n}\}$ 满足 $a_{0}=1, a_{1}=0, a_{n+1}=\frac{1}{n+1}(na_{n}+a_{n-1})$ ( $n \geq 1$)，求幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径与和函数.
 
@@ -6560,7 +6827,10 @@ $$\sum_{n=1}^{\infty}\frac{1}{3}\cdot\frac{2}{5}\cdot\frac{3}{7}\cdots\frac{n}{2
 
 (3) 当 $p \geqslant 1$ 时，级数 $\sum_{n=1}^{\infty} \frac{u_{n}}{n^{p}}$ 收敛，并求级数 $\sum_{n=1}^{\infty} \frac{u_{n}}{n}$ 的和.
 
-> [!answer]- 原书参考答案（A.8.2 第 10 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.8.2 第 10 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 第 (3) 问不能用“$p\ge1$ 时 $\sum1/n^{p}$ 收敛”，因为 $p=1$ 时调和级数发散。应先用下文裂项等式求出 $\sum u_{n}/n<\infty$，再由 $0\le u_{n}/n^{p}\le u_{n}/n$（$p\ge1$）推出结论。
+>
 > **10.** (1) 先用单调性说明收敛, 再用分段估计证明极限为 0; (2) 先证 $u_n \downarrow 0$, 再由 $1 + t^4 \leqslant 1 + t$ 得到 $u_n$ 的下界, 从而绝对发散; (3) 对 $t(1 + t^4)^{-n}$ 求导再积分, 得到 $u_n$ 与 $u_{n+1}$ 的递推关系, 然后裂项. (1) 对 $t \in [0,1]$ 有
 >
 > $$0<\frac{1}{(1+t^{4})^{n+1}}\leqslant\frac{1}{(1+t^{4})^{n}},$$
@@ -6643,7 +6913,10 @@ $$\sum_{n=1}^{\infty}\frac{1}{3}\cdot\frac{2}{5}\cdot\frac{3}{7}\cdots\frac{n}{2
 
 **1.** (难度:★) 设 a, b 均为正数, 函数 $\frac{1}{(1-ax)(1-bx)}$ 的麦克劳林展开式记为 $\sum_{n=0}^{\infty} u_{n}x^{n}$, 求幂级数 $\sum_{n=0}^{\infty} u_{n}^{2}x^{n}$ 的和函数.
 
-> [!answer]- 原书参考答案（A.8.3 第 1 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.8.3 第 1 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 末尾 $a=b$ 的特例多乘了 $a^{2}$。由 $u_{n}=(n+1)a^{n}$，正确和函数为 $(1+a^{2}x)/(1-a^{2}x)^{3}$，收敛域为 $|x|<1/a^{2}$。$a\ne b$ 的部分分式结果保持不变。
+>
 > **1.** 先把 $\frac{1}{(1-ax)(1-bx)}$ 拆成部分分式，立刻得到 $u_{n}$ 的通项；平方之后每一项都是 $a^{p}b^{q}$ 型的几何级数。先作部分分式分解：
 >
 > $$\frac{1}{(1-ax)(1-bx)}=\frac{1}{a-b}\left(\frac{a}{1-ax}-\frac{b}{1-bx}\right),$$
@@ -6847,13 +7120,13 @@ $$f(x)=\left\{\begin{aligned}&x^{2},&0\leqslant x\leqslant\frac{1}{2},\\ &1-x,&\
 >
 > 本题体现了傅里叶级数的第二个用途: 用它算出某个数项级数的和, 再把别的积分(数列)化成这个级数. 第二步选点是关键——取 $x = \frac{\pi}{2}$ 才能让 $\sin \frac{(2m-1)\pi}{2}$ 变成 $\pm1$.
 
-**5.** (难度:★★★★) 将定义在 $[-π, π)$ 上的函数 $y(x) = \sin(zx)$ ( $z \neq 0$) 进行周期为 $2π$ 的傅里叶展开, 并由此证明:
+**5.** (难度:★★★★) 将定义在 $[-π, π)$ 上的函数 $y(x) = \cos(zx)$ ( $z \neq 0$) 进行周期为 $2π$ 的傅里叶展开, 并由此证明:
 
 $$\frac{\sin\pi z}{\pi z}+\frac{\sin\pi z}{\pi}\sum_{n=1}^{\infty}\frac{2(-1)^{n}z}{z^{2}-n^{2}}=1.$$
 
 > [!answer]- 原书参考答案（A.8.4 第 5 题，未逐题独立验算）
-> > [!warning] AI 补充：原题与答案所用函数不一致
-> > 原书第 41 页第 5 题写的是 $y(x)=\sin(zx)$，而附录 A.8.4 第 5 题按 $\cos(zx)$ 展开。此处及答案均保留原书内容，函数及参数适用范围需进一步核验。
+> > [!note] AI 补充：题干更正与参数说明
+> > 已按用户确认，将题干函数更正为 $y(x)=\cos(zx)$，与下方答案一致。题干原列条件为 $z\neq0$，下方含分母 $z^{2}-n^{2}$ 的公式按 $z\notin\mathbb{Z}$ 使用；整数情形不能直接代入该式。
 >
 > **5.** $\cos z x$ 是偶函数, 只用算余弦系数. 算出 $a_n$ 后在 $x = 0$ 处代入, 就得到所需恒等式. 设 $f(x) = \cos z x$, 其中 $z \ne 0$ 且 $z \notin \mathbb{Z}$. 它是偶函数, 故 $b_n = 0$, 且
 >
@@ -6885,44 +7158,78 @@ $$\frac{\sin\pi z}{\pi z}+\frac{\sin\pi z}{\pi}\sum_{n=1}^{\infty}\frac{2(-1)^{n
 
 $$\frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x=\frac{a_{0}^{2}}{2}+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2}).$$
 
-> [!answer]- 原书参考答案（A.8.4 第 6 题，未逐题独立验算）
-> **6.** 递推式两边都含 n，把 $na_n$ 认成 $xS'(x)$ 的系数、 $a_{n-1}$ 认成 $xS(x)$ 的系数，就能得到 S 的可分离微分方程。设 $S(x) = \sum_{n=0}^{\infty} a_nx^n$，则 $xS'(x) = \sum_{n \geq 0} na_nx^n$。由
+> [!answer]- 核对后解答（A.8.4 第 6 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$na_{n}=\frac{2}{3}a_{n-1}-(n-1)a_{n-1}\qquad(n\geqslant2)$$
+> 原书 A.8.4 第 6 题解答求的是递推系数的幂级数，与本题的周期相关函数及 Parseval 等式无关。
 >
-> 两边乘 $x^{n}$并对 $n\geqslant2$求和：
+> 按 $a_{n}=\pi^{-1}\int_{-\pi}^{\pi}f(t)\cos nt\,\mathrm{d}t$、$b_{n}=\pi^{-1}\int_{-\pi}^{\pi}f(t)\sin nt\,\mathrm{d}t$ 定义系数；$a_{0}$ 也按同一公式定义。$F$ 连续且以 $2\pi$ 为周期。
 >
-> $$\sum_{n\geqslant2}na_{n}x^{n}=\frac{2}{3}\sum_{n\geqslant2}a_{n-1}x^{n}-\sum_{n\geqslant2}(n-1)a_{n-1}x^{n}.$$
+> 记 $F$ 的 Fourier 系数为 $A_{n},B_{n}$。连续性允许交换有限区间的积分次序。由换元 $u=x+t$、周期性及和差角公式，$n\ge1$ 时
 >
-> 左端 = $xS'(x) - a_{1}x = xS'(x) - 5x$; 右端第一项 = $\frac{2}{3}x(S-3)$; 右端第二项, 令 m = n - 1 得
+> $$\int_{-\pi}^{\pi}f(x+t)\cos nx\,\mathrm{d}x=\pi(a_{n}\cos nt+b_{n}\sin nt),$$
 >
-> $$\sum_{n\geqslant2}(n-1)a_{n-1}x^{n}=x\sum_{m\geqslant1}m a_{m}x^{m}=x^{2}S^{\prime}(x).$$
+> $$\int_{-\pi}^{\pi}f(x+t)\sin nx\,\mathrm{d}x=\pi(b_{n}\cos nt-a_{n}\sin nt).$$
 >
-> 所以
+> 再乘 $f(t)/\pi^{2}$ 对 $t$ 积分，得到
 >
-> $$x S^{\prime}-5x=\frac{2}{3}x\left(S-3\right)-x^{2}S^{\prime},$$
+> $$A_{0}=a_{0}^{2},\qquad A_{n}=a_{n}^{2}+b_{n}^{2},\qquad B_{n}=0\quad(n\ge1).$$
 >
-> 两边除以x并整理：
+> **由系数推出 Parseval 等式。** 不能仅凭连续性便声称普通 Fourier 级数逐点收敛。使用 Fejér 定理：连续周期函数的 Fourier 部分和的算术平均一致收敛于该函数。因此在 $x=0$ 处，
 >
-> $$\left(1+x\right)S^{\prime}=3+\frac{2}{3}S,\qquad S(0)=a_{0}=3.$$
+> $$F(0)=\lim_{N\to\infty}\left[\frac{a_{0}^{2}}2+\sum_{n=1}^{N}\left(1-\frac{n}{N+1}\right)(a_{n}^{2}+b_{n}^{2})\right].$$
 >
-> 分离变量：
+> 记 $c_{n}=a_{n}^{2}+b_{n}^{2}\ge0$，$T=F(0)-a_{0}^{2}/2$。对固定 $m$，上式中取 $N\ge m$ 并只保留前 $m$ 项，再令 $N\to\infty$，得 $\sum_{n=1}^{m}c_{n}\le T$。所以非负级数的和 $S$ 存在且 $S\le T$。反过来，每个加权部分和不超过 $S$，取极限得 $T\le S$。故 $S=T$。
 >
-> $$\frac{\mathrm{d}S}{3+\frac{2}{3}S}=\frac{\mathrm{d}x}{1+x}\quad\Longrightarrow\quad\frac{3}{2}\ln\left(3+\frac{2}{3}S\right)=\ln(1+x)+C.$$
+> 最后 $F(0)=\pi^{-1}\int_{-\pi}^{\pi}f^{2}(t)\,\mathrm{d}t$，从而
 >
-> 由 $S(0)=3$ 得 $\frac{3}{2}\ln5=C$，即
+> $$\frac1\pi\int_{-\pi}^{\pi}f^{2}(t)\,\mathrm{d}t=\frac{a_{0}^{2}}2+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2}).$$
 >
-> $$\ln\frac{3+\frac{2}{3}S}{5}=\frac{2}{3}\ln(1+x)\quad\Longrightarrow\quad3+\frac{2}{3}S=5(1+x)^{2/3},$$
->
-> 故
->
-> $$\sum_{n=0}^{\infty}a_{n}x^{n}=\frac{3}{2}\left[5(1+x)^{2/3}-3\right].$$
->
-> 检验: $S(0) = \frac{3}{2}(5 - 3) = 3 = a_{0}, S'(x) = 5(1 + x)^{-1/3}, S'(0) = 5 = a_{1}$，与题设一致. 解出 S 后一定用 $S(0) = a_{0}$ 与 $S'(0) = a_{1}$ 回代检验, 这一步既能定常数, 也能及时发现系数整理时的错误.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **6.** 递推式两边都含 n，把 $na_n$ 认成 $xS'(x)$ 的系数、 $a_{n-1}$ 认成 $xS(x)$ 的系数，就能得到 S 的可分离微分方程。设 $S(x) = \sum_{n=0}^{\infty} a_nx^n$，则 $xS'(x) = \sum_{n \geq 0} na_nx^n$。由
+> >
+> > $$na_{n}=\frac{2}{3}a_{n-1}-(n-1)a_{n-1}\qquad(n\geqslant2)$$
+> >
+> > 两边乘 $x^{n}$并对 $n\geqslant2$求和：
+> >
+> > $$\sum_{n\geqslant2}na_{n}x^{n}=\frac{2}{3}\sum_{n\geqslant2}a_{n-1}x^{n}-\sum_{n\geqslant2}(n-1)a_{n-1}x^{n}.$$
+> >
+> > 左端 = $xS'(x) - a_{1}x = xS'(x) - 5x$; 右端第一项 = $\frac{2}{3}x(S-3)$; 右端第二项, 令 m = n - 1 得
+> >
+> > $$\sum_{n\geqslant2}(n-1)a_{n-1}x^{n}=x\sum_{m\geqslant1}m a_{m}x^{m}=x^{2}S^{\prime}(x).$$
+> >
+> > 所以
+> >
+> > $$x S^{\prime}-5x=\frac{2}{3}x\left(S-3\right)-x^{2}S^{\prime},$$
+> >
+> > 两边除以x并整理：
+> >
+> > $$\left(1+x\right)S^{\prime}=3+\frac{2}{3}S,\qquad S(0)=a_{0}=3.$$
+> >
+> > 分离变量：
+> >
+> > $$\frac{\mathrm{d}S}{3+\frac{2}{3}S}=\frac{\mathrm{d}x}{1+x}\quad\Longrightarrow\quad\frac{3}{2}\ln\left(3+\frac{2}{3}S\right)=\ln(1+x)+C.$$
+> >
+> > 由 $S(0)=3$ 得 $\frac{3}{2}\ln5=C$，即
+> >
+> > $$\ln\frac{3+\frac{2}{3}S}{5}=\frac{2}{3}\ln(1+x)\quad\Longrightarrow\quad3+\frac{2}{3}S=5(1+x)^{2/3},$$
+> >
+> > 故
+> >
+> > $$\sum_{n=0}^{\infty}a_{n}x^{n}=\frac{3}{2}\left[5(1+x)^{2/3}-3\right].$$
+> >
+> > 检验: $S(0) = \frac{3}{2}(5 - 3) = 3 = a_{0}, S'(x) = 5(1 + x)^{-1/3}, S'(0) = 5 = a_{1}$，与题设一致. 解出 S 后一定用 $S(0) = a_{0}$ 与 $S'(0) = a_{1}$ 回代检验, 这一步既能定常数, 也能及时发现系数整理时的错误.
 
 **7.** (难度：★★★★★) 设 $f(x)$ 在 $\mathbb{R}$ 上可导, 且满足 $f(x) = f(x + 2) = f(x + \sqrt{3})$, 用 Fourier 级数理论证明 $f(x)$ 为常数.
 
-> [!answer]- 原书参考答案（A.8.4 第 7 题，未逐题独立验算）
+> [!answer]- 核对后解答（A.8.4 第 7 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 原书结尾缺失，且仅凭“可导”便直接声称 Fourier 级数一致收敛的论证不足。可直接从系数积分定义推导下文的系数方程，不必先声称该收敛性。
+>
+> **AI 补充：补齐结论。** 对 $g(x)=f(x+\sqrt3)$ 的系数积分换元，再用 $f$ 的周期为 $2$，可得下文同样的旋转矩阵方程。其行列式 $2(1-\cos n\pi\sqrt3)\ne0$，故 $a_{n}=b_{n}=0$（$n\ge1$）。由连续周期函数的 Fourier 系数唯一性，$f(x)\equiv a_{0}/2$。也可用 Fejér 定理：所有 Fourier 部分和的算术平均都等于 $a_{0}/2$，而它们一致收敛到 $f$，所以 $f$ 为常数。
+>
+> 以下保留原书推导及其缺失位置；原“暂不补造”说明的是原书缺文，本段是明确标注的新补充。
+>
 > **7.** $f(x)$ 以2为周期,可以展开成周期为2的傅里叶级数; $\left[\hat{f}(x)=f(x+\sqrt{3})\right]$ 这一条会对系数产生一组线性方程. 把 $a_{n},b_{n}$ 看成二维向量,方程组就是 $(E-A_{n})X_{n}=0$, 只要证明系数行列式不为零,函数就只能是常数. 第一步:写出周期为2的傅里叶展开. 因为 $f(x)$ 以2为周期、在 $\mathbb{R}$ 上可导,其傅里叶级数在 $\mathbb{R}$ 上一致收敛,且
 >
 > $$f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos n\pi x+b_{n}\sin n\pi x\right),$$
@@ -7378,7 +7685,10 @@ $$\left\{\begin{aligned}a_{n+1}&=\int_{0}^{1}\max\{b_{n},x\}\mathrm{d}x,\\ b_{n+
 
 **2.** (难度:★★★) 设数列 $\{x_{n}\}$ 定义为 $x_{n+1} = \left( \sum_{k=1}^{n} x_{k} \right)^{\frac{1}{2}}$. 证明极限 $\lim_{n \to \infty} \frac{x_n}{n}$ 存在并求其值.
 
-> [!answer]- 原书参考答案（B.0.3 第 2 题，未逐题独立验算）
+> [!answer]- 核对后解答（B.0.3 第 2 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 原书解答额外假设 $x_{1}>0$。按题干，在实数范围递推至少需要 $x_{1}\ge0$：若 $x_{1}=0$，所有项为零，极限为 $0$；若 $x_{1}>0$，下文证明适用，极限为 $1/2$。题干未限定初值，答案必须分情形。
+>
 > **2.** 先把递推式改写成 $x_{n+1}^2 = S_n$，这样 $x_{n+2}^2 = S_{n+1} = S_n + x_{n+1}$ 就给出一个只含 $x$ 的递推式。由它看出 $x_{n+2} - x_{n+1} \to \frac{1}{2}$，从而 $x_n \sim \frac{n}{2}$；严格化用 Stolz. (设 $x_1 > 0$。由定义 $x_{n+1} = \left( \sum_{k=1}^{n} x_k \right)^{1/2} > 0$，故 $x_n > 0$。)
 >
 > 第一步：改写递推式. 记 $S_{n}=x_{1}+\cdots+x_{n}$，则 $x_{n+1}^{2}=S_{n}$，于是
@@ -7570,7 +7880,10 @@ $$\left\{\begin{aligned}x_{n+1}&=(1-\gamma)x_{n}+\beta x_{n}y_{n},\\ y_{n+1}&=y_
 
 其中 $\alpha, \beta, \gamma \in (0,1)$ 为实常数. 证明 $\lim_{n \to \infty} x_n, \lim_{n \to \infty} y_n$ 均存在, 并求 $\lim_{n \to \infty} x_n$.
 
-> [!answer]- 原书参考答案（B.0.4 第 1 题，未逐题独立验算）
+> [!answer]- 核对后解答（B.0.4 第 1 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 题干只给 $x_{0},y_{0}$，却把递推范围写为 $n\ge1$，因而没有确定 $x_{1},y_{1}$。下文证明实际要求递推从 $n=0$ 开始；应把该范围勘误为 $n\ge0$ 后才可套用。另归纳起点应写 $S_{0}=1$、$0<x_{0},y_{0}<1$，随后 $n\ge1$ 才有 $S_{n}<1$。正文保留原范围，等待题设确认。
+>
 > **1.** 第一步：把两个式子相加. 把两式相加得
 >
 > $$x_{n+1}+y_{n+1}=x_{n}+y_{n}-\gamma x_{n}.$$
@@ -8005,10 +8318,29 @@ $$\begin{cases}\dfrac{\mathrm{d}y}{\mathrm{d}x}-xy=xe^{x^{2}},\\y(0)=1.\end{case
 
 $$\lim_{n\to\infty}\int_{0}^{1}\frac{\left(1+x+\frac{x^{2}}{2}+\cdots+\frac{x^{n-1}}{n-1}\right)^{n+1}}{\left(1+x+\frac{x^{2}}{2}+\cdots+\frac{x^{n}}{n}\right)^{n}}\mathrm{d}x.$$
 
-> [!answer]- 原书参考答案（B.0.6 第 4 题，未逐题独立验算）
-> **4.** 记 $S_{n}(x)=1+x+\cdots+\frac{x^{n}}{n}$，则 $\frac{S_{n-1}(x)^{n+1}}{S_{n}(x)^{n}}=S_{n-1}(x)\left(\frac{S_{n-1}}{S_{n}}\right)^{n}$，而 $\left(\frac{S_{n-1}}{S_{n}}\right)^{n}=\exp\left[-\frac{x^{n}}{S_{n}}(1+o(1))\right]\rightarrow1(x<1)$，且被积函数 $\leqslant S_{n-1}\leqslant\mathrm{e}$，故由控制收敛定理
+> [!answer]- 核对后解答（B.0.6 第 4 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\lim_{n\to\infty}\int_{0}^{1}\frac{\left(1+x+\cdots+\frac{x^{n-1}}{n-1}\right)^{n+1}}{\left(1+x+\cdots+\frac{x^{n}}{n}\right)^{n}}\mathrm{d}x=\int_{0}^{1}\mathrm{e}^{x}\mathrm{d}x=\mathrm{e}-1.$$
+> 原 PDF 第 50 页分母为 $2,\ldots,n$，没有阶乘。原书答案按指数函数部分和处理，所得 $e-1$ 不适用于本题。
+>
+> 令 $S_{n}(x)=1+\sum_{k=1}^{n}x^{k}/k$。原被积函数为
+>
+> $$G_{n}(x)=S_{n-1}(x)\left(\frac{S_{n-1}(x)}{S_{n}(x)}\right)^{n}=S_{n-1}(x)\left(1-\frac{x^{n}}{nS_{n}(x)}\right)^{n}.$$
+>
+> 对固定 $0\le x<1$，$S_{n-1}(x)\to1-\ln(1-x)$。又由 Bernoulli 不等式，
+>
+> $$1-\frac{x^{n}}{S_{n}(x)}\le\left(1-\frac{x^{n}}{nS_{n}(x)}\right)^{n}\le1,$$
+>
+> 故括号的 $n$ 次幂趋于 $1$。同时
+>
+> $$0\le G_{n}(x)\le S_{n-1}(x)\le1-\ln(1-x),\qquad\int_{0}^{1}[1-\ln(1-x)]\,\mathrm{d}x=2.$$
+>
+> 由控制收敛定理（端点 $x=1$ 不影响积分），原极限等于 $2$。
+>
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **4.** 记 $S_{n}(x)=1+x+\cdots+\frac{x^{n}}{n}$，则 $\frac{S_{n-1}(x)^{n+1}}{S_{n}(x)^{n}}=S_{n-1}(x)\left(\frac{S_{n-1}}{S_{n}}\right)^{n}$，而 $\left(\frac{S_{n-1}}{S_{n}}\right)^{n}=\exp\left[-\frac{x^{n}}{S_{n}}(1+o(1))\right]\rightarrow1(x<1)$，且被积函数 $\leqslant S_{n-1}\leqslant\mathrm{e}$，故由控制收敛定理
+> >
+> > $$\lim_{n\to\infty}\int_{0}^{1}\frac{\left(1+x+\cdots+\frac{x^{n-1}}{n-1}\right)^{n+1}}{\left(1+x+\cdots+\frac{x^{n}}{n}\right)^{n}}\mathrm{d}x=\int_{0}^{1}\mathrm{e}^{x}\mathrm{d}x=\mathrm{e}-1.$$
 
 **5.** (难度:★★★★★) 设 $I_{n} = \int_{0}^{10n} \left(1 - \left|\sin\frac{x}{n}\right|\right)^{n} dx$, $n \in \mathbb{N}^{*}$, 求极限 $\lim_{n \to \infty} I_{n}$.
 
@@ -8027,34 +8359,47 @@ $$\lim_{n\to\infty}\int_{0}^{1}\frac{\left(1+x+\frac{x^{2}}{2}+\cdots+\frac{x^{n
 
 **1.** (难度:★★★) 设函数 $f(x)$ 在 $[0, +\infty)$ 上连续，且 $\int_{0}^{1} f(x) \, dx = \frac{1}{2}$， $\lim_{x \to +\infty} \frac{f(x)}{x} = 0$。证明: 存在 $\xi \in (0, +\infty)$，使得 $f(\xi) - \xi = 0$。
 
-> [!answer]- 原书参考答案（C.0.1 第 1 题，未逐题独立验算）
-> **1.** 第一步：把结论写成“某个函数等于0”。结论是 $f(\xi)+\xi=0$，于是令
+> [!answer]- 核对后解答（C.0.1 第 1 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$F(x)=f(x)+x.$$
+> 原书 C.0.1 第 1 题解答把积分条件和结论中的正负号都用反了。
 >
-> 要证的结论就是"F(x) 在 $(0,+\infty)$ 内有零点". 两个条件各管一头: 积分条件负责造出 F(x) $\leq$ 0 的位置, 极限条件负责造出 F(x) > 0 的位置.
+> 令 $g(x)=f(x)-x$，则 $g$ 在 $[0,1]$ 连续，并且
 >
-> 第二步: 由积分条件得到 $F(x)$ 的非正性. 注意 $\int_{0}^{1}x\,dx=\frac{1}{2}$, 故
+> $$\int_{0}^{1}g(x)\,\mathrm{d}x=\frac12-\int_{0}^{1}x\,\mathrm{d}x=0.$$
 >
-> $$\int_{0}^{1}F(x)\mathrm{d}x=\int_{0}^{1}f(x)\mathrm{d}x+\int_{0}^{1}x\mathrm{d}x=-\frac{1}{2}+\frac{1}{2}=0.$$
+> 若 $g$ 在 $(0,1)$ 没有零点，由连续性及介值定理，它在该区间上必须恒正或恒负。此时积分也严格为正或严格为负，与积分等于零矛盾。因此存在 $\xi\in(0,1)\subset(0,+\infty)$，使 $f(\xi)-\xi=0$。
 >
-> 于是只有两种可能：
+> 按当前题干，给定的无穷远极限条件无须使用。
 >
-> 若 $F(x)$ 在 $[0,1]$ 上恒非负，则由 $\int_{0}^{1}F(x)\,\mathrm{d}x=0$ 与 $F(x)$ 连续知 $F(x)\equiv0$，取 $\xi=\frac{1}{2}$ 即得 $f\left(\frac{1}{2}\right)+\frac{1}{2}=0$，结论成立；
->
-> 否则 $(F(x)$ 在 $[0,1]$ 上取到负值) 存在 $c\in[0,1]$，使 $F(c)<0$.
->
-> 第三步：由极限条件得到 $F(x)$ 的正性。因为 $\lim_{x\to+\infty}\frac{f(x)}{x}=0$，所以
->
-> $$\lim_{x\to+\infty}\frac{F(x)}{x}=\lim_{x\to+\infty}\left(\frac{f(x)}{x}+1\right)=1>0.$$
->
-> 由极限的保号性，存在 X > 0，使当 x > X 时 $\frac{F(x)}{x} > 0$，即 $F(x) > 0$。取定一个 $x_{1} > X$（不妨再要求 $x_{1} > 1$），就有 $F(x_{1}) > 0$。
->
-> 第四步: 用零点存在定理收尾. 在第二种情形下, $F(x)$ 在 $[c, x_1]$ 上连续, 且 $F(c) < 0$, $F(x_1) > 0$, 由零点存在定理, 存在 $\xi \in (c, x_1) \subset (0, +\infty)$, 使 $F(\xi) = 0$, 即
->
-> $$f(\xi)+\xi=0.$$
->
-> 本题示范了基本模型的完整流程: 先把结论写成 $F(\xi) = 0$, 再用两个已知条件分别把 $F(x)$ 逼到“异号”, 最后用零点存在定理. 若 $F(x)$ 在端点处同号 (零点定理失效), 才需要构造 $F(x)$ 的原函数、改用罗尔定理 (见下面的子目).
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **1.** 第一步：把结论写成“某个函数等于0”。结论是 $f(\xi)+\xi=0$，于是令
+> >
+> > $$F(x)=f(x)+x.$$
+> >
+> > 要证的结论就是"F(x) 在 $(0,+\infty)$ 内有零点". 两个条件各管一头: 积分条件负责造出 F(x) $\leq$ 0 的位置, 极限条件负责造出 F(x) > 0 的位置.
+> >
+> > 第二步: 由积分条件得到 $F(x)$ 的非正性. 注意 $\int_{0}^{1}x\,dx=\frac{1}{2}$, 故
+> >
+> > $$\int_{0}^{1}F(x)\mathrm{d}x=\int_{0}^{1}f(x)\mathrm{d}x+\int_{0}^{1}x\mathrm{d}x=-\frac{1}{2}+\frac{1}{2}=0.$$
+> >
+> > 于是只有两种可能：
+> >
+> > 若 $F(x)$ 在 $[0,1]$ 上恒非负，则由 $\int_{0}^{1}F(x)\,\mathrm{d}x=0$ 与 $F(x)$ 连续知 $F(x)\equiv0$，取 $\xi=\frac{1}{2}$ 即得 $f\left(\frac{1}{2}\right)+\frac{1}{2}=0$，结论成立；
+> >
+> > 否则 $(F(x)$ 在 $[0,1]$ 上取到负值) 存在 $c\in[0,1]$，使 $F(c)<0$.
+> >
+> > 第三步：由极限条件得到 $F(x)$ 的正性。因为 $\lim_{x\to+\infty}\frac{f(x)}{x}=0$，所以
+> >
+> > $$\lim_{x\to+\infty}\frac{F(x)}{x}=\lim_{x\to+\infty}\left(\frac{f(x)}{x}+1\right)=1>0.$$
+> >
+> > 由极限的保号性，存在 X > 0，使当 x > X 时 $\frac{F(x)}{x} > 0$，即 $F(x) > 0$。取定一个 $x_{1} > X$（不妨再要求 $x_{1} > 1$），就有 $F(x_{1}) > 0$。
+> >
+> > 第四步: 用零点存在定理收尾. 在第二种情形下, $F(x)$ 在 $[c, x_1]$ 上连续, 且 $F(c) < 0$, $F(x_1) > 0$, 由零点存在定理, 存在 $\xi \in (c, x_1) \subset (0, +\infty)$, 使 $F(\xi) = 0$, 即
+> >
+> > $$f(\xi)+\xi=0.$$
+> >
+> > 本题示范了基本模型的完整流程: 先把结论写成 $F(\xi) = 0$, 再用两个已知条件分别把 $F(x)$ 逼到“异号”, 最后用零点存在定理. 若 $F(x)$ 在端点处同号 (零点定理失效), 才需要构造 $F(x)$ 的原函数、改用罗尔定理 (见下面的子目).
 
 **2.** (难度:★★★)设函数 $f(x)$在 $[0,1]$上连续，在 $(0,1)$内可导，且有 $f(1)=4\int_{0}^{\frac{1}{4}}e^{1-x^{3}}f(x)dx$.
 
@@ -8781,46 +9126,63 @@ $$|f^{\prime}(x)|\leqslant2A+\frac{B}{2}.$$
 
 证明: 在曲线 $y = f(x)$ ( $a \leqslant x \leqslant b$) 上必存在点 A, B, C，使得 $\triangle ABC$ 的面积 $S_{\triangle ABC} \geqslant \frac{(b - a)^3}{16}$.
 
-> [!answer]- 原书参考答案（C.0.2 第 7 题，未逐题独立验算）
-> **7.** 三点组成的三角形面积可以写成“三点坐标的行列式的一半”：
+> [!answer]- 核对后解答（C.0.2 第 7 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$S_{\triangle ABC}=\frac{1}{2}\left|D(x)\right|,\qquad D(x)=\begin{vmatrix}{{{a}}}&{{{f(a)}}}&{{{1}}} \\{{{b}}}&{{{f(b)}}}&{{{1}}} \\{{{x}}}&{{{f(x)}}}&{{{1}}}\end{vmatrix},$$
+> 原 PDF 第 53 页假设为 $|f^{\prime\prime}|\le1$；原书答案却使用 $|f^{\prime\prime}|\ge1$。按现有题干，命题不成立。
 >
-> 这样”三点面积”就化成了”一个函数 $D''$ 的问题,而且 $D(a)=D(b)=0$.对 D 用拉格朗日插值余项 (相当于在任意点 x 处展开、再代入两个端点消去 $D'(x)$):存在 $\xi \in (a,b)$ 使
+> 取 $f(x)\equiv0$、$a<b$，它满足全部题设，但图像上的任意三点共线，三角形面积恒为 $0$，不可能大于等于 $(b-a)^{3}/16>0$。
 >
-> $$D(x)=\frac{D^{\prime\prime}(\xi)}{2}(x-a)(x-b),$$
+> **勘误建议：若题设改为 $|f''(x)|\ge1$，则原书证明思路适用；这属于改题设，未擅自改动正文。** 此时取端点 $A=(a,f(a))$、$B=(b,f(b))$，令 $\ell$ 为端点连线的线性函数，$m=(a+b)/2$。插值余项给出某个 $\xi\in(a,b)$ 使
 >
-> 而 $D''(x)=(b-a)f''(x)$，于是 $\left|D(x)\right|\geqslant\frac{b-a}{2}(x-a)(b-x)$。要让右端尽量大，把x 取在 $(x-a)(b-x)$ 的最大值点，也就是中点 $\frac{a+b}{2}$ 即可。第一步：把面积写成行列式. 设 $A(a,f(a))$、 $B(b,f(b))$、 $C(x,f(x))$，其中 $x \in (a,b)$，并记
+> $$f(m)-\ell(m)=\frac{f''(\xi)}2(m-a)(m-b),$$
 >
-> $$D(x)=\begin{vmatrix}{{{a}}}&{{{f(a)}}}&{{{1}}} \\{{{b}}}&{{{f(b)}}}&{{{1}}} \\{{{x}}}&{{{f(x)}}}&{{{1}}}\end{vmatrix}=(b-a)f(x)+\left[f(a)-f(b)\right]x+af(b)-bf(a).$$
+> 故取 $C=(m,f(m))$ 时，
 >
-> 则 $S_{\triangle ABC} = \frac{1}{2} |D(x)|$，且由直接计算得
+> $$S_{\triangle ABC}=\frac{b-a}{2}|f(m)-\ell(m)|\ge\frac{(b-a)^{3}}{16}.$$
 >
-> $$D(a)=0,\qquad D(b)=0,\qquad D^{\prime\prime}(x)=(b-a)f^{\prime\prime}(x).$$
+> 以上后半段仅说明更正假设后的命题，不能作为原题的证明。
 >
-> 第二步: 对 $D$ 用拉格朗日插值余项. 把 $D(x)$ 看成”以 $a,b$ 为节点的插值余项”(等价于在任意点 $x$ 处展开后消去 $D'(x)$, 见正文 2.2.5): 存在 $\xi \in (a,b)$, 使
->
-> $$D(x)=\frac{D^{\prime\prime}(\xi)}{2}(x-a)(x-b).$$
->
-> 于是
->
-> $$\begin{aligned}\left|D(x)\right|&=\frac{\left|D^{\prime\prime}(\xi)\right|}{2}(x-a)(b-x)=\frac{b-a}{2}\left|f^{\prime\prime}(\xi)\right|(x-a)(b-x)\\&\geq\frac{b-a}{2}(x-a)(b-x),\end{aligned}$$
->
-> 最后一步用了 $\left|f''\right|\geqslant1$.
->
-> 第三步：取 $x = \frac{a + b}{2}$. 此时
->
-> $$(x-a)(b-x)=\frac{b-a}{2}\cdot\frac{b-a}{2}=\frac{(b-a)^{2}}{4},$$
->
-> 故
->
-> $$\left|D\left(\frac{a+b}{2}\right)\right|\geqslant\frac{b-a}{2}\cdot\frac{(b-a)^{2}}{4}=\frac{(b-a)^{3}}{8}.$$
->
-> 取 $C\left(\frac{a+b}{2}, f\left(\frac{a+b}{2}\right)\right)$，则
->
-> $$S_{\triangle ABC}=\frac{1}{2}\left|D\left(\frac{a+b}{2}\right)\right|\geqslant\frac{(b-a)^{3}}{16}.$$
->
-> 三个要点: (1) 用行列式把“面积”翻译成“一个函数 $D''$，三点共线就对应 D = 0; (2) $D(a) = D(b) = 0$ 使拉格朗日插值余项只剩下 $\frac{D''(\xi)}{2}(x - a)(x - b)$ 这一项，这一步正是“任意点展开后消元”；(3) $(x - a)(b - x)$ 的最大值点是中点，所以把 C 取在中点最划算. 注意只能“取一个 $x''$ 来达到 $\frac{(b - a)^3}{8}$: 对一般的 x 只有 $|D(x)| \geq \frac{b - a}{2}(x - a)(b - x)$.
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **7.** 三点组成的三角形面积可以写成“三点坐标的行列式的一半”：
+> >
+> > $$S_{\triangle ABC}=\frac{1}{2}\left|D(x)\right|,\qquad D(x)=\begin{vmatrix}{{{a}}}&{{{f(a)}}}&{{{1}}} \\{{{b}}}&{{{f(b)}}}&{{{1}}} \\{{{x}}}&{{{f(x)}}}&{{{1}}}\end{vmatrix},$$
+> >
+> > 这样”三点面积”就化成了”一个函数 $D''$ 的问题,而且 $D(a)=D(b)=0$.对 D 用拉格朗日插值余项 (相当于在任意点 x 处展开、再代入两个端点消去 $D'(x)$):存在 $\xi \in (a,b)$ 使
+> >
+> > $$D(x)=\frac{D^{\prime\prime}(\xi)}{2}(x-a)(x-b),$$
+> >
+> > 而 $D''(x)=(b-a)f''(x)$，于是 $\left|D(x)\right|\geqslant\frac{b-a}{2}(x-a)(b-x)$。要让右端尽量大，把x 取在 $(x-a)(b-x)$ 的最大值点，也就是中点 $\frac{a+b}{2}$ 即可。第一步：把面积写成行列式. 设 $A(a,f(a))$、 $B(b,f(b))$、 $C(x,f(x))$，其中 $x \in (a,b)$，并记
+> >
+> > $$D(x)=\begin{vmatrix}{{{a}}}&{{{f(a)}}}&{{{1}}} \\{{{b}}}&{{{f(b)}}}&{{{1}}} \\{{{x}}}&{{{f(x)}}}&{{{1}}}\end{vmatrix}=(b-a)f(x)+\left[f(a)-f(b)\right]x+af(b)-bf(a).$$
+> >
+> > 则 $S_{\triangle ABC} = \frac{1}{2} |D(x)|$，且由直接计算得
+> >
+> > $$D(a)=0,\qquad D(b)=0,\qquad D^{\prime\prime}(x)=(b-a)f^{\prime\prime}(x).$$
+> >
+> > 第二步: 对 $D$ 用拉格朗日插值余项. 把 $D(x)$ 看成”以 $a,b$ 为节点的插值余项”(等价于在任意点 $x$ 处展开后消去 $D'(x)$, 见正文 2.2.5): 存在 $\xi \in (a,b)$, 使
+> >
+> > $$D(x)=\frac{D^{\prime\prime}(\xi)}{2}(x-a)(x-b).$$
+> >
+> > 于是
+> >
+> > $$\begin{aligned}\left|D(x)\right|&=\frac{\left|D^{\prime\prime}(\xi)\right|}{2}(x-a)(b-x)=\frac{b-a}{2}\left|f^{\prime\prime}(\xi)\right|(x-a)(b-x)\\&\geq\frac{b-a}{2}(x-a)(b-x),\end{aligned}$$
+> >
+> > 最后一步用了 $\left|f''\right|\geqslant1$.
+> >
+> > 第三步：取 $x = \frac{a + b}{2}$. 此时
+> >
+> > $$(x-a)(b-x)=\frac{b-a}{2}\cdot\frac{b-a}{2}=\frac{(b-a)^{2}}{4},$$
+> >
+> > 故
+> >
+> > $$\left|D\left(\frac{a+b}{2}\right)\right|\geqslant\frac{b-a}{2}\cdot\frac{(b-a)^{2}}{4}=\frac{(b-a)^{3}}{8}.$$
+> >
+> > 取 $C\left(\frac{a+b}{2}, f\left(\frac{a+b}{2}\right)\right)$，则
+> >
+> > $$S_{\triangle ABC}=\frac{1}{2}\left|D\left(\frac{a+b}{2}\right)\right|\geqslant\frac{(b-a)^{3}}{16}.$$
+> >
+> > 三个要点: (1) 用行列式把“面积”翻译成“一个函数 $D''$，三点共线就对应 D = 0; (2) $D(a) = D(b) = 0$ 使拉格朗日插值余项只剩下 $\frac{D''(\xi)}{2}(x - a)(x - b)$ 这一项，这一步正是“任意点展开后消元”；(3) $(x - a)(b - x)$ 的最大值点是中点，所以把 C 取在中点最划算. 注意只能“取一个 $x''$ 来达到 $\frac{(b - a)^3}{8}$: 对一般的 x 只有 $|D(x)| \geq \frac{b - a}{2}(x - a)(b - x)$.
 
 **8.** (难度：★★★★★) 设 $f(x)$ 在 $[a,b]$ 上有连续二阶导数, 对 $\forall x \in [a,b]$, 满足 $|f(x)| \leq A$, $|f''(x)| \leq B$, 且存在 $x_0 \in [a,b]$ 使得 $|f'(x_0)| \leq D$, 其中 $A,B,D$ 均为正常数. 证明: $|f'(x)| \leq 2\sqrt{AB} + D$, $\forall x \in [a,b]$.
 
@@ -9008,32 +9370,45 @@ $$\lim_{n\to\infty}\sum_{k=1}^{n}\frac{(2k-1)^{4}}{n^{5}+k^{4}}.$$
 
 $$\lim_{n\to\infty}\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{2n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right).$$
 
-> [!answer]- 原书参考答案（D.0.1 第 5 题，未逐题独立验算）
-> **5.** 第一步：认面积元，把系数凑成 $\frac{1}{(2n)^2}$. 两层求和的步长都是 $\frac{1}{2n}$，故面积元应是 $\frac{1}{(2n)^2} = \frac{1}{4n^2}$. 提出常数因子 4:
+> [!answer]- 核对后解答（D.0.1 第 5 题；含 AI 更正或核对提示）
+> **AI 补充：核对结果与更正解答**
 >
-> $$\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right)=4\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{4n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right).$$
+> 原 PDF 第 55 页及题干的系数是 $1/(2n^{2})$；原书答案从 $1/n^{2}$ 出发，结果多了一倍。
 >
-> 第二步: 从求和范围读出积分区域. 内层上限为 i, 即 $\frac{j}{2n} \leq \frac{i}{2n}$, 也就是 $y \leq x$; 外层跑遍 $[0,1]$, 故区域为
+> 网格步长为 $1/(2n)$，面积元为 $1/(4n^{2})$。记 $D_{1}=\{0\le y\le x\le1\}$，则由 Riemann 和定义，
 >
-> $$D_{1}=\left\{\left(x,y\right)\mid0\leqslant x\leqslant1,\;0\leqslant y\leqslant x\right\}.$$
+> $$\lim_{n\to\infty}\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{2n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right)=2\iint_{D_{1}}f(x,y)\,\mathrm{d}x\mathrm{d}y.$$
 >
-> 由二重积分定义，
+> 对角线上的网格项不影响极限：若 $|f|\le M$，这部分绝对值至多 $2nM/(2n^{2})=M/n\to0$。
 >
-> $$\lim_{n\to\infty}\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{4n^{2}}f\bigg(\frac{i}{2n},\frac{j}{2n}\bigg)=\iint_{D_{1}}f(x,y)\mathrm{d}x\mathrm{d}y.$$
+> 由 $f(x,y)=f(y,x)$，上下两个三角形上的积分相同，每个为 $A/2$。因此原极限为 $2\cdot A/2=A$。
 >
-> 第三步：用对称性把 $\iint_{D_{1}} f(x,y) \, dx \, dy$ 算出来. 把正方形 D 沿对角线 y = x 分成
->
-> $$D_{1}=\left\{0\leqslant y\leqslant x\leqslant1\right\},\qquad D_{2}=\left\{0\leqslant x\leqslant y\leqslant1\right\}.$$
->
-> 在 $D_{2}$ 上作换元 $(x,y) \mapsto (y,x)$，它把 $D_{2}$ 一一映到 $D_{1}$，且 $dxdy$ 不变，于是
->
-> $$\iint_{D_{2}}f(x,y)\mathrm{d}x\mathrm{d}y=\iint_{D_{1}}f(y,x)\mathrm{d}x\mathrm{d}y.$$
->
-> 又 $f(x,y)=f(y,x)$，所以 $\iint_{D_1}f(x,y)dxdy=\iint_{D_2}f(x,y)dxdy=\frac{1}{2}\iint_{D}f(x,y)dxdy=\frac{A}{2}$.
->
-> 第四步：代入系数. 原极限
->
-> $$=4\iint_{D_{1}}f(x,y)\mathrm{d}x\mathrm{d}y=4\cdot\frac{A}{2}=2A.$$
+> > [!note]- 原书解答存档（含上述错误，不作为更正后的结论）
+> > **5.** 第一步：认面积元，把系数凑成 $\frac{1}{(2n)^2}$. 两层求和的步长都是 $\frac{1}{2n}$，故面积元应是 $\frac{1}{(2n)^2} = \frac{1}{4n^2}$. 提出常数因子 4:
+> >
+> > $$\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right)=4\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{4n^{2}}f\left(\frac{i}{2n},\frac{j}{2n}\right).$$
+> >
+> > 第二步: 从求和范围读出积分区域. 内层上限为 i, 即 $\frac{j}{2n} \leq \frac{i}{2n}$, 也就是 $y \leq x$; 外层跑遍 $[0,1]$, 故区域为
+> >
+> > $$D_{1}=\left\{\left(x,y\right)\mid0\leqslant x\leqslant1,\;0\leqslant y\leqslant x\right\}.$$
+> >
+> > 由二重积分定义，
+> >
+> > $$\lim_{n\to\infty}\sum_{i=1}^{2n}\sum_{j=1}^{i}\frac{1}{4n^{2}}f\bigg(\frac{i}{2n},\frac{j}{2n}\bigg)=\iint_{D_{1}}f(x,y)\mathrm{d}x\mathrm{d}y.$$
+> >
+> > 第三步：用对称性把 $\iint_{D_{1}} f(x,y) \, dx \, dy$ 算出来. 把正方形 D 沿对角线 y = x 分成
+> >
+> > $$D_{1}=\left\{0\leqslant y\leqslant x\leqslant1\right\},\qquad D_{2}=\left\{0\leqslant x\leqslant y\leqslant1\right\}.$$
+> >
+> > 在 $D_{2}$ 上作换元 $(x,y) \mapsto (y,x)$，它把 $D_{2}$ 一一映到 $D_{1}$，且 $dxdy$ 不变，于是
+> >
+> > $$\iint_{D_{2}}f(x,y)\mathrm{d}x\mathrm{d}y=\iint_{D_{1}}f(y,x)\mathrm{d}x\mathrm{d}y.$$
+> >
+> > 又 $f(x,y)=f(y,x)$，所以 $\iint_{D_1}f(x,y)dxdy=\iint_{D_2}f(x,y)dxdy=\frac{1}{2}\iint_{D}f(x,y)dxdy=\frac{A}{2}$.
+> >
+> > 第四步：代入系数. 原极限
+> >
+> > $$=4\iint_{D_{1}}f(x,y)\mathrm{d}x\mathrm{d}y=4\cdot\frac{A}{2}=2A.$$
 
 **6.** (难度：★★★★) 已知 $f(x)$ 在 $[a, b]$ 上二阶连续可导, 据此求下列极限:
 
@@ -9244,9 +9619,12 @@ $$0\leqslant\int_{a}^{x}g(t)\mathrm{d}t\leqslant x-a,x\in[a,b];$$
 
 (2)
 
-$$\int_{a}^{a+}\int_{a}^{b}g(t)\mathrm{d}t_{f(x)}\mathrm{d}x\leqslant\int_{a}^{b}f(x)g(x)\mathrm{d}x.$$
+$$\int_{a}^{a+\int_{a}^{b}g(t)\mathrm{d}t}f(x)\mathrm{d}x\leqslant\int_{a}^{b}f(x)g(x)\mathrm{d}x.$$
 
-> [!answer]- 原书参考答案（D.0.2 第 3 题，未逐题独立验算）
+> [!answer]- 核对后解答（D.0.2 第 3 题；含 AI 更正或核对提示）
+> > [!note] AI 补充：OCR 校正
+> > 已按原 PDF 第 57 页把第 (2) 问的整体积分上限恢复为 $a+\int_{a}^{b}g(t)\,\mathrm{d}t$，并同步修正解答中同类断裂的上限。
+>
 > **3.** (1) 由 $0 \leqslant g(x) \leqslant 1$ 直接积分放缩; (2) 把待证不等式两边之差设成变限积分函数 $F(x)$，用 $f(x)$ 的单调性判断 $F'(x)$ 的符号. (1) 由 $g(x) \geqslant 0$，当 $x \geqslant a$ 时 $\int_{a}^{x} g(t) \, dt \geqslant 0$; 又 $g(x) \leqslant 1$，故
 >
 > $$\int_{a}^{x}g(t)\mathrm{d}t\leqslant\int_{a}^{x}1\mathrm{d}t=x-a.$$
@@ -9255,7 +9633,7 @@ $$\int_{a}^{a+}\int_{a}^{b}g(t)\mathrm{d}t_{f(x)}\mathrm{d}x\leqslant\int_{a}^{b
 >
 > (2) 设
 >
-> $$F(x)=\int_{a}^{a+}\int_{a}^{x}g(t)\mathrm{d}t\\f(u)\mathrm{d}u-\int_{a}^{x}f(u)g(u)\mathrm{d}u,\qquad F(a)=0.$$
+> $$F(x)=\int_{a}^{a+\int_{a}^{x}g(t)\mathrm{d}t}f(u)\mathrm{d}u-\int_{a}^{x}f(u)g(u)\mathrm{d}u,\qquad F(a)=0.$$
 >
 > 求导（外层的积分上限 $a + \int_{a}^{x} g(t) \, dt$ 也是 x 的函数，要用复合函数求导）：
 >
@@ -9267,7 +9645,7 @@ $$\int_{a}^{a+}\int_{a}^{b}g(t)\mathrm{d}t_{f(x)}\mathrm{d}x\leqslant\int_{a}^{b
 >
 > 结合 $g(x) \geqslant 0$ 得 $F'(x) \leqslant 0$，即 $F(x)$ 在 $[a,b]$ 上单调递减。于是对一切 $x \in [a,b]$，
 >
-> $$\int_{a}^{a+}\int_{a}^{x}g(t)\mathrm{d}t_{f(u)}\mathrm{d}u\leqslant\int_{a}^{x}f(u)g(u)\mathrm{d}u.$$
+> $$\int_{a}^{a+\int_{a}^{x}g(t)\mathrm{d}t}f(u)\mathrm{d}u\leqslant\int_{a}^{x}f(u)g(u)\mathrm{d}u.$$
 >
 > 取 x = b 即得结论. 把 $a + \int_{a}^{x} g(t) \, dt$ 看成中间变量是本题的关键: 它既可以代入 $f(x)$, 又可以用 (1) 的结论与 x 比较大小, 从而给 $F'(x)$ 定号.
 
@@ -9746,7 +10124,16 @@ $$\int_{0}^{\frac{\pi}{2}}x\left|\frac{\sin nx}{\sin x}\right|^{4}\mathrm{d}x\le
 
 $$\int_{0}^{1}\left|\frac{f^{\prime\prime}(x)}{f(x)}\right|\mathrm{d}x>4.$$
 
-> [!answer]- 原书参考答案（D.0.4 第 4 题，未逐题独立验算）
+> [!answer]- 核对后解答（D.0.4 第 4 题；含 AI 更正或核对提示）
+> > [!warning] AI 补充：核对提示
+> > 原书末尾只得到 $\ge4$，还需补足题目要求的严格不等号。
+>
+> **AI 补充：严格性。** 题设为 $f''<0$，所以 $|f''|=-f''$ 在 $[0,1]$ 上连续且严格为正。原证明中的 $0<\xi_{1}<\xi_{2}<1$ 保证
+>
+> $$\int_{0}^{1}|f''(x)|\,\mathrm{d}x>\int_{\xi_{1}}^{\xi_{2}}|f''(x)|\,\mathrm{d}x\ge4M.$$
+>
+> 再结合 $\int_{0}^{1}|f''|/f\ge M^{-1}\int_{0}^{1}|f''|$，即得题目要求的 $>4$；若端点反常积分发散到正无穷，结论同样成立。
+>
 > **4.** 先用 $f''(x) \leqslant 0$ 说明 $f(x) > 0$ (否则 $\frac{1}{f(x)}$ 无从谈起)，把分母放大成 M; 再把 $\int_{0}^{1}|f''(x)|\,\mathrm{d}x$ 减弱到最值点两侧两个中值点之间的 $[\xi_1, \xi_2]$，用 $f'(x)$ 的两个值之差算出结果。因 $f''(x) \leqslant 0$, $f(x)$ 上凸、图像在弦的上方，而两端 $f(0) = f(1) = 0$，故 $f(x) \geqslant 0$; 又 M > 0，若某个内点取值为 0，由上凸性可推出 $f(x) \equiv 0$，与 M > 0 矛盾，所以 $f(x) > 0$ (0 < x < 1)。
 >
 > 设 $f(c)=M$ 。由 $\frac{1}{f(x)}\geq\frac{1}{M}$
@@ -10702,14 +11089,17 @@ $$C\iiint_{\Omega}f^{2}\mathrm{d}x\mathrm{d}y\mathrm{d}z+\frac{1}{C}\iiint_{\Ome
 >
 > 由 $\sum \frac{1}{\left(n - \frac{1}{2}\right)^2}$ 收敛、比较判别法， $\sum \cot^2 x_n$ 收敛。” $x_n = \tan x_n$” 把 $\tan$ 换成了 $x_n$，“ $x_n > n\pi - \frac{\pi}{2}$” 又给出 $x_n$ 的下界，两步之后 $\cot^2 x_n$ 就被一个 p 级数的通项压住了。这种“用方程的根所在区间来估阶”是级数与方程结合的常用手法。
 
-**2.** (难度:★★★) 设 x 是正实数, $B_{n}(x)=\sum_{k=1}^{n}k^{x}$, 判别级数 $\sum_{n=2}^{\infty}\frac{B_{n}(\log_{2}n)}{(n\log_{2}n)^{2}}$ 的敛散性.
+**2.** (难度:★★★) 设 x 是正实数, $B_{n}(x)=\sum_{k=1}^{n}k^{x}$, 判别级数 $\sum_{n=2}^{\infty}\frac{B_{n}(\log_{n}2)}{(n\log_{2}n)^{2}}$ 的敛散性.
 
-> [!answer]- 原书参考答案（F.0.1 第 2 题，未逐题独立验算）
+> [!answer]- 核对后解答（F.0.1 第 2 题；含 AI 更正或核对提示）
+> > [!note] AI 补充：OCR 校正
+> > 原 PDF 第 68 页的分子为 $B_{n}(\log_{n}2)$；已修正题干中误识别的 $B_{n}(\log_{2}n)$。分母仍为 $(n\log_{2}n)^{2}$，并统一解答中 $a_{n}$ 的分子记号。
+>
 > **2.** 分母里的 $\log_{2} n$ 提示把它换成 $\ln n$; 关键是把 $B_{n}(\log_{n} 2)$ 压成 $2n$——因为 $k \leq n$ 时 $k^{\log_{n} 2} \leq n^{\log_{n} 2} = 2$, 每一项都不超过 2. 剩下的就是与 $\sum \frac{1}{n \ln^{2} n}$ 比较. 由 $k \leq n$ 得 $k^{\log_{n} 2} \leq n^{\log_{n} 2} = 2$, 故
 >
 > $$B_{n}\left(\log_{n}2\right)=\sum_{k=1}^{n}k^{\log_{n}2}\leqslant2n.$$
 >
-> 记 $a_{n}=\frac{B_{n}\left(\log_{2}2\right)}{\left(n\log_{2}n\right)^{2}}$ , 则
+> 记 $a_{n}=\frac{B_{n}\left(\log_{n}2\right)}{\left(n\log_{2}n\right)^{2}}$ , 则
 >
 > $$0\leqslant a_{n}\leqslant\frac{2n}{n^{2}\left(\log_{2}n\right)^{2}}=\frac{2}{n\left(\log_{2}n\right)^{2}}=\frac{2(\ln2)^{2}}{n(\ln n)^{2}}.$$
 >
